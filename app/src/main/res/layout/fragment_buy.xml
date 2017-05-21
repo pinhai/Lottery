@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        style="@style/Action_Bar_Text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="购彩大厅" />
+    <RadioGroup
+        android:id="@+id/radio_buy_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/radio_all">
+        <RadioButton
+            android:id="@+id/radio_all"
+            style="@style/Buy_Tab_Radio"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buy_nav_1_selector"/>
+        <RadioButton
+            android:id="@+id/radio_high"
+            style="@style/Buy_Tab_Radio"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buy_nav_2_selector"/>
+        <RadioButton
+            android:id="@+id/radio_low"
+            style="@style/Buy_Tab_Radio"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buy_nav_3_selector"/>
+    </RadioGroup>
+    <FrameLayout
+        android:id="@+id/frame_buy_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

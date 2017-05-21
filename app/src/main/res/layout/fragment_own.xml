@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Action_Bar_Text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="个人中心" />
+
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <com.forum.lottery.view.RatioLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/touxiang_beijing"
+                android:orientation="vertical"
+                app:ratio="0.39">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <com.forum.lottery.view.roundimage.RoundedImageView
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@mipmap/geren_tou"
+                        app:oval="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:text="abc122345"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="￥1"
+                            android:textColor="#feb501"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="余额"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="￥0"
+                            android:textColor="#feb501"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="最近出款金额"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="刷新金额"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </com.forum.lottery.view.RatioLinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@mipmap/geren_cz_01" />
+
+                <View
+                    android:layout_width="@dimen/line_height"
+                    android:layout_height="match_parent"
+                    android:background="@color/line_color" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@mipmap/geren_tixian_01" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="15dp"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@drawable/line_common_divider"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:showDividers="middle">
+
+                <TextView
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_13"
+                    android:drawableStart="@mipmap/geren_tubiao_13"
+                    android:text="投注记录" />
+
+                <TextView
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_24"
+                    android:drawableStart="@mipmap/geren_tubiao_24"
+                    android:text="中奖记录" />
+
+                <TextView
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_26"
+                    android:drawableStart="@mipmap/geren_tubiao_26"
+                    android:text="账户明细" />
+
+                <TextView
+                    android:id="@+id/tv_rechargeRecord"
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_04"
+                    android:drawableStart="@mipmap/geren_tubiao_04"
+                    android:text="充值记录" />
+
+                <TextView
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_13"
+                    android:drawableStart="@mipmap/geren_tubiao_13"
+                    android:text="提款记录" />
+
+                <TextView
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_06"
+                    android:drawableStart="@mipmap/geren_tubiao_06"
+                    android:text="个人消息" />
+
+                <TextView
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_30"
+                    android:drawableStart="@mipmap/geren_tubiao_30"
+                    android:text="更多" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

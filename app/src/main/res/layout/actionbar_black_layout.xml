@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/action_bar_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@mipmap/blank_01"
+        android:background="@drawable/bg_action_bar_item"/>
+    <TextView
+        style="@style/Action_Bar_Text"
+        android:id="@+id/txt_title"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/action_bar_height"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+

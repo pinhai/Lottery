@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingEnd="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:paddingStart="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Register_Left_Text"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="用户账号" />
+
+                <EditText
+                    android:id="@+id/edit_username"
+                    style="@style/Register_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入用户名" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Register_Left_Text"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="登录密码" />
+
+                <EditText
+                    android:id="@+id/edit_password"
+                    style="@style/Register_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Register_Left_Text"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="重复密码" />
+
+                <EditText
+                    android:id="@+id/edit_password_again"
+                    style="@style/Register_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请再次输入密码"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Register_Left_Text"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="验证码" />
+
+                <EditText
+                    android:id="@+id/edit_code"
+                    style="@style/Register_Edit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="请输入验证码" />
+
+                <ImageView
+                    android:id="@+id/img_code"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/check_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:checked="true"
+                android:singleLine="true"
+                android:text="我已年满18周岁，并且同意接受"
+                android:textColor="@color/text_color_2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="《法律申明》"
+                android:textColor="#fe0103"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/Button_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="20dp"
+            android:text="立即注册" />
+
+        <Button
+            style="@style/Button_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:text="免费试玩" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                style="@style/Login_Small_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在线客服" />
+
+            <TextView
+                style="@style/Login_Small_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="已有账号，直接登录" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:text="1.用户帐号请输入4-16个英文字母或数字，不能用中文。"
+            android:textColor="#fe0103"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:text="2.登录密码请输入6-12个英文字母或数字。"
+            android:textColor="#fe0103"
+            android:textSize="13sp" />
+    </LinearLayout>
+</ScrollView>

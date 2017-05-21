@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.forum.lottery.view.MyRadioGroup
+        android:id="@+id/rg_recordType"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_all"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="3dp"
+                android:checked="true"
+                android:gravity="center"
+                android:button="@null"
+                android:text="全部"
+                android:textSize="18sp"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/rb_checkPending"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:padding="3dp"
+                android:checked="false"
+                android:gravity="center"
+                android:button="@null"
+                android:text="待审核"
+                android:textSize="18sp"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/rb_deposited"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="3dp"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="已存入"
+                android:textSize="18sp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_canceled"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="3dp"
+                android:checked="true"
+                android:gravity="center"
+                android:button="@null"
+                android:text="已取消"
+                android:textSize="18sp"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="全部"
+                android:textSize="18sp"
+                android:visibility="invisible" />
+
+            <RadioButton
+                android:visibility="invisible"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:padding="3dp"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="全部"
+                android:textSize="18sp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </com.forum.lottery.view.MyRadioGroup>
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/red"/>
+
+</LinearLayout>

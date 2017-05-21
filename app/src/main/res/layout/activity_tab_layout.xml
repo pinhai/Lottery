@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+    <com.forum.lottery.view.PagerSlidingTabStrip
+        android:id="@+id/tab_strip"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#000"
+        app:pstsDividerColor="@color/transparent"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsIndicatorColor="#cdb285"
+        app:pstsUnderlineHeight="0dp"
+        app:pstsUnderlineColor="@color/transparent"
+        android:textColor="@color/common_tab_text_color"
+        android:textSize="14sp"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/page_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

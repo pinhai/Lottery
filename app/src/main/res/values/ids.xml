@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="img_delete" type="id"/>
+    <item name="txt_delete" type="id"/>
+    <item name="txt_choose_all" type="id"/>
+    <item name="txt_cancel" type="id"/>
+    <item name="txt_affirm" type="id"/>
+    <item name="txt_empty" type="id"/>
+    <item name="tag_view_hold" type="id"/>
+</resources>
