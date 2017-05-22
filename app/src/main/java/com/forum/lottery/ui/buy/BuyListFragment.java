@@ -11,11 +11,16 @@ import android.widget.ListView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.BuyListAdapter;
+import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.ui.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.SingleSubscriber;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Administrator on 2017/5/1.
@@ -43,10 +48,26 @@ public class BuyListFragment extends BaseFragment {
 
     private void loadLotteryList(){
         List<LotteryVO> lotteryVOs = new ArrayList<>();
-        for(int i = 0; i < 20; i++){
-            lotteryVOs.add(new LotteryVO());
-        }
+//        for(int i = 0; i < 20; i++){
+//            lotteryVOs.add(new LotteryVO());
+//        }
         listBuy.setAdapter(new BuyListAdapter(getActivity(), lotteryVOs));
+
+        createHttp(LotteryService.class)
+                .getAllLotteryList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData<LotteryVO>>() {
+                    @Override
+                    public void onSuccess(ResultData<LotteryVO> value) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
+
     }
 
     private class BuyItemClickListener implements android.widget.AdapterView.OnItemClickListener {

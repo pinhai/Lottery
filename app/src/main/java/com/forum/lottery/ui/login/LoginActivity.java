@@ -109,6 +109,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
                     }
                     @Override
                     public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
                         dialog.dismiss();
                     }
                 });

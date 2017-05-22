@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="record_type">
+        <item>全部</item>
+        <item>待审核</item>
+        <item>已存入</item>
+        <item>已取消</item>
+    </string-array>
+</resources>

@@ -24,8 +24,10 @@ import com.forum.lottery.R;
 import com.forum.lottery.api.CommonService;
 import com.forum.lottery.api.UserService;
 import com.forum.lottery.entity.RegisterResult;
+import com.forum.lottery.entity.UserVO;
 import com.forum.lottery.network.RxHttp;
 import com.forum.lottery.ui.BaseActionBarActivity;
+import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.utils.ImageUtil;
 
 import okhttp3.ResponseBody;
@@ -158,6 +160,10 @@ public class RegisterActivity extends BaseActionBarActivity implements View.OnCl
                     public void onSuccess(RegisterResult value) {
                         dialog.dismiss();
                         if(value.isResult()){
+                            UserVO userVO = new UserVO();
+                            userVO.setAccount(value.getUserName());
+                            userVO.setId(String.valueOf(value.getUserId()));
+                            AccountManager.getInstance().saveUser(userVO);
                             setResult(RESULT_OK);
                             self().finish();
                         }
