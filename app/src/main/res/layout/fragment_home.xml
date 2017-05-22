@@ -30,4 +30,21 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
+
+    <com.forum.lottery.view.MarqueeText
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:text="实现滚动显示效果 在android中,如果设置了TextView控件为单行显示"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray" />
+
 </LinearLayout>
