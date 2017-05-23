@@ -28,6 +28,9 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class BuyListFragment extends BaseFragment {
     private ListView listBuy;
+    private BuyListAdapter adapter;
+    private List<LotteryVO> lotteryVOs;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,19 +50,24 @@ public class BuyListFragment extends BaseFragment {
     }
 
     private void loadLotteryList(){
-        List<LotteryVO> lotteryVOs = new ArrayList<>();
+        lotteryVOs = new ArrayList<>();
 //        for(int i = 0; i < 20; i++){
 //            lotteryVOs.add(new LotteryVO());
 //        }
-        listBuy.setAdapter(new BuyListAdapter(getActivity(), lotteryVOs));
+        adapter = new BuyListAdapter(getActivity(), lotteryVOs);
+        listBuy.setAdapter(adapter);
 
         createHttp(LotteryService.class)
                 .getAllLotteryList()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ResultData<LotteryVO>>() {
+                .subscribe(new SingleSubscriber<ResultData<List<LotteryVO>>>() {
                     @Override
-                    public void onSuccess(ResultData<LotteryVO> value) {
-
+                    public void onSuccess(ResultData<List<LotteryVO>> value) {
+                        if(value != null && value.getData() != null){
+                            lotteryVOs.clear();
+                            lotteryVOs.addAll(value.getData());
+                            adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override

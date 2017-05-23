@@ -23,7 +23,7 @@ public interface LotteryService {
      * @return
      */
     @GET("nonAuthority/gameCenter/appLotteryBuy")
-    Single<ResultData<LotteryVO>> getAllLotteryList();
+    Single<ResultData<List<LotteryVO>>> getAllLotteryList();
 
     /**
      * 获取彩票
