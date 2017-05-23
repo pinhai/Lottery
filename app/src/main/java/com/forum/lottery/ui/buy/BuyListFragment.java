@@ -2,6 +2,7 @@ package com.forum.lottery.ui.buy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,9 @@ import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.ui.BaseFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,20 +46,20 @@ public class BuyListFragment extends BaseFragment {
         listBuy = findView(R.id.list_buy);
         loadLotteryList();
         listBuy.setOnItemClickListener(new BuyItemClickListener());
+        listBuy.setAdapter(adapter);
     }
 
     @Override
     protected void initData() {
-
-    }
-
-    private void loadLotteryList(){
+        initTick();
         lotteryVOs = new ArrayList<>();
 //        for(int i = 0; i < 20; i++){
 //            lotteryVOs.add(new LotteryVO());
 //        }
         adapter = new BuyListAdapter(getActivity(), lotteryVOs);
-        listBuy.setAdapter(adapter);
+    }
+
+    private void loadLotteryList(){
 
         createHttp(LotteryService.class)
                 .getAllLotteryList()
@@ -67,6 +71,7 @@ public class BuyListFragment extends BaseFragment {
                             lotteryVOs.clear();
                             lotteryVOs.addAll(value.getData());
                             adapter.notifyDataSetChanged();
+                            startTick();
                         }
                     }
 
@@ -78,6 +83,41 @@ public class BuyListFragment extends BaseFragment {
 
     }
 
+    private android.os.Handler handler = new android.os.Handler(new android.os.Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            for(LotteryVO lotteryVO : lotteryVOs){
+                int time = lotteryVO.getTime() - 1;
+                lotteryVO.setTime(time);
+            }
+            adapter.notifyDataSetChanged();
+            return false;
+        }
+    });
+
+    private boolean runTick = true;
+    private Thread tickThread;
+    private void startTick(){
+        if(!tickThread.isAlive())
+            tickThread.start();
+    }
+
+    private void initTick(){
+        tickThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (runTick){
+                    try {
+                        Thread.sleep(1000);
+                        handler.sendEmptyMessage(0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
     private class BuyItemClickListener implements android.widget.AdapterView.OnItemClickListener {
 
         @Override
@@ -85,5 +125,10 @@ public class BuyListFragment extends BaseFragment {
             Intent intent = new Intent(getActivity(), BuyLotteryActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

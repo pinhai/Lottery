@@ -8,9 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.forum.lottery.R;
+import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
+import com.forum.lottery.model.BetItemModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,24 +24,36 @@ import java.util.List;
 
 public class BetSelectAdapter extends BaseAdapter {
 
-    private List<Boolean> selecteds;
+//    private List<Boolean> selecteds;
     private Context context;
     private OnCheckedListener checkedListener;
+    private List<BetItemModel> itemData;
 
-    public BetSelectAdapter(Context context, List<Boolean> selecteds, OnCheckedListener checkedListener){
+//    public BetSelectAdapter(Context context, List<Boolean> selecteds, OnCheckedListener checkedListener){
+//        this.context = context;
+//        this.selecteds = selecteds;
+//        this.checkedListener = checkedListener;
+//    }
+
+    public BetSelectAdapter(Context context, List<BetItemModel> itemData, OnCheckedListener checkedListener){
         this.context = context;
-        this.selecteds = selecteds;
+//        this.selecteds = selecteds;
         this.checkedListener = checkedListener;
+        this.itemData = itemData;
     }
+
+//    public void setItemData(List<String> itemData){
+//        this.itemData = itemData;
+//    }
 
     @Override
     public int getCount() {
-        return selecteds.size();
+        return itemData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return selecteds.get(position);
+        return itemData.get(position);
     }
 
     @Override
@@ -59,13 +74,15 @@ public class BetSelectAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tv_bet.setText("" + position);
-        viewHolder.ctv_bet.setChecked(selecteds.get(position));
+        viewHolder.tv_bet.setText(itemData.get(position).getName());
+        viewHolder.ctv_bet.setChecked(itemData.get(position).isChecked());
         viewHolder.ctv_bet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                selecteds.set(position, isChecked);
+//                selecteds.set(position, isChecked);
+                itemData.get(position).setChecked(isChecked);
                 checkedListener.onCheckedChanged(isChecked);
+                EventBus.getDefault().post(new BuyLotteryCheckChangeEvent());
             }
         });
 

@@ -71,11 +71,11 @@ public class DingWeiDanSelectFragment extends BaseBetFragment {
             selectedGewei.add(false);
         }
         BetSelectAdapter.OnCheckedListener onCheckedListener = (BetSelectAdapter.OnCheckedListener) getArguments().getSerializable("checkedListener");
-        adapterWanwei = new BetSelectAdapter(getActivity(), selectedWanwei, onCheckedListener);
-        adapterQianwei = new BetSelectAdapter(getActivity(), selectedQianwei, onCheckedListener);
-        adapterBaiwei = new BetSelectAdapter(getActivity(), selectedBaiwei, onCheckedListener);
-        adapterShiwei = new BetSelectAdapter(getActivity(), selectedShiwei, onCheckedListener);
-        adapterGewei = new BetSelectAdapter(getActivity(), selectedGewei, onCheckedListener);
+//        adapterWanwei = new BetSelectAdapter(getActivity(), selectedWanwei, onCheckedListener);
+//        adapterQianwei = new BetSelectAdapter(getActivity(), selectedQianwei, onCheckedListener);
+//        adapterBaiwei = new BetSelectAdapter(getActivity(), selectedBaiwei, onCheckedListener);
+//        adapterShiwei = new BetSelectAdapter(getActivity(), selectedShiwei, onCheckedListener);
+//        adapterGewei = new BetSelectAdapter(getActivity(), selectedGewei, onCheckedListener);
     }
 
     @Override

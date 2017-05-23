@@ -62,7 +62,7 @@
                 android:textSize="12sp"
                 android:text="距第20170302220期 截止还有"
                 android:singleLine="true"/>
-            <com.forum.lottery.view.ShowTiemTextView
+            <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
