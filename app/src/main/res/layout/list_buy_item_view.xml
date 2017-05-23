@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="13dp">
     <com.forum.lottery.view.roundimage.RoundedImageView
+        android:id="@+id/riv_lotteryPic"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:oval="true"
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             >
             <TextView
+                android:id="@+id/tv_lotteryName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -30,6 +32,7 @@
                 android:layout_weight="1"
                 android:text="三分时时彩"/>
             <TextView
+                android:id="@+id/tv_issue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#eb2929"
@@ -38,6 +41,7 @@
                 android:text="第20170302219期"/>
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_openNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -50,6 +54,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/tv_nextIssue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,7 +62,8 @@
                 android:textSize="12sp"
                 android:text="距第20170302220期 截止还有"
                 android:singleLine="true"/>
-            <TextView
+            <com.forum.lottery.view.ShowTiemTextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_color_2"
