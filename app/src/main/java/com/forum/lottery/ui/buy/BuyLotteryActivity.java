@@ -12,6 +12,7 @@ import com.forum.lottery.R;
 import com.forum.lottery.adapter.BetSelectAdapter;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.model.BetItemModel;
+import com.forum.lottery.model.BetListItemModel;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.BaseBetFragment;
 
@@ -83,7 +84,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         betFragment.clearCheckedBetting();
     }
 
-    private List<Map<String, List<BetItemModel>>> data;
+    private List<BetListItemModel> data;
     private void loadData() {
         data = new ArrayList<>();
         List<BetItemModel> itemIntenal1 = new ArrayList<>();
@@ -98,21 +99,45 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             itemIntenal4.add(new BetItemModel(i+"", false));
             itemIntenal5.add(new BetItemModel(i+"", false));
         }
-        Map<String, List<BetItemModel>> itemData = new HashMap<>();
-        itemData.put("万位", itemIntenal1);
-        Map<String, List<BetItemModel>> itemData2 = new HashMap<>();
-        itemData2.put("千位", itemIntenal2);
-        Map<String, List<BetItemModel>> itemDat3 = new HashMap<>();
-        itemDat3.put("百位", itemIntenal3);
-        Map<String, List<BetItemModel>> itemDat4 = new HashMap<>();
-        itemDat4.put("十位", itemIntenal4);
-        Map<String, List<BetItemModel>> itemData5 = new HashMap<>();
-        itemData5.put("个位", itemIntenal5);
-        data.add(itemData);
-        data.add(itemData2);
-        data.add(itemDat3);
-        data.add(itemDat4);
-        data.add(itemData5);
+
+        BetListItemModel listitem1 = new BetListItemModel();
+        listitem1.setLabel("万位");
+        listitem1.setBetItems(itemIntenal1);
+        BetListItemModel listitem2 = new BetListItemModel();
+        listitem2.setLabel("千位");
+        listitem2.setBetItems(itemIntenal2);
+        BetListItemModel listitem3 = new BetListItemModel();
+        listitem3.setLabel("百位");
+        listitem3.setBetItems(itemIntenal3);
+        BetListItemModel listitem4 = new BetListItemModel();
+        listitem4.setLabel("十位");
+        listitem4.setBetItems(itemIntenal4);
+        BetListItemModel listitem5 = new BetListItemModel();
+        listitem5.setLabel("个位");
+        listitem5.setBetItems(itemIntenal5);
+
+        data.add(listitem1);
+        data.add(listitem2);
+        data.add(listitem3);
+        data.add(listitem4);
+        data.add(listitem5);
+
+
+//        Map<String, List<BetItemModel>> itemData = new HashMap<>();
+//        itemData.put("万位", itemIntenal1);
+//        Map<String, List<BetItemModel>> itemData2 = new HashMap<>();
+//        itemData2.put("千位", itemIntenal2);
+//        Map<String, List<BetItemModel>> itemDat3 = new HashMap<>();
+//        itemDat3.put("百位", itemIntenal3);
+//        Map<String, List<BetItemModel>> itemDat4 = new HashMap<>();
+//        itemDat4.put("十位", itemIntenal4);
+//        Map<String, List<BetItemModel>> itemData5 = new HashMap<>();
+//        itemData5.put("个位", itemIntenal5);
+//        data.add(itemData);
+//        data.add(itemData2);
+//        data.add(itemDat3);
+//        data.add(itemDat4);
+//        data.add(itemData5);
 
 
     }
@@ -129,7 +154,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         int count = 0;
         for(int i=0; i<data.size(); i++){
 //            List<Boolean> item = selectedsALl.get(i);
-            List<BetItemModel> item = data.get(i).get(getMapKey(data.get(i)));
+            List<BetItemModel> item = data.get(i).getBetItems();
             for(int j=0; j<item.size(); j++){
                 if(item.get(j).isChecked()){
                     ++count;
@@ -138,17 +163,6 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         }
         tv_betCount.setText(count + "");
         tv_betMoney.setText((count*2) + "");
-    }
-
-    public String getMapKey(Map<String, List<BetItemModel>> item){
-        String label = "";
-        Set set = item.keySet();
-        Iterator iter = set.iterator();
-        if (iter.hasNext()) {
-            label = (String) iter.next();
-        }
-
-        return label;
     }
 
     @Override

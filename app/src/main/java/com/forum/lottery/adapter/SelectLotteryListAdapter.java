@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.model.BetItemModel;
+import com.forum.lottery.model.BetListItemModel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,29 +26,25 @@ import java.util.Set;
 public class SelectLotteryListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Map<String, List<BetItemModel>>> data;
+    private List<BetListItemModel> data;
     private List<BetSelectAdapter> adapters;
 //    private List<List<Boolean>> selectedsALl;
 
-    public SelectLotteryListAdapter(Context context, List<Map<String, List<BetItemModel>>> data){
+    public SelectLotteryListAdapter(Context context, List<BetListItemModel> data){
         this.context = context;
         this.data = data;
 //        selectedsALl = new ArrayList<>();
         adapters = new ArrayList<>();
         for(int i=0; i<data.size(); i++){
             List<Boolean> selecteds = new ArrayList<>();
-            Map<String, List<BetItemModel>> item = data.get(i);
-            String label = "";
-            Set set = item.keySet();
-            Iterator iter = set.iterator();
-            if (iter.hasNext()) {
-                label = (String) iter.next();
-            }
-            List<BetItemModel> itemData = item.get(label);
-//            for(int j=0; j<itemData.size(); j++){
-//                selecteds.add(false);
+//            Map<String, List<BetItemModel>> item = data.get(i);
+//            String label = "";
+//            Set set = item.keySet();
+//            Iterator iter = set.iterator();
+//            if (iter.hasNext()) {
+//                label = (String) iter.next();
 //            }
-//            selectedsALl.add(selecteds);
+            List<BetItemModel> itemData = data.get(i).getBetItems();
             BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
                 @Override
                 public void onCheckedChanged(boolean isChecked) {
@@ -93,14 +90,14 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     }
 
     private void setView(int position, ViewHolder viewHolder) {
-        Map<String, List<BetItemModel>> item = data.get(position);
-        String label = "";
-        Set set = item.keySet();
-        Iterator iter = set.iterator();
-        if (iter.hasNext()) {
-            label = (String) iter.next();
-        }
-        viewHolder.tv_label.setText(label);
+//        Map<String, List<BetItemModel>> item = data.get(position);
+//        String label = "";
+//        Set set = item.keySet();
+//        Iterator iter = set.iterator();
+//        if (iter.hasNext()) {
+//            label = (String) iter.next();
+//        }
+        viewHolder.tv_label.setText(data.get(position).getLabel());
 
 //        List<BetItemModel> itemData = item.get(label);
         BetSelectAdapter adapter = adapters.get(position);
@@ -124,7 +121,7 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     public void clearCheckedBetting() {
         for(int i=0; i<data.size(); i++){
 //            List<Boolean> item = selectedsALl.get(i);
-            List<BetItemModel> item = data.get(i).get(getMapKey(data.get(i)));
+            List<BetItemModel> item = data.get(i).getBetItems();
             for(int j=0; j<item.size(); j++){
                 item.get(j).setChecked(false);
             }
@@ -132,14 +129,14 @@ public class SelectLotteryListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public String getMapKey(Map<String, List<BetItemModel>> item){
-        String label = "";
-        Set set = item.keySet();
-        Iterator iter = set.iterator();
-        if (iter.hasNext()) {
-            label = (String) iter.next();
-        }
-
-        return label;
-    }
+//    public String getMapKey(Map<String, List<BetItemModel>> item){
+//        String label = "";
+//        Set set = item.keySet();
+//        Iterator iter = set.iterator();
+//        if (iter.hasNext()) {
+//            label = (String) iter.next();
+//        }
+//
+//        return label;
+//    }
 }

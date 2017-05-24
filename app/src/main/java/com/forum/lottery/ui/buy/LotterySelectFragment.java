@@ -12,6 +12,7 @@ import com.forum.lottery.adapter.BetSelectAdapter;
 import com.forum.lottery.adapter.SelectLotteryListAdapter;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.model.BetItemModel;
+import com.forum.lottery.model.BetListItemModel;
 import com.forum.lottery.ui.BaseBetFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,10 +30,10 @@ import java.util.Map;
 public class LotterySelectFragment extends BaseBetFragment {
 
     private ListView lv_lottery;
-    private static List<Map<String, List<BetItemModel>>> data;
+    private static List<BetListItemModel> data;
     private SelectLotteryListAdapter adapter;
 
-    public static LotterySelectFragment newInstance(List<Map<String, List<BetItemModel>>> data){
+    public static LotterySelectFragment newInstance(List<BetListItemModel> data){
         Bundle args = new Bundle();
         LotterySelectFragment.data = data;
 
