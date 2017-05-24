@@ -15,6 +15,7 @@ import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.BaseBetFragment;
+import com.forum.lottery.utils.LotteryUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -134,16 +135,16 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     @Subscribe
     public void selectLotteryBetEvent(BuyLotteryCheckChangeEvent event){
-        int count = 0;
-        for(int i=0; i<data.size(); i++){
-//            List<Boolean> item = selectedsALl.get(i);
-            List<BetItemModel> item = data.get(i).getBetItems();
-            for(int j=0; j<item.size(); j++){
-                if(item.get(j).isChecked()){
-                    ++count;
-                }
-            }
-        }
+        int count = LotteryUtils.getBetCount(data);
+//        for(int i=0; i<data.size(); i++){
+////            List<Boolean> item = selectedsALl.get(i);
+//            List<BetItemModel> item = data.get(i).getBetItems();
+//            for(int j=0; j<item.size(); j++){
+//                if(item.get(j).isChecked()){
+//                    ++count;
+//                }
+//            }
+//        }
         tv_betCount.setText(count + "");
         tv_betMoney.setText((count*2) + "");
     }
