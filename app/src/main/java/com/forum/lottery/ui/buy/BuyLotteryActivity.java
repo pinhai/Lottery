@@ -80,6 +80,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     protected void initData() {
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
         loadData();
+        initTick();
+        startTick();
 
     }
 
