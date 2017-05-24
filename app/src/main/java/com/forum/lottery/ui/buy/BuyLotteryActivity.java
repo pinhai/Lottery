@@ -123,23 +123,6 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         data.add(listitem5);
 
 
-//        Map<String, List<BetItemModel>> itemData = new HashMap<>();
-//        itemData.put("万位", itemIntenal1);
-//        Map<String, List<BetItemModel>> itemData2 = new HashMap<>();
-//        itemData2.put("千位", itemIntenal2);
-//        Map<String, List<BetItemModel>> itemDat3 = new HashMap<>();
-//        itemDat3.put("百位", itemIntenal3);
-//        Map<String, List<BetItemModel>> itemDat4 = new HashMap<>();
-//        itemDat4.put("十位", itemIntenal4);
-//        Map<String, List<BetItemModel>> itemData5 = new HashMap<>();
-//        itemData5.put("个位", itemIntenal5);
-//        data.add(itemData);
-//        data.add(itemData2);
-//        data.add(itemDat3);
-//        data.add(itemDat4);
-//        data.add(itemData5);
-
-
     }
 
     private BetSelectAdapter.OnCheckedListener onCheckedListener = new BetSelectAdapter.OnCheckedListener() {

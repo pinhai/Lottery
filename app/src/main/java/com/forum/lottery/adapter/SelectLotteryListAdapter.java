@@ -28,22 +28,12 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     private Context context;
     private List<BetListItemModel> data;
     private List<BetSelectAdapter> adapters;
-//    private List<List<Boolean>> selectedsALl;
 
     public SelectLotteryListAdapter(Context context, List<BetListItemModel> data){
         this.context = context;
         this.data = data;
-//        selectedsALl = new ArrayList<>();
         adapters = new ArrayList<>();
         for(int i=0; i<data.size(); i++){
-            List<Boolean> selecteds = new ArrayList<>();
-//            Map<String, List<BetItemModel>> item = data.get(i);
-//            String label = "";
-//            Set set = item.keySet();
-//            Iterator iter = set.iterator();
-//            if (iter.hasNext()) {
-//                label = (String) iter.next();
-//            }
             List<BetItemModel> itemData = data.get(i).getBetItems();
             BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
                 @Override
@@ -90,18 +80,9 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     }
 
     private void setView(int position, ViewHolder viewHolder) {
-//        Map<String, List<BetItemModel>> item = data.get(position);
-//        String label = "";
-//        Set set = item.keySet();
-//        Iterator iter = set.iterator();
-//        if (iter.hasNext()) {
-//            label = (String) iter.next();
-//        }
         viewHolder.tv_label.setText(data.get(position).getLabel());
 
-//        List<BetItemModel> itemData = item.get(label);
         BetSelectAdapter adapter = adapters.get(position);
-//        adapter.setItemData(itemData);
         viewHolder.gv_wei.setAdapter(adapter);
     }
 
@@ -120,7 +101,6 @@ public class SelectLotteryListAdapter extends BaseAdapter {
 
     public void clearCheckedBetting() {
         for(int i=0; i<data.size(); i++){
-//            List<Boolean> item = selectedsALl.get(i);
             List<BetItemModel> item = data.get(i).getBetItems();
             for(int j=0; j<item.size(); j++){
                 item.get(j).setChecked(false);
@@ -129,14 +109,4 @@ public class SelectLotteryListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-//    public String getMapKey(Map<String, List<BetItemModel>> item){
-//        String label = "";
-//        Set set = item.keySet();
-//        Iterator iter = set.iterator();
-//        if (iter.hasNext()) {
-//            label = (String) iter.next();
-//        }
-//
-//        return label;
-//    }
 }
