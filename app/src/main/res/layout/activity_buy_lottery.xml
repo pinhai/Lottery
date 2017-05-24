@@ -129,6 +129,11 @@
                             android:padding="8dp">
 
                             <TextView
+                                android:id="@+id/tv_tickTime"
+                                style="@style/deadline_text"
+                                android:text="00:00:00" />
+
+                            <!--<TextView
                                 style="@style/deadline_text"
                                 android:text="0" />
 
@@ -165,7 +170,7 @@
                             <TextView
                                 style="@style/deadline_text"
                                 android:layout_marginLeft="3dp"
-                                android:text="8" />
+                                android:text="8" />-->
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

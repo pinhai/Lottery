@@ -123,6 +123,7 @@ public class BuyListFragment extends BaseFragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(getActivity(), BuyLotteryActivity.class);
+            intent.putExtra("lottery", lotteryVOs.get(position));
             startActivity(intent);
         }
     }

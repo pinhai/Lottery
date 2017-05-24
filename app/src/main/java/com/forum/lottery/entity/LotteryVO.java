@@ -1,10 +1,12 @@
 package com.forum.lottery.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/4/30.
  */
 
-public class LotteryVO {
+public class LotteryVO implements Serializable{
     private String issue;
     private int time;
     private String[] openNum;

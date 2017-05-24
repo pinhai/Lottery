@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.utils.LogUtils;
+import com.forum.lottery.utils.LotteryUtils;
 import com.forum.lottery.view.roundimage.RoundedImageView;
 
 import java.util.List;
@@ -35,42 +37,10 @@ public class BuyListAdapter extends SingleQuickAdapter<LotteryVO> {
         }
         tv_openNum.setText(openNum);
         tv_nextIssue.setText("距离" + data.getNextIssue() + "期 截止还有");
-        tv_time.setText(secToTime(data.getTime()));
+        tv_time.setText(LotteryUtils.secToTime(data.getTime()));
 
 
     }
 
-    // a integer to xx:xx:xx
-    public static String secToTime(int time) {
-        String timeStr = null;
-        int hour = 0;
-        int minute = 0;
-        int second = 0;
-        if (time <= 0)
-            return "00:00:00";
-        else {
-            minute = time / 60;
-            if (minute < 60) {
-                second = time % 60;
-                timeStr = "00:" + unitFormat(minute) + ":" + unitFormat(second);
-            } else {
-                hour = minute / 60;
-                if (hour > 99)
-                    return "99:59:59";
-                minute = minute % 60;
-                second = time - hour * 3600 - minute * 60;
-                timeStr = unitFormat(hour) + ":" + unitFormat(minute) + ":" + unitFormat(second);
-            }
-        }
-        return timeStr;
-    }
 
-    public static String unitFormat(int i) {
-        String retStr = null;
-        if (i >= 0 && i < 10)
-            retStr = "0" + Integer.toString(i);
-        else
-            retStr = "" + i;
-        return retStr;
-    }
 }
