@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CheckedTextView;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.forum.lottery.R;
 
@@ -24,19 +22,15 @@ public class ActionMenuAdapter extends BaseAdapter{
     private Context context;
     private List<String> menu;
     private List<Boolean> itemChecked;
+    private OnItemCheckedListener itemCheckedListener;
 
-    public ActionMenuAdapter(Context context, List<String> menu){
+    public ActionMenuAdapter(Context context, List<String> menu, OnItemCheckedListener listener){
         this.context = context;
         this.menu = menu;
+        this.itemCheckedListener = listener;
 
         itemChecked = new ArrayList<>();
-        for(int i=0; i<menu.size(); i++){
-            if(i == 0){
-                itemChecked.add(true);
-            }else{
-                itemChecked.add(false);
-            }
-        }
+        initItemCheck();
     }
 
     @Override
@@ -105,10 +99,32 @@ public class ActionMenuAdapter extends BaseAdapter{
                 }
             }
             notifyDataSetChanged();
+            itemCheckedListener.onChecked(menu.get(position), position);
         }
     }
 
     private class ViewHolder {
         RadioButton rb_action_item;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    public void initItemCheck() {
+        itemChecked.clear();
+        for(int i=0; i<menu.size(); i++){
+            if(i == 0){
+                itemChecked.add(true);
+                itemCheckedListener.onChecked(menu.get(i), i);
+            }else{
+                itemChecked.add(false);
+            }
+        }
+    }
+
+    public interface OnItemCheckedListener {
+        void onChecked(String value, int position);
     }
 }

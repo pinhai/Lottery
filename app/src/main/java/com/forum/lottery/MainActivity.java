@@ -12,7 +12,7 @@ import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.TabBaseFragment;
 import com.forum.lottery.ui.buy.BuyFragment;
 import com.forum.lottery.ui.home.HomeFragment;
-import com.forum.lottery.ui.lottery.LotteryFragment;
+import com.forum.lottery.ui.openlottery.LotteryFragment;
 import com.forum.lottery.ui.own.OwnFragment;
 import com.forum.lottery.ui.trend.TrendFragment;
 import com.forum.lottery.utils.ToolUtils;

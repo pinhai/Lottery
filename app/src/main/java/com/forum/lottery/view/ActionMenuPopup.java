@@ -57,7 +57,12 @@ public class ActionMenuPopup{
     }
 
     private void initPopupView(View popupView) {
-        adapter = new ActionMenuAdapter(context, actionMenu);
+        adapter = new ActionMenuAdapter(context, actionMenu, new ActionMenuAdapter.OnItemCheckedListener() {
+            @Override
+            public void onChecked(String value, int position) {
+
+            }
+        });
         gv_actionType = (MyGridView) popupView.findViewById(R.id.gv_actionType);
         gv_actionType.setAdapter(adapter);
 

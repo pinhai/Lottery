@@ -27,7 +27,7 @@
             android:screenOrientation="portrait"
             android:label="快速注册"/>
         <activity
-            android:name=".ui.lottery.LotteryListActivity"
+            android:name=".ui.openlottery.LotteryListActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.buy.BuyLotteryActivity" />
         <activity android:name=".ui.own.RechargeRecordActivity" />

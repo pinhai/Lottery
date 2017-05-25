@@ -22,6 +22,26 @@ public class BetDetailModel implements Serializable {
     private String cpCategoryName;
     private String buyNoShow;
 
+    private float peilv;    //赔率
+    private float fanli;    //返利
+
+
+    public float getPeilv() {
+        return peilv;
+    }
+
+    public void setPeilv(float peilv) {
+        this.peilv = peilv;
+    }
+
+    public float getFanli() {
+        return fanli;
+    }
+
+    public void setFanli(float fanli) {
+        this.fanli = fanli;
+    }
+
     public float getUnitPrice(){
         return unitPrice;
     }

@@ -1,4 +1,4 @@
-package com.forum.lottery.ui.lottery;
+package com.forum.lottery.ui.openlottery;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

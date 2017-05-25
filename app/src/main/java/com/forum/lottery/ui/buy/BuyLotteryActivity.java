@@ -2,14 +2,12 @@ package com.forum.lottery.ui.buy;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.drawable.RippleDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Message;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,10 +26,11 @@ import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.BaseBetFragment;
 import com.forum.lottery.utils.LotteryUtils;
-import com.forum.lottery.utils.ToolUtils;
+import com.forum.lottery.view.PlayWaySelectorPopup;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,7 +38,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * 买彩票界面
@@ -48,7 +46,7 @@ import java.util.StringTokenizer;
 
 public class BuyLotteryActivity extends BaseActivity implements View.OnClickListener{
 
-    private TextView tv_betCount, tv_betMoney, tv_tickTime;
+    private TextView tv_betCount, tv_betMoney, tv_tickTime, tv_playWaySelect;
     private Button btn_clear, btn_bet;
     private AlertDialog betDialog;
     private int betCount = 0;      //下注的注数
@@ -68,6 +66,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     private List<BetListItemModel> data;    //当前玩法对应的所有item和check状态
     private List<BetDetailModel> betDetailModels;  //下的注
+    private List<PlayTypeA> playWays;  //当前彩票下所有玩法
+
+    private PlayWaySelectorPopup playWaySelectorPopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         btn_clear = findView(R.id.btn_clear);
         btn_clear.setOnClickListener(this);
         tv_tickTime = findView(R.id.tv_tickTime);
+        tv_playWaySelect = findView(R.id.tv_playWaySelect);
+        tv_playWaySelect.setOnClickListener(this);
 
     }
 
@@ -118,7 +121,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     protected void initData() {
         betDetailModels = new ArrayList<>();
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
-        loadData();
+        playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
+        playWaySelectorPopup = new PlayWaySelectorPopup(this, playWays);
+        loadBetData();
         initTick();
         startTick();
 
@@ -130,7 +135,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         betFragment.clearCheckedBetting();
     }
 
-    private void loadData() {
+    private void loadBetData() {
         data = new ArrayList<>();
         List<BetItemModel> itemIntenal1 = new ArrayList<>();
         List<BetItemModel> itemIntenal2 = new ArrayList<>();
@@ -210,9 +215,11 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                     return;
                 }
                 float oneBetMoney = Float.parseFloat(one);
+                float peilv = Float.parseFloat(tv_peilv.getText().toString());
+                float fanli = 0;
                 //去下注
                 Intent i = new Intent(BuyLotteryActivity.this, BuyLotteryFinalActivity.class);
-                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney);
+                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney, peilv, fanli);
                 i.putExtra("betDetails", (Serializable) betDetailModels);
                 startActivity(i);
 
@@ -304,6 +311,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.btn_bet:
                 bet();
+                break;
+            case R.id.tv_playWaySelect:
+                if(playWaySelectorPopup.isShowing()){
+                    playWaySelectorPopup.dismiss();
+                }else{
+                    playWaySelectorPopup.show(tv_playWaySelect);
+                }
                 break;
         }
     }

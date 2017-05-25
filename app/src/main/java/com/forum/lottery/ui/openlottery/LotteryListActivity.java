@@ -1,4 +1,4 @@
-package com.forum.lottery.ui.lottery;
+package com.forum.lottery.ui.openlottery;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import com.forum.lottery.R;
 import com.forum.lottery.adapter.LotteryListAdapter;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.ui.BaseActionBarActivity;
-import com.forum.lottery.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;

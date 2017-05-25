@@ -1,10 +1,16 @@
 package com.forum.lottery.utils;
 
+import android.content.Context;
+
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.PlayTypeA;
+import com.forum.lottery.model.PlayTypeB;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -280,7 +286,8 @@ public class LotteryUtils {
      * @param oneBetMoney
      * @return
      */
-    public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO, int betCount, float oneBetMoney){
+    public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO, int betCount,
+                                                        float oneBetMoney, float peilv, float fanli){
         List<BetDetailModel> result = new ArrayList<>();
         BetDetailModel item = new BetDetailModel();
         item.setBuyNoShow(getBetLotteryFromAddition(data));
@@ -290,7 +297,73 @@ public class LotteryUtils {
         item.setCpCategoryId(lotteryVO.getLotteryid());
         item.setUnitPrice(oneBetMoney);
         item.setPeriodNO(lotteryVO.getNextIssue());
+        item.setPeilv(peilv);
+        item.setFanli(fanli);
+        item.setPlayTypeId(37);
+        item.setPlayTypeName("[定位胆_定位胆]");
+        result.add(item);
 
+        return result;
+    }
+
+    /**
+     * 获取某彩票所有玩法
+     * @param lotteryId
+     */
+    public static List<PlayTypeA> getPlayType(Context ctx, String lotteryId){
+        List<PlayTypeA> result = new ArrayList<>();
+        try {
+            InputStreamReader inputReader = new InputStreamReader(ctx.getResources().getAssets().open("wanfapeilv.txt") );
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            List<String[]> temp = new ArrayList<>();
+            while((line = bufReader.readLine()) != null) {
+//                line = line.trim();
+                line = line.substring(1, line.length() - 1);
+                String[] lineItem = line.split("', '");
+                if(lineItem[2].equals(lotteryId)){
+                    temp.add(lineItem);
+                }
+            }
+
+            for(int i=0; i<temp.size(); i++){
+                String[] data = temp.get(i);
+
+                PlayTypeA a;
+
+                String[] playType = data[1].split("_");
+                PlayTypeB b = new PlayTypeB();
+                b.setPlayTypeB(playType[1]);
+                b.setPlayId(data[0]);
+                b.setPeilv(data[3]);
+
+                boolean hasA = false;
+                for(int j=0; j<result.size(); j++){
+                    if(playType[0].equals(result.get(j).getPlayTypeA())){
+                        hasA = true;
+                        List<PlayTypeB> bTemp = result.get(j).getPlayTypeBs();
+                        if(bTemp == null || bTemp.size() == 0){
+                            bTemp = new ArrayList<>();
+                            bTemp.add(b);
+                            result.get(j).setPlayTypeBs(bTemp);
+                        }else{
+                            bTemp.add(b);
+                        }
+                    }
+                }
+                if(!hasA){
+                    a = new PlayTypeA();
+                    a.setLotteryId(lotteryId);
+                    a.setPlayTypeA(playType[0]);
+                    List<PlayTypeB> typeBs = new ArrayList<>();
+                    typeBs.add(b);
+                    a.setPlayTypeBs(typeBs);
+                    result.add(a);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return result;
     }
