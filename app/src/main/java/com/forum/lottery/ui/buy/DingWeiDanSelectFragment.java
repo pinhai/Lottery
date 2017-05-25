@@ -95,4 +95,9 @@ public class DingWeiDanSelectFragment extends BaseBetFragment {
         adapterGewei.notifyDataSetChanged();
 
     }
+
+    @Override
+    public void notifyDataSetChanged(){
+
+    }
 }

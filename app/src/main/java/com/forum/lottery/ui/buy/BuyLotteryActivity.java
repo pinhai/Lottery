@@ -1,6 +1,7 @@
 package com.forum.lottery.ui.buy;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.drawable.RippleDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -8,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
+import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
 import com.forum.lottery.ui.BaseActivity;
@@ -33,6 +36,7 @@ import com.forum.lottery.utils.ToolUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -47,7 +51,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private TextView tv_betCount, tv_betMoney, tv_tickTime;
     private Button btn_clear, btn_bet;
     private AlertDialog betDialog;
-    private int betCount = 0;
+    private int betCount = 0;      //下注的注数
     private LotteryVO lotteryVO;
 
     private BaseBetFragment betFragment;
@@ -56,11 +60,14 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private Sensor sensor;
     private Vibrator vibrator;
     private static final int UPTATE_INTERVAL_TIME = 50;
-    private static final int SPEED_SHRESHOLD = 30;//这个值调节灵敏度
+    private static final int SPEED_SHRESHOLD = 100;//这个值调节灵敏度
     private long lastUpdateTime;
     private float lastX;
     private float lastY;
     private float lastZ;
+
+    private List<BetListItemModel> data;    //当前玩法对应的所有item和check状态
+    private List<BetDetailModel> betDetailModels;  //下的注
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +116,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initData() {
+        betDetailModels = new ArrayList<>();
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
         loadData();
         initTick();
@@ -116,20 +124,12 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     }
 
-//    private void changeBetCount(boolean isChecked) {
-//        int betCount = Integer.parseInt(tv_betCount.getText().toString().trim());
-//        betCount = isChecked ? betCount+1 : betCount-1;
-//        tv_betCount.setText(betCount + "");
-//        tv_betMoney.setText((betCount*2) + "");
-//    }
-
     private void clearBet(){
         tv_betCount.setText(String.valueOf(0));
         tv_betMoney.setText(String.valueOf(0));
         betFragment.clearCheckedBetting();
     }
 
-    private List<BetListItemModel> data;
     private void loadData() {
         data = new ArrayList<>();
         List<BetItemModel> itemIntenal1 = new ArrayList<>();
@@ -211,6 +211,10 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 }
                 float oneBetMoney = Float.parseFloat(one);
                 //去下注
+                Intent i = new Intent(BuyLotteryActivity.this, BuyLotteryFinalActivity.class);
+                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, (int) oneBetMoney);
+                i.putExtra("betDetails", (Serializable) betDetailModels);
+                startActivity(i);
 
             }
         });
@@ -249,6 +253,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private void selectByMachine(){
         LotteryUtils.selectByMachineFromAddition(data);
         betFragment.notifyDataSetChanged();
+        selectLotteryBetEvent(new BuyLotteryCheckChangeEvent());
     }
 
     @Subscribe
@@ -332,8 +337,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             double speed = (Math.sqrt(deltaX * deltaX + deltaY * deltaY
                     + deltaZ * deltaZ) / timeInterval) * 100;
             if(speed >= SPEED_SHRESHOLD){
-                //摇一摇
-                vibrator.vibrate(300);
+                //摇一摇、
+                vibrator.vibrate(100);
                 selectByMachine();
 //                image.setImageResource(R.drawable.running01);
             }

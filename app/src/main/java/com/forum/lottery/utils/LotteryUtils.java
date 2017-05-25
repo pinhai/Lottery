@@ -1,5 +1,7 @@
 package com.forum.lottery.utils;
 
+import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
 
@@ -36,7 +38,7 @@ public class LotteryUtils {
     }
 
     /**
-     * 获取下注的彩票-加法
+     * 获取下注的彩票-加法， 比如：|||1|&3||||
      * @param data
      * @return
      */
@@ -268,6 +270,29 @@ public class LotteryUtils {
                 }
             }
         }
+    }
+
+    /**
+     * 得到已下注的详情-大注-某种玩法下的所有注数
+     * @param data
+     * @param lotteryVO
+     * @param betCount
+     * @param oneBetMoney
+     * @return
+     */
+    public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO, int betCount, int oneBetMoney){
+        List<BetDetailModel> result = new ArrayList<>();
+        BetDetailModel item = new BetDetailModel();
+        item.setBuyNoShow(getBetLotteryFromAddition(data));
+        item.setBuyCount(betCount);
+        item.setBuyNO(item.getBuyNoShow());
+        item.setCpCategoryName(lotteryVO.getLotteryName());
+        item.setCpCategoryId(lotteryVO.getLotteryid());
+        item.setUnitPrice(oneBetMoney);
+        item.setPeriodNO(lotteryVO.getNextIssue());
+
+
+        return result;
     }
 
 }
