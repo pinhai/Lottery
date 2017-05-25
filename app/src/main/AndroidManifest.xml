@@ -31,6 +31,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.buy.BuyLotteryActivity" />
         <activity android:name=".ui.own.RechargeRecordActivity" />
+        <activity android:name=".ui.buy.BuyLotteryFinalActivity"/>
     </application>
 
 </manifest>

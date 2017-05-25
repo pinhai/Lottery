@@ -21,6 +21,8 @@ public class BuyLotteryFinalActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_buy_lottery_final);
 
+        initData();
+        initView();
     }
 
     @Override

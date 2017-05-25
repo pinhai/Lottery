@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 public class BetDetailModel implements Serializable {
 
-    private int unitPrice;
+    private float unitPrice;
     private int buyCount;
     private String cpCategoryId;
     private String periodNO;    //当前期数
@@ -22,11 +22,11 @@ public class BetDetailModel implements Serializable {
     private String cpCategoryName;
     private String buyNoShow;
 
-    public int getUnitPrice(){
+    public float getUnitPrice(){
         return unitPrice;
     }
 
-    public void setUnitPrice(int unitPrice){
+    public void setUnitPrice(float unitPrice){
         this.unitPrice = unitPrice;
     }
 

@@ -280,7 +280,7 @@ public class LotteryUtils {
      * @param oneBetMoney
      * @return
      */
-    public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO, int betCount, int oneBetMoney){
+    public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO, int betCount, float oneBetMoney){
         List<BetDetailModel> result = new ArrayList<>();
         BetDetailModel item = new BetDetailModel();
         item.setBuyNoShow(getBetLotteryFromAddition(data));

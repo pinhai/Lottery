@@ -212,7 +212,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 float oneBetMoney = Float.parseFloat(one);
                 //去下注
                 Intent i = new Intent(BuyLotteryActivity.this, BuyLotteryFinalActivity.class);
-                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, (int) oneBetMoney);
+                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney);
                 i.putExtra("betDetails", (Serializable) betDetailModels);
                 startActivity(i);
 
