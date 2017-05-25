@@ -178,7 +178,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             toast("请先下注！");
             return;
         }
-        LotteryUtils.getBetLotteryFromAddition(data);
+//        LotteryUtils.getBetLotteryFromAddition(data);
         showBetDialog();
     }
 
