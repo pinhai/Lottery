@@ -5,6 +5,7 @@ import com.forum.lottery.model.BetListItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import rx.subjects.ReplaySubject;
 
@@ -199,7 +200,11 @@ public class LotteryUtils {
     }
 
 
-    // a integer to xx:xx:xx
+    /**
+     * 秒转换成xx:xx:xx
+     * @param time
+     * @return
+     */
     public static String secToTime(int time) {
         String timeStr = null;
         int hour = 0;
@@ -224,13 +229,45 @@ public class LotteryUtils {
         return timeStr;
     }
 
-    public static String unitFormat(int i) {
+    private static String unitFormat(int i) {
         String retStr = null;
         if (i >= 0 && i < 10)
             retStr = "0" + Integer.toString(i);
         else
             retStr = "" + i;
         return retStr;
+    }
+
+    /**
+     * 机选-加法
+     * @param data
+     */
+    public static void selectByMachineFromAddition(List<BetListItemModel> data){
+        boolean run = true;
+        int total = 0;
+        for(int i=0; i<data.size(); i++){
+            total += data.get(i).getBetItems().size();
+        }
+        int index = 0;
+        retry:
+        while(run){
+            Random r = new Random();
+            int random = r.nextInt(total - 1);
+            for(int i = 0; i < data.size(); i++){
+                List<BetItemModel> items = data.get(i).getBetItems();
+                for(int j = 0; j < items.size(); j++){
+                    if(random == index){
+                        if(!items.get(j).isChecked()){
+                            items.get(j).setChecked(true);
+                            run = false;
+                        }else{
+                            break retry;
+                        }
+                    }
+                    ++index;
+                }
+            }
+        }
     }
 
 }

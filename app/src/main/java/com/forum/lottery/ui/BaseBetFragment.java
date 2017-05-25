@@ -8,4 +8,6 @@ public abstract class BaseBetFragment extends BaseFragment {
 
     public abstract void clearCheckedBetting();
 
+    public abstract void notifyDataSetChanged();
+
 }

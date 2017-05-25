@@ -179,6 +179,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@color/gray" />
+                <ImageView
+                    android:src="@mipmap/yaoyiyao"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <RelativeLayout
                     android:id="@+id/rl_container"

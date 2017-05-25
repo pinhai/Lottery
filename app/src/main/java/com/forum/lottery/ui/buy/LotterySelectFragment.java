@@ -54,6 +54,11 @@ public class LotterySelectFragment extends BaseBetFragment {
     }
 
     @Override
+    public void notifyDataSetChanged(){
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected void initView() {
         lv_lottery = findView(R.id.lv_lottery);
         lv_lottery.setAdapter(adapter);
