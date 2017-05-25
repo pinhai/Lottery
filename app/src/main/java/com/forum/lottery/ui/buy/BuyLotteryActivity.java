@@ -58,7 +58,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private Sensor sensor;
     private Vibrator vibrator;
     private static final int UPTATE_INTERVAL_TIME = 50;
-    private static final int SPEED_SHRESHOLD = 100;//这个值调节灵敏度
+    private static final int SPEED_SHRESHOLD = 70;//这个值调节灵敏度
     private long lastUpdateTime;
     private float lastX;
     private float lastY;
