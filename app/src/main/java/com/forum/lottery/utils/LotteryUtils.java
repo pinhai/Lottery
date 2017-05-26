@@ -279,6 +279,39 @@ public class LotteryUtils {
     }
 
     /**
+     * 机选-加法-在最终下注界面机选
+     */
+    public static BetDetailModel selectByMachineFromAddition2(BetDetailModel temp){
+        BetDetailModel result = new BetDetailModel();
+        result.setPlayTypeName(temp.getPlayTypeName());
+        result.setUnitPrice(2);
+        result.setBuyCount(1);
+        result.setCpCategoryId(temp.getCpCategoryId());
+        result.setPeriodNO(temp.getPeriodNO());
+        result.setPlayTypeId(temp.getPlayTypeId());
+        result.setPlayTypeName(temp.getPlayTypeName());
+        String[] buyNos = temp.getBuyNO().split("&");
+        Random r = new Random();
+        int total = 10;
+        int random = r.nextInt(total - 1);
+        int weishu = r.nextInt(4);
+        String buyNo = "";
+        for(int i=0; i<weishu; i++){
+            buyNo += "|";
+        }
+        buyNo += random;
+        for(int j=0; j<4-weishu; j++){
+            buyNo += "|";
+        }
+        result.setBuyNO(buyNo);
+        result.setCpCategoryName(temp.getCpCategoryName());
+        result.setPeilv(temp.getPeilv());
+        result.setFanli(temp.getFanli());
+
+        return result;
+    }
+
+    /**
      * 得到已下注的详情-大注-某种玩法下的所有注数
      * @param data
      * @param lotteryVO

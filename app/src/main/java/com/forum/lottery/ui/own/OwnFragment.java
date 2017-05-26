@@ -9,8 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
+import com.forum.lottery.adapter.ActionMenuAdapter;
 import com.forum.lottery.application.MyApplication;
+import com.forum.lottery.entity.UserVO;
+import com.forum.lottery.event.LoginEvent;
 import com.forum.lottery.ui.TabBaseFragment;
+import com.forum.lottery.utils.AccountManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by Administrator on 2017/4/21.
@@ -19,6 +26,14 @@ import com.forum.lottery.ui.TabBaseFragment;
 public class OwnFragment extends TabBaseFragment implements View.OnClickListener{
 
     private TextView tv_rechargeRecord;
+    private TextView tv_username;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+        setUserInfo();
+    }
 
     @Nullable
     @Override
@@ -44,11 +59,25 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     protected void initView() {
         tv_rechargeRecord = findView(R.id.tv_rechargeRecord);
         tv_rechargeRecord.setOnClickListener(this);
+        tv_username = findView(R.id.tv_username);
+
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Subscribe
+    public void loginEvent(LoginEvent event){
+        setUserInfo();
+    }
+
+    private void setUserInfo(){
+        if(AccountManager.getInstance().isLogin()){
+            UserVO userVO = AccountManager.getInstance().getUser();
+            tv_username.setText(userVO.getAccount());
+        }
     }
 
     @Override
@@ -59,5 +88,11 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

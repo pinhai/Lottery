@@ -1,6 +1,11 @@
 package com.forum.lottery.ui.buy;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -13,6 +18,7 @@ import com.forum.lottery.entity.BetResult;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.ui.BaseActionBarActivity;
 import com.forum.lottery.ui.BaseActivity;
+import com.forum.lottery.utils.LotteryUtils;
 
 import java.util.List;
 
@@ -121,6 +127,17 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
                 });
     }
 
+    /**
+     * 机选一注
+     */
+    private void selectOneBetByMachine(){
+        BetDetailModel item;
+        BetDetailModel temp = betDetailModels.get(0);
+        item = LotteryUtils.selectByMachineFromAddition2(temp);
+        betDetailModels.add(item);
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onClick(View v){
         switch(v.getId()){
@@ -128,8 +145,8 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
                 finish();
                 break;
             case R.id.btn_addMachineSelect:
-                //// TODO: 2017/5/26 0026 机选添加
-
+                // 机选添加
+                selectOneBetByMachine();
                 break;
             case R.id.btn_clear:
                 betDetailModels.clear();

@@ -17,8 +17,11 @@ import com.forum.lottery.R;
 import com.forum.lottery.api.UserService;
 import com.forum.lottery.entity.RegisterResult;
 import com.forum.lottery.entity.UserVO;
+import com.forum.lottery.event.LoginEvent;
 import com.forum.lottery.ui.BaseActionBarActivity;
 import com.forum.lottery.utils.AccountManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -87,7 +90,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
         }
     }
 
-    private void netLogin(String userName, String password){
+    private void netLogin(final String userName, String password){
         dialog.show();
         createHttp(UserService.class)
                 .login(userName, password)
@@ -98,9 +101,10 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
                         dialog.dismiss();
                         if(value.isResult()){
                             UserVO userVO = new UserVO();
-                            userVO.setAccount(value.getUserName());
+                            userVO.setAccount(userName);
                             userVO.setId(String.valueOf(value.getUserId()));
                             AccountManager.getInstance().saveUser(userVO);
+                            EventBus.getDefault().post(new LoginEvent());
                             setResult(RESULT_OK);
                             self().finish();
                         }else{

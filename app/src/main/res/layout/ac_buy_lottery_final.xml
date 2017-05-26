@@ -13,7 +13,7 @@
         <Button
             android:id="@+id/btn_backAddBet"
             android:text="返回添加一注"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@color/gray_dark"
             android:drawableLeft="@mipmap/add"
             android:drawablePadding="5dp"
@@ -23,7 +23,7 @@
             android:id="@+id/btn_addMachineSelect"
             android:layout_marginLeft="20dp"
             android:text="添加机选一注"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@color/gray_dark"
             android:drawableLeft="@mipmap/add"
             android:drawablePadding="5dp"

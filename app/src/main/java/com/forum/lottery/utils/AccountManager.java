@@ -51,7 +51,7 @@ public class AccountManager {
     }
 
 
-    private UserVO getUser() {
+    public UserVO getUser() {
         if(mUserVO == null){
             if(isLogin()){
                 mUserVO = new Gson().fromJson(mPreferences.getString(USER_INFO_KEY, ""), UserVO.class);

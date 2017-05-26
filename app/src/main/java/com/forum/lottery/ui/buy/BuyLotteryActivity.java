@@ -21,7 +21,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
+import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
@@ -41,6 +43,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.SingleSubscriber;
+import rx.android.schedulers.AndroidSchedulers;
+
 /**
  * 买彩票界面
  * Created by Administrator on 2017/5/2.
@@ -56,6 +61,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     private BaseBetFragment betFragment;
 
+    //机选
     private SensorManager sensorManager;
     private Sensor sensor;
     private Vibrator vibrator;
@@ -194,8 +200,27 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             toast("请先下注！");
             return;
         }
+
+        createHttp(LotteryService.class)
+                .lotteryNumsCheck(lotteryVO.getLotteryid(), playTypeB.getPlayId(), LotteryUtils.getBetLotteryFromAddition(data))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData value) {
+                        if(value.getCode() == 1){
+                            showBetDialog();
+                        }else{
+                            toast(getString(R.string.bet_num_not_conform));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
+
 //        LotteryUtils.getBetLotteryFromAddition(data);
-        showBetDialog();
     }
 
     private void showBetDialog() {
@@ -236,6 +261,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                                         playTypeB.getPlayId(), playName);
                 i.putExtra("betDetails", (Serializable) betDetailModels);
                 startActivityForResult(i, 101);
+                betDialog.dismiss();
 
             }
         });
