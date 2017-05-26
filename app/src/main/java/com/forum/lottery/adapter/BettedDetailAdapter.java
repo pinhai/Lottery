@@ -24,10 +24,12 @@ public class BettedDetailAdapter extends BaseAdapter{
 
     private Context context;
     private List<BetDetailModel> data;
+    private OnDeleteItemListener listener;
 
-    public BettedDetailAdapter(Context context, List<BetDetailModel> data){
+    public BettedDetailAdapter(Context context, List<BetDetailModel> data, OnDeleteItemListener listener){
         this.context = context;
         this.data = data;
+        this.listener = listener;
 
     }
 
@@ -71,6 +73,7 @@ public class BettedDetailAdapter extends BaseAdapter{
             public void onClick(View v){
                 data.remove(position);
                 notifyDataSetChanged();
+                listener.itemDelete();
             }
         });
 
@@ -80,5 +83,9 @@ public class BettedDetailAdapter extends BaseAdapter{
     private class ViewHolder {
         ImageButton btn_delete;
         TextView tv_buyNo, tv_peilv_fanli, tv_type_betcount;
+    }
+
+    public interface OnDeleteItemListener{
+        void itemDelete();
     }
 }

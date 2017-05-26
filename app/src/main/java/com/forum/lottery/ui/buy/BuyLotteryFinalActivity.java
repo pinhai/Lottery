@@ -8,11 +8,16 @@ import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.BettedDetailAdapter;
+import com.forum.lottery.api.LotteryService;
+import com.forum.lottery.entity.BetResult;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.ui.BaseActionBarActivity;
 import com.forum.lottery.ui.BaseActivity;
 
 import java.util.List;
+
+import rx.SingleSubscriber;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 下注最终界面-查看下的注列表
@@ -29,6 +34,9 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
     private Button btn_clear, btn_bet;
     private TextView tv_betCount, tv_betMoney;
 
+    private int betTotalCount;
+    private float betTotalMoney;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -36,6 +44,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
 
         initData();
         initView();
+        getTotalBet();
     }
 
     @Override
@@ -51,20 +60,71 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
         btn_addMachineSelect.setOnClickListener(this);
         tv_betCount = findView(R.id.tv_betCount);
         tv_betMoney = findView(R.id.tv_betMoney);
+        btn_clear = findView(R.id.btn_clear);
+        btn_bet = findView(R.id.btn_bet);
+        btn_clear.setOnClickListener(this);
+        btn_bet.setOnClickListener(this);
 
     }
 
     @Override
     protected void initData(){
         betDetailModels = (List<BetDetailModel>) getIntent().getSerializableExtra("betDetails");
-        adapter = new BettedDetailAdapter(this, betDetailModels);
+        adapter = new BettedDetailAdapter(this, betDetailModels, new BettedDetailAdapter.OnDeleteItemListener() {
+            @Override
+            public void itemDelete(){
+                getTotalBet();
+            }
+        });
 
+    }
+
+    private void getTotalBet(){
+        betTotalCount = 0;
+        betTotalMoney = 0;
+        for(BetDetailModel item : betDetailModels){
+            betTotalCount += item.getBuyCount();
+            betTotalMoney += item.getBuyCount()*item.getUnitPrice();
+        }
+        tv_betCount.setText(betTotalCount + "");
+        tv_betMoney.setText(betTotalMoney + "");
+    }
+
+    private void bet(){
+        if(betDetailModels == null || betDetailModels.size() == 0){
+            toast("请先下注");
+            return;
+        }
+        createHttp(LotteryService.class)
+                .bet(betDetailModels)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<BetResult>() {
+                    @Override
+                    public void onSuccess(BetResult value){
+                        toast(getString(R.string.buy_lottery_successful));
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(Throwable error){
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
     }
 
     @Override
     public void onClick(View v){
         switch(v.getId()){
-
+            case R.id.btn_clear:
+                betDetailModels.clear();
+                adapter.notifyDataSetChanged();
+                getTotalBet();
+                break;
+            case R.id.btn_bet:
+                bet();
+                break;
         }
     }
+
 }

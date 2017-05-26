@@ -1,8 +1,10 @@
 package com.forum.lottery.api;
 
+import com.forum.lottery.entity.BetResult;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.RegisterResult;
 import com.forum.lottery.entity.ResultData;
+import com.forum.lottery.model.BetDetailModel;
 
 import java.util.List;
 
@@ -31,5 +33,14 @@ public interface LotteryService {
      */
     @GET("nonAuthority/gameCenter/appLotteryBuy")
     Single<LotteryVO> getLottery(@Field("id") String id);
+
+    /**
+     * 下注
+     * @param betDetails
+     * @return
+     */
+    @POST("nonAuthority/buycp")
+    @FormUrlEncoded
+    Single<BetResult> bet(List<BetDetailModel> betDetails);
 
 }

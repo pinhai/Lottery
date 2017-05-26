@@ -116,7 +116,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         btn_clear.setOnClickListener(this);
         tv_tickTime = findView(R.id.tv_tickTime);
         tv_playWaySelect = findView(R.id.tv_playWaySelect);
-        tv_playWaySelect.setOnClickListener(this);
+//        tv_playWaySelect.setOnClickListener(this);  //先屏蔽
 
     }
 
@@ -227,7 +227,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney, peilv, fanli,
                                         playTypeB.getPlayId(), playName);
                 i.putExtra("betDetails", (Serializable) betDetailModels);
-                startActivity(i);
+                startActivityForResult(i, 101);
 
             }
         });
@@ -307,6 +307,14 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 101 && resultCode == RESULT_OK){
+            finish();
+        }
     }
 
     @Override
