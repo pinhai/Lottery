@@ -27,6 +27,7 @@ import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
 import com.forum.lottery.model.PlayTypeA;
+import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.BaseBetFragment;
 import com.forum.lottery.utils.LotteryUtils;
@@ -69,6 +70,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private List<PlayTypeA> playWays;  //当前彩票下所有玩法
 
     private PlayWaySelectorPopup playWaySelectorPopup;
+    private PlayTypeA playTypeA;  //当前选中的玩法a
+    private PlayTypeB playTypeB;  //当前选中的玩法b
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +125,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         betDetailModels = new ArrayList<>();
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
         playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
-        playWaySelectorPopup = new PlayWaySelectorPopup(this, playWays);
+        playWaySelectorPopup = new PlayWaySelectorPopup(this, playWays, playTypeCheckListener);
         loadBetData();
         initTick();
         startTick();
@@ -197,6 +200,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         tv_betCount.setText(betCount + "");
         final TextView tv_betAllMoney = (TextView) view.findViewById(R.id.tv_betAllMoney);
         final TextView tv_peilv = (TextView) view.findViewById(R.id.tv_peilv);
+        tv_peilv.setText(playTypeB.getPeilv());
         final TextView tv_oneHigh = (TextView) view.findViewById(R.id.tv_oneHigh);
         Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +223,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 float fanli = 0;
                 //去下注
                 Intent i = new Intent(BuyLotteryActivity.this, BuyLotteryFinalActivity.class);
-                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney, peilv, fanli);
+                String playName = "[" + playTypeA.getPlayTypeA() + "_" + playTypeB.getPlayTypeB() + "]";
+                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney, peilv, fanli,
+                                        playTypeB.getPlayId(), playName);
                 i.putExtra("betDetails", (Serializable) betDetailModels);
                 startActivity(i);
 
@@ -321,6 +327,17 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
+    private PlayWaySelectorPopup.OnPlayTypeCheckListener playTypeCheckListener = new PlayWaySelectorPopup.OnPlayTypeCheckListener() {
+        @Override
+        public void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB){
+            playTypeA = typeA;
+            playTypeB = typeB;
+            //// TODO: 2017/5/26  刷新下注界面
+
+        }
+    };
+
 
     /**
      * 重力感应监听

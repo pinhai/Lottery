@@ -29,10 +29,14 @@ public class PlayWaySelectorPopup {
     private List<PlayTypeA> data;
     private List<String> dataA, dataB;
     private PopupWindow pw_recordType;
+    private OnPlayTypeCheckListener playTypeCheckListener;
 
-    public PlayWaySelectorPopup(Context context, List<PlayTypeA> data){
+    private int playTypeAPosition;
+
+    public PlayWaySelectorPopup(Context context, List<PlayTypeA> data, OnPlayTypeCheckListener listener){
         this.context = context;
         this.data = data;
+        this.playTypeCheckListener = listener;
 
         initData();
         initPopupWindow();
@@ -83,8 +87,8 @@ public class PlayWaySelectorPopup {
         adapterB = new ActionMenuAdapter(context, dataB, new ActionMenuAdapter.OnItemCheckedListener() {
             @Override
             public void onChecked(String value, int position) {
-                //// TODO: 2017/5/26  刷新下注界面
-
+                PlayTypeB playTypeB = data.get(playTypeAPosition).getPlayTypeBs().get(position);
+                playTypeCheckListener.playTypeChecked(data.get(playTypeAPosition), playTypeB);
             }
         });
         gv_playTypeB = (MyGridView) popupView.findViewById(R.id.gv_playTypeB);
@@ -93,6 +97,7 @@ public class PlayWaySelectorPopup {
         adapterA = new ActionMenuAdapter(context, dataA, new ActionMenuAdapter.OnItemCheckedListener() {
             @Override
             public void onChecked(String value, int position) {
+                playTypeAPosition = position;
                 setDataB(position);
             }
         });
@@ -103,5 +108,9 @@ public class PlayWaySelectorPopup {
 
     public boolean isShowing() {
         return pw_recordType.isShowing();
+    }
+
+    public interface OnPlayTypeCheckListener{
+        void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB);
     }
 }

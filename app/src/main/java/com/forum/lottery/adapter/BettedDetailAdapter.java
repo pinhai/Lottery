@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -46,12 +47,12 @@ public class BettedDetailAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
         if(convertView == null){
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_betted_detail, null);
-            viewHolder.btn_delete = (Button) convertView.findViewById(R.id.btn_delete);
+            viewHolder.btn_delete = (ImageButton) convertView.findViewById(R.id.btn_delete);
             viewHolder.tv_buyNo = (TextView) convertView.findViewById(R.id.tv_buyNo);
             viewHolder.tv_peilv_fanli = (TextView) convertView.findViewById(R.id.tv_peilv_fanli);
             viewHolder.tv_type_betcount = (TextView) convertView.findViewById(R.id.tv_type_betcount);
@@ -65,12 +66,19 @@ public class BettedDetailAdapter extends BaseAdapter{
         viewHolder.tv_peilv_fanli.setText("赔率：" + detail.getPeilv() + "  返利：" + detail.getFanli());
         viewHolder.tv_type_betcount.setText(detail.getPlayTypeName() + "  " + detail.getBuyCount() + "注"
                 + "  " + detail.getBuyCount()*detail.getUnitPrice() + "元");
+        viewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                data.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
         return convertView;
     }
 
     private class ViewHolder {
-        Button btn_delete;
+        ImageButton btn_delete;
         TextView tv_buyNo, tv_peilv_fanli, tv_type_betcount;
     }
 }

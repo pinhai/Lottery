@@ -287,7 +287,8 @@ public class LotteryUtils {
      * @return
      */
     public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO, int betCount,
-                                                        float oneBetMoney, float peilv, float fanli){
+                                                        float oneBetMoney, float peilv, float fanli,
+                                                        String playId, String playName){
         List<BetDetailModel> result = new ArrayList<>();
         BetDetailModel item = new BetDetailModel();
         item.setBuyNoShow(getBetLotteryFromAddition(data));
@@ -299,8 +300,9 @@ public class LotteryUtils {
         item.setPeriodNO(lotteryVO.getNextIssue());
         item.setPeilv(peilv);
         item.setFanli(fanli);
-        item.setPlayTypeId(37);
-        item.setPlayTypeName("[定位胆_定位胆]");
+        item.setPlayTypeId(Integer.parseInt(playId));
+//        item.setPlayTypeName("[定位胆_定位胆]");
+        item.setPlayTypeName(playName);
         result.add(item);
 
         return result;
