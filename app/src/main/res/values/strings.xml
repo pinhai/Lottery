@@ -8,4 +8,7 @@
     <string name="own_title">我的</string>
     <string name="connection_failed">网络错误，请稍后重试！</string>
     <string name="buy_lottery_successful">购彩成功</string>
+    <string name="bet_failed">下注失败，请重试！</string>
+    <string name="prompt">提示</string>
+    <string name="loading">正在加载...</string>
 </resources>

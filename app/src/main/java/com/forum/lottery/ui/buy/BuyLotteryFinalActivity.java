@@ -95,19 +95,27 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
             toast("请先下注");
             return;
         }
+        showProgressDialog(false);
         createHttp(LotteryService.class)
                 .bet(betDetailModels)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<BetResult>() {
                     @Override
                     public void onSuccess(BetResult value){
-                        toast(getString(R.string.buy_lottery_successful));
-                        setResult(RESULT_OK);
-                        finish();
+                        dismissProgressDialog();
+                        if(value.getRet_code().equals("200")){
+                            toast(getString(R.string.buy_lottery_successful));
+                            setResult(RESULT_OK);
+                            finish();
+                        }else{
+                            toast(getString(R.string.bet_failed));
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable error){
+                        dismissProgressDialog();
                         toast(getString(R.string.connection_failed));
                     }
                 });

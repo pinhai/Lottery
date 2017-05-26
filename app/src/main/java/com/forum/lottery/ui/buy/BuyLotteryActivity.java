@@ -30,6 +30,7 @@ import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.BaseBetFragment;
+import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.utils.LotteryUtils;
 import com.forum.lottery.view.PlayWaySelectorPopup;
 
@@ -83,6 +84,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
         initData();
         initView();
+        if(!AccountManager.getInstance().isLogin()){
+            toast("当前未登录，无法购彩！");
+        }
     }
 
     @Override
@@ -182,6 +186,10 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
      * 下注
      */
     private void bet() {
+        if(!AccountManager.getInstance().isLogin()){
+            toast("当前未登录，无法购彩！");
+            return;
+        }
         if(betCount <= 0){
             toast("请先下注！");
             return;

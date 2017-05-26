@@ -41,6 +41,6 @@ public interface LotteryService {
      */
     @POST("nonAuthority/buycp")
     @FormUrlEncoded
-    Single<BetResult> bet(List<BetDetailModel> betDetails);
+    Single<BetResult> bet(@Field("") List<BetDetailModel> betDetails);
 
 }
