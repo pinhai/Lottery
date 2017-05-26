@@ -124,6 +124,13 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
     @Override
     public void onClick(View v){
         switch(v.getId()){
+            case R.id.btn_backAddBet:
+                finish();
+                break;
+            case R.id.btn_addMachineSelect:
+                //// TODO: 2017/5/26 0026 机选添加
+
+                break;
             case R.id.btn_clear:
                 betDetailModels.clear();
                 adapter.notifyDataSetChanged();
