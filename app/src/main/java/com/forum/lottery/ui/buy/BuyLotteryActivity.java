@@ -40,6 +40,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -201,8 +202,12 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             return;
         }
 
+        String buyNo = URLEncoder.encode(LotteryUtils.getBetLotteryFromAddition(data));
+        String urlStr = "?cpCategoryId=" + lotteryVO.getLotteryid() + "&playTypeId=" + playTypeB.getPlayId() + "&buyNO=" + buyNo;
+
         createHttp(LotteryService.class)
-                .lotteryNumsCheck(lotteryVO.getLotteryid(), playTypeB.getPlayId(), LotteryUtils.getBetLotteryFromAddition(data))
+                .lotteryNumsCheck(buyNo, lotteryVO.getLotteryid(), playTypeB.getPlayId())
+//                .lotteryNumsCheck(urlStr)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<ResultData>() {
                     @Override

@@ -14,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Single;
 
 /**
@@ -50,6 +51,6 @@ public interface LotteryService {
      * @return
      */
     @GET("nonAuthority/home/lotteryNumsCheck")
-//    Single<ResultData> lotteryNumsCheck( String cpId,  String playTypeId,  String buyNO);  ?cpCategoryId={cpCategoryId}&playTypeId={playTypeId}&buyNO={buyNO}
-    Single<ResultData> lotteryNumsCheck(@Query("cpCategoryId") String cpCategoryId, @Query("playTypeId") String playTypeId, @Query("buyNO") String buyNO);
+    Single<ResultData> lotteryNumsCheck(@Query("buyNo") String buyNO, @Query("cpCategoryId") String cpCategoryId, @Query("playTypeId") String playTypeId);
+//    Single<ResultData> lotteryNumsCheck(@Path(value = "url", encoded = true) String url);
 }
