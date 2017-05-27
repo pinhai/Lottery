@@ -13,6 +13,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Single;
 
 /**
@@ -48,7 +49,7 @@ public interface LotteryService {
      * 校验提交的购买号是否合理：1、码是否能重复   2、码是否缺失  3、号码范围
      * @return
      */
-    @GET("nonAuthority/home/lotteryNumsCheck/{cpCategoryId}/{playTypeId}/{buyNO}")
-//    Single<ResultData> lotteryNumsCheck( String cpId,  String playTypeId,  String buyNO);
-    Single<ResultData> lotteryNumsCheck(@Path("cpCategoryId") String cpCategoryId, @Path("playTypeId") String playTypeId, @Path("buyNO") String buyNO);
+    @GET("nonAuthority/home/lotteryNumsCheck")
+//    Single<ResultData> lotteryNumsCheck( String cpId,  String playTypeId,  String buyNO);  ?cpCategoryId={cpCategoryId}&playTypeId={playTypeId}&buyNO={buyNO}
+    Single<ResultData> lotteryNumsCheck(@Query("cpCategoryId") String cpCategoryId, @Query("playTypeId") String playTypeId, @Query("buyNO") String buyNO);
 }

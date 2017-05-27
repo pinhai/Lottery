@@ -46,8 +46,8 @@ public class RxHttp {
 //                .addInterceptor(new EncryptInterceptor())
                 .cookieJar(new CookiesManager())
                 .addInterceptor(mTokenInterceptor)
-                .addInterceptor(new AddCookiesInterceptor())
-                .addInterceptor(new ReceivedCookiesInterceptor())
+//                .addInterceptor(new AddCookiesInterceptor())
+//                .addInterceptor(new ReceivedCookiesInterceptor())
                 .build();
         retrofit = new Retrofit.Builder()
                 .callFactory(okHttpClient)
