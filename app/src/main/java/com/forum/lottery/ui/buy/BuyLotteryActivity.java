@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +29,7 @@ import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.ui.BaseActivity;
@@ -59,6 +61,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private AlertDialog betDialog;
     private int betCount = 0;      //下注的注数
     private LotteryVO lotteryVO;
+    private boolean backAddBet;  //是否从“返回添加一注”进来
 
     private BaseBetFragment betFragment;
 
@@ -91,6 +94,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
         initData();
         initView();
+        initPopup();
         if(!AccountManager.getInstance().isLogin()){
             toast("当前未登录，无法购彩！");
         }
@@ -135,12 +139,16 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     protected void initData() {
         betDetailModels = new ArrayList<>();
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
+        backAddBet = getIntent().getBooleanExtra("backAddBet", false);
         playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
-        playWaySelectorPopup = new PlayWaySelectorPopup(this, playWays, playTypeCheckListener);
         loadBetData();
+
+    }
+
+    private void initPopup() {
+        playWaySelectorPopup = new PlayWaySelectorPopup(this, playWays, playTypeCheckListener);
         initTick();
         startTick();
-
     }
 
     private void clearBet(){
@@ -202,8 +210,10 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             return;
         }
 
-        String buyNo = URLEncoder.encode(LotteryUtils.getBetLotteryFromAddition(data));
-        String urlStr = "?cpCategoryId=" + lotteryVO.getLotteryid() + "&playTypeId=" + playTypeB.getPlayId() + "&buyNO=" + buyNo;
+        showProgressDialog(false);
+        //验证合理性
+//        String buyNo = URLEncoder.encode(LotteryUtils.getBetLottery(data));
+        String buyNo = LotteryUtils.encode(LotteryUtils.getBetLottery(data));
 
         createHttp(LotteryService.class)
                 .lotteryNumsCheck(buyNo, lotteryVO.getLotteryid(), playTypeB.getPlayId())
@@ -213,22 +223,52 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                     @Override
                     public void onSuccess(ResultData value) {
                         if(value.getCode() == 1){
-                            showBetDialog();
+                            //获取赔率
+                            betGetPeilv();
                         }else{
                             toast(getString(R.string.bet_num_not_conform));
+                            dismissProgressDialog();
                         }
                     }
 
                     @Override
                     public void onError(Throwable error) {
                         toast(getString(R.string.connection_failed));
+                        dismissProgressDialog();
                     }
                 });
 
 //        LotteryUtils.getBetLotteryFromAddition(data);
     }
 
-    private void showBetDialog() {
+    private void betGetPeilv() {
+
+        createHttp(LotteryService.class)
+                .getPeilv(lotteryVO.getLotteryid(), playTypeB.getPlayId())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<List<Peilv>>() {
+                    @Override
+                    public void onSuccess(List<Peilv> value) {
+                        dismissProgressDialog();
+                        if(value != null && value.get(0) != null){
+                            Peilv peilv = value.get(0);
+                            showBetDialog(peilv);
+                        }else {
+                            toast(getString(R.string.connection_failed));
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
+                        dismissProgressDialog();
+                    }
+                });
+
+    }
+
+    private void showBetDialog(Peilv peilv) {
         View view = LayoutInflater.from(this).inflate(R.layout.view_bet,null);
         betDialog = new AlertDialog.Builder(this)
                 .setView(view)
@@ -238,7 +278,11 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         tv_betCount.setText(betCount + "");
         final TextView tv_betAllMoney = (TextView) view.findViewById(R.id.tv_betAllMoney);
         final TextView tv_peilv = (TextView) view.findViewById(R.id.tv_peilv);
-        tv_peilv.setText(playTypeB.getPeilv());
+        if(peilv != null){
+            tv_peilv.setText(peilv.getBonusProp() + "");
+        }else {
+            tv_peilv.setText(playTypeB.getPeilv());
+        }
         final TextView tv_oneHigh = (TextView) view.findViewById(R.id.tv_oneHigh);
         Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -260,12 +304,21 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 float peilv = Float.parseFloat(tv_peilv.getText().toString());
                 float fanli = 0;
                 //去下注
-                Intent i = new Intent(BuyLotteryActivity.this, BuyLotteryFinalActivity.class);
                 String playName = "[" + playTypeA.getPlayTypeA() + "_" + playTypeB.getPlayTypeB() + "]";
                 betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney, peilv, fanli,
-                                        playTypeB.getPlayId(), playName);
-                i.putExtra("betDetails", (Serializable) betDetailModels);
-                startActivityForResult(i, 101);
+                        playTypeB.getPlayId(), playName);
+                if(backAddBet){
+                    Intent i2 = new Intent();
+                    i2.putExtra("backBetData", (Serializable) betDetailModels);
+                    setResult(201, i2);
+                    finish();
+                }else{
+                    Intent i = new Intent(BuyLotteryActivity.this, BuyLotteryFinalActivity.class);
+                    i.putExtra("betDetails", (Serializable) betDetailModels);
+                    i.putExtra("lottery", lotteryVO);
+                    startActivityForResult(i, 101);
+                }
+
                 betDialog.dismiss();
 
             }
@@ -352,6 +405,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 101 && resultCode == RESULT_OK){
+            //下注成功
             finish();
         }
     }
@@ -380,6 +434,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         public void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB){
             playTypeA = typeA;
             playTypeB = typeB;
+            tv_playWaySelect.setText(playTypeA.getPlayTypeA() + "-" + playTypeB.getPlayTypeB());
             //// TODO: 2017/5/26  刷新下注界面
 
         }

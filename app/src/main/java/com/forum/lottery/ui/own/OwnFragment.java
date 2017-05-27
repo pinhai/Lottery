@@ -32,7 +32,6 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
-        setUserInfo();
     }
 
     @Nullable
@@ -61,6 +60,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
         tv_rechargeRecord.setOnClickListener(this);
         tv_username = findView(R.id.tv_username);
 
+        setUserInfo();
     }
 
     @Override

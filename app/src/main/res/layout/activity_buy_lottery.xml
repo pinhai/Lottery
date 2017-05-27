@@ -82,6 +82,11 @@
                     android:orientation="horizontal"
                     android:padding="5dp">
 
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -104,11 +109,6 @@
                             android:textSize="16sp" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/gray" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -130,8 +130,11 @@
                             android:padding="8dp">
 
                             <TextView
+                                android:gravity="center"
+                                android:background="@mipmap/shijian_bg"
                                 android:id="@+id/tv_tickTime"
                                 style="@style/deadline_text"
+                                android:textSize="16sp"
                                 android:text="00:00:00" />
 
                             <!--<TextView

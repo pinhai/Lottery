@@ -1,5 +1,8 @@
 package com.forum.lottery.ui;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -32,6 +35,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 	private List<OnActivityResultListener> onActivityResultListeners;
 	private RxHttp rxHttp;
 	private SparseArray<SubscriberHandler> sparseHandlers;
+
+	private ProgressDialog progressDialog2;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -187,6 +193,49 @@ public abstract class BaseActivity extends AppCompatActivity {
 				onActivityResultListener.onActivityResult(requestCode, resultCode, data);
 			}
 		}
+	}
+
+	/**
+	 * 点击返回键，将结束当前Activity
+	 */
+	public void showProgressDialog() {
+		if (progressDialog2 == null) {
+			progressDialog2 = new ProgressDialog(this, AlertDialog.THEME_HOLO_LIGHT);
+			progressDialog2.setTitle(getString(R.string.prompt));
+			progressDialog2.setMessage(getString(R.string.loading));
+			progressDialog2.setCancelable(true);
+			progressDialog2.setCanceledOnTouchOutside(false);
+		}
+		progressDialog2.show();
+		progressDialog2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				finish();
+			}
+		});
+	}
+
+	public void dismissProgressDialog() {
+		if (progressDialog2 != null && progressDialog2.isShowing()) {
+			progressDialog2.dismiss();
+		}
+	}
+
+	public void showProgressDialog(boolean cancelable) {
+		if (progressDialog2 == null) {
+			progressDialog2 = new ProgressDialog(this, AlertDialog.THEME_HOLO_LIGHT);
+			progressDialog2.setTitle(getString(R.string.prompt));
+			progressDialog2.setMessage(getString(R.string.loading));
+			progressDialog2.setCancelable(cancelable);
+		}
+		progressDialog2.show();
+	}
+
+	public boolean isShowingProgressDialog() {
+		if (progressDialog2 != null) {
+			return progressDialog2.isShowing();
+		}
+		return false;
 	}
 	
 	public interface OnActivityResultListener{

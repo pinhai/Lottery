@@ -44,25 +44,41 @@ public class LotteryUtils {
     }
 
     /**
-     * 获取下注的彩票-加法， 比如：|||1|&3||||
+     * 获取下注的彩票， 比如：|||1|
      * @param data
      * @return
      */
-    public static String getBetLotteryFromAddition(List<BetListItemModel> data){
+    public static String getBetLottery(List<BetListItemModel> data){
 //        List<String> betLottery = new ArrayList<>();
         String betLottery = "";
+
         for(int i=0; i<data.size(); i++){
             List<BetItemModel> listitem = data.get(i).getBetItems();
             for(int j=0; j<listitem.size(); j++){
                 if(listitem.get(j).isChecked()){
-                    String value = listitem.get(j).getName();
-//                    if(j != listitem.size()-1){
-                    betLottery = betLottery + getBetItemForAddition(data.get(i).getLabel(), value) + "&";
-//                    }
+                    betLottery += listitem.get(j).getName() + "&";
                 }
             }
+            if(betLottery.endsWith("&")){
+                betLottery = betLottery.substring(0, betLottery.length()-1);
+            }
+            if(i != data.size()-1){
+                betLottery += "|";
+            }
         }
-        betLottery = betLottery.substring(0, betLottery.length()-1);
+
+//        for(int i=0; i<data.size(); i++){
+//            List<BetItemModel> listitem = data.get(i).getBetItems();
+//            for(int j=0; j<listitem.size(); j++){
+//                if(listitem.get(j).isChecked()){
+//                    String value = listitem.get(j).getName();
+////                    if(j != listitem.size()-1){
+//                    betLottery = betLottery + getBetItemForAddition(data.get(i).getLabel(), value) + "&";
+////                    }
+//                }
+//            }
+//        }
+//        betLottery = betLottery.substring(0, betLottery.length()-1);
         return betLottery;
     }
 
@@ -324,7 +340,7 @@ public class LotteryUtils {
                                                         String playId, String playName){
         List<BetDetailModel> result = new ArrayList<>();
         BetDetailModel item = new BetDetailModel();
-        item.setBuyNoShow(getBetLotteryFromAddition(data));
+        item.setBuyNoShow(getBetLottery(data));
         item.setBuyCount(betCount);
         item.setBuyNO(item.getBuyNoShow());
         item.setCpCategoryName(lotteryVO.getLotteryName());
@@ -403,4 +419,18 @@ public class LotteryUtils {
         return result;
     }
 
+    public static String encode(String betLottery) {
+        String result = "";
+        for(char c : betLottery.toCharArray()){
+            if(c == '|'){
+                result += "%7C";
+            }else if(c == '&'){
+                result += "&#38;";
+            }else{
+                result += c;
+            }
+        }
+
+        return result;
+    }
 }

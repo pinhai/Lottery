@@ -30,6 +30,10 @@ public abstract class BaseActionBarActivity extends BaseActivity {
 		actionBar.setTitle(getTitle());
 		actionBar.setOnClickListener(onClickListener);
 	}
+
+	protected void setActionbarListener(OnClickListener listener){
+		actionBar.setOnClickListener(listener);
+	}
 	
 	protected int getLayoutId(){
 		return R.layout.activity_actionbar;

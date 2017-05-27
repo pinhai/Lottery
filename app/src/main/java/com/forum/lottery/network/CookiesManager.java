@@ -33,25 +33,34 @@ public class CookiesManager implements CookieJar {
     @Override
     public List<Cookie> loadForRequest(HttpUrl url) {
         List<Cookie> cookies = cookieStore.get(url);
-//        if(AccountManager.getInstance().isLogin()){
-//            UserVO user = AccountManager.getInstance().getUser();
-//            for (Cookie item : cookies) {
-//                String cStr = item.toString();
-//                if(cStr.contains("JSESSIONID") && !cStr.contains("username") && !cStr.contains("userId")){
-//                    String value = item.value() + ",username=" + user.getAccount() + ",userId=" + user.getId();
-//                }
-//            }
-////            Cookie username = new Cookie.Builder()
-////                    .name("username")
-////                    .value(user.getAccount())
-////                    .build();
-////            Cookie userid = new Cookie.Builder()
-////                    .name("userId")
-////                    .value(user.getId())
-////                    .build();
-////            cookies.add(username);
-////            cookies.add(userid);
-//        }
+        if(AccountManager.getInstance().isLogin()){
+            UserVO user = AccountManager.getInstance().getUser();
+            for (Cookie item : cookies) {
+                String cStr = item.toString();
+                if(cStr.contains("JSESSIONID") && !cStr.contains("username") && !cStr.contains("userId")){
+                    String value = item.value() + ";username=" + user.getAccount() + ";userId=" + user.getId();
+                    Cookie.Builder builder = new Cookie.Builder();
+                    builder = builder.name(item.name());
+                    builder = builder.value(value);
+                    builder = builder.expiresAt(item.expiresAt());
+                    builder = builder.domain(item.domain());
+                    builder = builder.path(item.path());
+                    Cookie cookie = builder.build();
+                    cookies.remove(item);
+                    cookies.add(cookie);
+                }
+            }
+//            Cookie username = new Cookie.Builder()
+//                    .name("username")
+//                    .value(user.getAccount())
+//                    .build();
+//            Cookie userid = new Cookie.Builder()
+//                    .name("userId")
+//                    .value(user.getId())
+//                    .build();
+//            cookies.add(username);
+//            cookies.add(userid);
+        }
 
         return cookies;
     }
