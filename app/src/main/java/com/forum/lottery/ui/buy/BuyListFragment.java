@@ -1,6 +1,7 @@
 package com.forum.lottery.ui.buy;
 
 import android.content.Intent;
+import android.opengl.ETC1;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.forum.lottery.adapter.BuyListAdapter;
 import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
+import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.ui.BaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -44,14 +46,15 @@ public class BuyListFragment extends BaseFragment {
     @Override
     protected void initView() {
         listBuy = findView(R.id.list_buy);
-        loadLotteryList();
+//        loadLotteryList();
         listBuy.setOnItemClickListener(new BuyItemClickListener());
         listBuy.setAdapter(adapter);
     }
 
     @Override
     protected void initData() {
-        initTick();
+        EventBus.getDefault().register(this);
+//        initTick();
         lotteryVOs = new ArrayList<>();
 //        for(int i = 0; i < 20; i++){
 //            lotteryVOs.add(new LotteryVO());
@@ -59,73 +62,81 @@ public class BuyListFragment extends BaseFragment {
         adapter = new BuyListAdapter(getActivity(), lotteryVOs);
     }
 
-    private void loadLotteryList(){
-
-        createHttp(LotteryService.class)
-                .getAllLotteryList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ResultData<List<LotteryVO>>>() {
-                    @Override
-                    public void onSuccess(ResultData<List<LotteryVO>> value) {
-                        if(value != null && value.getData() != null){
-                            lotteryVOs.clear();
-                            lotteryVOs.addAll(value.getData());
-                            adapter.notifyDataSetChanged();
-                            startTick();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable error) {
-                        toast(getString(R.string.connection_failed));
-                    }
-                });
-
+    @Subscribe
+    public void deliveryLotteryList(LotteryListTickEvent event){
+        lotteryVOs.clear();
+        lotteryVOs.addAll(event.data);
+        adapter.notifyDataSetChanged();
     }
 
-    private android.os.Handler handler = new android.os.Handler(new android.os.Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            for(LotteryVO lotteryVO : lotteryVOs){
-                int time = lotteryVO.getTime() - 1;
-                lotteryVO.setTime(time);
-                if(time <= 0){
-//                    loadLotteryList();
-                }
-            }
-            adapter.notifyDataSetChanged();
-            return false;
-        }
-    });
+//    private void loadLotteryList(){
+//
+//        createHttp(LotteryService.class)
+//                .getAllLotteryList()
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleSubscriber<ResultData<List<LotteryVO>>>() {
+//                    @Override
+//                    public void onSuccess(ResultData<List<LotteryVO>> value) {
+//                        if(value != null && value.getData() != null){
+//                            lotteryVOs.clear();
+//                            lotteryVOs.addAll(value.getData());
+//                            adapter.notifyDataSetChanged();
+//                            startTick();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable error) {
+//                        toast(getString(R.string.connection_failed));
+//                    }
+//                });
+//
+//    }
+
+//    private android.os.Handler handler = new android.os.Handler(new android.os.Handler.Callback() {
+//        @Override
+//        public boolean handleMessage(Message msg) {
+//            for(LotteryVO lotteryVO : lotteryVOs){
+//                int time = lotteryVO.getTime() - 1;
+//                lotteryVO.setTime(time);
+//                if(time <= 0){
+//
+////                    loadLotteryList();
+//                }
+//            }
+//            adapter.notifyDataSetChanged();
+//            return false;
+//        }
+//    });
 
     private boolean runTick = true;
     private Thread tickThread;
     private int refreshInterval = 0;
-    private void startTick(){
-        if(!tickThread.isAlive())
-            tickThread.start();
-    }
+//    private void startTick(){
+//        if(!tickThread.isAlive())
+//            tickThread.start();
+//    }
 
-    private void initTick(){
-        tickThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (runTick){
-                    try {
-                        Thread.sleep(1000);
-                        handler.sendEmptyMessage(0);
-                        ++ refreshInterval;
-                        if(refreshInterval > 5*60){
-                            refreshInterval = 0;
-                            loadLotteryList();
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
+//    private void initTick(){
+//        tickThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (runTick){
+//                    try {
+//                        Thread.sleep(1000);
+//                        handler.sendEmptyMessage(0);
+//                        ++ refreshInterval;
+//                        if(refreshInterval > 5*60){
+//                            refreshInterval = 0;
+//                            loadLotteryList();
+//                        }
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//    }
 
     private class BuyItemClickListener implements android.widget.AdapterView.OnItemClickListener {
 
@@ -140,5 +151,6 @@ public class BuyListFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

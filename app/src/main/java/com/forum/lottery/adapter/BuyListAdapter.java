@@ -21,6 +21,11 @@ public class BuyListAdapter extends SingleQuickAdapter<LotteryVO> {
     }
 
     @Override
+    protected int getItemViewTypeM(int position) {
+        return 0;
+    }
+
+    @Override
     protected void setViewHolder(ViewHoldHelper holdHelper, final LotteryVO data, int position) {
         RoundedImageView riv_lotteryPic = holdHelper.findView(R.id.riv_lotteryPic);
         TextView tv_lotteryName = holdHelper.findView(R.id.tv_lotteryName);

@@ -12,13 +12,13 @@ public class ViewHoldHelper {
 	private View view;
 	public static ViewHoldHelper buildViewHoldHelper(Context context, View convertView, int layoutId){
 		ViewHoldHelper viewHoldHelper = null;
-		if(convertView == null){
+//		if(convertView == null){
 			convertView = View.inflate(context, layoutId, null);
 			viewHoldHelper = new ViewHoldHelper(convertView);
 			convertView.setTag(R.id.tag_view_hold, viewHoldHelper);
-		}else{
-			viewHoldHelper = (ViewHoldHelper) convertView.getTag(R.id.tag_view_hold);
-		}
+//		}else{
+//			viewHoldHelper = (ViewHoldHelper) convertView.getTag(R.id.tag_view_hold);
+//		}
 		return viewHoldHelper;
 	}
 	

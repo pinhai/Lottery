@@ -42,7 +42,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		viewConverter = getViewConverter(getItemViewType(position));
+		viewConverter = getViewConverter(getItemViewTypeM(position));
 		ViewHoldHelper viewHoldHelper = ViewHoldHelper.buildViewHoldHelper(context, convertView, viewConverter.getLayoutId());
 		if(convertView == null){
 			onPreView(viewHoldHelper, position);
@@ -54,6 +54,8 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 	protected void onPreView(ViewHoldHelper viewHoldHelper, int position){}
 	
 	protected abstract ViewConverter getViewConverter(int viewType);
+
+	protected abstract int getItemViewTypeM(int position);
 
 	public void setEmptyView(View emptyView){
 		this.emptyView = emptyView;

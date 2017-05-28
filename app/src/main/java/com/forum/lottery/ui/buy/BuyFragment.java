@@ -10,18 +10,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.application.MyApplication;
+import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.ui.TabBaseFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Administrator on 2017/4/21.
  */
 
-public class BuyFragment extends TabBaseFragment {
+public class BuyFragment extends TabBaseFragment implements View.OnClickListener {
     private int curCheckId = -1;
     private int prepareCheckId = R.id.radio_all;
+    private TextView iv_refresh;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +59,8 @@ public class BuyFragment extends TabBaseFragment {
                 changeTab(i);
             }
         });
+        iv_refresh = findView(R.id.iv_refresh);
+        iv_refresh.setOnClickListener(this);
     }
 
     @Override
@@ -101,5 +108,14 @@ public class BuyFragment extends TabBaseFragment {
 
     private Fragment buildFragment(int radioId){
         return new BuyListFragment();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.iv_refresh:
+                EventBus.getDefault().post(new RefreshLotteryListEvent());
+                break;
+        }
     }
 }

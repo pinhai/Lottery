@@ -18,10 +18,11 @@
             android:singleLine="true"
             android:textColor="#ffbe00"
             android:textSize="16sp"
-            android:text="三分时时彩"
+            android:text="北京PK拾"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/tv_periods_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -36,11 +37,13 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
         <TextView
+            android:id="@+id/tv_num1"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="06"/>
         <TextView
+            android:id="@+id/tv_num2"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +51,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num3"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,6 +59,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num4"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,6 +67,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num5"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,6 +75,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num6"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,6 +83,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num7"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,6 +91,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num8"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,11 +105,13 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
         <TextView
+            android:id="@+id/tv_num9"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="03"/>
         <TextView
+            android:id="@+id/tv_num10"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

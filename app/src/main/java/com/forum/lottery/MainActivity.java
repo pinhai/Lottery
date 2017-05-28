@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.forum.lottery.adapter.MainTabAdapter;
+import com.forum.lottery.service.LotteryTickService;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.TabBaseFragment;
 import com.forum.lottery.ui.buy.BuyFragment;
@@ -51,6 +52,13 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initData();
         initView();
+
+        startLotteryTickService();
+    }
+
+    private void startLotteryTickService() {
+        Intent intent = new Intent(MainActivity.this, LotteryTickService.class);
+        startService(intent);
     }
 
     @Override

@@ -11,12 +11,24 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        myConfig {
+            storeFile file("D:\\Android\\sihuo\\彩票吧\\cpb.key.jks")
+            storePassword "88888888"
+            keyAlias "key0"
+            keyPassword "88888888"//将这里的“**”替换成自己的信息
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.myConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {

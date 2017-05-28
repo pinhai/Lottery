@@ -19,12 +19,16 @@ import java.util.List;
 
 public class LotteryListActivity extends BaseActionBarActivity {
     private ListView listLottery;
+    private List<LotteryVO> lotteryVOs;
     private int type;
-    private String title;
+//    private String title;
+    private LotteryVO lotteryVO;
+
     public static void startActivity(Context context, LotteryVO lotteryVO){
         Intent intent = new Intent(context, LotteryListActivity.class);
-        intent.putExtra("title", "重庆时时彩");
+//        intent.putExtra("title", "重庆时时彩");
         intent.putExtra("type", 1);
+        intent.putExtra("lottery", lotteryVO);
         context.startActivity(intent);
     }
 
@@ -40,32 +44,33 @@ public class LotteryListActivity extends BaseActionBarActivity {
     protected void initView() {
         listLottery = findView(R.id.list_lottery);
 
+        lotteryVOs = new ArrayList<>();
         loadLotteryList();
     }
 
     @Override
     protected void initData() {
-        setTitle(title);
+        setTitle(lotteryVO.getLotteryName());
     }
 
     @Override
     protected void initParams(Bundle bundle) {
         super.initParams(bundle);
-        title = bundle.getString("title");
+//        title = bundle.getString("title");
         type = bundle.getInt("type", 0);
+        lotteryVO = (LotteryVO) bundle.getSerializable("lottery");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("title",title);
+        outState.putString("title",lotteryVO.getLotteryName());
         outState.putInt("type", type);
     }
 
     private void loadLotteryList(){
-        List<LotteryVO> lotteryVOs = new ArrayList<>();
         for(int i = 0; i < 20; i++){
-            lotteryVOs.add(new LotteryVO());
+            lotteryVOs.add(lotteryVO);
         }
         LotteryListAdapter lotteryListAdapter = new LotteryListAdapter(this, lotteryVOs);
         lotteryListAdapter.setHideTitle(true);

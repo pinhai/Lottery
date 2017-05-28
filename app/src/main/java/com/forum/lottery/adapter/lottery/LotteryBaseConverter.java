@@ -19,10 +19,15 @@ public abstract class LotteryBaseConverter implements ViewConverter {
     @Override
     public void onConvert(BaseAdapter adapter, ViewHoldHelper viewHoldHelper, int position) {
         LotteryListAdapter lotteryListAdapter = (LotteryListAdapter) adapter;
+        LotteryVO lotteryVO = lotteryListAdapter.get(position);
+        TextView txtTitle = viewHoldHelper.findView(R.id.txt_title);
+        TextView tv_periods_date = viewHoldHelper.findView(R.id.tv_periods_date);
         if(lotteryListAdapter.isHideTitle()){
-            TextView txtTitle = viewHoldHelper.findView(R.id.txt_title);
             txtTitle.setVisibility(View.GONE);
         }
+        txtTitle.setText(lotteryVO.getLotteryName());
+        tv_periods_date.setText("第" + lotteryVO.getIssue() + "期  " + lotteryVO.getOpenTime());
+
         setViewHolder(viewHoldHelper, lotteryListAdapter.get(position), position);
     }
 

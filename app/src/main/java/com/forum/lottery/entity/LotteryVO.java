@@ -13,6 +13,7 @@ public class LotteryVO implements Serializable{
     private String openTime;
     private String lotteryid;
     private String nextIssue;
+    private String nextOpenTime;
     private String lotteryName;
 
     public String getIssue() {
@@ -69,5 +70,13 @@ public class LotteryVO implements Serializable{
 
     public void setLotteryName(String lotteryName) {
         this.lotteryName = lotteryName;
+    }
+
+    public String getNextOpenTime() {
+        return nextOpenTime;
+    }
+
+    public void setNextOpenTime(String nextOpenTime) {
+        this.nextOpenTime = nextOpenTime;
     }
 }

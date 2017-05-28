@@ -18,10 +18,11 @@
             android:singleLine="true"
             android:textColor="#ffbe00"
             android:textSize="16sp"
-            android:text="广西快三"
+            android:text="安徽快三"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/tv_periods_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -38,16 +39,19 @@
         android:background="@mipmap/kaijiang_kuaisan"
         android:paddingTop="5dp">
         <ImageView
+            android:id="@+id/iv_num1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/touzi_01"
             android:layout_marginLeft="10dp"/>
         <ImageView
+            android:id="@+id/iv_num2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/touzi_02"
             android:layout_marginLeft="10dp"/>
         <ImageView
+            android:id="@+id/iv_num3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/touzi_06"

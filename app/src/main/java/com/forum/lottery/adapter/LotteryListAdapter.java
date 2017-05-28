@@ -1,15 +1,14 @@
 package com.forum.lottery.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.forum.lottery.adapter.lottery.Lottery0Converter;
 import com.forum.lottery.adapter.lottery.Lottery1Converter;
-import com.forum.lottery.adapter.lottery.Lottery2Converter;
 import com.forum.lottery.adapter.lottery.Lottery3Converter;
 import com.forum.lottery.adapter.lottery.Lottery4Converter;
 import com.forum.lottery.adapter.lottery.Lottery5Converter;
-import com.forum.lottery.adapter.lottery.Lottery6Converter;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.LotteryType;
 
@@ -64,33 +63,33 @@ public class LotteryListAdapter extends QuickAdapter<LotteryVO> {
         ViewConverter viewConverter = cacheViewConverters.get(viewType);
         if(viewConverter == null){
             if(viewType == SFSSC.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == CQSSC.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == BJPKS.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery3Converter();
             }else if(viewType == XJP28.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery5Converter();
             }else if(viewType == SFPKS.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery3Converter();
             }else if(viewType == SHSSL.value()){
                 viewConverter = new Lottery0Converter();
             }else if(viewType == TJSSC.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == XJSSC.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == SD11X5.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == SH11X5.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == JX11X5.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == GD11X5.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery1Converter();
             }else if(viewType == BJ28.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery5Converter();
             }else if(viewType == AHKS.value()){
-                viewConverter = new Lottery0Converter();
+                viewConverter = new Lottery4Converter();
             }else if(viewType == FC3D.value()){
                 viewConverter = new Lottery0Converter();
             }else if(viewType == PLS.value()){
@@ -99,32 +98,8 @@ public class LotteryListAdapter extends QuickAdapter<LotteryVO> {
                 viewConverter = new Lottery0Converter();
             }
 
-//            switch (viewType){
-//                case 0:
-//                    viewConverter = new Lottery0Converter();
-//                    break;
-//                case 1:
-//                    viewConverter = new Lottery1Converter();
-//                    break;
-//                case 2:
-//                    viewConverter = new Lottery2Converter();
-//                    break;
-//                case 3:
-//                    viewConverter = new Lottery3Converter();
-//                    break;
-//                case 4:
-//                    viewConverter = new Lottery4Converter();
-//                    break;
-//                case 5:
-//                    viewConverter = new Lottery5Converter();
-//                    break;
-//                case 6:
-//                    viewConverter = new Lottery6Converter();
-//                    break;
-//                default:
-//                    viewConverter = new Lottery6Converter();
-//                    break;
-//            }
+            cacheViewConverters.put(viewType, viewConverter);
+
         }
         return viewConverter;
     }
@@ -135,7 +110,7 @@ public class LotteryListAdapter extends QuickAdapter<LotteryVO> {
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public int getItemViewTypeM(int position) {
 
         int lotteryId = Integer.parseInt(datas.get(position).getLotteryid());
         return  lotteryId;

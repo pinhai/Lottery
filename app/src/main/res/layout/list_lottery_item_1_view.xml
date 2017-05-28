@@ -22,6 +22,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/tv_periods_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -31,16 +32,21 @@
             android:text="第20170302219期 2017-03-02 19:57:00"/>
     </LinearLayout>
     <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
+
         <TextView
+            android:id="@+id/tv_num1"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6"/>
+            android:text="6" />
+
         <TextView
+            android:id="@+id/tv_num2"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +54,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num3"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,6 +62,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num4"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,6 +70,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
         <TextView
+            android:id="@+id/tv_num5"
             style="@style/Lottery_Item_Circle_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

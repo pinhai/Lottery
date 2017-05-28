@@ -26,6 +26,8 @@ import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
+import com.forum.lottery.event.LotteryListTickEvent;
+import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
 import com.forum.lottery.model.BetListItemModel;
@@ -56,7 +58,8 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class BuyLotteryActivity extends BaseActivity implements View.OnClickListener{
 
-    private TextView tv_betCount, tv_betMoney, tv_tickTime, tv_playWaySelect;
+    private TextView tv_betCount, tv_betMoney, tv_playWaySelect;
+    private TextView tv_issue, tv_nextIssue, tv_openNum, tv_tickTime;
     private Button btn_clear, btn_bet;
     private AlertDialog betDialog;
     private int betCount = 0;      //下注的注数
@@ -130,9 +133,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         btn_clear = findView(R.id.btn_clear);
         btn_clear.setOnClickListener(this);
         tv_tickTime = findView(R.id.tv_tickTime);
+        tv_issue = findView(R.id.tv_issue);
+        tv_nextIssue = findView(R.id.tv_nextIssue);
+        tv_openNum = findView(R.id.tv_openNum);
         tv_playWaySelect = findView(R.id.tv_playWaySelect);
 //        tv_playWaySelect.setOnClickListener(this);  //先屏蔽
 
+        refreshIssue();
     }
 
     @Override
@@ -142,6 +149,36 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         backAddBet = getIntent().getBooleanExtra("backAddBet", false);
         playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
         loadBetData();
+
+    }
+
+    private void refreshIssue(){
+        String openNum = "";
+        for(String s : lotteryVO.getOpenNum()){
+            openNum += " " + s;
+        }
+        tv_issue.setText(lotteryVO.getIssue() + "期");
+        tv_openNum.setText(openNum);
+        tv_nextIssue.setText("距" + lotteryVO.getNextIssue() + "期截止");
+    }
+
+    @Subscribe
+    public void deliveryLotteryList(LotteryListTickEvent event){
+        if(!runTick){
+            List<LotteryVO> lotteryVOs = event.data;
+            for(LotteryVO item : lotteryVOs){
+                if(item.getLotteryid().equals(lotteryVO.getLotteryid())){
+                    lotteryVO = item;
+                }
+            }
+            if(lotteryVO.getTime() > 0){
+                runTick = true;
+                initTick();
+                startTick();
+            }
+        }
+
+//        tv_tickTime.setText(LotteryUtils.secToTime(lotteryVO.getTime()));
 
     }
 
@@ -397,7 +434,15 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         public boolean handleMessage(Message msg) {
             int time = lotteryVO.getTime() - 1;
             lotteryVO.setTime(time);
-            tv_tickTime.setText(LotteryUtils.secToTime(time));
+            if(time <= 0){
+                runTick = false;
+                EventBus.getDefault().post(new RefreshLotteryListEvent());
+                tv_tickTime.setText("正在开奖");
+                tv_tickTime.setBackgroundResource(R.color.transparent);
+            }else{
+                tv_tickTime.setText(LotteryUtils.secToTime(time));
+                tv_tickTime.setBackgroundResource(R.mipmap.shijian_bg);
+            }
             return false;
         }
     });
