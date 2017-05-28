@@ -88,6 +88,10 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bg_white_circle</item>
     </style>
+    <style name="Trend_Circle_Red">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_red_circle</item>
+    </style>
     <style name="Buy_Tab_Radio">
         <item name="android:button">@null</item>
     </style>

@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.utils.LogUtils;
+import com.forum.lottery.utils.LotteryIconUtils;
 import com.forum.lottery.utils.LotteryUtils;
 import com.forum.lottery.view.roundimage.RoundedImageView;
 
@@ -34,6 +35,7 @@ public class BuyListAdapter extends SingleQuickAdapter<LotteryVO> {
         TextView tv_nextIssue = holdHelper.findView(R.id.tv_nextIssue);
         TextView tv_time = holdHelper.findView(R.id.tv_time);
 
+        riv_lotteryPic.setImageResource(LotteryIconUtils.getLotteryIcon(Integer.parseInt(data.getLotteryid())));
         tv_lotteryName.setText(data.getLotteryName());
         tv_issue.setText("第" + data.getIssue() + "期");
         String openNum = "";

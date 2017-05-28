@@ -1,5 +1,9 @@
 package com.forum.lottery.entity;
 
+import com.forum.lottery.model.TrendModel;
+
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/9/3.
  */
@@ -19,6 +23,26 @@ public class ResultData<T> {
     private int code;
     private String desc;
     private String result;  //获取机选的数据
+
+    //走势图数据
+    private String lotteryId;
+    private List<TrendModel> records;
+
+    public String getLotteryId() {
+        return lotteryId;
+    }
+
+    public void setLotteryId(String lotteryId) {
+        this.lotteryId = lotteryId;
+    }
+
+    public List<TrendModel> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<TrendModel> records) {
+        this.records = records;
+    }
 
     public int getCode() {
         return code;

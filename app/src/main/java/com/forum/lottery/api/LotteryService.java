@@ -71,4 +71,13 @@ public interface LotteryService {
      */
     @GET("nonAuthority/home/randomNums")
     Single<ResultData> getBetByMachine(@Query("cpCategoryId") String cpId, @Query("playTypeId") String playId);
+
+    /**
+     * 获取走势图数据
+     * @param cpId
+     * @param periods
+     * @return
+     */
+    @GET("nonAuthority/gameCenter/appLotteryTrend")
+    Single<ResultData> getTrendData(@Query("gameId") String cpId, @Query("periods") int periods);
 }

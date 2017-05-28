@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.forum.lottery.view.roundimage.RoundedImageView
+        android:id="@+id/riv_lotteryPic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:oval="true"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/a1"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_lotteryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text_color_1"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:text="三分时时彩"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_2"
+            android:textSize="16sp"
+            android:text="00:00:02"
+            android:singleLine="true"/>
+    </LinearLayout>
+
+</LinearLayout>

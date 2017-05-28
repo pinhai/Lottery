@@ -32,4 +32,6 @@
     <color name="gray_tint">#EFEEF4</color>
     <color name="buy_lottery_bottom_bar">#252525</color>
     <color name="clear_bg">#363636</color>
+    <color name="trend_grid_bg1">#E9E0D9</color>
+    <color name="trend_grid_bg2">#F3F3E9</color>
 </resources>
