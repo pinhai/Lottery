@@ -89,6 +89,9 @@ public class BuyListFragment extends BaseFragment {
             for(LotteryVO lotteryVO : lotteryVOs){
                 int time = lotteryVO.getTime() - 1;
                 lotteryVO.setTime(time);
+                if(time <= 0){
+//                    loadLotteryList();
+                }
             }
             adapter.notifyDataSetChanged();
             return false;
@@ -97,6 +100,7 @@ public class BuyListFragment extends BaseFragment {
 
     private boolean runTick = true;
     private Thread tickThread;
+    private int refreshInterval = 0;
     private void startTick(){
         if(!tickThread.isAlive())
             tickThread.start();
@@ -110,6 +114,11 @@ public class BuyListFragment extends BaseFragment {
                     try {
                         Thread.sleep(1000);
                         handler.sendEmptyMessage(0);
+                        ++ refreshInterval;
+                        if(refreshInterval > 5*60){
+                            refreshInterval = 0;
+                            loadLotteryList();
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

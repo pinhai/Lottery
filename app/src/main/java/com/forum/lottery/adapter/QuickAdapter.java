@@ -23,7 +23,6 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return datas.size();
 	}
 
@@ -38,7 +37,6 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 

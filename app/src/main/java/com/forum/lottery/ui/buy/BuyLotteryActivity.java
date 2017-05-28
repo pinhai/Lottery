@@ -217,7 +217,6 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
         createHttp(LotteryService.class)
                 .lotteryNumsCheck(buyNo, lotteryVO.getLotteryid(), playTypeB.getPlayId())
-//                .lotteryNumsCheck(urlStr)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<ResultData>() {
                     @Override
@@ -356,9 +355,34 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
      * 机选
      */
     private void selectByMachine(){
-        LotteryUtils.selectByMachineFromAddition(data);
-        betFragment.notifyDataSetChanged();
-        selectLotteryBetEvent(new BuyLotteryCheckChangeEvent());
+        //自己生成
+//        LotteryUtils.selectByMachineFromAddition(data);
+//        betFragment.notifyDataSetChanged();
+//        selectLotteryBetEvent(new BuyLotteryCheckChangeEvent());
+        //从后台获取
+        createHttp(LotteryService.class)
+                .getBetByMachine(lotteryVO.getLotteryid(), playTypeB.getPlayId())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData value) {
+                        if(value != null && value.getCode() == 1){
+                            String result = value.getResult().trim();
+                            LotteryUtils.selectByRemote(data, result);
+                            betFragment.notifyDataSetChanged();
+                            selectLotteryBetEvent(new BuyLotteryCheckChangeEvent());
+                        }else{
+                            String show = "生成失败";
+                            toast(show);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
+
     }
 
     @Subscribe

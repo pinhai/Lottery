@@ -64,4 +64,11 @@ public interface LotteryService {
      */
     @GET("nonAuthority/home/listPlayeds")
     Single<List<Peilv>> getPeilv(@Query("lotteryid") String lotteryid, @Query("playid") String palyid);
+
+    /**
+     * 机选
+     * @return
+     */
+    @GET("nonAuthority/home/randomNums")
+    Single<ResultData> getBetByMachine(@Query("cpCategoryId") String cpId, @Query("playTypeId") String playId);
 }

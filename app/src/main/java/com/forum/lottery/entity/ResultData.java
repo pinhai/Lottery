@@ -18,6 +18,7 @@ public class ResultData<T> {
 
     private int code;
     private String desc;
+    private String result;  //获取机选的数据
 
     public int getCode() {
         return code;
@@ -57,5 +58,13 @@ public class ResultData<T> {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

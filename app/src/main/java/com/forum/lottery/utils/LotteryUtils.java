@@ -56,10 +56,10 @@ public class LotteryUtils {
             List<BetItemModel> listitem = data.get(i).getBetItems();
             for(int j=0; j<listitem.size(); j++){
                 if(listitem.get(j).isChecked()){
-                    betLottery += listitem.get(j).getName() + "&";
+                    betLottery += listitem.get(j).getName() + "_";
                 }
             }
-            if(betLottery.endsWith("&")){
+            if(betLottery.endsWith("_")){
                 betLottery = betLottery.substring(0, betLottery.length()-1);
             }
             if(i != data.size()-1){
@@ -328,6 +328,24 @@ public class LotteryUtils {
     }
 
     /**
+     * 通过后台服务器-机选
+     * @param data
+     * @param result
+     */
+    public static void selectByRemote(List<BetListItemModel> data, String result) {
+        String[] temps = result.split("\\|");
+        for(int i=0; i<temps.length; i++){
+            List<BetItemModel> betItemModels = data.get(i).getBetItems();
+            String temp = temps[i];
+            for(BetItemModel item : betItemModels){
+                if(temp.equals(item.getName())){
+                    item.setChecked(true);
+                }
+            }
+        }
+    }
+
+    /**
      * 得到已下注的详情-大注-某种玩法下的所有注数
      * @param data
      * @param lotteryVO
@@ -424,8 +442,6 @@ public class LotteryUtils {
         for(char c : betLottery.toCharArray()){
             if(c == '|'){
                 result += "%7C";
-            }else if(c == '&'){
-                result += "&#38;";
             }else{
                 result += c;
             }
@@ -433,4 +449,5 @@ public class LotteryUtils {
 
         return result;
     }
+
 }
