@@ -85,33 +85,62 @@ public class TrendAdapter extends BaseAdapter {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void setView(int position, ViewHolder viewHolder) {
+        int row = position/numColumns;
+        int col = position%numColumns;
         viewHolder.tv_trendNum.setBackground(null);
-        if(position == 0){
-            viewHolder.tv_trendNum.setText("期数");
-        }else if(position < numColumns){
-            viewHolder.tv_trendNum.setText("" + (position-1));
-        }else{
-            if(position%numColumns == 0){
-                //设置期数
-                int row = position/numColumns - 1;
-                viewHolder.tv_trendNum.setText(trendModels.get(row).getIssue());
+        if(row == 0){
+            if(col == 0){
+                viewHolder.tv_trendNum.setText("期数");
             }else{
-                //设置grid数据
-                int row = position/numColumns - 1;
-                int col = position%numColumns - 1;
-                String[] items = trendModels.get(row).getAllcode();
-                int weishu = getWeishu(items);
-                String showItem = items[weishu];
-                if(col == Integer.parseInt(showItem)){
-                    viewHolder.tv_trendNum.setText(items[weishu]);
+                viewHolder.tv_trendNum.setText((col-1) + "");
+            }
+            viewHolder.ll_trend.setBackgroundColor(context.getResources().getColor(R.color.trend_grid_bg1));
+        }else{
+            if(col == 0){
+                String qishu = trendModels.get(row-1).getIssue();
+                viewHolder.tv_trendNum.setText(qishu);
+            }else{
+                TrendModel trendModel = trendModels.get(row-1);
+                String showNum = trendModel.getAllcode()[getWeishu(trendModel.getAllcode().length)];
+                if((col-1) == Integer.parseInt(showNum)){
+                    viewHolder.tv_trendNum.setText(showNum);
                     viewHolder.tv_trendNum.setBackgroundResource(R.drawable.bg_red_circle);
-                }else{
-                    viewHolder.tv_trendNum.setText("");
                 }
-
+            }
+            if(row%2 == 1){
+                viewHolder.ll_trend.setBackgroundColor(context.getResources().getColor(R.color.white));
+            }else{
+                viewHolder.ll_trend.setBackgroundColor(context.getResources().getColor(R.color.trend_grid_bg2));
             }
         }
-        viewHolder.ll_trend.setBackgroundColor(getGridColor(position));
+
+//        viewHolder.tv_trendNum.setBackground(null);
+//        if(position == 0){
+//            viewHolder.tv_trendNum.setText("期数");
+//        }else if(position < numColumns){
+//            viewHolder.tv_trendNum.setText("" + (position-1));
+//        }else{
+//            if(position%numColumns == 0){
+//                //设置期数
+//                int row = position/numColumns - 1;
+//                viewHolder.tv_trendNum.setText(trendModels.get(row).getIssue());
+//            }else{
+//                //设置grid数据
+//                int row = position/numColumns - 1;
+//                int col = position%numColumns - 1;
+//                String[] items = trendModels.get(row).getAllcode();
+//                int weishu = getWeishu(items);
+//                String showItem = items[weishu];
+//                if(col == Integer.parseInt(showItem)){
+//                    viewHolder.tv_trendNum.setText(items[weishu]);
+//                    viewHolder.tv_trendNum.setBackgroundResource(R.drawable.bg_red_circle);
+//                }else{
+//                    viewHolder.tv_trendNum.setText("");
+//                }
+//
+//            }
+//        }
+//        viewHolder.ll_trend.setBackgroundColor(getGridColor(position));
     }
 
     class ViewHolder{
@@ -123,33 +152,33 @@ public class TrendAdapter extends BaseAdapter {
         this.weishu = weishu;
     }
 
-    private int getWeishu(String[] items) {
+    private int getWeishu(int length) {
         int result = 0;
         switch (weishu){
             case GE:
-                result = items.length - 1;
+                result = length - 1;
                 break;
             case SHI:
-                result = items.length - 2;
+                result = length - 2;
                 break;
             case BAI:
-                result = items.length -3;
+                result = length -3;
                 break;
             case QIAN:
-                result = items.length -4;
+                result = length -4;
                 break;
             case WAN:
-                result = items.length - 5;
+                result = length - 5;
 
         }
         return result;
     }
 
-    private int getGridColor(int position){
+    private int getGridColor(int row){
         int color;
-        if(position/numColumns == 0){
+        if(row == 0){
             color = context.getResources().getColor(R.color.trend_grid_bg1);
-        }else if((position/numColumns)%2 == 1){
+        }else if(row%2 == 1){
             color = context.getResources().getColor(R.color.white);
         }else{
             color = context.getResources().getColor(R.color.trend_grid_bg2);
