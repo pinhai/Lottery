@@ -1,5 +1,6 @@
 package com.forum.lottery.entity;
 
+import com.forum.lottery.model.BetRecordModel;
 import com.forum.lottery.model.TrendModel;
 
 import java.util.List;
@@ -27,6 +28,26 @@ public class ResultData<T> {
     //走势图数据
     private String lotteryId;
     private List<TrendModel> records;
+
+    //投注记录
+    private int total;
+    private List<BetRecordModel> rows;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public List<BetRecordModel> getBetRecords() {
+        return rows;
+    }
+
+    public void setBetRecords(List<BetRecordModel> rows) {
+        this.rows = rows;
+    }
 
     public String getLotteryId() {
         return lotteryId;

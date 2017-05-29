@@ -71,6 +71,10 @@ public abstract class BaseFragment extends Fragment {
 		Toast.makeText(getActivity().getApplicationContext(), text, Toast.LENGTH_SHORT).show();
 	}
 
+	public void toast(int strRes){
+		Toast.makeText(getActivity().getApplicationContext(), getString(strRes), Toast.LENGTH_SHORT).show();
+	}
+
 	public void onMenuCreate(CustomActionBar toolbar){
 	}
 

@@ -99,7 +99,7 @@ public class ActionMenuAdapter extends BaseAdapter{
                 }
             }
             notifyDataSetChanged();
-            itemCheckedListener.onChecked(menu.get(position), position);
+            itemCheckedListener.onChecked(menu.get(position), position, true);
         }
     }
 
@@ -117,7 +117,7 @@ public class ActionMenuAdapter extends BaseAdapter{
         for(int i=0; i<menu.size(); i++){
             if(i == 0){
                 itemChecked.add(true);
-                itemCheckedListener.onChecked(menu.get(i), i);
+                itemCheckedListener.onChecked(menu.get(i), i, false);
             }else{
                 itemChecked.add(false);
             }
@@ -125,6 +125,6 @@ public class ActionMenuAdapter extends BaseAdapter{
     }
 
     public interface OnItemCheckedListener {
-        void onChecked(String value, int position);
+        void onChecked(String value, int position, boolean manual);
     }
 }

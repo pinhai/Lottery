@@ -15,6 +15,7 @@ import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
+import com.forum.lottery.event.RefreshLotteryListResultEvent;
 import com.forum.lottery.network.RxHttp;
 
 import org.greenrobot.eventbus.EventBus;
@@ -58,14 +59,16 @@ public class LotteryTickService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    private boolean manualRefresh = false;
     @Subscribe
     public void refreshLotteryList(RefreshLotteryListEvent event){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                manualRefresh = true;
                 loadLotteryList();
             }
-        }, 10*1000);
+        }, event.mills);
 
     }
 
@@ -101,13 +104,12 @@ public class LotteryTickService extends Service {
             for(LotteryVO lotteryVO : lotteryVOs){
                 int time = lotteryVO.getTime() - 1;
                 lotteryVO.setTime(time);
-                if(time <= 0){
-
-//                    loadLotteryList();
-                }
             }
             EventBus.getDefault().post(new LotteryListTickEvent(lotteryVOs));
-//            adapter.notifyDataSetChanged();
+            if(manualRefresh){
+                manualRefresh = false;
+                EventBus.getDefault().post(new RefreshLotteryListResultEvent());
+            }
             return false;
         }
     });

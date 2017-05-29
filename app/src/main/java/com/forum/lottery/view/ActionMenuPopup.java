@@ -9,6 +9,7 @@ import android.widget.PopupWindow;
 
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.ActionMenuAdapter;
+import com.forum.lottery.entity.ResultData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,15 @@ public class ActionMenuPopup{
     private ActionMenuAdapter adapter;
     private List<String> actionMenu;
     private PopupWindow pw_recordType;
+    private OnItemCheckedListener itemCheckedListener;
+
+    public ActionMenuPopup(Context context, List<String> actionMenu, OnItemCheckedListener listener){
+        this.context = context;
+        this.actionMenu = actionMenu;
+        itemCheckedListener = listener;
+
+        initPopupWindow();
+    }
 
     public ActionMenuPopup(Context context, List<String> actionMenu){
         this.context = context;
@@ -49,6 +59,7 @@ public class ActionMenuPopup{
         initPopupView(popupView);
         pw_recordType.setTouchable(true);
         pw_recordType.setOutsideTouchable(true);
+//        pw_recordType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.popup_bg));
         pw_recordType.setBackgroundDrawable(new BitmapDrawable());
 //        pw_recordType.update();
 //        pw_recordType.getContentView().setFocusableInTouchMode(true);
@@ -59,8 +70,10 @@ public class ActionMenuPopup{
     private void initPopupView(View popupView) {
         adapter = new ActionMenuAdapter(context, actionMenu, new ActionMenuAdapter.OnItemCheckedListener() {
             @Override
-            public void onChecked(String value, int position) {
-
+            public void onChecked(String value, int position, boolean manual) {
+                if(itemCheckedListener != null){
+                    itemCheckedListener.onCheck(value, position, manual);
+                }
             }
         });
         gv_actionType = (MyGridView) popupView.findViewById(R.id.gv_actionType);
@@ -70,5 +83,9 @@ public class ActionMenuPopup{
 
     public boolean isShowing() {
         return pw_recordType.isShowing();
+    }
+
+    public interface OnItemCheckedListener{
+        void onCheck(String value, int position, boolean manual);
     }
 }

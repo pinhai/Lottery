@@ -6,4 +6,45 @@
         <item>已存入</item>
         <item>已取消</item>
     </string-array>
+
+    <string-array name="recharge_record_type">
+        <item>全部</item>
+        <item>未支付</item>
+        <item>待确认</item>
+        <item>已付款</item>
+    </string-array>
+
+    <string-array name="weishu_3">
+        <item>百</item>
+        <item>十</item>
+        <item>个</item>
+    </string-array>
+    <string-array name="weishu_5">
+        <item>万</item>
+        <item>千</item>
+        <item>百</item>
+        <item>十</item>
+        <item>个</item>
+    </string-array>
+    <string-array name="weishu_7">
+        <item>一位</item>
+        <item>二位</item>
+        <item>三位</item>
+        <item>四位</item>
+        <item>五位</item>
+        <item>六位</item>
+        <item>七位</item>
+    </string-array>
+    <string-array name="weishu_10">
+        <item>一位</item>
+        <item>二位</item>
+        <item>三位</item>
+        <item>四位</item>
+        <item>五位</item>
+        <item>六位</item>
+        <item>七位</item>
+        <item>八位</item>
+        <item>九位</item>
+        <item>十位</item>
+    </string-array>
 </resources>

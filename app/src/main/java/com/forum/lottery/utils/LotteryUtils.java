@@ -2,6 +2,7 @@ package com.forum.lottery.utils;
 
 import android.content.Context;
 
+import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetItemModel;
@@ -12,6 +13,8 @@ import com.forum.lottery.model.PlayTypeB;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -450,4 +453,24 @@ public class LotteryUtils {
         return result;
     }
 
+    /**
+     *
+     * @param count
+     */
+    public static List<String> getTrendWeishuMenu(Context context, int count) {
+        String[] temp ;
+        if(count == 10){
+            temp = context.getResources().getStringArray(R.array.weishu_10);
+        }else if(count == 7){
+            temp = context.getResources().getStringArray(R.array.weishu_7);
+        }else if(count == 5){
+            temp = context.getResources().getStringArray(R.array.weishu_5);
+        }else if(count == 3){
+            temp = context.getResources().getStringArray(R.array.weishu_3);
+        }else{
+            temp = new String[0];
+        }
+
+        return Arrays.asList(temp);
+    }
 }

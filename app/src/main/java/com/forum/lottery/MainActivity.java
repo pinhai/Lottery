@@ -108,6 +108,9 @@ public class MainActivity extends BaseActivity {
         return fragmentList;
     }
 
+    public void setCurrentPageItem(int item){
+        mainTabBar.setCurrentItem(item);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

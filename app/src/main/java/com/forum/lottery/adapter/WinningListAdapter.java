@@ -5,11 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
-import com.forum.lottery.model.Winner;
+import com.forum.lottery.model.WinnerModel;
 
 import java.util.List;
 
@@ -20,9 +19,9 @@ import java.util.List;
 public class WinningListAdapter extends BaseAdapter{
 
     private Context context;
-    private List<Winner> data;
+    private List<WinnerModel> data;
 
-    public WinningListAdapter(Context context, List<Winner> data ){
+    public WinningListAdapter(Context context, List<WinnerModel> data ){
         this.context = context;
         this.data = data;
 
@@ -63,7 +62,12 @@ public class WinningListAdapter extends BaseAdapter{
     }
 
     private void setView(int position, ViewHolder viewHolder) {
-
+        WinnerModel item = data.get(position);
+        viewHolder.tv_username.setText(item.getUser());
+        viewHolder.tv_winMoney.setText("喜中" + item.getWinAmount() + "元");
+        if(item.getGameName() != null){
+            viewHolder.tv_lottery.setText("购买" + item.getGameName());
+        }
     }
 
     class ViewHolder{

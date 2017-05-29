@@ -8,19 +8,24 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.forum.lottery.MainActivity;
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.LotteryGridAdapter;
 import com.forum.lottery.adapter.WinningListAdapter;
+import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.event.LotteryListTickEvent;
-import com.forum.lottery.model.Winner;
+import com.forum.lottery.model.WinnerModel;
 import com.forum.lottery.ui.TabBaseFragment;
+import com.forum.lottery.ui.buy.BuyLotteryActivity;
 import com.forum.lottery.ui.login.LoginActivity;
 import com.forum.lottery.ui.login.RegisterActivity;
 import com.forum.lottery.view.MyGridView;
@@ -30,6 +35,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.SingleSubscriber;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Administrator on 2017/4/21.
@@ -51,7 +59,7 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
 
     private ListView lv_winning;
     private WinningListAdapter winningListAdapter;
-    private List<Winner> winnerData;
+    private List<WinnerModel> winnerData;
 
     private MyGridView gv_lottery;
     private LotteryGridAdapter lotteryGridAdapter;
@@ -84,7 +92,12 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
         winningListAdapter = new WinningListAdapter(getActivity(), winnerData);
         loadWinnerData();
         lv_winning = findView(R.id.lv_winning);
-        lv_winning.setAdapter(winningListAdapter);
+        lv_winning.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
 
         findView(R.id.txt_login).setOnClickListener(onClickListener);
         findView(R.id.txt_register).setOnClickListener(onClickListener);
@@ -93,17 +106,31 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
         lotteryVOs = new ArrayList<>();
         lotteryGridAdapter = new LotteryGridAdapter(getActivity(), lotteryVOs);
         gv_lottery.setAdapter(lotteryGridAdapter);
+        gv_lottery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 9){
+                    ((MainActivity)getActivity()).setCurrentPageItem(1);
+                }else{
+                    Intent intent = new Intent(getActivity(), BuyLotteryActivity.class);
+                    intent.putExtra("lottery", lotteryVOs.get(position));
+                    startActivity(intent);
+                }
+
+            }
+        });
 
         initTick();
         startTick();
 
         viewPager = findView(R.id.viewPager);
         //载入图片资源ID
-        imgIdArray = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher };
+        imgIdArray = new int[]{R.mipmap.fous_01, R.mipmap.fous_02, R.mipmap.fous_01 };
         //将图片装载到数组中
         mImageViews = new ImageView[imgIdArray.length];
         for(int i=0; i<mImageViews.length; i++){
             ImageView imageView = new ImageView(getActivity());
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             mImageViews[i] = imageView;
             imageView.setBackgroundResource(imgIdArray[i]);
         }
@@ -111,16 +138,45 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
         viewPager.setAdapter(new MyAdapter());
         //设置监听，主要是设置点点的背景
         viewPager.setOnPageChangeListener(this);
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
         //设置ViewPager的默认项, 设置为长度的100倍，这样子开始就能往左滑动
         viewPager.setCurrentItem((mImageViews.length) * 100);
     }
 
     private void loadWinnerData(){
 
-        for(int i=0; i<20; i++){
-            winnerData.add(new Winner());
-        }
+//        for(int i=0; i<20; i++){
+//            winnerData.add(new WinnerModel());
+//        }
 //        winningListAdapter.notifyDataSetChanged();
+
+
+        createHttp(LotteryService.class)
+                .getWinnerList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<List<WinnerModel>>() {
+                    @Override
+                    public void onSuccess(List<WinnerModel> value) {
+                        if(value != null){
+                            winnerData.clear();
+                            winnerData.addAll(value);
+//                            winningListAdapter.notifyDataSetChanged();
+                            lv_winning.setAdapter(winningListAdapter);
+                        }else{
+                            toast(getString(R.string.connection_failed));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
     }
 
     @Override

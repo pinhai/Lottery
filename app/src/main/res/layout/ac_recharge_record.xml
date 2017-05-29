@@ -41,16 +41,22 @@
                 android:drawablePadding="5dp"/>
         </LinearLayout>
         <ImageView
+            android:id="@+id/iv_refresh"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:src="@mipmap/top_you_anniu_01"
+            android:src="@mipmap/refresh"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
             android:scaleType="center"/>
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>

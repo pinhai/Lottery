@@ -436,7 +436,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             lotteryVO.setTime(time);
             if(time <= 0){
                 runTick = false;
-                EventBus.getDefault().post(new RefreshLotteryListEvent());
+                EventBus.getDefault().post(new RefreshLotteryListEvent(10*1000));
                 tv_tickTime.setText("正在开奖");
                 tv_tickTime.setBackgroundResource(R.color.transparent);
             }else{

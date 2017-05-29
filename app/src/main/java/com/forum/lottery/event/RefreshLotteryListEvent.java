@@ -7,5 +7,9 @@ package com.forum.lottery.event;
 public class RefreshLotteryListEvent {
 
 
+    public int mills;
 
+    public RefreshLotteryListEvent(int mills) {
+        this.mills = mills;
+    }
 }

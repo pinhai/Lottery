@@ -86,7 +86,7 @@ public class PlayWaySelectorPopup {
     private void initPopupView(View popupView) {
         adapterB = new ActionMenuAdapter(context, dataB, new ActionMenuAdapter.OnItemCheckedListener() {
             @Override
-            public void onChecked(String value, int position) {
+            public void onChecked(String value, int position, boolean manual) {
                 PlayTypeB playTypeB = data.get(playTypeAPosition).getPlayTypeBs().get(position);
                 playTypeCheckListener.playTypeChecked(data.get(playTypeAPosition), playTypeB);
             }
@@ -96,7 +96,7 @@ public class PlayWaySelectorPopup {
 
         adapterA = new ActionMenuAdapter(context, dataA, new ActionMenuAdapter.OnItemCheckedListener() {
             @Override
-            public void onChecked(String value, int position) {
+            public void onChecked(String value, int position, boolean manual) {
                 playTypeAPosition = position;
                 setDataB(position);
             }

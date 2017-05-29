@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.forum.lottery.utils.CrashHandler;
 import com.forum.lottery.utils.LogUtils;
+import com.forum.lottery.utils.ScreenUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -39,6 +40,7 @@ public class MyApplication extends Application {
         LogUtils.setDebug(true);
         application = this;
         initImageLoader(this);
+        ScreenUtils.init(this);
         CrashHandler.getInstance().init(this);
     }
 

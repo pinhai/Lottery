@@ -34,6 +34,10 @@
         <activity android:name=".ui.buy.BuyLotteryActivity" />
         <activity android:name=".ui.own.RechargeRecordActivity" />
         <activity android:name=".ui.buy.BuyLotteryFinalActivity"/>
+        <activity android:name=".ui.own.BetRecordActivity" />
+        <activity android:name=".ui.own.WinningRecordActivity" />
+        <activity android:name=".ui.own.AccountDetailActivity" />
+        <activity android:name=".ui.own.DrawMoneyRecordActivity" />
 
 
         <service android:name=".service.LotteryTickService"/>

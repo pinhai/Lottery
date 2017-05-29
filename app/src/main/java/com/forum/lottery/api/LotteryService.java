@@ -6,6 +6,7 @@ import com.forum.lottery.entity.RegisterResult;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.Peilv;
+import com.forum.lottery.model.WinnerModel;
 
 import java.util.List;
 
@@ -80,4 +81,12 @@ public interface LotteryService {
      */
     @GET("nonAuthority/gameCenter/appLotteryTrend")
     Single<ResultData> getTrendData(@Query("gameId") String cpId, @Query("periods") int periods);
+
+    /**
+     * 查询中奖榜
+     * @return
+     */
+    @GET("/nonAuthority/home/getPrizeUser")
+    Single<List<WinnerModel>> getWinnerList();
+
 }

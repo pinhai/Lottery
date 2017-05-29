@@ -12,12 +12,15 @@ import android.widget.GridLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.forum.lottery.MainActivity;
 import com.forum.lottery.R;
 import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.event.RefreshLotteryListEvent;
+import com.forum.lottery.event.RefreshLotteryListResultEvent;
 import com.forum.lottery.ui.TabBaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by Administrator on 2017/4/21.
@@ -50,6 +53,7 @@ public class BuyFragment extends TabBaseFragment implements View.OnClickListener
 
     @Override
     protected void initView() {
+        EventBus.getDefault().register(this);
         RadioGroup radioBuyTab = findView(R.id.radio_buy_tab);
         radioBuyTab.check(prepareCheckId);
         changeTab(prepareCheckId);
@@ -78,6 +82,11 @@ public class BuyFragment extends TabBaseFragment implements View.OnClickListener
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("curCheck", curCheckId);
+    }
+
+    @Subscribe
+    public void getRefreshResult(RefreshLotteryListResultEvent event){
+        ((MainActivity)getActivity()).dismissIndeterminateDialog();
     }
 
     private void changeTab(int radioId){
@@ -114,8 +123,15 @@ public class BuyFragment extends TabBaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_refresh:
-                EventBus.getDefault().post(new RefreshLotteryListEvent());
+                ((MainActivity)getActivity()).showIndeterminateDialog();
+                EventBus.getDefault().post(new RefreshLotteryListEvent(0));
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

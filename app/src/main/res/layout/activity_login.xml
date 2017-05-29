@@ -86,6 +86,7 @@
         android:layout_marginRight="12dp"
         android:layout_marginTop="20dp"/>
     <Button
+        android:visibility="gone"
         style="@style/Button_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

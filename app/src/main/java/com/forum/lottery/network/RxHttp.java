@@ -80,55 +80,6 @@ public class RxHttp {
     };
 
     /**
-     * This interceptor put all the Cookies in Preferences in the Request.
-     * Your implementation on how to get the Preferences MAY VARY.
-     * <p>
-     * Created by tsuharesu on 4/1/15.
-     */
-    public class AddCookiesInterceptor implements Interceptor {
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request.Builder builder = chain.request().newBuilder();
-            HashSet<String> preferences = (HashSet<String>) MyApplication.getInstance().getSharedPreferences(AppConfig.FILE_NAME, Context.MODE_PRIVATE)
-                    .getStringSet("cookie", new HashSet<String>());
-            for (String cookie : preferences) {
-                builder.addHeader("Cookie", "JSESSIONID=473D235F112C3A525DFE2856C3EA10C8; username=bill; userId=1");
-            }
-
-            return chain.proceed(builder.build());
-        }
-    }
-
-    /**
-     * This Interceptor add all received Cookies to the app DefaultPreferences.
-     * Your implementation on how to save the Cookies on the Preferences MAY VARY.
-     * <p>
-     * Created by tsuharesu on 4/1/15.
-     */
-    public class ReceivedCookiesInterceptor implements Interceptor {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Response originalResponse = chain.proceed(chain.request());
-
-            if (!originalResponse.headers("Set-Cookie").isEmpty()) {
-                HashSet<String> cookies = new HashSet<>();
-
-                for (String header : originalResponse.headers("Set-Cookie")) {
-                    cookies.add(header);
-                }
-
-                SharedPreferences.Editor editor = MyApplication.getInstance()
-                        .getSharedPreferences(AppConfig.FILE_NAME, Context.MODE_PRIVATE).edit();
-                editor.putStringSet("cookie", cookies);
-
-            }
-
-            return originalResponse;
-        }
-    }
-
-    /**
      * 给表单数据统一加上密钥
      */
     private static class EncryptInterceptor implements Interceptor{
