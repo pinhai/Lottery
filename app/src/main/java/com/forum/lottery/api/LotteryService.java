@@ -75,12 +75,13 @@ public interface LotteryService {
 
     /**
      * 获取走势图数据
-     * @param cpId
-     * @param periods
+     * "gameId=2                彩种id
+    periods=30              查几条
+    start=10                分页用：从第几条开始查"
      * @return
      */
     @GET("nonAuthority/gameCenter/appLotteryTrend")
-    Single<ResultData> getTrendData(@Query("gameId") String cpId, @Query("periods") int periods);
+    Single<ResultData> getTrendData(@Query("gameId") String cpId, @Query("periods") int periods, @Query("start") String start);
 
     /**
      * 查询中奖榜

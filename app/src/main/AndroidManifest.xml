@@ -38,6 +38,7 @@
         <activity android:name=".ui.own.WinningRecordActivity" />
         <activity android:name=".ui.own.AccountDetailActivity" />
         <activity android:name=".ui.own.DrawMoneyRecordActivity" />
+        <activity android:name=".ui.trend.TrendActivity" />
 
 
         <service android:name=".service.LotteryTickService"/>

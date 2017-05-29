@@ -76,12 +76,14 @@ public class LotteryFragment extends TabBaseFragment {
 //            lotteryVOs.add(new LotteryVO());
 //        }
 
+        showIndeterminateDialog();
         createHttp(LotteryService.class)
                 .getAllLotteryList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<ResultData<List<LotteryVO>>>() {
                     @Override
                     public void onSuccess(ResultData<List<LotteryVO>> value) {
+                        dismissIndeterminateDialog();
                         if(value != null && value.getData() != null){
                             lotteryVOs.clear();
                             lotteryVOs.addAll(value.getData());
@@ -91,6 +93,7 @@ public class LotteryFragment extends TabBaseFragment {
 
                     @Override
                     public void onError(Throwable error) {
+                        dismissIndeterminateDialog();
                         toast(getString(R.string.connection_failed));
                     }
                 });

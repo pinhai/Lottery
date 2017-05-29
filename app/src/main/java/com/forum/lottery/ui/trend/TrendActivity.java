@@ -20,7 +20,7 @@ import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.model.TrendModel;
-import com.forum.lottery.ui.TabBaseFragment;
+import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.buy.BuyLotteryActivity;
 import com.forum.lottery.utils.LotteryUtils;
 import com.forum.lottery.view.ActionMenuPopup;
@@ -36,11 +36,10 @@ import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by Administrator on 2017/4/21.
+ * Created by admin_h on 2017/5/29.
  */
 
-public class TrendFragment extends TabBaseFragment {
-
+public class TrendActivity extends BaseActivity {
     private GridView gv_trend;
     private TrendAdapter trendAdapter;
     private List<TrendModel> trendModels;
@@ -60,35 +59,21 @@ public class TrendFragment extends TabBaseFragment {
     private ActionMenuPopup pw_lottery;
     private List<String> popupMenus;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_trend, container, false);
-    }
-    @Override
-    public boolean initNet() {
-        return true;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_trend);
 
-    @Override
-    public String getTitle() {
-        return MyApplication.getInstance().getString(R.string.trend_title);
-    }
-
-    @Override
-    public int getIcon() {
-        return R.drawable.nav_4_selector;
+        initData();
+        initView();
     }
 
     @Override
     protected void initView() {
-//        Intent intent = new Intent(getActivity(), TrendActivity.class);
-//        startActivity(intent);
-
         EventBus.getDefault().register(this);
         trendModels = new ArrayList<>();
         currentWeishu = getString(R.string.ge);
-        trendAdapter = new TrendAdapter(getActivity(), trendModels, currentWeishu);
+        trendAdapter = new TrendAdapter(this, trendModels, currentWeishu);
         gv_trend = findView(R.id.gv_trend);
         gv_trend.setAdapter(trendAdapter);
 
@@ -104,7 +89,7 @@ public class TrendFragment extends TabBaseFragment {
 //        weishuStrings.add(getString(R.string.bai));
 //        weishuStrings.add(getString(R.string.shi));
 //        weishuStrings.add(getString(R.string.ge));
-        trendWeishuAdapter = new TrendWeishuAdapter(getActivity(), weishuStrings, new TrendWeishuAdapter.OnItemCheckedListener() {
+        trendWeishuAdapter = new TrendWeishuAdapter(this, weishuStrings, new TrendWeishuAdapter.OnItemCheckedListener() {
             @Override
             public void onChecked(String value, int position) {
                 currentWeishu = value;
@@ -121,7 +106,7 @@ public class TrendFragment extends TabBaseFragment {
             @Override
             public void onClick(View v) {
                 if(currentLotteryVO != null){
-                    Intent intent = new Intent(getActivity(), BuyLotteryActivity.class);
+                    Intent intent = new Intent(TrendActivity.this, BuyLotteryActivity.class);
                     intent.putExtra("lottery", currentLotteryVO);
                     startActivity(intent);
                 }else{
@@ -162,7 +147,7 @@ public class TrendFragment extends TabBaseFragment {
             return;
         }
         int count = trendModels.get(0).getAllcode().length;
-        weishuStrings = LotteryUtils.getTrendWeishuMenu(getActivity(), count);
+        weishuStrings = LotteryUtils.getTrendWeishuMenu(this, count);
         trendWeishuAdapter.setData(weishuStrings);
     }
 
@@ -187,7 +172,7 @@ public class TrendFragment extends TabBaseFragment {
             popupMenus.add(item.getLotteryName());
         }
 
-        pw_lottery = new ActionMenuPopup(getActivity(), popupMenus, new ActionMenuPopup.OnItemCheckedListener() {
+        pw_lottery = new ActionMenuPopup(this, popupMenus, new ActionMenuPopup.OnItemCheckedListener() {
             @Override
             public void onCheck(String value, int position, boolean manual) {
                 if(manual){

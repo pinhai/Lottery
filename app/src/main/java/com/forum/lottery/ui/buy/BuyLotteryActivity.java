@@ -1,24 +1,31 @@
 package com.forum.lottery.ui.buy;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Message;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -36,15 +43,18 @@ import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.BaseBetFragment;
+import com.forum.lottery.ui.openlottery.LotteryListActivity;
+import com.forum.lottery.ui.own.BetRecordActivity;
+import com.forum.lottery.ui.trend.TrendActivity;
 import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.utils.LotteryUtils;
+import com.forum.lottery.utils.ScreenUtils;
 import com.forum.lottery.view.PlayWaySelectorPopup;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +68,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class BuyLotteryActivity extends BaseActivity implements View.OnClickListener{
 
+    private ImageView iv_assistant;
     private TextView tv_betCount, tv_betMoney, tv_playWaySelect;
     private TextView tv_issue, tv_nextIssue, tv_openNum, tv_tickTime;
     private Button btn_clear, btn_bet;
@@ -86,6 +97,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private PlayWaySelectorPopup playWaySelectorPopup;
     private PlayTypeA playTypeA;  //当前选中的玩法a
     private PlayTypeB playTypeB;  //当前选中的玩法b
+
+    private PopupWindow pw_assistant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +139,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         ft.add(R.id.rl_container, betFragment);
         ft.commit();
 
+        iv_assistant = findView(R.id.iv_assistant);
+        iv_assistant.setOnClickListener(this);
         tv_betCount = findView(R.id.tv_betCount);
         tv_betMoney = findView(R.id.tv_betMoney);
         btn_bet = findView(R.id.btn_bet);
@@ -140,6 +155,32 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //        tv_playWaySelect.setOnClickListener(this);  //先屏蔽
 
         refreshIssue();
+
+        initAssistantPopup();
+    }
+
+    private void initAssistantPopup() {
+
+        View view = LayoutInflater.from(this).inflate(R.layout.view_assistant, null);
+        view.findViewById(R.id.tv_betRecord).setOnClickListener(this);
+        view.findViewById(R.id.tv_trend).setOnClickListener(this);
+        view.findViewById(R.id.tv_recentOpen).setOnClickListener(this);
+        view.findViewById(R.id.tv_playWayPrompt).setOnClickListener(this);
+        // 创建PopupWindow对象
+        pw_assistant = new PopupWindow(view, ScreenUtils.dp2px(130), android.view.ViewGroup.LayoutParams.WRAP_CONTENT, false);
+        // 需要设置一下此参数，点击外边可消失
+        pw_assistant.setBackgroundDrawable(new BitmapDrawable());
+        // 设置点击窗口外边窗口消失
+        pw_assistant.setOutsideTouchable(true);
+        // 设置此参数获得焦点，否则无法点击
+        pw_assistant.setFocusable(true);
+//        pw_assistant.getContentView().setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//
+//                return false;
+//            }
+//        });
     }
 
     @Override
@@ -482,6 +523,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.iv_assistant:
+                pw_assistant.showAsDropDown(iv_assistant, -180, 0);
+                break;
             case R.id.btn_clear:
                 clearBet();
                 break;
@@ -494,6 +538,24 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 }else{
                     playWaySelectorPopup.show(tv_playWaySelect);
                 }
+                break;
+            case R.id.tv_betRecord:
+                pw_assistant.dismiss();
+                Intent intent = new Intent(BuyLotteryActivity.this, BetRecordActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_trend:
+                Intent intent2 = new Intent(BuyLotteryActivity.this, TrendActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.tv_recentOpen:
+                Intent intent3 = new Intent(BuyLotteryActivity.this, LotteryListActivity.class);
+                intent3.putExtra("type", 1);
+                intent3.putExtra("lottery", lotteryVO);
+                startActivity(intent3);
+                break;
+            case R.id.tv_playWayPrompt:
+
                 break;
         }
     }

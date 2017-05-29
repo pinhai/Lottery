@@ -11,6 +11,7 @@ import com.forum.lottery.adapter.lottery.Lottery4Converter;
 import com.forum.lottery.adapter.lottery.Lottery5Converter;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.LotteryType;
+import com.forum.lottery.model.TrendModel;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.forum.lottery.adapter.lottery;
 
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -17,6 +18,9 @@ public class Lottery5Converter extends LotteryBaseConverter {
         String showNum = "";
         String[] openNum = item.getOpenNum();
         for(int i=0; i<openNum.length; i++){
+            if(TextUtils.isEmpty(openNum[i])){
+                openNum[i] = "0";
+            }
             if(i == openNum.length-1){
                 showNum += openNum[i];
             }else if(i == openNum.length-2){

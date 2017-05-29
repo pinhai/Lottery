@@ -8,6 +8,7 @@ public class TrendModel {
 
     private String[] allcode;
     private String issue;//期数
+    private String opentime;
 
     public String[] getAllcode() {
         return allcode;
@@ -23,5 +24,13 @@ public class TrendModel {
 
     public void setIssue(String issue) {
         this.issue = issue;
+    }
+
+    public String getOpentime() {
+        return opentime;
+    }
+
+    public void setOpentime(String opentime) {
+        this.opentime = opentime;
     }
 }

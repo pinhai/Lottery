@@ -2,9 +2,11 @@ package com.forum.lottery.ui;
 
 
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.TextView;
@@ -18,6 +20,9 @@ import com.forum.lottery.view.CustomActionBar;
 
 
 public abstract class BaseFragment extends Fragment {
+
+	private Dialog indeterminateDialog; // 单个旋转图片对话框
+
 	private View view;
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -94,6 +99,26 @@ public abstract class BaseFragment extends Fragment {
 	 */
 	public RxHttp getHttpClient(){
 		return ((BaseActivity)getActivity()).getHttpClient();
+	}
+
+	/**
+	 * 显示单个旋转图片对话框
+	 */
+	public void showIndeterminateDialog() {
+		if (indeterminateDialog == null) {
+			indeterminateDialog = new Dialog(getActivity(), R.style.new_circle_progress);
+			indeterminateDialog.setCancelable(true);
+			indeterminateDialog.setCanceledOnTouchOutside(false);
+			View v = LayoutInflater.from(getActivity()).inflate(R.layout.view_indeterminate_progress, null);
+			indeterminateDialog.setContentView(v);
+		}
+		indeterminateDialog.show();
+	}
+
+	public void dismissIndeterminateDialog() {
+		if (indeterminateDialog != null && indeterminateDialog.isShowing()) {
+			indeterminateDialog.dismiss();
+		}
 	}
 
 }
