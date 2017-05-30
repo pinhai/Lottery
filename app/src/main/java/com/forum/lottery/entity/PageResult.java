@@ -1,5 +1,7 @@
 package com.forum.lottery.entity;
 
+import com.forum.lottery.model.PrizeUserVo;
+
 import java.util.List;
 
 /**
@@ -26,6 +28,9 @@ public class PageResult<T> {
     private int totalPage;
 
     private List<T> rows;
+
+//    //中奖记录
+//    private List<PrizeUserVo> result;
 
     public int getTotalPage() {
         // 计算总页数
@@ -65,4 +70,12 @@ public class PageResult<T> {
     public void setRows(List<T> rows) {
         this.rows = rows;
     }
+//
+//    public List<PrizeUserVo> getResult() {
+//        return result;
+//    }
+//
+//    public void setResult(List<PrizeUserVo> result) {
+//        this.result = result;
+//    }
 }

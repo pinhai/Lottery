@@ -3,6 +3,7 @@ package com.forum.lottery.ui.own;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,11 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.api.UserService;
 import com.forum.lottery.entity.UserVO;
+import com.forum.lottery.model.PayResultModel;
 import com.forum.lottery.model.RefreshMoneyModel;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.utils.AccountManager;
@@ -36,11 +40,15 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_username, tv_balance, tv_refreshMoney;
     private EditText et_money;
     private Button btn_submit;
+    private RadioGroup rg_pay;
+    private RadioButton rb_payWX, rb_payZFB, rb_payZXZF;
+    private TextView tv_payPrompt;
 
     private PopupWindow pw_assistant;
 
     private UserVO userVO;
     private String balance;
+    private String payWay = "0"; //充值方式
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +84,27 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         tv_refreshMoney.setOnClickListener(this);
         btn_submit = findView(R.id.btn_submit);
         btn_submit.setOnClickListener(this);
+        tv_payPrompt = findView(R.id.tv_payPrompt);
+        rg_pay = findView(R.id.rg_pay);
+        rg_pay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId){
+                    case R.id.rb_payWX:
+                        tv_payPrompt.setText(R.string.pay_prompt_wx);
+                        payWay = "0";
+                        break;
+                    case R.id.rb_payZFB:
+                        tv_payPrompt.setText(R.string.pay_prompt_zfb);
+                        payWay = "1";
+                        break;
+                    case R.id.rb_payZXZF:
+                        payWay = "2";
+                        break;
+                }
+            }
+        });
+        rg_pay.check(R.id.rb_payWX);
 
     }
 
@@ -130,6 +159,29 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
             return;
         }
 
+        showProgressDialog(false);
+        createHttp(UserService.class)
+                .recharge(0, payWay)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<PayResultModel>() {
+                    @Override
+                    public void onSuccess(PayResultModel value) {
+                        dismissProgressDialog();
+                        if(value != null && value.getResult().contains("SUCCESS")){
+                            Intent intent = new Intent(RechargeActivity.this, RechargeFinalActivity.class);
+                            intent.putExtra("paymodel", value);
+                            startActivity(intent);
+                        }else{
+                            toast("充值失败");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        dismissProgressDialog();
+                        toast(R.string.connection_failed);
+                    }
+                });
 
     }
 

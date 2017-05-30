@@ -42,6 +42,7 @@
         <activity android:name=".ui.own.RechargeActivity" />
         <activity android:name=".ui.own.BindBankCardActivity" />
         <activity android:name=".ui.own.DrawMoneyActivity" />
+        <activity android:name=".ui.own.RechargeFinalActivity" />
 
 
         <service android:name=".service.LotteryTickService"/>

@@ -2,10 +2,14 @@ package com.forum.lottery.api;
 
 import com.forum.lottery.entity.PageResult;
 import com.forum.lottery.model.BankVo;
+import com.forum.lottery.model.PayResultModel;
+import com.forum.lottery.model.PrizeUserVo;
 import com.forum.lottery.model.RefreshMoneyModel;
 import com.forum.lottery.entity.RegisterResult;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.model.TradeStreamVo;
+
+import java.util.List;
 
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -52,7 +56,7 @@ public interface UserService {
      * @param rows
      * @return
      */
-    @GET("/nonAuthority/queryBuycpListForCust")
+    @GET("nonAuthority/queryBuycpListForCust")
     Single<ResultData> getBetRecord(@Query("username") String username, @Query("page") int page, @Query("rows") int rows);
 
     /**
@@ -70,21 +74,21 @@ public interface UserService {
     @FormUrlEncoded
     Single<PageResult<TradeStreamVo>> getRechargeRecord(@Field("username") String username, @Field("page") int page, @Field("rows") int rows
                                         , @Field("tradeType") int tradeType, @Field("statusCode") String statusCode);
+
     /**
      * 中奖记录
      *
-     * beginTime:2017-4-1
-     endTime:2017-5-31
-     username:bill
-     tradeType:3
-     page:1
-     rows:10
+     User=test               用户名
+     gameId=73         彩种ID
+     startRow          从第几条记录开始查
+     rows              查几条
      * @return
      */
-    @POST("userCenter/queryRechargeForCust")
-    @FormUrlEncoded
-    Single<ResultData> getWinningRecord(@Field("username") String username, @Field("page") int page, @Field("rows") int rows
-                                        , @Field("tradeType") int tradeType);
+//    @POST("userCenter/queryRechargeForCust")
+//    @FormUrlEncoded
+    @GET("nonAuthority/home/getPrizeUser")
+    Single<List<PrizeUserVo>> getWinningRecord(@Query("User") String username, @Query("startRow") int startRow, @Query("rows") int rows);
+
     /**
      * 提款记录
      *
@@ -111,5 +115,28 @@ public interface UserService {
      */
     @POST("userCenter/bindBank")
     @FormUrlEncoded
-    Single<ResultData> bindBankCard(@Field("") BankVo bankVo);
+    Single<ResultData> bindBankCard(@Field("userId") String userId, @Field("transPwd") String transPwd, @Field("city") String city,
+                                    @Field("province") String province,@Field("bankno") String bankno, @Field("bankname") String bankname,
+                                    @Field("truename") String truename);
+//    Single<ResultData> bindBankCard(@Field("") BankVo bankVo);
+
+    /**
+     * 提现申请
+     * @return
+     */
+    @POST("userCenter/withdraw")
+    @FormUrlEncoded
+    Single<ResultData> drawMoneyApply(@Field("tradeMoney") String tradeMoney, @Field("wpass") String tradePsw, @Field("username") String username,
+                                      @Field("userId") String userId);
+
+    /**
+     * 充值
+     *
+     * tradeType : 0、充值   1、提款  2、投注  3、奖金派送
+     payWay : 0、微信支付 1、支付宝支付  2在线入款
+     * @return
+     */
+    @POST("userCenter/recharge/online")
+    @FormUrlEncoded
+    Single<PayResultModel> recharge(@Field("tradeType") int tradeType, @Field("payWay") String payWay);
 }

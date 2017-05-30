@@ -4,6 +4,7 @@ package com.forum.lottery.network;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.Preference;
+import android.util.Log;
 
 import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.utils.AppConfig;
@@ -32,8 +33,8 @@ public class RxHttp {
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
     private Map<Class<?>,  Object> cacheServices;
-    public static final String BASE_URL = "http://23.27.226.194/";
-//    public static final String BASE_URL = "http://1685v1z125.iask.in:19658/";
+//    public static final String BASE_URL = "http://23.27.226.194/";
+    public static final String BASE_URL = "http://1685v1z125.iask.in:19658/";
 //    public static final String BASE_URL = "http://zhy.xinwangpuhui.com/";
 //    public static final String BASE_URL = "http://1541z56x30.51mypc.cn/";
 //    public static final String BASE_URL = "http://192.168.10.167:8080/financialmall-web/";
@@ -86,6 +87,12 @@ public class RxHttp {
 
         @Override
         public Response intercept(Chain chain) throws IOException {
+//            Request request = chain.request();
+//            Response response = chain.proceed(request);
+//
+//            Log.i("TAG" ,"response.body.string:" + response.body().string());
+
+//            return response;
             Request request = chain.request();
             if(request.body() instanceof FormBody){
                 Request.Builder newBuilder = request.newBuilder();
@@ -98,4 +105,5 @@ public class RxHttp {
             }
         }
     }
+
 }

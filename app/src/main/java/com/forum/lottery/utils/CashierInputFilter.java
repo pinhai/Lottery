@@ -15,7 +15,7 @@ public class CashierInputFilter implements InputFilter {
     //输入的最大金额
     private static final int MAX_VALUE = Integer.MAX_VALUE;
     //小数点后的位数
-    private static final int POINTER_LENGTH = 1;
+    private static final int POINTER_LENGTH = 2;
     private static final String POINTER = ".";
     private static final String ZERO = "0";
     public CashierInputFilter() {

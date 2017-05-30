@@ -157,6 +157,10 @@ public class BindBankCardActivity extends BaseActivity implements View.OnClickLi
             toast(R.string.input_trade_psw);
             return;
         }
+        if(psw.length() != 6){
+            toast("请输入六位交易密码");
+            return;
+        }
 
         UserVO userVO = AccountManager.getInstance().getUser();
         if(userVO == null){
@@ -175,7 +179,7 @@ public class BindBankCardActivity extends BaseActivity implements View.OnClickLi
 
         showProgressDialog(false);
         createHttp(UserService.class)
-                .bindBankCard(bankVo)
+                .bindBankCard(userVO.getId(), psw, city, province, bankNo, openBank, openName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<ResultData>() {
                     @Override

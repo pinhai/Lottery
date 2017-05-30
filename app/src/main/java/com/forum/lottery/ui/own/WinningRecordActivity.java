@@ -3,7 +3,6 @@ package com.forum.lottery.ui.own;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,11 +14,8 @@ import android.widget.TextView;
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.WinningRecordAdapter;
 import com.forum.lottery.api.UserService;
-import com.forum.lottery.entity.PageResult;
-import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.entity.UserVO;
-import com.forum.lottery.model.BetRecordModel;
-import com.forum.lottery.model.BetRecordModel;
+import com.forum.lottery.model.PrizeUserVo;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.view.ActionMenuPopup;
@@ -46,8 +42,9 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
     private TextView tv_loadMore;
     private ListView lv_record;
     private WinningRecordAdapter adapter;
-    private List<BetRecordModel> data;
-    private int page = 1;
+    private List<PrizeUserVo> data;
+//    private int page = 1;
+    private int startRow = 0;  //从第几条记录开始查
     private static final int rows = 20; //每一页的行数
 
     private ActionMenuPopup pw_recordType;
@@ -80,7 +77,8 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onClick(View v) {
                 tv_loadMore.setText(R.string.loading);
-                getRecordData(++page);
+                startRow += rows;
+                getRecordData();
             }
         });
         lv_record = findView(R.id.lv_record);
@@ -94,7 +92,7 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
 
             }
         });
-        getRecordData(page);
+        getRecordData();
 
     }
 
@@ -102,28 +100,28 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
     protected void initData() {
     }
 
-    private void getRecordData(final int page){
+    private void getRecordData(){
         if(AccountManager.getInstance().isLogin()){
             UserVO userVO = AccountManager.getInstance().getUser();
             showIndeterminateDialog();
             createHttp(UserService.class)
-                    .getWinningRecord(userVO.getAccount(), page, rows, 3)
+                    .getWinningRecord(userVO.getAccount(), startRow, rows)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new SingleSubscriber<ResultData>() {
+                    .subscribe(new SingleSubscriber<List<PrizeUserVo>>() {
                         @Override
-                        public void onSuccess(ResultData value) {
+                        public void onSuccess(List<PrizeUserVo> value) {
                             dismissIndeterminateDialog();
                             if(value != null){
-                                List<BetRecordModel> recordModels = value.getBetRecords();
-                                if(recordModels.size() == 0){
+//                                List<PrizeUserVo> recordModels = value;
+                                if(value.size() == 0){
                                     tv_loadMore.setText(R.string.load_all);
                                 }else{
                                     tv_loadMore.setText(R.string.load_more);
-                                    if(page == 1){
+                                    if(startRow == 0){
                                         data.clear();
                                         toast(R.string.refresh_successful);
                                     }
-                                    data.addAll(recordModels);
+                                    data.addAll(value);
                                     adapter.notifyDataSetChanged();
                                 }
 
@@ -152,8 +150,8 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
 //                }
 //                break;
             case R.id.iv_refresh:
-                page = 1;
-                getRecordData(page);
+                startRow = 0;
+                getRecordData();
                 break;
         }
 

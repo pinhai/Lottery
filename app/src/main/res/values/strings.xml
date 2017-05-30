@@ -31,4 +31,6 @@
     <string name="input_open_bank">请输入开户银行</string>
     <string name="input_draw_money_count">请输入提现金额</string>
     <string name="input_recharge_count">请输入充值金额</string>
+    <string name="pay_prompt_wx">微信支付（扫一扫直接到账）</string>
+    <string name="pay_prompt_zfb">支付宝支付（扫一扫直接到账）</string>
 </resources>

@@ -81,6 +81,12 @@ public class RechargeRecordActivity extends BaseActivity implements View.OnClick
         rl_titleBar = findView(R.id.rl_titleBar);
         iv_refresh = findView(R.id.iv_refresh);
         iv_refresh.setOnClickListener(this);
+        findView(R.id.img_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         loadMore = LayoutInflater.from(this).inflate(R.layout.view_load_more, null);
         tv_loadMore = (TextView) loadMore.findViewById(R.id.tv_loadMore);
