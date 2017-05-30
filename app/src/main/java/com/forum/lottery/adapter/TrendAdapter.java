@@ -10,16 +10,17 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.model.TrendModel;
 import com.forum.lottery.utils.ScreenUtils;
-import com.forum.lottery.view.MarqueeText;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin_h on 2017/5/28.
@@ -31,6 +32,7 @@ public class TrendAdapter extends BaseAdapter {
     private Context context;
     private List<TrendModel> trendModels;
 
+    private int widthBase;
     private int numColumns = 11;
 //    private Weishu weishu;
     private int GRIVIEW_COLUMN_HEIGHT = 0;
@@ -44,6 +46,8 @@ public class TrendAdapter extends BaseAdapter {
         this.trendModels = trendModels;
         this.weishu = weishu;
 
+        //0.5是分割线宽度
+        widthBase = (ScreenUtils.getScreenWidth()-ScreenUtils.dp2px((float) 0.5)*(numColumns-1)) / (numColumns + 1);
     }
 
     @Override
@@ -90,7 +94,7 @@ public class TrendAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        initKeyTextView(viewHolder.ll_trend, position);
+//        initKeyTextView(viewHolder.ll_trend, position);
         setView(position, viewHolder);
 
         return convertView;
@@ -102,14 +106,20 @@ public class TrendAdapter extends BaseAdapter {
         int col = position%numColumns;
         viewHolder.tv_trendNum.setBackground(null);
         if(row == 0){
+            setItemHeight(viewHolder.ll_trend, ScreenUtils.dp2px(20));
             if(col == 0){
+//                setItemWidth(viewHolder.ll_trend, widthBase*2);
+
                 viewHolder.tv_trendNum.setText("期数");
             }else{
                 viewHolder.tv_trendNum.setText((col-1) + "");
             }
             viewHolder.ll_trend.setBackgroundColor(context.getResources().getColor(R.color.trend_grid_bg1));
         }else{
+            setItemHeight(viewHolder.ll_trend, ScreenUtils.dp2px(60));
             if(col == 0){
+//                setItemWidth(viewHolder.ll_trend, widthBase);
+
                 String qishu = trendModels.get(row-1).getIssue();
                 viewHolder.tv_trendNum.setText(qishu);
             }else{
@@ -129,6 +139,18 @@ public class TrendAdapter extends BaseAdapter {
             }
         }
 
+    }
+
+    private void setItemHeight(RelativeLayout ll_trendNum, int height) {
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+//        layoutParams.height = height;
+        ll_trendNum.setLayoutParams(layoutParams);
+    }
+
+    private void setItemWidth(RelativeLayout ll_trend, int width) {
+        ViewGroup.LayoutParams layoutParams = ll_trend.getLayoutParams();
+        layoutParams.width = width;
+        ll_trend.setLayoutParams(layoutParams);
     }
 
     class ViewHolder{
