@@ -76,7 +76,7 @@ public class RechargeRecordActivity extends BaseActivity implements View.OnClick
         menu.addAll(Arrays.asList(popupMenus));
         pw_recordType = new ActionMenuPopup(this, menu, popupMenuItemCheckListener);
 
-        tv_recordType = findView(R.id.tv_recordType);
+//        tv_recordType = findView(R.id.tv_recordType);
 //        tv_recordType.setOnClickListener(this);
         rl_titleBar = findView(R.id.rl_titleBar);
         iv_refresh = findView(R.id.iv_refresh);
@@ -172,13 +172,13 @@ public class RechargeRecordActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_recordType:
-                if(pw_recordType.isShowing()){
-                    pw_recordType.dismiss();
-                }else{
-                    pw_recordType.show(rl_titleBar);
-                }
-                break;
+//            case R.id.tv_recordType:
+//                if(pw_recordType.isShowing()){
+//                    pw_recordType.dismiss();
+//                }else{
+//                    pw_recordType.show(rl_titleBar);
+//                }
+//                break;
             case R.id.iv_refresh:
                 page = 1;
                 getRecordData(page);

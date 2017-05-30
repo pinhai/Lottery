@@ -540,7 +540,6 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 }
                 break;
             case R.id.tv_betRecord:
-                pw_assistant.dismiss();
                 Intent intent = new Intent(BuyLotteryActivity.this, BetRecordActivity.class);
                 startActivity(intent);
                 break;

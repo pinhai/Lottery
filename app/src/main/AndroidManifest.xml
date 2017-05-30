@@ -39,6 +39,9 @@
         <activity android:name=".ui.own.AccountDetailActivity" />
         <activity android:name=".ui.own.DrawMoneyRecordActivity" />
         <activity android:name=".ui.trend.TrendActivity" />
+        <activity android:name=".ui.own.RechargeActivity" />
+        <activity android:name=".ui.own.BindBankCardActivity" />
+        <activity android:name=".ui.own.DrawMoneyActivity" />
 
 
         <service android:name=".service.LotteryTickService"/>

@@ -121,4 +121,8 @@ public abstract class BaseFragment extends Fragment {
 		}
 	}
 
+	public boolean isShowIndeterminateDialog(){
+		return indeterminateDialog.isShowing();
+	}
+
 }

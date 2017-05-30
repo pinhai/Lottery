@@ -64,8 +64,8 @@ public class AccountDetailActivity extends BaseActivity implements View.OnClickL
         menu.addAll(Arrays.asList(getResources().getStringArray(R.array.record_type)));
         pw_recordType = new ActionMenuPopup(this, menu);
 
-        tv_recordType = findView(R.id.tv_recordType);
-        tv_recordType.setOnClickListener(this);
+//        tv_recordType = findView(R.id.tv_recordType);
+//        tv_recordType.setOnClickListener(this);
         rl_titleBar = findView(R.id.rl_titleBar);
         iv_refresh = findView(R.id.iv_refresh);
         iv_refresh.setOnClickListener(this);
@@ -155,13 +155,13 @@ public class AccountDetailActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_recordType:
-                if(pw_recordType.isShowing()){
-                    pw_recordType.dismiss();
-                }else{
-                    pw_recordType.show(rl_titleBar);
-                }
-                break;
+//            case R.id.tv_recordType:
+//                if(pw_recordType.isShowing()){
+//                    pw_recordType.dismiss();
+//                }else{
+//                    pw_recordType.show(rl_titleBar);
+//                }
+//                break;
             case R.id.iv_refresh:
                 page = 1;
                 getRecordData(page);

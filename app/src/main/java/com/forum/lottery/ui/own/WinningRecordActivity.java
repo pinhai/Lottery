@@ -1,6 +1,9 @@
 package com.forum.lottery.ui.own;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,19 +55,20 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_recharge_record);
+        setContentView(R.layout.ac_winning_record);
 
         initData();
         initView();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void initView() {
         List<String> menu = new ArrayList<>();
         menu.addAll(Arrays.asList(getResources().getStringArray(R.array.record_type)));
         pw_recordType = new ActionMenuPopup(this, menu);
 
-        tv_recordType = findView(R.id.tv_recordType);
+//        tv_recordType = findView(R.id.tv_recordType);
 //        tv_recordType.setOnClickListener(this);
         rl_titleBar = findView(R.id.rl_titleBar);
         iv_refresh = findView(R.id.iv_refresh);
@@ -101,12 +105,14 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
     private void getRecordData(final int page){
         if(AccountManager.getInstance().isLogin()){
             UserVO userVO = AccountManager.getInstance().getUser();
+            showIndeterminateDialog();
             createHttp(UserService.class)
-                    .getWinningRecord(userVO.getAccount(), page, rows, 1)
+                    .getWinningRecord(userVO.getAccount(), page, rows, 3)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new SingleSubscriber<ResultData>() {
                         @Override
                         public void onSuccess(ResultData value) {
+                            dismissIndeterminateDialog();
                             if(value != null){
                                 List<BetRecordModel> recordModels = value.getBetRecords();
                                 if(recordModels.size() == 0){
@@ -128,6 +134,7 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
 
                         @Override
                         public void onError(Throwable error) {
+                            dismissIndeterminateDialog();
                             toast(R.string.connection_failed);
                         }
                     });
@@ -137,13 +144,13 @@ public class WinningRecordActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_recordType:
-                if(pw_recordType.isShowing()){
-                    pw_recordType.dismiss();
-                }else{
-                    pw_recordType.show(rl_titleBar);
-                }
-                break;
+//            case R.id.tv_recordType:
+//                if(pw_recordType.isShowing()){
+//                    pw_recordType.dismiss();
+//                }else{
+//                    pw_recordType.show(rl_titleBar);
+//                }
+//                break;
             case R.id.iv_refresh:
                 page = 1;
                 getRecordData(page);

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.forum.lottery.utils.CrashHandler;
+import com.forum.lottery.utils.DbManager;
 import com.forum.lottery.utils.LogUtils;
 import com.forum.lottery.utils.ScreenUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -38,6 +39,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         LogUtils.setDebug(true);
+        DbManager.getInstance(this).copyDbFile(DbManager.DB_NAME);
         application = this;
         initImageLoader(this);
         ScreenUtils.init(this);

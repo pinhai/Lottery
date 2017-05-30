@@ -1,15 +1,19 @@
 package com.forum.lottery.api;
 
 import com.forum.lottery.entity.PageResult;
+import com.forum.lottery.model.BankVo;
 import com.forum.lottery.model.RefreshMoneyModel;
 import com.forum.lottery.entity.RegisterResult;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.model.TradeStreamVo;
 
+import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Single;
 
@@ -95,4 +99,17 @@ public interface UserService {
     @FormUrlEncoded
     Single<PageResult<TradeStreamVo>> getDrawMoneyRecord(@Field("username") String username, @Field("page") int page, @Field("rows") int rows
                                         , @Field("tradeType") int tradeType, @Field("statusCode") String statusCode);
+
+    /**
+     * 获取银行卡信息
+     */
+    @GET("userCenter/getBank")
+    Single<ResultData> getBankCard(@Query("username") String username, @Query("userId") String userId);
+
+    /**
+     * 绑定银行卡
+     */
+    @POST("userCenter/bindBank")
+    @FormUrlEncoded
+    Single<ResultData> bindBankCard(@Field("") BankVo bankVo);
 }

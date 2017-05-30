@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
+import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.model.RefreshMoneyModel;
 import com.forum.lottery.api.UserService;
 import com.forum.lottery.application.MyApplication;
@@ -29,8 +30,11 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class OwnFragment extends TabBaseFragment implements View.OnClickListener{
 
+    private TextView tv_recharge, tv_drawMoney;
     private TextView tv_rechargeRecord, tv_betRecord, tv_winingRecord, tv_accountDetail, tv_drawMoneyRecord;
     private TextView tv_username, tv_refreshMoney, tv_balance;
+
+    private String balance;  //余额
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,8 +78,13 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
         tv_accountDetail.setOnClickListener(this);
         tv_drawMoneyRecord = findView(R.id.tv_drawMoneyRecord);
         tv_drawMoneyRecord.setOnClickListener(this);
+        tv_recharge = findView(R.id.tv_recharge);
+        tv_drawMoney = findView(R.id.tv_drawMoney);
+        tv_recharge.setOnClickListener(this);
+        tv_drawMoney.setOnClickListener(this);
 
         setUserInfo();
+        refreshMoney();
     }
 
     @Override
@@ -98,31 +107,97 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tv_recharge:
+                if(checkLogin()){
+                    Intent intent6 = new Intent(getActivity(), RechargeActivity.class);
+                    intent6.putExtra("user", AccountManager.getInstance().getUser());
+                    intent6.putExtra("balance", balance);
+                    startActivity(intent6);
+                }
+                break;
+            case R.id.tv_drawMoney:
+                drawMoney();
+                break;
             case R.id.tv_rechargeRecord:
-                Intent intent = new Intent(getActivity(), RechargeRecordActivity.class);
-                startActivity(intent);
+                if(checkLogin()){
+                    Intent intent = new Intent(getActivity(), RechargeRecordActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.tv_refreshMoney:
                 refreshMoney();
                 break;
             case R.id.tv_betRecord:
-                Intent intent2 = new Intent(getActivity(), BetRecordActivity.class);
-                startActivity(intent2);
+                if(checkLogin()){
+                    Intent intent2 = new Intent(getActivity(), BetRecordActivity.class);
+                    startActivity(intent2);
+                }
                 break;
             case R.id.tv_winingRecord:
-                Intent intent3 = new Intent(getActivity(), WinningRecordActivity.class);
-                startActivity(intent3);
+                if(checkLogin()){
+                    Intent intent3 = new Intent(getActivity(), WinningRecordActivity.class);
+                    startActivity(intent3);
+                }
                 break;
             case R.id.tv_accountDetail:
-                Intent intent4 = new Intent(getActivity(), AccountDetailActivity.class);
-                startActivity(intent4);
+                if(checkLogin()){
+                    Intent intent4 = new Intent(getActivity(), AccountDetailActivity.class);
+                    startActivity(intent4);
+                }
                 break;
             case R.id.tv_drawMoneyRecord:
-                Intent intent5 = new Intent(getActivity(), DrawMoneyRecordActivity.class);
-                startActivity(intent5);
+                if(checkLogin()){
+                    Intent intent5 = new Intent(getActivity(), DrawMoneyRecordActivity.class);
+                    startActivity(intent5);
+                }
                 break;
 
         }
+    }
+
+    //提款
+    private void drawMoney() {
+
+        if(checkLogin()){
+            showIndeterminateDialog();
+            UserVO userVO = AccountManager.getInstance().getUser();
+            createHttp(UserService.class)
+                    .getBankCard(userVO.getAccount(), userVO.getId())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new SingleSubscriber<ResultData>() {
+                        @Override
+                        public void onSuccess(ResultData value) {
+                            if(isShowIndeterminateDialog()){
+                                dismissIndeterminateDialog();
+                                if(value != null && value.getResult().equals("SUCCESS") && value.getBankInfo() != null){
+                                    //绑定了银行卡
+                                    Intent intent6 = new Intent(getActivity(), DrawMoneyActivity.class);
+                                    intent6.putExtra("bankInfo", value.getBankInfo());
+                                    startActivity(intent6);
+                                }else {
+                                    //未绑定银行卡
+                                    Intent intent7 = new Intent(getActivity(), BindBankCardActivity.class);
+                                    startActivity(intent7);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable error) {
+                            toast(R.string.connection_failed);
+                        }
+                    });
+
+        }
+
+    }
+
+    private boolean checkLogin() {
+        if(!AccountManager.getInstance().isLogin()){
+            toast(getString(R.string.login_prompt));
+            return false;
+        }
+        return true;
     }
 
     private void refreshMoney() {
@@ -135,6 +210,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
                         @Override
                         public void onSuccess(RefreshMoneyModel value) {
                             if(value!=null && value.getStatus().equals("1")){
+                                balance = value.getBalance();
                                 tv_balance.setText("￥" + value.getBalance());
                             }else {
                                 toast(R.string.connection_failed);

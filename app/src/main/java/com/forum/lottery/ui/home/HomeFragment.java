@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.forum.lottery.MainActivity;
 import com.forum.lottery.R;
@@ -28,6 +29,7 @@ import com.forum.lottery.ui.TabBaseFragment;
 import com.forum.lottery.ui.buy.BuyLotteryActivity;
 import com.forum.lottery.ui.login.LoginActivity;
 import com.forum.lottery.ui.login.RegisterActivity;
+import com.forum.lottery.ui.own.BetRecordActivity;
 import com.forum.lottery.view.MyGridView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,7 +45,7 @@ import rx.android.schedulers.AndroidSchedulers;
  * Created by Administrator on 2017/4/21.
  */
 
-public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageChangeListener{
+public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     public static final int LOGIN_CODE = 100;
     public static final int REGISTER_CODE = 101;
 
@@ -64,6 +66,8 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     private MyGridView gv_lottery;
     private LotteryGridAdapter lotteryGridAdapter;
     private List<LotteryVO> lotteryVOs;
+
+    private TextView tv_cqmoney, tv_betRecord;
 
     @Nullable
     @Override
@@ -86,8 +90,28 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     }
 
     @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_cqmoney:
+                ((MainActivity)getActivity()).setCurrentPageItem(4);
+                break;
+            case R.id.tv_betRecord:
+                Intent intent = new Intent(getActivity(), BetRecordActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    @Override
     protected void initView() {
         EventBus.getDefault().register(this);
+
+        tv_cqmoney = findView(R.id.tv_cqmoney);
+        tv_cqmoney.setOnClickListener(this);
+        tv_betRecord = findView(R.id.tv_betRecord);
+        tv_betRecord.setOnClickListener(this);
+
+
         winnerData = new ArrayList<>();
         winningListAdapter = new WinningListAdapter(getActivity(), winnerData);
         loadWinnerData();
@@ -259,8 +283,6 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
-
 
     /**
      *

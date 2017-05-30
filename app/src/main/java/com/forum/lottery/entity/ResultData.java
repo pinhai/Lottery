@@ -1,5 +1,6 @@
 package com.forum.lottery.entity;
 
+import com.forum.lottery.model.BankInfoModel;
 import com.forum.lottery.model.BetRecordModel;
 import com.forum.lottery.model.TrendModel;
 
@@ -32,6 +33,13 @@ public class ResultData<T> {
     //投注记录
     private int total;
     private List<BetRecordModel> rows;
+
+    /**
+     * {"bankInfo":{"truename":null,"bankname":null,"bankno":null,"province":null,
+     * "city":null,"transPwd":null,"userId":1,"username":"bill","buyCpAmt":4.0,
+     * "createTime":null,"updateTime":null},"result":"SUCCESS","msg":"获取银行信息成功"}
+     */
+    private BankInfoModel bankInfo;
 
     public int getTotal() {
         return total;
@@ -111,5 +119,13 @@ public class ResultData<T> {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public BankInfoModel getBankInfo() {
+        return bankInfo;
+    }
+
+    public void setBankInfo(BankInfoModel bankInfo) {
+        this.bankInfo = bankInfo;
     }
 }

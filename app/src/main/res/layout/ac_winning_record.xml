@@ -28,28 +28,28 @@
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:text="充值记录"
+                android:text="中奖记录"
                 android:layout_centerInParent="true"
                 />
-<!--
-            <TextView
-                android:id="@+id/tv_recordType"
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:text="全部"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:background="@drawable/bg_white_radius"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:drawableRight="@mipmap/top_zhong_sanjiao"
-                android:drawableEnd="@mipmap/top_zhong_sanjiao"
-                android:drawablePadding="5dp"/>
--->
+            <!--
+                        <TextView
+                            android:id="@+id/tv_recordType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:maxLines="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:text="全部"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/bg_white_radius"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:drawableRight="@mipmap/top_zhong_sanjiao"
+                            android:drawableEnd="@mipmap/top_zhong_sanjiao"
+                            android:drawablePadding="5dp"/>
+            -->
         </LinearLayout>
         <ImageView
             android:id="@+id/iv_refresh"

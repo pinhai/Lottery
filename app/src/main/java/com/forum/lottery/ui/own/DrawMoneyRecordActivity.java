@@ -54,7 +54,7 @@ public class DrawMoneyRecordActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_recharge_record);
+        setContentView(R.layout.ac_draw_money_record);
 
         initData();
         initView();
@@ -66,7 +66,7 @@ public class DrawMoneyRecordActivity extends BaseActivity implements View.OnClic
         menu.addAll(Arrays.asList(getResources().getStringArray(R.array.record_type)));
         pw_recordType = new ActionMenuPopup(this, menu);
 
-        tv_recordType = findView(R.id.tv_recordType);
+//        tv_recordType = findView(R.id.tv_recordType);
 //        tv_recordType.setOnClickListener(this);
         rl_titleBar = findView(R.id.rl_titleBar);
         iv_refresh = findView(R.id.iv_refresh);
@@ -142,13 +142,13 @@ public class DrawMoneyRecordActivity extends BaseActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_recordType:
-                if(pw_recordType.isShowing()){
-                    pw_recordType.dismiss();
-                }else{
-                    pw_recordType.show(rl_titleBar);
-                }
-                break;
+//            case R.id.tv_recordType:
+//                if(pw_recordType.isShowing()){
+//                    pw_recordType.dismiss();
+//                }else{
+//                    pw_recordType.show(rl_titleBar);
+//                }
+//                break;
             case R.id.iv_refresh:
                 page = 1;
                 getRecordData(page);

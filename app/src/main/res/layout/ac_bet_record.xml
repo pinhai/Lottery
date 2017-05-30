@@ -28,7 +28,7 @@
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:text="充值记录"
+                android:text="投注记录"
                 android:layout_centerInParent="true"
                 />
 <!--
