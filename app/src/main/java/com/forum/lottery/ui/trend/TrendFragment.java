@@ -85,6 +85,8 @@ public class TrendFragment extends TabBaseFragment {
 //        Intent intent = new Intent(getActivity(), TrendActivity.class);
 //        startActivity(intent);
 
+        findView(R.id.img_back).setVisibility(View.GONE);
+
         EventBus.getDefault().register(this);
         trendModels = new ArrayList<>();
         currentWeishu = getString(R.string.ge);

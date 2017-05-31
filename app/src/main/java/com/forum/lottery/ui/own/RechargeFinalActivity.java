@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.forum.lottery.R;
 import com.forum.lottery.model.PayResultModel;
 import com.forum.lottery.ui.BaseActivity;
+import com.forum.lottery.utils.QRCode;
+import com.forum.lottery.utils.ScreenUtils;
 
 /**
  * Created by admin_h on 2017/5/31.
@@ -51,14 +53,11 @@ public class RechargeFinalActivity extends BaseActivity implements View.OnClickL
         }
     }
 
-    //下注二维码
+    //充值二维码
     private void setErweima() {
         String url = payResultModel.getUrlCode();
         if(url != null){
-            //// TODO: 2017/5/31
-
-
-
+            iv_erweima.setImageBitmap(QRCode.createQRCode(url, ScreenUtils.dp2px(200)));
 
         }else {
             toast("二维码下载失败，请重试");

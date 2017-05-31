@@ -221,6 +221,7 @@
                     android:text="提款记录" />
 
                 <TextView
+                    android:id="@+id/tv_personInfo"
                     style="@style/Own_Item_Text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -229,6 +230,7 @@
                     android:text="个人消息" />
 
                 <TextView
+                    android:visibility="gone"
                     style="@style/Own_Item_Text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

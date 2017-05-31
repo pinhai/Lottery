@@ -103,4 +103,5 @@
         <attr name="offsetEnd" format="integer"/>
         <attr name="paddingDash" format="dimension"/>
     </declare-styleable>
+
 </resources>

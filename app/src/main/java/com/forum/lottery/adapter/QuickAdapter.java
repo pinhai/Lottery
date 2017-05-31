@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.forum.lottery.entity.LotteryVO;
+
 import java.util.List;
 
 public abstract class QuickAdapter<T> extends BaseAdapter {
@@ -73,7 +75,11 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 		}
 	}
 
-	public interface OnItemClickListener<T>{
+	public void setData(List<T> datas) {
+		this.datas = datas;
+	}
+
+    public interface OnItemClickListener<T>{
 		void onItemClick(View view, int position, T item);
 	}
 }

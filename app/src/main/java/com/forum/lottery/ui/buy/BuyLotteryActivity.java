@@ -131,6 +131,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
+        findView(R.id.img_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         EventBus.getDefault().register(this);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -349,6 +356,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         View view = LayoutInflater.from(this).inflate(R.layout.view_bet,null);
         betDialog = new AlertDialog.Builder(this)
                 .setView(view)
+                .setCancelable(false)
                 .create();
         final EditText et_oneBetMoney = (EditText) view.findViewById(R.id.et_oneBetMoney);
         TextView tv_betCount = (TextView) view.findViewById(R.id.tv_betCount);

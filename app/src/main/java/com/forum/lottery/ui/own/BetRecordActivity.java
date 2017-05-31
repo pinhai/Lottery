@@ -58,6 +58,13 @@ public class BetRecordActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
+        findView(R.id.img_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         List<String> menu = new ArrayList<>();
         menu.addAll(Arrays.asList(getResources().getStringArray(R.array.record_type)));
         pw_recordType = new ActionMenuPopup(this, menu);

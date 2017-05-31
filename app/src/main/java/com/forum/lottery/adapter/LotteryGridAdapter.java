@@ -82,6 +82,10 @@ public class LotteryGridAdapter extends BaseAdapter {
 
     }
 
+    public void setData(List<LotteryVO> lotteryVOs) {
+        this.data = lotteryVOs;
+    }
+
     class ViewHolder{
         RoundedImageView riv_lotteryPic;
         TextView tv_lotteryName, tv_time ;

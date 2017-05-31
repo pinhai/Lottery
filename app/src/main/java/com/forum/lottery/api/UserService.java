@@ -138,5 +138,5 @@ public interface UserService {
      */
     @POST("userCenter/recharge/online")
     @FormUrlEncoded
-    Single<PayResultModel> recharge(@Field("tradeType") int tradeType, @Field("payWay") String payWay);
+    Single<PayResultModel> recharge(@Field("tradeType") int tradeType, @Field("payWay") String payWay, @Field("tradeMoney") float tradeMoney);
 }

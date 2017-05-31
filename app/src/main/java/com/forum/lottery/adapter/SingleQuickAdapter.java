@@ -3,6 +3,8 @@ package com.forum.lottery.adapter;
 import android.content.Context;
 import android.widget.BaseAdapter;
 
+import com.forum.lottery.entity.LotteryVO;
+
 import java.util.List;
 
 public abstract class SingleQuickAdapter<T> extends QuickAdapter<T> implements ViewConverter{
@@ -31,5 +33,9 @@ public abstract class SingleQuickAdapter<T> extends QuickAdapter<T> implements V
 	}
 	
 	protected abstract void setViewHolder(ViewHoldHelper holdHelper, T data,
-			int position); 
+			int position);
+
+	public void setData(List<T> datas) {
+		super.setData(datas);
+	}
 }

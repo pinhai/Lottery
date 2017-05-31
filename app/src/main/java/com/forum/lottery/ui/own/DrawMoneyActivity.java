@@ -45,6 +45,12 @@ public class DrawMoneyActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
+        findView(R.id.img_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         et_drawMoneyCount = findView(R.id.et_drawMoneyCount);
         InputFilter[] filters={new CashierInputFilter()};
         et_drawMoneyCount.setFilters(filters);

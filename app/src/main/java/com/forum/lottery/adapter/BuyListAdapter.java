@@ -21,6 +21,10 @@ public class BuyListAdapter extends SingleQuickAdapter<LotteryVO> {
         super(context, R.layout.list_buy_item_view, datas);
     }
 
+    public void setData(List<LotteryVO> datas){
+        super.setData(datas);
+    }
+
     @Override
     protected int getItemViewTypeM(int position) {
         return 0;

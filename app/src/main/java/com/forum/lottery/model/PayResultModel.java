@@ -12,7 +12,7 @@ public class PayResultModel implements Serializable {
     private int payWay;
     private String paymentNo;
     private String result;
-    private int tradeMoney;
+    private float tradeMoney;
     private String urlCode;
 
     public String getMsg() {
@@ -47,11 +47,11 @@ public class PayResultModel implements Serializable {
         this.result = result;
     }
 
-    public int getTradeMoney() {
+    public float getTradeMoney() {
         return tradeMoney;
     }
 
-    public void setTradeMoney(int tradeMoney) {
+    public void setTradeMoney(float tradeMoney) {
         this.tradeMoney = tradeMoney;
     }
 

@@ -132,6 +132,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <RadioButton
+            android:visibility="gone"
             android:id="@+id/rb_payZXZF"
             android:padding="10dp"
             android:gravity="center"

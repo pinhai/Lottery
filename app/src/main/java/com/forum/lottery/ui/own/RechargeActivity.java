@@ -134,7 +134,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.iv_assistant:
-                pw_assistant.showAsDropDown(iv_assistant);
+                pw_assistant.showAsDropDown(iv_assistant, -180, 0);
                 break;
             case R.id.tv_rechargeRecord:
                 Intent intent = new Intent(RechargeActivity.this, RechargeRecordActivity.class);
@@ -161,7 +161,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
 
         showProgressDialog(false);
         createHttp(UserService.class)
-                .recharge(0, payWay)
+                .recharge(0, payWay, Float.parseFloat(money))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<PayResultModel>() {
                     @Override

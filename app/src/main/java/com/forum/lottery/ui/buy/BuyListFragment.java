@@ -64,8 +64,10 @@ public class BuyListFragment extends BaseFragment {
 
     @Subscribe
     public void deliveryLotteryList(LotteryListTickEvent event){
-        lotteryVOs.clear();
-        lotteryVOs.addAll(event.data);
+//        lotteryVOs.clear();
+//        lotteryVOs.addAll(event.data);
+        lotteryVOs = event.data;
+        adapter.setData(lotteryVOs);
         adapter.notifyDataSetChanged();
     }
 

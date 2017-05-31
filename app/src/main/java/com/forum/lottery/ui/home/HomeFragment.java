@@ -1,6 +1,8 @@
 package com.forum.lottery.ui.home;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -67,7 +69,7 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     private LotteryGridAdapter lotteryGridAdapter;
     private List<LotteryVO> lotteryVOs;
 
-    private TextView tv_cqmoney, tv_betRecord;
+    private TextView tv_cqmoney, tv_betRecord, tv_youhui;
 
     @Nullable
     @Override
@@ -99,13 +101,31 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
                 Intent intent = new Intent(getActivity(), BetRecordActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.tv_youhui:
+                showPromptDialog();
+                break;
         }
+    }
+
+    private void showPromptDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.prompt)
+                .setMessage("暂时没有优惠活动")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create().show();
     }
 
     @Override
     protected void initView() {
         EventBus.getDefault().register(this);
 
+        tv_youhui = findView(R.id.tv_youhui);
+        tv_youhui.setOnClickListener(this);
         tv_cqmoney = findView(R.id.tv_cqmoney);
         tv_cqmoney.setOnClickListener(this);
         tv_betRecord = findView(R.id.tv_betRecord);
@@ -211,8 +231,10 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     private int tickViewPager = 0;
     @Subscribe
     public void deliverLotteryList(LotteryListTickEvent event){
-        lotteryVOs.clear();
-        lotteryVOs.addAll(event.data);
+//        lotteryVOs.clear();
+//        lotteryVOs.addAll(event.data);
+        lotteryVOs = event.data;
+        lotteryGridAdapter.setData(lotteryVOs);
         lotteryGridAdapter.notifyDataSetChanged();
 
         ++tickViewPager;

@@ -1,5 +1,7 @@
 package com.forum.lottery.ui.own;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,7 +33,7 @@ import rx.android.schedulers.AndroidSchedulers;
 public class OwnFragment extends TabBaseFragment implements View.OnClickListener{
 
     private TextView tv_recharge, tv_drawMoney;
-    private TextView tv_rechargeRecord, tv_betRecord, tv_winingRecord, tv_accountDetail, tv_drawMoneyRecord;
+    private TextView tv_rechargeRecord, tv_betRecord, tv_winingRecord, tv_accountDetail, tv_drawMoneyRecord, tv_personInfo;
     private TextView tv_username, tv_refreshMoney, tv_balance;
 
     private String balance;  //余额
@@ -82,6 +84,8 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
         tv_drawMoney = findView(R.id.tv_drawMoney);
         tv_recharge.setOnClickListener(this);
         tv_drawMoney.setOnClickListener(this);
+        tv_personInfo = findView(R.id.tv_personInfo);
+        tv_personInfo.setOnClickListener(this);
 
         setUserInfo();
         refreshMoney();
@@ -90,6 +94,19 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     @Override
     protected void initData() {
 
+    }
+
+    private void showPromptDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.prompt)
+                .setMessage("未收到消息")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create().show();
     }
 
     @Subscribe
@@ -150,6 +167,9 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
                     Intent intent5 = new Intent(getActivity(), DrawMoneyRecordActivity.class);
                     startActivity(intent5);
                 }
+                break;
+            case R.id.tv_personInfo:
+                showPromptDialog();
                 break;
 
         }
