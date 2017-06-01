@@ -69,9 +69,9 @@ public class WinningRecordAdapter extends BaseAdapter{
     private void setView(int position, ViewHolder viewHolder) {
         PrizeUserVo item = data.get(position);
         viewHolder.tv_cpname.setText(item.getGameName());
-//        viewHolder.tv_period.setText(item.get+ "期");
-//        viewHolder.tv_price.setText(item.getCountPrice() + "元");
-//        viewHolder.tv_date.setText(item.getBuyTime());
+        viewHolder.tv_period.setText(item.getIssue()+ "期");
+        viewHolder.tv_price.setText(item.getPayAmount() + "元");
+        viewHolder.tv_date.setText(item.getBuyTime());
         viewHolder.tv_status.setText("赢" + item.getWinAmount());
     }
 

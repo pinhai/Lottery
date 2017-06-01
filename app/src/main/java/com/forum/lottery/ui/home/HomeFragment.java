@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dalong.marqueeview.MarqueeView;
 import com.forum.lottery.MainActivity;
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.LotteryGridAdapter;
@@ -123,6 +124,12 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     @Override
     protected void initView() {
         EventBus.getDefault().register(this);
+
+
+//        MarqueeView mMarqueeView=(MarqueeView)findView(R.id.mMarqueeView);
+//        mMarqueeView.setText(getString(R.string.home_page_prompt));
+//        mMarqueeView.startScroll();
+
 
         tv_youhui = findView(R.id.tv_youhui);
         tv_youhui.setOnClickListener(this);

@@ -33,6 +33,36 @@ public class PrizeUserVo implements Serializable{
 	 */
 	private Double winAmount;
 
+	private float payAmount;
+
+	private String buyTime;
+
+	private String issue;  //期数
+
+	public float getPayAmount() {
+		return payAmount;
+	}
+
+	public void setPayAmount(float payAmount) {
+		this.payAmount = payAmount;
+	}
+
+	public String getBuyTime() {
+		return buyTime;
+	}
+
+	public void setBuyTime(String buyTime) {
+		this.buyTime = buyTime;
+	}
+
+	public String getIssue() {
+		return issue;
+	}
+
+	public void setIssue(String issue) {
+		this.issue = issue;
+	}
+
 	public String getGameName() {
 		return gameName;
 	}
