@@ -52,7 +52,7 @@ public class AccountDetailActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_recharge_record);
+        setContentView(R.layout.ac_account_detail);
 
         initData();
         initView();

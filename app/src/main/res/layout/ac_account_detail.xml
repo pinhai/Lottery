@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/action_bar_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/blank_01"
+            android:background="@drawable/bg_action_bar_item"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:text="账户明细"
+                android:layout_centerInParent="true"
+                />
+            <!--
+                        <TextView
+                            android:id="@+id/tv_recordType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:maxLines="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:text="全部"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/bg_white_radius"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:drawableRight="@mipmap/top_zhong_sanjiao"
+                            android:drawableEnd="@mipmap/top_zhong_sanjiao"
+                            android:drawablePadding="5dp"/>
+            -->
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:src="@mipmap/refresh"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="center"/>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>
