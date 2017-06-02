@@ -39,10 +39,13 @@
     </RelativeLayout>
 
     <ScrollView
-        android:layout_below="@+id/rl_titleBar"
         android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_titleBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,30 +61,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/gray" />
-            <!--<com.dalong.marqueeview.MarqueeView
-                android:id="@+id/mMarqueeView"
-                app:textSize="16sp"
-                app:textcolor="@color/gray_dark"
-                app:startPoint="end"
-                app:isRepeat="true"
-                app:direction="left"
-                app:speed="500"
-                android:layout_width="match_parent"
-                android:layout_height="25dp" />-->
 
-            <com.forum.lottery.view.MarqueeText
-                android:id="@+id/tv1"
-                android:background="@color/white"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:padding="5dp"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:singleLine="true"
-                android:text="@string/home_page_prompt" />
+                android:layout_height="25dp"
+                 >
+            <com.xzl.marquee.library.MarqueeView
+                android:id="@+id/marquee"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:text_color="@color/gray_dark"
+                app:txt_spacing="15dp"
+                app:text_shadowColor="@android:color/black"
+                app:txt_dx="1.0"
+                app:txt_dy="1.0"
+                app:txt_radius="1.0"
+                app:text_size="16sp"
+                app:speed="40dp"
+                />
+            </FrameLayout>
 
             <View
                 android:layout_width="match_parent"

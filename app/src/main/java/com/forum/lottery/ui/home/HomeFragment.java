@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.dalong.marqueeview.MarqueeView;
 import com.forum.lottery.MainActivity;
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.LotteryGridAdapter;
@@ -34,6 +36,7 @@ import com.forum.lottery.ui.login.LoginActivity;
 import com.forum.lottery.ui.login.RegisterActivity;
 import com.forum.lottery.ui.own.BetRecordActivity;
 import com.forum.lottery.view.MyGridView;
+import com.xzl.marquee.library.MarqueeView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -125,11 +128,9 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     protected void initView() {
         EventBus.getDefault().register(this);
 
-
-//        MarqueeView mMarqueeView=(MarqueeView)findView(R.id.mMarqueeView);
-//        mMarqueeView.setText(getString(R.string.home_page_prompt));
-//        mMarqueeView.startScroll();
-
+        MarqueeView marqueeView = (MarqueeView)findView(R.id.marquee);
+        marqueeView.setText(getString(R.string.home_page_prompt));
+        marqueeView.start();
 
         tv_youhui = findView(R.id.tv_youhui);
         tv_youhui.setOnClickListener(this);

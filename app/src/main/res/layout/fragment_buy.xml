@@ -18,15 +18,15 @@
             android:gravity="center"
             android:text="购彩大厅" />
 
-        <TextView
+        <ImageView
             android:id="@+id/iv_refresh"
-            android:text="刷新"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:padding="5dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
+            android:src="@drawable/refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

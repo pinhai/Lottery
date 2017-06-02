@@ -30,7 +30,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class LotteryListActivity extends BaseActivity {
     private ImageView img_back;
-    private TextView iv_refresh;
+    private ImageView iv_refresh;
 
     private ListView listLottery;
     private List<LotteryVO> lotteryVOs;

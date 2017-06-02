@@ -25,11 +25,11 @@
             android:gravity="center"
             android:text="开奖大厅" />
 
-        <TextView
+        <ImageView
             android:id="@+id/iv_refresh"
-            android:text="刷新"
             android:textSize="18sp"
             android:textColor="@color/white"
+            android:src="@drawable/refresh"
             android:padding="5dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

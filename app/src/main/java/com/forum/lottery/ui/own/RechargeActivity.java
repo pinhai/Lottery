@@ -37,7 +37,8 @@ import rx.android.schedulers.AndroidSchedulers;
 public class RechargeActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView img_back, iv_assistant;
-    private TextView tv_username, tv_balance, tv_refreshMoney;
+    private TextView tv_username, tv_balance;
+    private ImageView tv_refreshMoney;
     private EditText et_money;
     private Button btn_submit;
     private RadioGroup rg_pay;

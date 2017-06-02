@@ -8,30 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_height"
         android:background="@color/colorPrimary">
+
         <ImageView
             android:id="@+id/img_back"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/action_bar_height"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:src="@mipmap/blank_01"
-            android:background="@drawable/bg_action_bar_item"/>
+            android:background="@drawable/bg_action_bar_item"
+            android:src="@mipmap/blank_01" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_centerInParent="true"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:text="投注记录"
                 android:layout_centerInParent="true"
-                />
-<!--
+                android:maxLines="1"
+                android:text="投注记录"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <!--
             <TextView
                 android:id="@+id/tv_recordType"
                 android:layout_width="wrap_content"
@@ -51,17 +53,18 @@
                 android:drawablePadding="5dp"/>
 -->
         </LinearLayout>
+
         <ImageView
             android:id="@+id/iv_refresh"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:src="@mipmap/refresh"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
-            android:scaleType="center"/>
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:scaleType="center"
+            android:src="@drawable/refresh" />
     </RelativeLayout>
 
     <ListView
