@@ -49,6 +49,7 @@
         android:background="@color/gray"
         />
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_playWayPrompt"
         android:text="玩法说明"
         android:textSize="20sp"

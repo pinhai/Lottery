@@ -108,9 +108,9 @@ public class TrendFragment extends TabBaseFragment {
 //        weishuStrings.add(getString(R.string.ge));
         trendWeishuAdapter = new TrendWeishuAdapter(getActivity(), weishuStrings, new TrendWeishuAdapter.OnItemCheckedListener() {
             @Override
-            public void onChecked(String value, int position) {
+            public void onChecked(String value, int position, int weishuCount) {
                 currentWeishu = value;
-                trendAdapter.setWeishu(currentWeishu);
+                trendAdapter.setWeishu(currentWeishu, weishuCount);
                 trendAdapter.notifyDataSetChanged();
             }
         });

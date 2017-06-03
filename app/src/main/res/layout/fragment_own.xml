@@ -221,6 +221,7 @@
                     android:text="提款记录" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_personInfo"
                     style="@style/Own_Item_Text"
                     android:layout_width="match_parent"

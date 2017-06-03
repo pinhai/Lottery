@@ -48,8 +48,12 @@ public class BuyListAdapter extends SingleQuickAdapter<LotteryVO> {
         }
         tv_openNum.setText(openNum);
         tv_nextIssue.setText("距离" + data.getNextIssue() + "期 截止还有");
-        tv_time.setText(LotteryUtils.secToTime(data.getTime()));
-
+        String time = LotteryUtils.secToTime(data.getTime());
+        if(time.equals("00:00:00")){
+            tv_time.setText("正在开奖");
+        }else {
+            tv_time.setText(time);
+        }
 
     }
 

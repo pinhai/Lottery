@@ -172,7 +172,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         view.findViewById(R.id.tv_betRecord).setOnClickListener(this);
         view.findViewById(R.id.tv_trend).setOnClickListener(this);
         view.findViewById(R.id.tv_recentOpen).setOnClickListener(this);
-        view.findViewById(R.id.tv_playWayPrompt).setOnClickListener(this);
+//        view.findViewById(R.id.tv_playWayPrompt).setOnClickListener(this);
         // 创建PopupWindow对象
         pw_assistant = new PopupWindow(view, ScreenUtils.dp2px(130), android.view.ViewGroup.LayoutParams.WRAP_CONTENT, false);
         // 需要设置一下此参数，点击外边可消失
@@ -561,9 +561,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 intent3.putExtra("lottery", lotteryVO);
                 startActivity(intent3);
                 break;
-            case R.id.tv_playWayPrompt:
-
-                break;
+//            case R.id.tv_playWayPrompt:
+//
+//                break;
         }
     }
 

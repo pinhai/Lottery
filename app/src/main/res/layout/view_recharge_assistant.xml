@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tv_rechargeRecord"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="充值记录"
         android:textSize="20sp"
         android:textColor="@color/red"

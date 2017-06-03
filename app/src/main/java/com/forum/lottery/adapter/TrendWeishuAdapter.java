@@ -112,16 +112,16 @@ public class TrendWeishuAdapter extends BaseAdapter {
                 }
             }
             notifyDataSetChanged();
-            itemCheckedListener.onChecked(data.get(position), position);
+            itemCheckedListener.onChecked(data.get(position), position, data.size());
         }
     }
 
     public void initItemCheck() {
         itemChecked.clear();
         for(int i=0; i<data.size(); i++){
-            if(i == data.size()-1){
+            if(i == 0){
                 itemChecked.add(true);
-                itemCheckedListener.onChecked(data.get(i), i);
+                itemCheckedListener.onChecked(data.get(i), i, data.size());
             }else{
                 itemChecked.add(false);
             }
@@ -129,6 +129,6 @@ public class TrendWeishuAdapter extends BaseAdapter {
     }
 
     public interface OnItemCheckedListener {
-        void onChecked(String value, int position);
+        void onChecked(String value, int position, int weishuCount);
     }
 }

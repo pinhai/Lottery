@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:text="在线客服"/>
         <TextView
+            android:visibility="gone"
             style="@style/Login_Small_Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

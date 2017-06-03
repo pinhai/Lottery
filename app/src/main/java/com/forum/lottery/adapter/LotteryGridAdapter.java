@@ -77,7 +77,12 @@ public class LotteryGridAdapter extends BaseAdapter {
             viewHolder.riv_lotteryPic.setImageResource(LotteryIconUtils.getLotteryIcon(Integer.parseInt(item.getLotteryid())));
             viewHolder.tv_lotteryName.setText(item.getLotteryName());
             viewHolder.tv_time.setVisibility(View.VISIBLE);
-            viewHolder.tv_time.setText(LotteryUtils.secToTime(item.getTime()));
+            String time = LotteryUtils.secToTime(item.getTime());
+            if(time.equals("00:00:00")){
+                viewHolder.tv_time.setText("正在开奖");
+            }else {
+                viewHolder.tv_time.setText(time);
+            }
         }
 
     }

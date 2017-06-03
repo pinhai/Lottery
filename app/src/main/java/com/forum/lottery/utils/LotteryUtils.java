@@ -465,6 +465,8 @@ public class LotteryUtils {
             temp = context.getResources().getStringArray(R.array.weishu_7);
         }else if(count == 5){
             temp = context.getResources().getStringArray(R.array.weishu_5);
+        }else if(count == 4){
+            temp = context.getResources().getStringArray(R.array.weishu_4);
         }else if(count == 3){
             temp = context.getResources().getStringArray(R.array.weishu_3);
         }else{

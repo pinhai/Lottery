@@ -221,6 +221,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     }
 
     private void refreshMoney() {
+        showIndeterminateDialog();
         if(AccountManager.getInstance().isLogin()){
             UserVO userVO = AccountManager.getInstance().getUser();
             createHttp(UserService.class)
@@ -229,6 +230,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
                     .subscribe(new SingleSubscriber<RefreshMoneyModel>() {
                         @Override
                         public void onSuccess(RefreshMoneyModel value) {
+                            dismissIndeterminateDialog();
                             if(value!=null && value.getStatus().equals("1")){
                                 balance = value.getBalance();
                                 tv_balance.setText("￥" + value.getBalance());
@@ -239,6 +241,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
 
                         @Override
                         public void onError(Throwable error) {
+                            dismissIndeterminateDialog();
                             toast(R.string.connection_failed);
                         }
                     });

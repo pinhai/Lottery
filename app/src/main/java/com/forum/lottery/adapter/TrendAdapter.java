@@ -3,6 +3,7 @@ package com.forum.lottery.adapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.model.TrendModel;
+import com.forum.lottery.utils.LotteryUtils;
 import com.forum.lottery.utils.ScreenUtils;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ import java.util.Map;
 
 public class TrendAdapter extends BaseAdapter {
 
+    private int weishuCount;
     private String weishu;
     private Context context;
     private List<TrendModel> trendModels;
@@ -125,6 +128,7 @@ public class TrendAdapter extends BaseAdapter {
             }else{
                 TrendModel trendModel = trendModels.get(row-1);
                 String showNum = trendModel.getAllcode()[getWeishu(trendModel.getAllcode().length)];
+                showNum = (TextUtils.isEmpty(showNum) ? "0" : showNum);
                 if((col-1) == Integer.parseInt(showNum)){
                     viewHolder.tv_trendNum.setText(showNum);
                     viewHolder.tv_trendNum.setBackgroundResource(R.drawable.bg_red_circle);
@@ -158,22 +162,30 @@ public class TrendAdapter extends BaseAdapter {
         RelativeLayout ll_trend;
     }
 
-    public void setWeishu(String weishu){
+    public void setWeishu(String weishu, int weishuCount){
         this.weishu = weishu;
+        this.weishuCount = weishuCount;
     }
 
     private int getWeishu(int length) {
         int result = 0;
-        if(weishu.equals(context.getString(R.string.ge))){
-            result = length - 1;
-        } else if(weishu.equals(context.getString(R.string.shi))){
-            result = length - 2;
-        }else if(weishu.equals(context.getString(R.string.bai))){
-            result = length - 3;
-        }else if(weishu.equals(context.getString(R.string.qian))){
-            result = length - 4;
-        }else if(weishu.equals(context.getString(R.string.wan))){
-            result = length - 5;
+//        if(weishu.equals(context.getString(R.string.ge))){
+//            result = length - 1;
+//        } else if(weishu.equals(context.getString(R.string.shi))){
+//            result = length - 2;
+//        }else if(weishu.equals(context.getString(R.string.bai))){
+//            result = length - 3;
+//        }else if(weishu.equals(context.getString(R.string.qian))){
+//            result = length - 4;
+//        }else if(weishu.equals(context.getString(R.string.wan))){
+//            result = length - 5;
+//        }
+
+        List<String> weishuStr = LotteryUtils.getTrendWeishuMenu(context, weishuCount);
+        for(int i=0; i<weishuStr.size(); i++){
+            if(weishuStr.get(i).equals(weishu)){
+                return i;
+            }
         }
 
         return result;
