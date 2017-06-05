@@ -1,0 +1,2359 @@
+ [{
+    title: '三码',
+    label: [{
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '第一位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '第二位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            },
+            {
+                title: '第三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 2,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X,X,X,-,-',
+        code_sp: 's',
+        methodid: 170,
+        name: '前三直选复式',
+        methoddesc: '从第一位、第二位、第三位中至少各选择1个号码。',
+        methodhelp: '从01-11中各选择3个不重复号码组成一注，所选号码与当期5个开奖号码中的前3个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码：01 02 03 * *，即中前三直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前三直选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 171,
+        name: '前三直选单式',
+        methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，所输入的号码与当期5个开奖号码中的前3个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码：01 02 03 * *，即中前三直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前三直选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '组选',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 3
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 176,
+        name: '前三组选复式',
+        methoddesc: '从01-11中任意选择3个或3个以上号码。',
+        methodhelp: '从11个号码中选择3个或多个号码，所选号码与当期5个开奖号码中的前3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码：03 01 02 * *（前三顺序不限），即中前三组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前三组选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 177,
+        name: '前三组选单式',
+        methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，所输入的号码与当期5个开奖号码中的前3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码：03 01 02 * *（前三顺序不限），即中前三组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前三组选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 182,
+        name: '前三组选胆拖',
+        methoddesc: '从01-11中，选取3个及以上的号码进行投注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选择3个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共3个号码。所选单注号码与当期5个开奖号码中的前3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：胆码 02，拖码 01 06<br>开奖号码：02 01 06 * *（前三顺序不限），即中前三组选胆拖。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前三组选胆拖'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '第二位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '第三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            },
+            {
+                title: '第四位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 2,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: '-,X,X,X,-',
+        code_sp: 's',
+        methodid: 172,
+        name: '中三直选复式',
+        methoddesc: '从第二位、第三位、第四位中至少各选择1个号码。',
+        methodhelp: '从01-11中各选择3个不重复号码组成一注，所选号码与当期5个开奖号码中的中间3个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码： * 01 02 03 *，即中中三直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '中三直选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 173,
+        name: '中三直选单式',
+        methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，所输入的号码与当期5个开奖号码中的中间3个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码： * 01 02 03 *，即中中三直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '中三直选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '组选',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 3
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 178,
+        name: '中三组选复式',
+        methoddesc: '从01-11中任意选择3个或3个以上号码。',
+        methodhelp: '从11个号码中选择1个或多个号码3个号码组成一注，所选号码与当期5个开奖号码中的中间3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码： * 03 01 02 *（中三顺序不限），即中中三组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '中三组选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 179,
+        name: '中三组选单式',
+        methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，所输入的号码与当期5个开奖号码中的中间3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码：* 03 01 02  *（中三顺序不限），即中中三组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '中三组选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 183,
+        name: '中三组选胆拖',
+        methoddesc: '从01-11中，选取3个及以上的号码进行投注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '选择3个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共3个号码。所选单注号码与当期5个开奖号码中的中间3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：胆码 02，拖码 01 06<br>开奖号码： * 02 01 06 *（中三顺序不限），即中中三组选胆拖。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '中三组选胆拖'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '第三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '第四位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            },
+            {
+                title: '第五位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 2,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: '-,-,X,X,X',
+        code_sp: 's',
+        methodid: 174,
+        name: '后三直选复式',
+        methoddesc: '从第三位、第四位、第五位中至少各选择1个号码。',
+        methodhelp: '从01-11中选择3个或多个不重复号码，所选号码与当期5个开奖号码中的后3个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码： * * 01 02 03 ，即中后三直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后三直选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 175,
+        name: '后三直选单式',
+        methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，所输入的号码与当期5个开奖号码中的后3个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码： * * 01 02 03 ，即中后三直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后三直选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '组选',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 3
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 180,
+        name: '后三组选复式',
+        methoddesc: '从01-11中任意选择3个或3个以上号码。',
+        methodhelp: '从01-11中选择3个或多个号码，所选号码与当期5个开奖号码中的后3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码： * * 03 01 02 （后三顺序不限），即中后三组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后三组选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 181,
+        name: '后三组选单式',
+        methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，所输入的号码与当期5个开奖号码中的后3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02 03<br>开奖号码：* * 03 01 02（后三顺序不限），即中后三组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后三组选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 184,
+        name: '后三组选胆拖',
+        methoddesc: '从01-11中，选取3个及以上的号码进行投注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选择3个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共3个号码。所选单注号码与当期5个开奖号码中的后3个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：胆码 02，拖码 01 06<br>开奖号码：* * 02 01 06 （后三顺序不限），即中后三组选胆拖。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后三组选胆拖'
+    }]
+},
+{
+    title: '二码',
+    label: [{
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '第一位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '第二位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X,X,-,-,-',
+        code_sp: 's',
+        methodid: 185,
+        name: '前二直选复式',
+        methoddesc: '从第一位、第二位中至少各选择1个号码。',
+        methodhelp: '从01-11中选择2个不重复号码组成一注，所选号码与当期5个开奖号码中的前2个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码：01 02 * * *，即中前二直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前二直选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 186,
+        name: '前二直选单式',
+        methoddesc: '手动输入号码，至少输入1个两位数号码组成一注。',
+        methodhelp: '手动输入2个号码组成一注，所输入的号码与当期5个开奖号码中的前2个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码：01 02 * * *，即中前二直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前二直选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '组选',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 2
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 189,
+        name: '前二组选复式',
+        methoddesc: '从01-11中任意选择2个或2个以上号码。',
+        methodhelp: '从01-11个号码中选择2个或多个号码，所选号码与当期5个开奖号码中的前2个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码：02 01 * * *，（前二顺序不限），即中前二组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前二组选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 190,
+        name: '前二组选单式',
+        methoddesc: '手动输入号码，至少输入1个两位数号码组成一注。',
+        methodhelp: '手动输入2个号码组成一注，所输入的号码与当期5个开奖号码中的前2个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码：02 01 * * *，（前二顺序不限），即中前二组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前二组选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 193,
+        name: '前二组选胆拖',
+        methoddesc: '从01-11中，选取2个及以上的号码进行投注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选择2个或多个号码进行投注，每注需至少包括1个胆码及1个拖码。所选单注号码与当期5个开奖号码中的前2个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：胆码 01，拖码 06<br>开奖号码：06 01 * * *，（前二顺序不限），即中前二组选胆拖。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前二组选胆拖'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '第四位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '第五位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: '-,-,-,X,X',
+        code_sp: 's',
+        methodid: 187,
+        name: '后二直选复式',
+        methoddesc: '从第四位、第五位中至少各选择1个号码。',
+        methodhelp: '从每位各选1个或多个号码2个号码组成一注，所选号码与当期5个开奖号码中的后2个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码： * * * 01 02，即中后二直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后二直选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 188,
+        name: '后二直选单式',
+        methoddesc: '手动输入号码，至少输入1个两位数号码组成一注。',
+        methodhelp: '手动输入2个号码组成一注，所输入的号码与当期5个开奖号码中的后2个号码相同，且顺序一致，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码： * * * 01 02，即中后二直选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后二直选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '组选',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 2
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 191,
+        name: '后二组选复式',
+        methoddesc: '从01-11中任意选择2个或2个以上号码。',
+        methodhelp: '从11个号码中选择2个或多个号码，所选号码与当期5个开奖号码中的后2个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码： * * * 02 01，（后二顺序不限），即中后二组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后二组选复式'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 192,
+        name: '后二组选单式',
+        methoddesc: '手动输入号码，至少输入1个两位数号码组成一注。',
+        methodhelp: '手动输入2个号码组成一注，所输入的号码与当期5个开奖号码中的后2个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：01 02<br>开奖号码： * * * 02 01，（前二顺序不限），即中后二组选。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后二组选单式'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 194,
+        name: '后二组选胆拖',
+        methoddesc: '从01-11中，选取2个及以上的号码进行投注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选择2个或多个号码进行投注，每注需至少包括1个胆码及1个拖码。所选单注号码与当期5个开奖号码中的后2个号码相同，顺序不限，即为中奖。',
+        methodexample: '投注方案：胆码 01，拖码 06<br>开奖号码：* * * 06 01 ，（后二顺序不限），即中后二组选胆拖。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后二组选胆拖'
+    }]
+},
+{
+    title: '不定位',
+    label: [{
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '前三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 195,
+        name: '前三位',
+        methoddesc: '从01-11中任意选择1个或1个以上号码。',
+        methodhelp: '从11个号码中选择1个或多个号码，每注由1个号码组成，只要当期开奖号码中的第一位、第二位、第三位开奖号码包含所选号码，即为中奖。',
+        methodexample: '投注方案：01<br>开奖号码：01 * * * *，* 01 * * *，* * 01 * *，即中前三位。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '前三位'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '中三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 196,
+        name: '中三位',
+        methoddesc: '从01-11中任意选择1个或1个以上号码。',
+        methodhelp: '从11个号码中选择1个或多个号码，每注由1个号码组成，只要当期开奖号码中的第二位、第三位、第四位开奖号码包含所选号码，即为中奖。',
+        methodexample: '投注方案：01<br>开奖号码：* 01 * * *，*  * 01 * *，* * * 01 *，即中中三位。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '中三位'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '后三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 197,
+        name: '后三位',
+        methoddesc: '从01-11中任意选择1个或1个以上号码。',
+        methodhelp: '从11个号码中选择1个或多个号码，每注由1个号码组成，只要当期开奖号码中的第三位、第四位、第五位开奖号码包含所选号码，即为中奖。',
+        methodexample: '投注方案：01<br>开奖号码：* * 01 * *，* * * 01 *，* * * * 01，即中后三位。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '后三位'
+    }]
+},
+{
+    title: '定位胆',
+    label: [{
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '第一位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '第二位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            },
+            {
+                title: '第三位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 2,
+                cols: 1
+            },
+            {
+                title: '第四位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 3,
+                cols: 1
+            },
+            {
+                title: '第五位',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 4,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X,X,X,X,X',
+        code_sp: 's',
+        methodid: 198,
+        name: '定位胆',
+        methoddesc: '从任意位置上任意选择1个或1个以上号码。',
+        methodhelp: '从第一位至第五位中，任意1个或多个位置上选择1个或1个以上号码，投注号码与相同位置上的开奖号码对位一致，即为中奖。',
+        methodexample: '投注方案：第一位 01<br>开奖号码：01 * * * *，即中定位胆。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '定位胆'
+    }]
+},
+{
+    title: '任选复式',
+    label: [{
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选1中1',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 199,
+        name: '任选一中一',
+        methoddesc: '从01-11中任意选择1个或1个以上号码。',
+        methodhelp: '从11个号码中选择1个或多个号码，每注由1个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05<br>开奖号码：08 04 11 05 03，即中任选一中一。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选一中一'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选2中2',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 2
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 200,
+        name: '任选二中二',
+        methoddesc: '从01-11中任意选择2个或2个以上号码。',
+        methodhelp: '从11个号码中选择2个或多个号码，每注由2个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 04<br>开奖号码：08 04 11 05 03，即中任选二中二。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选二中二'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选3中3',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 3
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 201,
+        name: '任选三中三',
+        methoddesc: '从01-11中任意选择3个或3个以上号码。',
+        methodhelp: '从11个号码中选择3个或多个号码，每注由3个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 04 11<br>开奖号码：08 04 11 05 03，即中任选三中三。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选三中三'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选4中4',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 4
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 202,
+        name: '任选四中四',
+        methoddesc: '从01-11中任意选择4个或4个以上号码。',
+        methodhelp: '从11个号码中选择4个或多个号码，每注由4个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 04 08 03<br>开奖号码：08 04 11 05 03，即中任选四中四。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选四中四'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选5中5',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 5
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 203,
+        name: '任选五中五',
+        methoddesc: '从01-11中任意选择5个或5个以上号码。',
+        methodhelp: '从11个号码中选择5个或多个号码，每注由5个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 04 11 03 08<br>开奖号码：08 04 11 05 03，即中任选五中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选五中五'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选6中5',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 6
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 204,
+        name: '任选六中五',
+        methoddesc: '从01-11中任意选择6个或6个以上号码。',
+        methodhelp: '从11个号码中选择6个或多个号码，每注由6个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 10 04 11 03 08<br>开奖号码：08 04 11 05 03，即中任选六中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选六中五'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选7中5',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 7
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 205,
+        name: '任选七中五',
+        methoddesc: '从01-11中任意选择7个或7个以上号码。',
+        methodhelp: '从11个号码中选择7个或多个号码，每注由7个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 10 04 11 03 08 09<br>开奖号码：08 04 11 05 03，即中任选七中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选七中五'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '选8中5',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1,
+                minchosen: 8
+            }],
+            noBigIndex: 5,
+            isButton: true
+        },
+        show_str: 'X',
+        code_sp: ',',
+        methodid: 206,
+        name: '任选八中五',
+        methoddesc: '从01-11中任意选择8个或8个以上号码。',
+        methodhelp: '从11个号码中选择8个或多个号码，每注由8个号码组成，只要当期的5个开奖号码中包含所选号码，即为中奖。',
+        methodexample: '投注方案：05 10 04 11 03 08 09 01<br>开奖号码：08 04 11 05 03，即中任选八中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选八中五'
+    }]
+},
+{
+    title: '任选单式',
+    label: [{
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 207,
+        truemethodid: 207,
+        name: '任选一中一',
+        methoddesc: '手动输入号码，从01-11中任意输入1个号码组成一注。',
+        methodhelp: '手动输入1个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05<br>开奖号码：08 04 11 05 03，即中任选一中一。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选一中一'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 208,
+        truemethodid: 208,
+        name: '任选二中二',
+        methoddesc: '手动输入号码，从01-11中任意输入2个号码组成一注。',
+        methodhelp: '手动输入2个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 04<br>开奖号码：08 04 11 05 03，即中任选二中二。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选二中二'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 209,
+        truemethodid: 209,
+        name: '任选三中三',
+        methoddesc: '手动输入号码，从01-11中任意输入3个号码组成一注。',
+        methodhelp: '手动输入3个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 04 11<br>开奖号码：08 04 11 05 03，即中任选三中三。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选三中三'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 210,
+        truemethodid: 210,
+        name: '任选四中四',
+        methoddesc: '手动输入号码，从01-11中任意输入4个号码组成一注。',
+        methodhelp: '手动输入4个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 04 08 03<br>开奖号码：08 04 11 05 03，即中任选四中四。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选四中四'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 211,
+        truemethodid: 211,
+        name: '任选五中五',
+        methoddesc: '手动输入号码，从01-11中任意输入5个号码组成一注。',
+        methodhelp: '手动输入5个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 04 11 03 08<br>开奖号码：08 04 11 05 03，即中任选五中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选五中五'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 212,
+        truemethodid: 212,
+        name: '任选六中五',
+        methoddesc: '手动输入号码，从01-11中任意输入6个号码组成一注。',
+        methodhelp: '手动输入6个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 10 04 11 03 08<br>开奖号码：08 04 11 05 03，即中任选六中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选六中五'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 213,
+        truemethodid: 213,
+        name: '任选七中五',
+        methoddesc: '手动输入号码，从01-11中任意输入7个号码组成一注。',
+        methodhelp: '手动输入7个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 10 04 11 03 08 09<br>开奖号码：08 04 11 05 03，即中任选七中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选七中五'
+    },
+    {
+        selectarea: {
+            type: 'input',
+            singletypetips: '三码 01 02 03;02 03 04任选 01 02 03 04 05'
+        },
+        show_str: 'X',
+        code_sp: ';',
+        methodid: 214,
+        truemethodid: 214,
+        name: '任选八中五',
+        methoddesc: '手动输入号码，从01-11中任意输入8个号码组成一注。',
+        methodhelp: '手动输入8个号码组成一注，只要当期的5个开奖号码中包含所输入号码，即为中奖。',
+        methodexample: '投注方案：05 10 04 11 03 08 09 01<br>开奖号码：08 04 11 05 03，即中任选八中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选八中五'
+    }]
+},
+{
+    title: '任选胆拖',
+    label: [{
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 215,
+        name: '任选二中二',
+        methoddesc: '从01-11中，选取2个及以上的号码进行投注，2个号码一注,每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选出2个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共2个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 06<br>开奖号码：06 08 11 09 02，即中任选二中二。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选二中二'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 216,
+        name: '任选三中三',
+        methoddesc: '从01-11中，选取3个及以上的号码进行投注，3个号码一注，每注需至少包括1个胆码及1个拖码',
+        methodhelp: '从01-11中选出3个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共3个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 06 11<br>开奖号码：06 08 11 09 02，即中任选三中三。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选三中三'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 217,
+        name: '任选四中四',
+        methoddesc: '从01-11中，选取4个及以上的号码进行投注，4个号码一注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选出4个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共4个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 06 09 11 <br>开奖号码：06 08 11 09 02，即中任选四中四。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选四中四'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 218,
+        name: '任选五中五',
+        methoddesc: '从01-11中，选取5个及以上的号码进行投注，5个号码一注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选出5个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共5个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 02 06 09 11 <br>开奖号码：06 08 11 09 02，即中任选五中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选五中五'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 219,
+        name: '任选六中五',
+        methoddesc: '从01-11中，选取6个及以上的号码进行投注，6个号码一注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选出6个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共6个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 02 05 06 09 11<br>开奖号码：06 08 11 09 02，即中任选六中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选六中五'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 220,
+        name: '任选七中五',
+        methoddesc: '从01-11中，选取7个及以上的号码进行投注，7个号码一注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选出7个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共7个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 01 02 05 06 09 11<br>开奖号码：06 08 11 09 02，即中任选七中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选七中五'
+    },
+    {
+        selectarea: {
+            type: 'digital',
+            layout: [{
+                title: '胆码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 0,
+                cols: 1
+            },
+            {
+                title: '拖码',
+                no: '01|02|03|04|05|06|07|08|09|10|11',
+                place: 1,
+                cols: 1
+            }],
+            noBigIndex: 5,
+            isButton: true,
+            isDanTuo: true
+        },
+        show_str: 'X| X',
+        code_sp: ',',
+        methodid: 221,
+        name: '任选八中五',
+        methoddesc: '从01-11中，选取8个及以上的号码进行投注，8个号码一注，每注需至少包括1个胆码及1个拖码。',
+        methodhelp: '从01-11中选出8个或多个号码进行投注，每注需至少包括1个胆码及1个拖码，共8个号码。只要当期5个开奖号码中包含所选投注号码，即为中奖。',
+        methodexample: '投注方案：胆码 08，托码 01 02 03 05 06 09 11 <br>开奖号码：06 08 11 09 02，即中任选八中五。',
+        prize: {
+            1 : '1700.00'
+        },
+        dyprize: [],
+        modes: [{
+            modeid: 1,
+            name: '元',
+            rate: 1
+        },
+        {
+            modeid: 2,
+            name: '角',
+            rate: 0.1
+        },
+        {
+            modeid: 3,
+            name: '分',
+            rate: 0.01
+        }],
+        maxcodecount: 0,
+        isrx: 0,
+        numcount: 0,
+        defaultposition: '00000',
+        desc: '任选八中五'
+    }]
+}];

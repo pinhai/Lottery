@@ -9,7 +9,7 @@ import java.util.List;
 public class BetSelectAreaModel {
 
     private String type;
-    private List<BetListItemModel> layout;
+    private BetListItemModel[] layout;
     private int noBigIndex;
     private boolean isButton;
 
@@ -22,11 +22,11 @@ public class BetSelectAreaModel {
         this.type = type;
     }
 
-    public List<BetListItemModel> getLayout() {
+    public BetListItemModel[] getLayout() {
         return layout;
     }
 
-    public void setLayout(List<BetListItemModel> layout) {
+    public void setLayout(BetListItemModel[] layout) {
         this.layout = layout;
     }
 

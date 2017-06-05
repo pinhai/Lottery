@@ -491,13 +491,31 @@ public class LotteryUtils {
      */
     public static List<BetBigBigModel> getBetLayout(Context context, String lotteryId){
         List<BetBigBigModel> result = new ArrayList<>();
+        String fileName = "";
+
+        if(lotteryId.equals("51") || lotteryId.equals("7") || lotteryId.equals("4") || lotteryId.equals("73")){
+            fileName = "face.5.json";
+        }else if(lotteryId.equals("2")){
+            fileName = "face.12.json";
+        }else if(lotteryId.equals("1")){
+            fileName = "face.11.json";
+        }else if(lotteryId.equals("3")){
+            fileName = "face.4.json";
+        }else if(lotteryId.equals("12") ||lotteryId.equals("13") ||lotteryId.equals("14") ||lotteryId.equals("15")){
+            fileName = "face.8.json";
+        }else if(lotteryId.equals("11")){
+            fileName = "face.7.json";
+        }else if(lotteryId.equals("9") || lotteryId.equals("52")){
+            fileName = "face.3.json";
+        }else if(lotteryId.equals("41") || lotteryId.equals("42")){
+//            fileName = "methods.41.json";
+        }
 
         try {
-            InputStreamReader inputReader = new InputStreamReader(context.getResources().getAssets().open("face.5.json") );
+            InputStreamReader inputReader = new InputStreamReader(context.getResources().getAssets().open(fileName) );
             BufferedReader bufReader = new BufferedReader(inputReader);
             StringBuffer sb = new StringBuffer();
-            String line="";
-            List<String[]> temp = new ArrayList<>();
+            String line;
             while((line = bufReader.readLine()) != null) {
                 sb.append(line);
             }

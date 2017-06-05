@@ -9,7 +9,7 @@ import java.util.List;
 public class BetBigModel {
 
     String gtitle;
-    List<BetBigItemModel> label;
+    BetBigItemModel[] label;
 
     public String getGtitle() {
         return gtitle;
@@ -19,11 +19,11 @@ public class BetBigModel {
         this.gtitle = gtitle;
     }
 
-    public List<BetBigItemModel> getLabel() {
+    public BetBigItemModel[] getLabel() {
         return label;
     }
 
-    public void setLabel(List<BetBigItemModel> label) {
+    public void setLabel(BetBigItemModel[] label) {
         this.label = label;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BetBigItemModel {
 
-    List<BetSelectAreaModel> selectarea;
+    BetSelectAreaModel selectarea;
     String show_str;
     String code_sp;
     int methodid;
@@ -22,11 +22,11 @@ public class BetBigItemModel {
     String defaultposition;
     String desc;
 
-    public List<BetSelectAreaModel> getSelectarea() {
+    public BetSelectAreaModel getSelectarea() {
         return selectarea;
     }
 
-    public void setSelectarea(List<BetSelectAreaModel> selectarea) {
+    public void setSelectarea(BetSelectAreaModel selectarea) {
         this.selectarea = selectarea;
     }
 
