@@ -8,20 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.forum.lottery.R;
-import com.forum.lottery.adapter.BetSelectAdapter;
 import com.forum.lottery.adapter.SelectLotteryListAdapter;
-import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
-import com.forum.lottery.model.BetItemModel;
-import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.ui.BaseBetFragment;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by admin_h on 2017/5/23.

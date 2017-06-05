@@ -5,20 +5,27 @@ import android.content.Context;
 import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.BetDetailModel;
-import com.forum.lottery.model.BetItemModel;
-import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.bet.BetBigBigModel;
+import com.forum.lottery.model.bet.BetItemModel;
+import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-import rx.subjects.ReplaySubject;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2017/5/24 0024.
@@ -76,7 +83,7 @@ public class LotteryUtils {
 //                if(listitem.get(j).isChecked()){
 //                    String value = listitem.get(j).getName();
 ////                    if(j != listitem.size()-1){
-//                    betLottery = betLottery + getBetItemForAddition(data.get(i).getLabel(), value) + "&";
+//                    betLottery = betLottery + getBetItemForAddition(data.get(i).getTitle(), value) + "&";
 ////                    }
 //                }
 //            }
@@ -475,4 +482,79 @@ public class LotteryUtils {
 
         return Arrays.asList(temp);
     }
+
+    /**
+     * 获取某彩种下注界面数据
+     * @param context
+     * @param lotteryId
+     * @return
+     */
+    public static List<BetBigBigModel> getBetLayout(Context context, String lotteryId){
+        List<BetBigBigModel> result = new ArrayList<>();
+
+        try {
+            InputStreamReader inputReader = new InputStreamReader(context.getResources().getAssets().open("face.5.json") );
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            StringBuffer sb = new StringBuffer();
+            String line="";
+            List<String[]> temp = new ArrayList<>();
+            while((line = bufReader.readLine()) != null) {
+                sb.append(line);
+            }
+            result = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel.class);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
+
+    /**
+     * @param json
+     * @param clazz
+     * @return
+     */
+    public static <T> List<T> jsonToList(String json, Class<T[]> clazz)
+    {
+        Gson gson = new Gson();
+        T[] array = gson.fromJson(json, clazz);
+        return Arrays.asList(array);
+    }
+
+    /**
+     * @param json
+     * @param clazz
+     * @return
+     */
+    public static <T> ArrayList<T> jsonToArrayList(String json, Class<T> clazz)
+    {
+        Type type = new TypeToken<ArrayList<JsonObject>>(){}.getType();
+        ArrayList<JsonObject> jsonObjects = new Gson().fromJson(json, type);
+
+        ArrayList<T> arrayList = new ArrayList<>();
+        for (JsonObject jsonObject : jsonObjects)
+        {
+            arrayList.add(new Gson().fromJson(jsonObject, clazz));
+        }
+        return arrayList;
+    }
+
+    /**
+     * 去除字符串中的空格、回车、换行符、制表符
+     * @param str
+     * @return
+     */
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str!=null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
+    }
+
 }

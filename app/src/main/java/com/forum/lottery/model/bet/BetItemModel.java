@@ -1,4 +1,4 @@
-package com.forum.lottery.model;
+package com.forum.lottery.model.bet;
 
 /**
  * 下注选项

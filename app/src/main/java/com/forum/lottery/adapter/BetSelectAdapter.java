@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
 
 import com.forum.lottery.R;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
-import com.forum.lottery.model.BetItemModel;
+import com.forum.lottery.model.bet.BetItemModel;
 
 import org.greenrobot.eventbus.EventBus;
 

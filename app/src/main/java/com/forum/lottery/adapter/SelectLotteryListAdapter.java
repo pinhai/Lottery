@@ -9,14 +9,11 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
-import com.forum.lottery.model.BetItemModel;
-import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.bet.BetItemModel;
+import com.forum.lottery.model.bet.BetListItemModel;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * 彩票下注界面-选择数字
@@ -80,7 +77,7 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     }
 
     private void setView(int position, ViewHolder viewHolder) {
-        viewHolder.tv_label.setText(data.get(position).getLabel());
+        viewHolder.tv_label.setText(data.get(position).getTitle());
 
         BetSelectAdapter adapter = adapters.get(position);
         viewHolder.gv_wei.setAdapter(adapter);

@@ -1,7 +1,6 @@
 package com.forum.lottery.ui.buy;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
@@ -16,16 +15,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -36,8 +31,8 @@ import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.model.BetDetailModel;
-import com.forum.lottery.model.BetItemModel;
-import com.forum.lottery.model.BetListItemModel;
+import com.forum.lottery.model.bet.BetItemModel;
+import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
@@ -159,7 +154,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         tv_nextIssue = findView(R.id.tv_nextIssue);
         tv_openNum = findView(R.id.tv_openNum);
         tv_playWaySelect = findView(R.id.tv_playWaySelect);
-//        tv_playWaySelect.setOnClickListener(this);  //先屏蔽
+        tv_playWaySelect.setOnClickListener(this);
 
         refreshIssue();
 
@@ -258,19 +253,19 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         }
 
         BetListItemModel listitem1 = new BetListItemModel();
-        listitem1.setLabel("万位");
+        listitem1.setTitle("万位");
         listitem1.setBetItems(itemIntenal1);
         BetListItemModel listitem2 = new BetListItemModel();
-        listitem2.setLabel("千位");
+        listitem2.setTitle("千位");
         listitem2.setBetItems(itemIntenal2);
         BetListItemModel listitem3 = new BetListItemModel();
-        listitem3.setLabel("百位");
+        listitem3.setTitle("百位");
         listitem3.setBetItems(itemIntenal3);
         BetListItemModel listitem4 = new BetListItemModel();
-        listitem4.setLabel("十位");
+        listitem4.setTitle("十位");
         listitem4.setBetItems(itemIntenal4);
         BetListItemModel listitem5 = new BetListItemModel();
-        listitem5.setLabel("个位");
+        listitem5.setTitle("个位");
         listitem5.setBetItems(itemIntenal5);
 
         data.add(listitem1);
@@ -278,6 +273,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         data.add(listitem3);
         data.add(listitem4);
         data.add(listitem5);
+
+
+        LotteryUtils.getBetLayout(this, lotteryVO.getLotteryid());
 
 
     }
