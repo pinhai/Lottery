@@ -1,6 +1,7 @@
 package com.forum.lottery.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,12 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     }
 
     private void setView(int position, ViewHolder viewHolder) {
-        viewHolder.tv_label.setText(data.get(position).getTitle());
+        if(TextUtils.isEmpty(data.get(position).getTitle())){
+            viewHolder.tv_label.setVisibility(View.INVISIBLE);
+        }else {
+            viewHolder.tv_label.setVisibility(View.VISIBLE);
+            viewHolder.tv_label.setText(data.get(position).getTitle());
+        }
 
         BetSelectAdapter adapter = adapters.get(position);
         viewHolder.gv_wei.setAdapter(adapter);
@@ -91,6 +97,18 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
+        adapters.clear();
+        for(int i=adapters.size(); i<data.size(); i++){
+            List<BetItemModel> itemData = data.get(i).getBetItems();
+            BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
+                @Override
+                public void onCheckedChanged(boolean isChecked) {
+
+                }
+            });
+            adapters.add(adapter);
+
+        }
         for(int i=0; i<data.size(); i++){
             adapters.get(i).notifyDataSetChanged();
         }

@@ -6,6 +6,8 @@ import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.bet.BetBigBigModel;
+import com.forum.lottery.model.bet.BetBigItemModel;
+import com.forum.lottery.model.bet.BetBigModel;
 import com.forum.lottery.model.bet.BetItemModel;
 import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.model.PlayTypeA;
@@ -487,26 +489,43 @@ public class LotteryUtils {
      * 获取某彩种下注界面数据
      * @param context
      * @param lotteryId
+     * @param playWays
      * @return
      */
-    public static List<BetBigBigModel> getBetLayout(Context context, String lotteryId){
+    public static List<BetBigBigModel> getBetLayout(Context context, String lotteryId, List<PlayTypeA> playWays){
         List<BetBigBigModel> result = new ArrayList<>();
         String fileName = "";
 
+        List<String> playTypeAsMatch = new ArrayList<>(), playTypeBsMatch = new ArrayList<>();
+
         if(lotteryId.equals("51") || lotteryId.equals("7") || lotteryId.equals("4") || lotteryId.equals("73")){
             fileName = "face.5.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json5));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json5));
         }else if(lotteryId.equals("2")){
             fileName = "face.12.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json12));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json12));
         }else if(lotteryId.equals("1")){
             fileName = "face.11.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json12));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json12));
         }else if(lotteryId.equals("3")){
             fileName = "face.4.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json12));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json12));
         }else if(lotteryId.equals("12") ||lotteryId.equals("13") ||lotteryId.equals("14") ||lotteryId.equals("15")){
             fileName = "face.8.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json8));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json8));
         }else if(lotteryId.equals("11")){
             fileName = "face.7.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json7));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json7));
         }else if(lotteryId.equals("9") || lotteryId.equals("52")){
             fileName = "face.3.json";
+            playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json3));
+            playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json3));
         }else if(lotteryId.equals("41") || lotteryId.equals("42")){
 //            fileName = "methods.41.json";
         }
@@ -521,9 +540,46 @@ public class LotteryUtils {
             }
             result = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel.class);
 
-
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+
+        for(BetBigBigModel betBigBigModel : result){
+            if(!playTypeAsMatch.contains(betBigBigModel.getTitle())){
+                continue;
+            }
+            PlayTypeA playTypeA = new PlayTypeA();
+            playTypeA.setLotteryId(lotteryId);
+            playTypeA.setPlayTypeA(betBigBigModel.getTitle());
+            List<PlayTypeB> playTypeBs = new ArrayList<>();
+
+            for(BetBigModel betBigModel : betBigBigModel.getLabel()){
+                for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
+                    if(betBigItemModel.getSelectarea().getLayout() != null
+                            && playTypeBsMatch.contains(betBigItemModel.getDesc())){
+                        PlayTypeB playTypeB = new PlayTypeB();
+                        playTypeB.setPlayTypeB(betBigItemModel.getDesc());
+                        playTypeB.setPlayId(betBigItemModel.getMethodid()+"");
+                        playTypeB.setPeilv(9.8+"");
+                        playTypeBs.add(playTypeB);
+                        for(BetListItemModel betListItemModel : betBigItemModel.getSelectarea().getLayout()){
+                            String no = betListItemModel.getNo();
+                            String[] nos =  no.split("\\|");
+                            List<BetItemModel> betItemModels = new ArrayList<>();
+                            for(String n : nos){
+                                BetItemModel item = new BetItemModel(n, false);
+                                betItemModels.add(item);
+                            }
+                            betListItemModel.setBetItems(betItemModels);
+                        }
+                    }
+                }
+            }
+            if(playTypeBs.size() > 0){
+                playTypeA.setPlayTypeBs(playTypeBs);
+                playWays.add(playTypeA);
+            }
         }
 
 
@@ -531,15 +587,26 @@ public class LotteryUtils {
     }
 
     /**
-     * @param json
-     * @param clazz
+     * 根据玩法id获取布局的精确数据
+     * @param dataAll
+     * @param palyId
      * @return
      */
-    public static <T> List<T> jsonToList(String json, Class<T[]> clazz)
-    {
-        Gson gson = new Gson();
-        T[] array = gson.fromJson(json, clazz);
-        return Arrays.asList(array);
+    public static List<BetListItemModel> getBetListItem(List<BetBigBigModel> dataAll, String palyId){
+        List<BetListItemModel> result = new ArrayList<>();
+
+        for(BetBigBigModel betBigBigModel : dataAll){
+            for(BetBigModel betBigModel : betBigBigModel.getLabel()){
+                for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
+                    if(Integer.parseInt(palyId) == betBigItemModel.getMethodid() && betBigItemModel.getSelectarea() != null
+                            && betBigItemModel.getSelectarea().getLayout() != null){
+                        result = Arrays.asList(betBigItemModel.getSelectarea().getLayout());
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     /**

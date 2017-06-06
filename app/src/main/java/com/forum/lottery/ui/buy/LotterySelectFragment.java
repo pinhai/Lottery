@@ -9,9 +9,13 @@ import android.widget.ListView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.SelectLotteryListAdapter;
+import com.forum.lottery.model.bet.BetBigBigModel;
+import com.forum.lottery.model.bet.BetItemModel;
 import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.ui.BaseBetFragment;
+import com.forum.lottery.utils.LotteryUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +25,13 @@ import java.util.List;
 public class LotterySelectFragment extends BaseBetFragment {
 
     private ListView lv_lottery;
-    private static List<BetListItemModel> data;
+    private static List<BetBigBigModel> dataAll;
+    private List<BetListItemModel> data;
     private SelectLotteryListAdapter adapter;
 
-    public static LotterySelectFragment newInstance(List<BetListItemModel> data){
+    public static LotterySelectFragment newInstance(List<BetBigBigModel> dataAll){
         Bundle args = new Bundle();
-        LotterySelectFragment.data = data;
+        LotterySelectFragment.dataAll = dataAll;
 
         LotterySelectFragment fragment = new LotterySelectFragment();
         fragment.setArguments(args);
@@ -58,9 +63,31 @@ public class LotterySelectFragment extends BaseBetFragment {
     @Override
     protected void initData() {
 
-        adapter = new SelectLotteryListAdapter(getActivity(), data);
+        if(data == null){
+            data = new ArrayList<>();
+        }
+        if(adapter == null){
+            adapter = new SelectLotteryListAdapter(getActivity(), data);
+        }
     }
 
+    public void setPlayId(String playId){
+        if(data == null){
+            data = LotteryUtils.getBetListItem(dataAll, playId);
+        }else{
+            data.clear();
+            data.addAll(LotteryUtils.getBetListItem(dataAll, playId));
+        }
+        if(adapter == null){
+            adapter = new SelectLotteryListAdapter(getActivity(), data);
+        }else {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public List<BetListItemModel> getData(){
+        return data;
+    }
 
     @Override
     public void onDestroy() {

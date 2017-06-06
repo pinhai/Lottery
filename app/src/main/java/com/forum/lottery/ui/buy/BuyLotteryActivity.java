@@ -31,13 +31,11 @@ import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.model.BetDetailModel;
-import com.forum.lottery.model.bet.BetItemModel;
-import com.forum.lottery.model.bet.BetListItemModel;
+import com.forum.lottery.model.bet.BetBigBigModel;
 import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.ui.BaseActivity;
-import com.forum.lottery.ui.BaseBetFragment;
 import com.forum.lottery.ui.openlottery.LotteryListActivity;
 import com.forum.lottery.ui.own.BetRecordActivity;
 import com.forum.lottery.ui.trend.TrendActivity;
@@ -72,7 +70,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private LotteryVO lotteryVO;
     private boolean backAddBet;  //是否从“返回添加一注”进来
 
-    private BaseBetFragment betFragment;
+    private LotterySelectFragment betFragment;
 
     //机选
     private SensorManager sensorManager;
@@ -85,7 +83,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private float lastY;
     private float lastZ;
 
-    private List<BetListItemModel> data;    //当前玩法对应的所有item和check状态
+    private List<BetBigBigModel> dataAll;    //当前玩法对应的所有item和check状态
     private List<BetDetailModel> betDetailModels;  //下的注
     private List<PlayTypeA> playWays;  //当前彩票下所有玩法
 
@@ -137,9 +135,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 //        betFragment = DingWeiDanSelectFragment.newInstance(onCheckedListener);
-        betFragment = LotterySelectFragment.newInstance(data);
+        betFragment = LotterySelectFragment.newInstance(dataAll);
         ft.add(R.id.rl_container, betFragment);
-        ft.commit();
+        ft.commitNow();
 
         iv_assistant = findView(R.id.iv_assistant);
         iv_assistant.setOnClickListener(this);
@@ -190,7 +188,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         betDetailModels = new ArrayList<>();
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
         backAddBet = getIntent().getBooleanExtra("backAddBet", false);
-        playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
+        playWays = new ArrayList<>();
+//        playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
         loadBetData();
 
     }
@@ -238,44 +237,44 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     }
 
     private void loadBetData() {
-        data = new ArrayList<>();
-        List<BetItemModel> itemIntenal1 = new ArrayList<>();
-        List<BetItemModel> itemIntenal2 = new ArrayList<>();
-        List<BetItemModel> itemIntenal3 = new ArrayList<>();
-        List<BetItemModel> itemIntenal4 = new ArrayList<>();
-        List<BetItemModel> itemIntenal5 = new ArrayList<>();
-        for(int i=0; i<10; i++){
-            itemIntenal1.add(new BetItemModel(i+"", false));
-            itemIntenal2.add(new BetItemModel(i+"", false));
-            itemIntenal3.add(new BetItemModel(i+"", false));
-            itemIntenal4.add(new BetItemModel(i+"", false));
-            itemIntenal5.add(new BetItemModel(i+"", false));
-        }
+        dataAll = new ArrayList<>();
+//        List<BetItemModel> itemIntenal1 = new ArrayList<>();
+//        List<BetItemModel> itemIntenal2 = new ArrayList<>();
+//        List<BetItemModel> itemIntenal3 = new ArrayList<>();
+//        List<BetItemModel> itemIntenal4 = new ArrayList<>();
+//        List<BetItemModel> itemIntenal5 = new ArrayList<>();
+//        for(int i=0; i<10; i++){
+//            itemIntenal1.add(new BetItemModel(i+"", false));
+//            itemIntenal2.add(new BetItemModel(i+"", false));
+//            itemIntenal3.add(new BetItemModel(i+"", false));
+//            itemIntenal4.add(new BetItemModel(i+"", false));
+//            itemIntenal5.add(new BetItemModel(i+"", false));
+//        }
+//
+//        BetListItemModel listitem1 = new BetListItemModel();
+//        listitem1.setTitle("万位");
+//        listitem1.setBetItems(itemIntenal1);
+//        BetListItemModel listitem2 = new BetListItemModel();
+//        listitem2.setTitle("千位");
+//        listitem2.setBetItems(itemIntenal2);
+//        BetListItemModel listitem3 = new BetListItemModel();
+//        listitem3.setTitle("百位");
+//        listitem3.setBetItems(itemIntenal3);
+//        BetListItemModel listitem4 = new BetListItemModel();
+//        listitem4.setTitle("十位");
+//        listitem4.setBetItems(itemIntenal4);
+//        BetListItemModel listitem5 = new BetListItemModel();
+//        listitem5.setTitle("个位");
+//        listitem5.setBetItems(itemIntenal5);
+//
+//        dataAll.add(listitem1);
+//        dataAll.add(listitem2);
+//        dataAll.add(listitem3);
+//        dataAll.add(listitem4);
+//        dataAll.add(listitem5);
 
-        BetListItemModel listitem1 = new BetListItemModel();
-        listitem1.setTitle("万位");
-        listitem1.setBetItems(itemIntenal1);
-        BetListItemModel listitem2 = new BetListItemModel();
-        listitem2.setTitle("千位");
-        listitem2.setBetItems(itemIntenal2);
-        BetListItemModel listitem3 = new BetListItemModel();
-        listitem3.setTitle("百位");
-        listitem3.setBetItems(itemIntenal3);
-        BetListItemModel listitem4 = new BetListItemModel();
-        listitem4.setTitle("十位");
-        listitem4.setBetItems(itemIntenal4);
-        BetListItemModel listitem5 = new BetListItemModel();
-        listitem5.setTitle("个位");
-        listitem5.setBetItems(itemIntenal5);
 
-        data.add(listitem1);
-        data.add(listitem2);
-        data.add(listitem3);
-        data.add(listitem4);
-        data.add(listitem5);
-
-
-        LotteryUtils.getBetLayout(this, lotteryVO.getLotteryid());
+        dataAll = LotteryUtils.getBetLayout(this, lotteryVO.getLotteryid(), playWays);
 
 
     }
@@ -295,8 +294,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
         showProgressDialog(false);
         //验证合理性
-//        String buyNo = URLEncoder.encode(LotteryUtils.getBetLottery(data));
-        String buyNo = LotteryUtils.encode(LotteryUtils.getBetLottery(data));
+//        String buyNo = URLEncoder.encode(LotteryUtils.getBetLottery(dataAll));
+        String buyNo = LotteryUtils.encode(LotteryUtils.getBetLottery(betFragment.getData()));
 
         createHttp(LotteryService.class)
                 .lotteryNumsCheck(buyNo, lotteryVO.getLotteryid(), playTypeB.getPlayId())
@@ -320,7 +319,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                     }
                 });
 
-//        LotteryUtils.getBetLotteryFromAddition(data);
+//        LotteryUtils.getBetLotteryFromAddition(dataAll);
     }
 
     private void betGetPeilv() {
@@ -388,7 +387,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 float fanli = 0;
                 //去下注
                 String playName = "[" + playTypeA.getPlayTypeA() + "_" + playTypeB.getPlayTypeB() + "]";
-                betDetailModels = LotteryUtils.getBettedLottery(data, lotteryVO, betCount, oneBetMoney, peilv, fanli,
+                betDetailModels = LotteryUtils.getBettedLottery(betFragment.getData(), lotteryVO, betCount, oneBetMoney, peilv, fanli,
                         playTypeB.getPlayId(), playName);
                 if(backAddBet){
                     Intent i2 = new Intent();
@@ -440,7 +439,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
      */
     private void selectByMachine(){
         //自己生成
-//        LotteryUtils.selectByMachineFromAddition(data);
+//        LotteryUtils.selectByMachineFromAddition(dataAll);
 //        betFragment.notifyDataSetChanged();
 //        selectLotteryBetEvent(new BuyLotteryCheckChangeEvent());
         //从后台获取
@@ -452,7 +451,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                     public void onSuccess(ResultData value) {
                         if(value != null && value.getCode() == 1){
                             String result = value.getResult().trim();
-                            LotteryUtils.selectByRemote(data, result);
+                            LotteryUtils.selectByRemote(betFragment.getData(), result);
                             betFragment.notifyDataSetChanged();
                             selectLotteryBetEvent(new BuyLotteryCheckChangeEvent());
                         }else{
@@ -471,7 +470,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     @Subscribe
     public void selectLotteryBetEvent(BuyLotteryCheckChangeEvent event){
-        betCount = LotteryUtils.getBetCountFromAddition(data);
+        betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
         tv_betCount.setText(betCount + "");
         tv_betMoney.setText((betCount *2) + "");
     }
@@ -567,12 +566,12 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     private PlayWaySelectorPopup.OnPlayTypeCheckListener playTypeCheckListener = new PlayWaySelectorPopup.OnPlayTypeCheckListener() {
         @Override
-        public void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB){
+        public void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB, String playId){
             playTypeA = typeA;
             playTypeB = typeB;
             tv_playWaySelect.setText(playTypeA.getPlayTypeA() + "-" + playTypeB.getPlayTypeB());
-            //// TODO: 2017/5/26  刷新下注界面
-
+            //  刷新下注界面
+            betFragment.setPlayId(playId);
         }
     };
 

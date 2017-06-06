@@ -53,4 +53,143 @@
         <item>九位</item>
         <item>十位</item>
     </string-array>
+
+
+    <string-array name="playTypeA_json5">
+        <item>定位胆</item>
+        <item>五星</item>
+        <item>四星</item>
+        <item>前三</item>
+        <item>后三</item>
+        <item>前二</item>
+        <item>大小单双</item>
+        <item>不定位</item>
+        <item>任选二</item>
+        <item>任选三</item>
+        <item>任选四</item>
+    </string-array>
+    <string-array name="playTypeB_json5">
+        <item>定位胆</item>
+        <item>直选复式</item>
+        <item>前三组合</item>
+        <item>直选和值</item>
+        <item>直选跨度</item>
+        <item>组三复式</item>
+        <item>组六复式</item>
+        <item>组选和值</item>
+        <item>组选包胆</item>
+        <item>和值尾数</item>
+        <item>特殊号</item>
+        <item>组选复式</item>
+        <item>前二大小单双</item>
+        <item>后二大小单双</item>
+        <item>前三大小单双</item>
+        <item>后三大小单双</item>
+        <item>前三一码</item>
+        <item>前三二码</item>
+        <item>后三一码</item>
+        <item>后三二码</item>
+        <item>前四一码</item>
+        <item>前四二码</item>
+        <item>后四一码</item>
+        <item>后四二码</item>
+        <item>五星一码</item>
+        <item>五星二码</item>
+        <item>五星三码</item>
+        <item>组选24</item>
+        <item>组选12</item>
+        <item>组选6</item>
+        <item>组选4</item>
+    </string-array>
+
+    <string-array name="playTypeA_json12">
+        <item>三星</item>
+        <item>二星</item>
+        <item>定位胆</item>
+        <item>不定位</item>
+        <item>大小单双</item>
+    </string-array>
+    <string-array name="playTypeB_json12">
+        <item>直选复式</item>
+        <item>直选和值</item>
+        <item>组三复式</item>
+        <item>组六复式</item>
+        <item>组三和值</item>
+        <item>组六和值</item>
+        <item>前二直选</item>
+        <item>后二直选</item>
+        <item>前二组选</item>
+        <item>后二组选</item>
+        <item>定位胆</item>
+        <item>一码不定位</item>
+        <item>二码不定位</item>
+        <item>前二大小单双</item>
+        <item>后二大小单双</item>
+    </string-array>
+
+    <string-array name="playTypeA_json8">
+        <item>三码</item>
+        <item>二码</item>
+        <item>不定位</item>
+        <item>定位胆</item>
+        <item>任选复式</item>
+        <item>任选胆拖</item>
+    </string-array>
+    <string-array name="playTypeB_json8">
+        <item>前三直选复式</item>
+        <item>前三组选复式</item>
+        <item>前三组选胆拖</item>
+        <item>中三直选复式</item>
+        <item>中三组选复式</item>
+        <item>中三组选胆拖</item>
+        <item>后三直选复式</item>
+        <item>后三组选复式</item>
+        <item>后三组选胆拖</item>
+        <item>前二直选复式</item>
+        <item>前二组选复式</item>
+        <item>前二组选胆拖</item>
+        <item>后二直选复式</item>
+        <item>后二组选复式</item>
+        <item>后二组选胆拖</item>
+        <item>前三位</item>
+        <item>中三位</item>
+        <item>后三位</item>
+        <item>定位胆</item>
+        <item>任选一中一</item>
+        <item>任选二中二</item>
+        <item>任选三中三</item>
+        <item>任选四中四</item>
+        <item>任选五中五</item>
+        <item>任选六中五</item>
+        <item>任选七中五</item>
+        <item>任选八中五</item>
+    </string-array>
+
+    <string-array name="playTypeA_json7">
+        <item>和值</item>
+        <item>三同号</item>
+        <item>三不同号</item>
+        <item>三连号</item>
+        <item>二同号</item>
+        <item>二不同号</item>
+    </string-array>
+    <string-array name="playTypeB_json7">
+        <item>和值</item>
+        <item>通选</item>
+        <item>单选</item>
+        <item>标准</item>
+        <item>胆拖</item>
+        <item>复选</item>
+    </string-array>
+
+    <string-array name="playTypeA_json3">
+        <item>前一</item>
+        <item>定位胆</item>
+        <item>前二</item>
+        <item>前三</item>
+    </string-array>
+    <string-array name="playTypeB_json3">
+        <item>直选复式</item>
+        <item>定位胆</item>
+    </string-array>
 </resources>

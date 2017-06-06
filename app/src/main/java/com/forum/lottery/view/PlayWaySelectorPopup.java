@@ -88,7 +88,7 @@ public class PlayWaySelectorPopup {
             @Override
             public void onChecked(String value, int position, boolean manual) {
                 PlayTypeB playTypeB = data.get(playTypeAPosition).getPlayTypeBs().get(position);
-                playTypeCheckListener.playTypeChecked(data.get(playTypeAPosition), playTypeB);
+                playTypeCheckListener.playTypeChecked(data.get(playTypeAPosition), playTypeB, playTypeB.getPlayId());
             }
         });
         gv_playTypeB = (MyGridView) popupView.findViewById(R.id.gv_playTypeB);
@@ -111,6 +111,6 @@ public class PlayWaySelectorPopup {
     }
 
     public interface OnPlayTypeCheckListener{
-        void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB);
+        void playTypeChecked(PlayTypeA typeA, PlayTypeB typeB, String playId);
     }
 }
