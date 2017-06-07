@@ -6,6 +6,68 @@
     <ListView
         android:id="@+id/lv_lottery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_weight="1"
+        android:layout_height="0dp" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_betBottombar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:text="万位"
+            android:textSize="18sp"
+            android:button="@null"
+            android:checked="false"
+            android:drawableLeft="@drawable/selector_bet_bottombar"
+            android:drawablePadding="3sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_marginLeft="6dp"
+            android:text="万位"
+            android:textSize="18sp"
+            android:button="@null"
+            android:checked="false"
+            android:drawableLeft="@drawable/selector_bet_bottombar"
+            android:drawablePadding="3sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_marginLeft="6dp"
+            android:text="万位"
+            android:textSize="18sp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/selector_bet_bottombar"
+            android:drawablePadding="3sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_marginLeft="6dp"
+            android:text="万位"
+            android:textSize="18sp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/selector_bet_bottombar"
+            android:drawablePadding="3sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_marginLeft="6dp"
+            android:text="万位"
+            android:textSize="18sp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/selector_bet_bottombar"
+            android:drawablePadding="3sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

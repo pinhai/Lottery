@@ -544,7 +544,42 @@ public class LotteryUtils {
             e.printStackTrace();
         }
 
+        //删除冗余数据
+        for(int i=0; i < result.size(); i++){
+            BetBigBigModel betBigBigModel = result.get(i);
+            if(betBigBigModel == null){
+                result.remove(i);
+                i--;
+                continue;
+            }
+            for(int j=0; j<betBigBigModel.getLabel().size(); j++){
+                BetBigModel betBigModel = betBigBigModel.getLabel().get(j);
+                if(betBigModel == null || betBigModel.getLabel() == null){
+                    betBigBigModel.getLabel().remove(j);
+                    j--;
+                    continue;
+                }
+                for(int k=0; k<betBigModel.getLabel().size(); k++){
+                    BetBigItemModel betBigItemModel = betBigModel.getLabel().get(k);
+                    if(betBigItemModel == null || betBigItemModel.getSelectarea() == null
+                            || betBigItemModel.getSelectarea().getLayout() == null){
+                        betBigModel.getLabel().remove(k);
+                        k--;
+                        continue;
+                    }
+                    for(int m=0; m<betBigItemModel.getSelectarea().getLayout().size(); m++){
+                        BetListItemModel betListItemModel = betBigItemModel.getSelectarea().getLayout().get(m);
+                        if(betListItemModel == null){
+                            betBigItemModel.getSelectarea().getLayout().remove(m);
+                            m--;
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
 
+        //生成玩法对象
         for(BetBigBigModel betBigBigModel : result){
             if(!playTypeAsMatch.contains(betBigBigModel.getTitle())){
                 continue;
@@ -556,13 +591,16 @@ public class LotteryUtils {
 
             for(BetBigModel betBigModel : betBigBigModel.getLabel()){
                 for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
-                    if(betBigItemModel.getSelectarea().getLayout() != null
+                    if(betBigItemModel != null && betBigItemModel.getSelectarea() != null && betBigItemModel.getSelectarea().getLayout() != null
                             && playTypeBsMatch.contains(betBigItemModel.getDesc())){
                         PlayTypeB playTypeB = new PlayTypeB();
                         playTypeB.setPlayTypeB(betBigItemModel.getDesc());
                         playTypeB.setPlayId(betBigItemModel.getMethodid()+"");
                         playTypeB.setPeilv(9.8+"");
-                        playTypeBs.add(playTypeB);
+                        if(checkPlayWay(lotteryId, playTypeA.getPlayTypeA(), playTypeB.getPlayTypeB())){
+                            playTypeBs.add(playTypeB);
+                        }
+
                         for(BetListItemModel betListItemModel : betBigItemModel.getSelectarea().getLayout()){
                             String no = betListItemModel.getNo();
                             String[] nos =  no.split("\\|");
@@ -586,6 +624,21 @@ public class LotteryUtils {
         return result;
     }
 
+//    private static boolean removeFromArray(Object[] array, int index){
+//
+//    }
+
+    private static boolean checkPlayWay(String lotteryId, String playA, String playB){
+        boolean result = true;
+        if(lotteryId.equals("51") || lotteryId.equals("7") || lotteryId.equals("4") || lotteryId.equals("73")){
+            if((playA.equals("五星") || playA.equals("四星")) && !playB.equals("直选复式")){
+                result = false;
+            }
+        }
+
+        return result;
+    }
+
     /**
      * 根据玩法id获取布局的精确数据
      * @param dataAll
@@ -600,7 +653,7 @@ public class LotteryUtils {
                 for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
                     if(Integer.parseInt(palyId) == betBigItemModel.getMethodid() && betBigItemModel.getSelectarea() != null
                             && betBigItemModel.getSelectarea().getLayout() != null){
-                        result = Arrays.asList(betBigItemModel.getSelectarea().getLayout());
+                        result = betBigItemModel.getSelectarea().getLayout();
                     }
                 }
             }

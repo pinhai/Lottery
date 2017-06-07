@@ -125,6 +125,8 @@
         <item>二码不定位</item>
         <item>前二大小单双</item>
         <item>后二大小单双</item>
+        <item>(前二)直选复式</item>
+        <item>(后二)直选复式</item>
     </string-array>
 
     <string-array name="playTypeA_json8">
@@ -191,5 +193,24 @@
     <string-array name="playTypeB_json3">
         <item>直选复式</item>
         <item>定位胆</item>
+    </string-array>
+
+
+
+    <string-array name="bottombar_playA">
+        <item>任选二</item>
+        <item>任选三</item>
+        <item>任选四</item>
+    </string-array>
+    <string-array name="bottombar_playB">
+        <item>直选和值</item>
+        <item>组选复式</item>
+        <item>组选和值</item>
+        <item>组三复式</item>
+        <item>组六复式</item>
+        <item>组选24</item>
+        <item>组选12</item>
+        <item>组选6</item>
+        <item>组选4</item>
     </string-array>
 </resources>

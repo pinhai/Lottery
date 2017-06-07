@@ -11,7 +11,8 @@ public class BetBigBigModel {
     String isrx;
     String isdefault;
     String title;
-    BetBigModel[] label;
+//    BetBigModel[] label;
+    List<BetBigModel> label;
 
     public String getIsrx() {
         return isrx;
@@ -37,11 +38,11 @@ public class BetBigBigModel {
         this.title = title;
     }
 
-    public BetBigModel[] getLabel() {
+    public List<BetBigModel> getLabel() {
         return label;
     }
 
-    public void setLabel(BetBigModel[] label) {
+    public void setLabel(List<BetBigModel> label) {
         this.label = label;
     }
 }

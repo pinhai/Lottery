@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
@@ -225,7 +226,12 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     }
 
     private void initPopup() {
-        playWaySelectorPopup = new PlayWaySelectorPopup(this, playWays, playTypeCheckListener);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                playWaySelectorPopup = new PlayWaySelectorPopup(BuyLotteryActivity.this, playWays, playTypeCheckListener);
+            }
+        }, 1000);
         initTick();
         startTick();
     }
@@ -571,7 +577,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             playTypeB = typeB;
             tv_playWaySelect.setText(playTypeA.getPlayTypeA() + "-" + playTypeB.getPlayTypeB());
             //  刷新下注界面
-            betFragment.setPlayId(playId);
+            betFragment.setPlayId(playId, typeA, typeB);
         }
     };
 
