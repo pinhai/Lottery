@@ -12,9 +12,10 @@ import com.forum.lottery.R;
 import com.forum.lottery.adapter.SelectLotteryListAdapter;
 import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
+import com.forum.lottery.model.bet.BetBigAllModel;
 import com.forum.lottery.model.bet.BetBigBigModel;
-import com.forum.lottery.model.bet.BetItemModel;
 import com.forum.lottery.model.bet.BetListItemModel;
+import com.forum.lottery.model.bet.BetListModel;
 import com.forum.lottery.ui.BaseBetFragment;
 import com.forum.lottery.utils.LotteryUtils;
 
@@ -29,15 +30,19 @@ import java.util.List;
 public class LotterySelectFragment extends BaseBetFragment {
 
     private ListView lv_lottery;
-    private static List<BetBigBigModel> dataAll;
-    private List<BetListItemModel> data;
+    private static BetBigAllModel dataAll;
+//    private List<BetListItemModel> data;
+    private BetListModel data = new BetListModel();
     private SelectLotteryListAdapter adapter;
+
+    private static String lotteryId;
 
     private LinearLayout ll_betBottombar;
 
-    public static LotterySelectFragment newInstance(List<BetBigBigModel> dataAll){
+    public static LotterySelectFragment newInstance(BetBigAllModel dataAll, String lotteryid){
         Bundle args = new Bundle();
         LotterySelectFragment.dataAll = dataAll;
+        LotterySelectFragment.lotteryId = lotteryid;
 
         LotterySelectFragment fragment = new LotterySelectFragment();
         fragment.setArguments(args);
@@ -62,37 +67,41 @@ public class LotterySelectFragment extends BaseBetFragment {
 
     @Override
     protected void initView() {
+        adapter = new SelectLotteryListAdapter(getActivity(), data.getData());
         lv_lottery = findView(R.id.lv_lottery);
         lv_lottery.setAdapter(adapter);
 
         ll_betBottombar = findView(R.id.ll_betBottombar);
+
+        ((BuyLotteryActivity)getActivity()).initPopup();
     }
 
     @Override
     protected void initData() {
 
-        if(data == null){
-            data = new ArrayList<>();
-        }
-        if(adapter == null){
-            adapter = new SelectLotteryListAdapter(getActivity(), data);
-        }
+//        if(data == null){
+//            data = new BetListModel();
+//        }
+//        if(adapter == null){
+//            adapter = new SelectLotteryListAdapter(getActivity(), data.getData());
+//        }
     }
 
     public void setPlayId(String playId, PlayTypeA typeA, PlayTypeB typeB){
-        if(data == null){
-            data = LotteryUtils.getBetListItem(dataAll, playId);
-        }else{
-            data.clear();
-            data.addAll(LotteryUtils.getBetListItem(dataAll, playId));
-        }
-        if(adapter == null){
-            adapter = new SelectLotteryListAdapter(getActivity(), data);
-        }else {
-            adapter.notifyDataSetChanged();
-        }
+//        if(data == null){
+            data = LotteryUtils.getBetListItem(dataAll, playId, lotteryId);
+//        }else{
+//            data.clear();
+//            data.addAll(LotteryUtils.getBetListItem(dataAll, playId, lotteryId));
+//        }
+//        if(adapter == null){
+//            adapter = new SelectLotteryListAdapter(getActivity(), data.getData());
+//        }else {
+            adapter.setData(data.getData());
+//        }
 
-        if(showBetBottomBar(typeA, typeB)){
+//        if(showBetBottomBar(typeA, typeB)){
+        if(data.isSelPosition()){
             ll_betBottombar.setVisibility(View.VISIBLE);
         }else{
             ll_betBottombar.setVisibility(View.GONE);
@@ -100,7 +109,7 @@ public class LotterySelectFragment extends BaseBetFragment {
     }
 
     public List<BetListItemModel> getData(){
-        return data;
+        return data.getData();
     }
 
     private boolean showBetBottomBar(PlayTypeA typeA, PlayTypeB typeB){

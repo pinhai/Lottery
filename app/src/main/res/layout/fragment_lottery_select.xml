@@ -29,7 +29,7 @@
             android:layout_height="wrap_content" />
         <CheckBox
             android:layout_marginLeft="6dp"
-            android:text="万位"
+            android:text="千位"
             android:textSize="18sp"
             android:button="@null"
             android:checked="false"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content" />
         <CheckBox
             android:layout_marginLeft="6dp"
-            android:text="万位"
+            android:text="百位"
             android:textSize="18sp"
             android:button="@null"
             android:checked="true"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content" />
         <CheckBox
             android:layout_marginLeft="6dp"
-            android:text="万位"
+            android:text="十位"
             android:textSize="18sp"
             android:button="@null"
             android:checked="true"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content" />
         <CheckBox
             android:layout_marginLeft="6dp"
-            android:text="万位"
+            android:text="个位"
             android:textSize="18sp"
             android:button="@null"
             android:checked="true"

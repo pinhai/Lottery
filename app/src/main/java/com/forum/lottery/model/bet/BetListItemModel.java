@@ -22,6 +22,7 @@ public class BetListItemModel {
     private int cols;
     private List<BetItemModel> betItems;
 
+
     public String getNo() {
         return no;
     }

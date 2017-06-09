@@ -89,6 +89,11 @@ public class SelectLotteryListAdapter extends BaseAdapter {
         viewHolder.gv_wei.setAdapter(adapter);
     }
 
+    public void setData(List<BetListItemModel> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
     class ViewHolder{
         TextView tv_label;
         GridView gv_wei;

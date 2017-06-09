@@ -13,7 +13,16 @@ public class BetSelectAreaModel {
     List<BetListItemModel> layout;
     private int noBigIndex;
     private boolean isButton;
+    private boolean selPosition;
 
+
+    public boolean isSelPosition() {
+        return selPosition;
+    }
+
+    public void setSelPosition(boolean selPosition) {
+        this.selPosition = selPosition;
+    }
 
     public String getType() {
         return type;

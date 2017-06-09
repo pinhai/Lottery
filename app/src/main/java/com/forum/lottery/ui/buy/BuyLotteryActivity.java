@@ -32,6 +32,7 @@ import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.model.BetDetailModel;
+import com.forum.lottery.model.bet.BetBigAllModel;
 import com.forum.lottery.model.bet.BetBigBigModel;
 import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.PlayTypeA;
@@ -84,7 +85,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private float lastY;
     private float lastZ;
 
-    private List<BetBigBigModel> dataAll;    //当前玩法对应的所有item和check状态
+    private BetBigAllModel dataAll;    //当前玩法对应的所有item和check状态
     private List<BetDetailModel> betDetailModels;  //下的注
     private List<PlayTypeA> playWays;  //当前彩票下所有玩法
 
@@ -104,7 +105,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
         initData();
         initView();
-        initPopup();
+//        initPopup();
         if(!AccountManager.getInstance().isLogin()){
             toast("当前未登录，无法购彩！");
         }
@@ -136,7 +137,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 //        betFragment = DingWeiDanSelectFragment.newInstance(onCheckedListener);
-        betFragment = LotterySelectFragment.newInstance(dataAll);
+        betFragment = LotterySelectFragment.newInstance(dataAll, lotteryVO.getLotteryid());
         ft.add(R.id.rl_container, betFragment);
         ft.commitNow();
 
@@ -225,13 +226,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void initPopup() {
+    public void initPopup() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 playWaySelectorPopup = new PlayWaySelectorPopup(BuyLotteryActivity.this, playWays, playTypeCheckListener);
             }
-        }, 1000);
+        }, 0);
         initTick();
         startTick();
     }
@@ -243,7 +244,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     }
 
     private void loadBetData() {
-        dataAll = new ArrayList<>();
+//        dataAll = new ArrayList<>();
 //        List<BetItemModel> itemIntenal1 = new ArrayList<>();
 //        List<BetItemModel> itemIntenal2 = new ArrayList<>();
 //        List<BetItemModel> itemIntenal3 = new ArrayList<>();
@@ -479,6 +480,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
         tv_betCount.setText(betCount + "");
         tv_betMoney.setText((betCount *2) + "");
+        //// TODO: 2017/6/9 通过网络接口获取下注数量
+
     }
 
     private android.os.Handler handler = new android.os.Handler(new android.os.Handler.Callback() {

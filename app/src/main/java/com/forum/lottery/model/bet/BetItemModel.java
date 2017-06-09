@@ -10,9 +10,17 @@ public class BetItemModel {
     private String name;
     private boolean checked = false;
 
+    private float prize = -1;
+
     public BetItemModel(String name, boolean checked){
         this.name = name;
         this.checked = checked;
+    }
+
+    public BetItemModel(String name, boolean checked, float prize){
+        this.name = name;
+        this.checked = checked;
+        this.prize = prize;
     }
 
     public String getName() {
