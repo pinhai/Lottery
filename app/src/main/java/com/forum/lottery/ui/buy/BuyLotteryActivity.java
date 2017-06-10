@@ -580,6 +580,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             playTypeB = typeB;
             tv_playWaySelect.setText(playTypeA.getPlayTypeA() + "-" + playTypeB.getPlayTypeB());
             //  刷新下注界面
+            clearBet();
             betFragment.setPlayId(playId, typeA, typeB);
         }
     };

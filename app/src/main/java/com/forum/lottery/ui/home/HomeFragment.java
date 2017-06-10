@@ -164,9 +164,11 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
                 if(position == 9){
                     ((MainActivity)getActivity()).setCurrentPageItem(1);
                 }else{
-                    Intent intent = new Intent(getActivity(), BuyLotteryActivity.class);
-                    intent.putExtra("lottery", lotteryVOs.get(position));
-                    startActivity(intent);
+                    if(lotteryVOs != null && lotteryVOs.size() > position && lotteryVOs.get(position) != null){
+                        Intent intent = new Intent(getActivity(), BuyLotteryActivity.class);
+                        intent.putExtra("lottery", lotteryVOs.get(position));
+                        startActivity(intent);
+                    }
                 }
 
             }

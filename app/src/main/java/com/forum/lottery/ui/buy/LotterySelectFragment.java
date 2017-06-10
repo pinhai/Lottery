@@ -67,7 +67,7 @@ public class LotterySelectFragment extends BaseBetFragment {
 
     @Override
     protected void initView() {
-        adapter = new SelectLotteryListAdapter(getActivity(), data.getData());
+        adapter = new SelectLotteryListAdapter(getActivity(), data.getData(), lotteryId);
         lv_lottery = findView(R.id.lv_lottery);
         lv_lottery.setAdapter(adapter);
 

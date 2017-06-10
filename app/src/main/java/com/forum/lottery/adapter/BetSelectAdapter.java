@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import com.forum.lottery.R;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.model.bet.BetItemModel;
+import com.forum.lottery.utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -74,7 +75,14 @@ public class BetSelectAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tv_bet.setText(itemData.get(position).getName());
+        String betName = itemData.get(position).getName();
+        if(betName.length() > 1 && StringUtils.isChinese(betName)){
+            viewHolder.ctv_bet.setButtonDrawable(R.drawable.bg_bet_chinese_selector);
+
+        }else{
+            viewHolder.ctv_bet.setButtonDrawable(R.drawable.bg_bet_selector);
+        }
+        viewHolder.tv_bet.setText(betName);
         viewHolder.ctv_bet.setChecked(itemData.get(position).isChecked());
         viewHolder.ctv_bet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -92,6 +100,10 @@ public class BetSelectAdapter extends BaseAdapter {
     private class ViewHolder {
         CheckedTextView tv_bet;
         CheckBox ctv_bet;
+    }
+
+    public List<BetItemModel> getData(){
+        return itemData;
     }
 
     public interface OnCheckedListener extends Serializable {

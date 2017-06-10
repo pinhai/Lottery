@@ -372,20 +372,38 @@ public class LotteryUtils {
                                                         float oneBetMoney, float peilv, float fanli,
                                                         String playId, String playName){
         List<BetDetailModel> result = new ArrayList<>();
-        BetDetailModel item = new BetDetailModel();
-        item.setBuyNoShow(getBetLottery(data));
-        item.setBuyCount(betCount);
-        item.setBuyNO(item.getBuyNoShow());
-        item.setCpCategoryName(lotteryVO.getLotteryName());
-        item.setCpCategoryId(lotteryVO.getLotteryid());
-        item.setUnitPrice(oneBetMoney);
-        item.setPeriodNO(lotteryVO.getNextIssue());
-        item.setPeilv(peilv);
-        item.setFanli(fanli);
-        item.setPlayTypeId(Integer.parseInt(playId));
+        if(!playId.equals("0")){
+            BetDetailModel item = new BetDetailModel();
+            item.setBuyNoShow(getBetLottery(data));
+            item.setBuyCount(betCount);
+            item.setBuyNO(item.getBuyNoShow());
+            item.setCpCategoryName(lotteryVO.getLotteryName());
+            item.setCpCategoryId(lotteryVO.getLotteryid());
+            item.setUnitPrice(oneBetMoney);
+            item.setPeriodNO(lotteryVO.getNextIssue());
+            item.setPeilv(peilv);
+            item.setFanli(fanli);
+            item.setPlayTypeId(Integer.parseInt(playId));
 //        item.setPlayTypeName("[定位胆_定位胆]");
-        item.setPlayTypeName(playName);
-        result.add(item);
+            item.setPlayTypeName(playName);
+            result.add(item);
+        }else{
+            for(BetListItemModel betListItemModel : data){
+                BetDetailModel item = new BetDetailModel();
+                item.setBuyNoShow(betListItemModel.getNo());
+                item.setBuyCount(1);
+                item.setBuyNO(item.getBuyNoShow());
+                item.setCpCategoryName(lotteryVO.getLotteryName());
+                item.setCpCategoryId(lotteryVO.getLotteryid());
+                item.setUnitPrice(oneBetMoney);
+                item.setPeriodNO(lotteryVO.getNextIssue());
+                item.setPeilv(peilv);
+                item.setFanli(fanli);
+                item.setPlayTypeId(betListItemModel.getMethodid());
+                item.setPlayTypeName(playName);
+                result.add(item);
+            }
+        }
 
         return result;
     }
@@ -524,7 +542,7 @@ public class LotteryUtils {
             playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json8));
             playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json8));
         }else if(lotteryId.equals("11")){
-            fileName = "face.7.json";
+            fileName = "face.7_1.json";
             playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json7));
             playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json7));
         }else if(lotteryId.equals("9") || lotteryId.equals("52")){
