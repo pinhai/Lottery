@@ -433,7 +433,7 @@ public class LotteryUtils {
                 item.setPeriodNO(lotteryVO.getNextIssue());
                 item.setPeilv(peilv);
                 item.setFanli(fanli);
-                item.setPlayTypeId(betListItemModel.getMethodid());
+                item.setPlayTypeId(Integer.parseInt(betListItemModel.getMethodid()));
                 item.setPlayTypeName(playName);
                 result.add(item);
             }
@@ -765,6 +765,11 @@ public class LotteryUtils {
                                     betItemModels.add(item);
                                 }
                                 betListItemModel.setBetItems(betItemModels);
+
+                                String method = betListItemModel.getMethodid();
+                                if(method.contains("\\|")){
+                                    betListItemModel.setMethodidItems(Arrays.asList(method.split("\\|")));
+                                }
                             }
                         }
                     }

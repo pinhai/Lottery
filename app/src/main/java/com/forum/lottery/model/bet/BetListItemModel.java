@@ -20,15 +20,24 @@ public class BetListItemModel {
     private String no;
     private int place;
     private int cols;
-    int methodid; //快3彩票每一个球对应一个玩法
+    String methodid; //快3彩票每一个球对应一个玩法
 
     private List<BetItemModel> betItems;
+    private List<String> methodidItems;
 
-    public int getMethodid() {
+    public List<String> getMethodidItems() {
+        return methodidItems;
+    }
+
+    public void setMethodidItems(List<String> methodidItems) {
+        this.methodidItems = methodidItems;
+    }
+
+    public String getMethodid() {
         return methodid;
     }
 
-    public void setMethodid(int methodid) {
+    public void setMethodid(String methodid) {
         this.methodid = methodid;
     }
 

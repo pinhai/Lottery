@@ -244,45 +244,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     }
 
     private void loadBetData() {
-//        dataAll = new ArrayList<>();
-//        List<BetItemModel> itemIntenal1 = new ArrayList<>();
-//        List<BetItemModel> itemIntenal2 = new ArrayList<>();
-//        List<BetItemModel> itemIntenal3 = new ArrayList<>();
-//        List<BetItemModel> itemIntenal4 = new ArrayList<>();
-//        List<BetItemModel> itemIntenal5 = new ArrayList<>();
-//        for(int i=0; i<10; i++){
-//            itemIntenal1.add(new BetItemModel(i+"", false));
-//            itemIntenal2.add(new BetItemModel(i+"", false));
-//            itemIntenal3.add(new BetItemModel(i+"", false));
-//            itemIntenal4.add(new BetItemModel(i+"", false));
-//            itemIntenal5.add(new BetItemModel(i+"", false));
-//        }
-//
-//        BetListItemModel listitem1 = new BetListItemModel();
-//        listitem1.setTitle("万位");
-//        listitem1.setBetItems(itemIntenal1);
-//        BetListItemModel listitem2 = new BetListItemModel();
-//        listitem2.setTitle("千位");
-//        listitem2.setBetItems(itemIntenal2);
-//        BetListItemModel listitem3 = new BetListItemModel();
-//        listitem3.setTitle("百位");
-//        listitem3.setBetItems(itemIntenal3);
-//        BetListItemModel listitem4 = new BetListItemModel();
-//        listitem4.setTitle("十位");
-//        listitem4.setBetItems(itemIntenal4);
-//        BetListItemModel listitem5 = new BetListItemModel();
-//        listitem5.setTitle("个位");
-//        listitem5.setBetItems(itemIntenal5);
-//
-//        dataAll.add(listitem1);
-//        dataAll.add(listitem2);
-//        dataAll.add(listitem3);
-//        dataAll.add(listitem4);
-//        dataAll.add(listitem5);
-
-
         dataAll = LotteryUtils.getBetLayout(this, lotteryVO.getLotteryid(), playWays);
-
 
     }
 
@@ -300,36 +262,41 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         }
 
         showProgressDialog(false);
+        betGetPeilv();
+
         //验证合理性
 //        String buyNo = URLEncoder.encode(LotteryUtils.getBetLottery(dataAll));
-        String buyNo = LotteryUtils.encode(LotteryUtils.getBetLottery(betFragment.getData()));
-
-        createHttp(LotteryService.class)
-                .lotteryNumsCheck(buyNo, lotteryVO.getLotteryid(), playTypeB.getPlayId())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ResultData>() {
-                    @Override
-                    public void onSuccess(ResultData value) {
-                        if(value.getCode() == 1){
-                            //获取赔率
-                            betGetPeilv();
-                        }else{
-                            toast(getString(R.string.bet_num_not_conform));
-                            dismissProgressDialog();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable error) {
-                        toast(getString(R.string.connection_failed));
-                        dismissProgressDialog();
-                    }
-                });
+//        String buyNo = LotteryUtils.encode(LotteryUtils.getBetLottery(betFragment.getData()));
+//
+//        createHttp(LotteryService.class)
+//                .lotteryNumsCheck(buyNo, lotteryVO.getLotteryid(), playTypeB.getPlayId())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleSubscriber<ResultData>() {
+//                    @Override
+//                    public void onSuccess(ResultData value) {
+//                        if(value.getCode() == 1){
+//                            //获取赔率
+//                            betGetPeilv();
+//                        }else{
+//                            toast(getString(R.string.bet_num_not_conform));
+//                            dismissProgressDialog();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable error) {
+//                        toast(getString(R.string.connection_failed));
+//                        dismissProgressDialog();
+//                    }
+//                });
 
 //        LotteryUtils.getBetLotteryFromAddition(dataAll);
     }
 
     private void betGetPeilv() {
+
+        String playId = playTypeB.getPlayId();
+
 
         createHttp(LotteryService.class)
                 .getPeilv(lotteryVO.getLotteryid(), playTypeB.getPlayId())
@@ -480,6 +447,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //        betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
 //        tv_betCount.setText(betCount + "");
 //        tv_betMoney.setText((betCount *2) + "");
+        String lotteryId = lotteryVO.getLotteryid();
+        if(lotteryId.equals("41") || lotteryId.equals("42")){
+            betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
+            tv_betCount.setText(betCount + "");
+            tv_betMoney.setText((betCount *2) + "");
+            return;
+        }
         /// 通过网络接口获取下注数量
         showIndeterminateDialog();
         createHttp(LotteryService.class)
