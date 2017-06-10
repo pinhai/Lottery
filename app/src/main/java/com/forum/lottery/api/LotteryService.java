@@ -51,6 +51,7 @@ public interface LotteryService {
     @POST("nonAuthority/buycp")
 //    Single<BetResult> bet(@Field("buycpVos") List<BetDetailModel> betDetails);  @Body RequestBody
     Single<BetResult> bet(@Body RequestBody betDetails);
+
     /**
      * 校验提交的购买号是否合理：1、码是否能重复   2、码是否缺失  3、号码范围
      * @return
@@ -89,5 +90,12 @@ public interface LotteryService {
      */
     @GET("/nonAuthority/home/getPrizeUser")
     Single<List<WinnerModel>> getWinnerList();
+
+    /**
+     * 获取下注的注数
+     */
+    @GET("/nonAuthority/appController/getLotteryNum")
+    Single<ResultData> getBetCount(@Query("methodid") String methodid, @Query("lotteryId") String lotteryId,
+                                   @Query(value = "balls", encoded = true) String balls);
 
 }

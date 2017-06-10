@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.adapter.SelectLotteryListAdapter;
@@ -28,6 +29,9 @@ import java.util.List;
  */
 
 public class LotterySelectFragment extends BaseBetFragment {
+
+    private View headView;
+    private TextView tv_head;
 
     private ListView lv_lottery;
     private static BetBigAllModel dataAll;
@@ -70,6 +74,11 @@ public class LotterySelectFragment extends BaseBetFragment {
         adapter = new SelectLotteryListAdapter(getActivity(), data.getData(), lotteryId);
         lv_lottery = findView(R.id.lv_lottery);
         lv_lottery.setAdapter(adapter);
+        headView = LayoutInflater.from(getActivity()).inflate(R.layout.head_bet_layout, null);
+        tv_head = (TextView) headView.findViewById(R.id.tv_head);
+        if(lotteryId.equals("41") || lotteryId.equals("42")){
+            lv_lottery.addHeaderView(headView);
+        }
 
         ll_betBottombar = findView(R.id.ll_betBottombar);
 
@@ -89,7 +98,7 @@ public class LotterySelectFragment extends BaseBetFragment {
 
     public void setPlayId(String playId, PlayTypeA typeA, PlayTypeB typeB){
 //        if(data == null){
-            data = LotteryUtils.getBetListItem(dataAll, playId, lotteryId);
+            data = LotteryUtils.getBetListItem(dataAll, playId, lotteryId, typeA, typeB);
 //        }else{
 //            data.clear();
 //            data.addAll(LotteryUtils.getBetListItem(dataAll, playId, lotteryId));
@@ -106,6 +115,8 @@ public class LotterySelectFragment extends BaseBetFragment {
         }else{
             ll_betBottombar.setVisibility(View.GONE);
         }
+
+        tv_head.setText(typeB.getPlayTypeB());
     }
 
     public List<BetListItemModel> getData(){

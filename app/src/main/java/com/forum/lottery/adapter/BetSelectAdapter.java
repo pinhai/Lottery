@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.forum.lottery.R;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
@@ -70,13 +71,14 @@ public class BetSelectAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_bet_selector, null);
             viewHolder.ctv_bet = (CheckBox) convertView.findViewById(R.id.ctv_bet);
             viewHolder.tv_bet = (CheckedTextView) convertView.findViewById(R.id.tv_bet);
+            viewHolder.tv_prize = (TextView) convertView.findViewById(R.id.tv_prize);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         String betName = itemData.get(position).getName();
-        if(betName.length() > 1 && StringUtils.isChinese(betName)){
+        if(betName.length() > 2 && StringUtils.isChinese(betName)){
             viewHolder.ctv_bet.setButtonDrawable(R.drawable.bg_bet_chinese_selector);
 
         }else{
@@ -93,6 +95,12 @@ public class BetSelectAdapter extends BaseAdapter {
                 EventBus.getDefault().post(new BuyLotteryCheckChangeEvent());
             }
         });
+        if(itemData.get(position).getPrize() != -1){
+            viewHolder.tv_prize.setVisibility(View.VISIBLE);
+            viewHolder.tv_prize.setText(itemData.get(position).getPrize()+"");
+        }else{
+            viewHolder.tv_prize.setVisibility(View.GONE);
+        }
 
         return convertView;
     }
@@ -100,6 +108,7 @@ public class BetSelectAdapter extends BaseAdapter {
     private class ViewHolder {
         CheckedTextView tv_bet;
         CheckBox ctv_bet;
+        TextView tv_prize;
     }
 
     public List<BetItemModel> getData(){

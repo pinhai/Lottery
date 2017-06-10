@@ -11,6 +11,15 @@ public class BetBigAllModel {
 
     List<BetBigBigModel> result;
     List<BetBigBigModel2> result2;
+    List<BetBigBigModel41> result3;
+
+    public List<BetBigBigModel41> getResult3() {
+        return result3;
+    }
+
+    public void setResult3(List<BetBigBigModel41> result3) {
+        this.result3 = result3;
+    }
 
     public List<BetBigBigModel> getResult() {
         return result;

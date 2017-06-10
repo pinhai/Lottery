@@ -477,10 +477,29 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     @Subscribe
     public void selectLotteryBetEvent(BuyLotteryCheckChangeEvent event){
-        betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
-        tv_betCount.setText(betCount + "");
-        tv_betMoney.setText((betCount *2) + "");
-        //// TODO: 2017/6/9 通过网络接口获取下注数量
+//        betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
+//        tv_betCount.setText(betCount + "");
+//        tv_betMoney.setText((betCount *2) + "");
+        /// 通过网络接口获取下注数量
+        showIndeterminateDialog();
+        createHttp(LotteryService.class)
+                .getBetCount(playTypeB.getPlayId(), lotteryVO.getLotteryid(), LotteryUtils.getBetCountRequestStr(betFragment.getData()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData value) {
+                        dismissIndeterminateDialog();
+                        betCount = value.getCount();
+                        tv_betCount.setText(betCount + "");
+                        tv_betMoney.setText((betCount *2) + "");
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        dismissIndeterminateDialog();
+                        toast(R.string.connection_failed);
+                    }
+                });
 
     }
 

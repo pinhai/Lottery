@@ -41,6 +41,17 @@ public class ResultData<T> {
      */
     private BankInfoModel bankInfo;
 
+    //获取下注的注数
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public int getTotal() {
         return total;
     }

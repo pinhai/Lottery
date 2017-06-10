@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import rx.SingleSubscriber;
@@ -36,6 +37,17 @@ public class BuyListFragment extends BaseFragment {
     private ListView listBuy;
     private BuyListAdapter adapter;
     private List<LotteryVO> lotteryVOs;
+
+    private int currentItem;
+
+    public static BuyListFragment newInstant(int radioId) {
+        Bundle args = new Bundle();
+        args.putInt("currentItem", radioId);
+
+        BuyListFragment fragment = new BuyListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -53,9 +65,10 @@ public class BuyListFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        lotteryVOs = new ArrayList<>();
+        currentItem = getArguments().getInt("currentItem");
         EventBus.getDefault().register(this);
 //        initTick();
-        lotteryVOs = new ArrayList<>();
 //        for(int i = 0; i < 20; i++){
 //            lotteryVOs.add(new LotteryVO());
 //        }
@@ -64,9 +77,38 @@ public class BuyListFragment extends BaseFragment {
 
     @Subscribe
     public void deliveryLotteryList(LotteryListTickEvent event){
-//        lotteryVOs.clear();
-//        lotteryVOs.addAll(event.data);
-        lotteryVOs = event.data;
+        lotteryVOs.clear();
+        lotteryVOs.addAll(event.data);
+//        lotteryVOs = event.data;
+        List<String> dipincai = Arrays.asList(getResources().getStringArray(R.array.dipincai));
+        if(currentItem == R.id.radio_high){
+            //高频彩
+            for(int i=0; i<lotteryVOs.size(); i++){
+                LotteryVO lotteryVO = lotteryVOs.get(i);
+                for (String dpc : dipincai){
+                    if(dpc.equals(lotteryVO.getLotteryid())){
+                        lotteryVOs.remove(i);
+                        i--;
+                    }
+                }
+            }
+        }else if(currentItem == R.id.radio_low){
+            //低频彩
+            for(int i=0; i<lotteryVOs.size(); i++){
+                LotteryVO lotteryVO = lotteryVOs.get(i);
+                boolean flag = false;
+                for (String dpc : dipincai){
+                    if(dpc.equals(lotteryVO.getLotteryid())){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag){
+                    lotteryVOs.remove(i);
+                    i--;
+                }
+            }
+        }
         adapter.setData(lotteryVOs);
         adapter.notifyDataSetChanged();
     }

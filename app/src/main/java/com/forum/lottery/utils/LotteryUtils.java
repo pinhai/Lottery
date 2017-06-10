@@ -6,9 +6,12 @@ import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.bet.BetBigAllModel;
+import com.forum.lottery.model.bet.BetBigBigItemModel41;
 import com.forum.lottery.model.bet.BetBigBigModel;
 import com.forum.lottery.model.bet.BetBigBigModel2;
+import com.forum.lottery.model.bet.BetBigBigModel41;
 import com.forum.lottery.model.bet.BetBigItemModel;
+import com.forum.lottery.model.bet.BetBigItemModel41;
 import com.forum.lottery.model.bet.BetBigModel;
 import com.forum.lottery.model.bet.BetItemModel;
 import com.forum.lottery.model.bet.BetListItemModel;
@@ -37,6 +40,37 @@ import java.util.regex.Pattern;
  */
 
 public class LotteryUtils {
+
+
+    public static String getBetCountRequestStr(List<BetListItemModel> data){
+        StringBuffer result = new StringBuffer();
+
+        result.append("[");
+
+        for(BetListItemModel betListItemModel : data){
+            result.append("[");
+            for(int i=0; i<betListItemModel.getBetItems().size(); i++){
+                if(!betListItemModel.getBetItems().get(i).isChecked()){
+                    continue;
+                }
+                result.append("\"" + betListItemModel.getBetItems().get(i).getName() + "\"" + ",");
+//                if(i != betListItemModel.getBetItems().size()-1){
+//                    result.append(",");
+//                }
+            }
+            if(result.charAt(result.length()-1) == ','){
+                result.deleteCharAt(result.length()-1);
+            }
+            result.append("],");
+        }
+
+        if(result.charAt(result.length()-1) == ','){
+            result.deleteCharAt(result.length()-1);
+        }
+        result.append("]");
+
+        return result.toString();
+    }
 
     /**
      * 获取下注的注数-加法
@@ -517,6 +551,7 @@ public class LotteryUtils {
         BetBigAllModel resultAll = new BetBigAllModel();
         List<BetBigBigModel> result = new ArrayList<>();
         List<BetBigBigModel2> result2 = new ArrayList<>();
+        List<BetBigBigModel41> result3 = new ArrayList<>();
         String fileName = "";
 
         List<String> playTypeAsMatch = new ArrayList<>(), playTypeBsMatch = new ArrayList<>();
@@ -550,7 +585,7 @@ public class LotteryUtils {
             playTypeAsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeA_json3));
             playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json3));
         }else if(lotteryId.equals("41") || lotteryId.equals("42")){
-            fileName = "41.json";
+            fileName = "face.41.json";
         }
 
         try {
@@ -563,6 +598,8 @@ public class LotteryUtils {
             }
             if(lotteryId.equals("12") ||lotteryId.equals("13") ||lotteryId.equals("14") ||lotteryId.equals("15")){
                 result2 = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel2.class);
+            }else if(lotteryId.equals("41") || lotteryId.equals("42")){
+                result3 = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel41.class);
             }else{
                 result = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel.class);
             }
@@ -603,6 +640,7 @@ public class LotteryUtils {
                                 betItemModels.add(item);
                             }
                             betListItemModel.setBetItems(betItemModels);
+
                         }
                     }
                 }
@@ -613,7 +651,54 @@ public class LotteryUtils {
                 }
             }
 
-        }else{
+        }else if(lotteryId.equals("41") || lotteryId.equals("42")){
+            //生成玩法对象
+            for(BetBigBigModel41 betBigBigModel41 : result3) {
+//                if (!playTypeAsMatch.contains(betBigBigModel41.getTitle())) {
+//                    continue;
+//                }
+                PlayTypeA playTypeA = new PlayTypeA();
+                playTypeA.setLotteryId(lotteryId);
+                playTypeA.setPlayTypeA(betBigBigModel41.getTitle());
+                List<PlayTypeB> playTypeBs = new ArrayList<>();
+
+                for(BetBigBigItemModel41 betBigBigItemModel41 : betBigBigModel41.getMethods()){
+                    PlayTypeB playTypeB = new PlayTypeB();
+                    playTypeB.setPeilv(9.8+"");
+                    playTypeB.setPlayTypeB(betBigBigItemModel41.getGametitle());
+
+                    for(BetBigItemModel41 betBigItemModel41 : betBigBigItemModel41.getLabel()){
+                        String no = betBigItemModel41.getLayout().getNo();
+                        String[] nos =  no.split("\\|");
+                        List<BetItemModel> betItemModels = new ArrayList<>();
+                        for(String n : nos){
+                            BetItemModel item = new BetItemModel(n, false, betBigItemModel41.getPrize());
+                            betItemModels.add(item);
+                        }
+                        betBigItemModel41.setBetItems(betItemModels);
+
+                        if(nos.length == 1){
+                            playTypeB.setPlayId("0");
+                        }else{
+                            playTypeB.setPlayId(betBigItemModel41.getMethod() + "");
+                        }
+
+                    }
+
+                    if(checkPlayWay(lotteryId, playTypeA.getPlayTypeA(), playTypeB.getPlayTypeB())){
+                        playTypeBs.add(playTypeB);
+                    }
+                }
+
+                if(playTypeBs.size() > 0){
+                    playTypeA.setPlayTypeBs(playTypeBs);
+                    playWays.add(playTypeA);
+                }
+
+            }
+
+        }
+        else{
             //删除冗余数据
             for(int i=0; i < result.size(); i++){
                 BetBigBigModel betBigBigModel = result.get(i);
@@ -650,54 +735,50 @@ public class LotteryUtils {
             }
 
             //生成玩法对象
-            if(lotteryId.equals("41") || lotteryId.equals("42")){
+            for(BetBigBigModel betBigBigModel : result){
+                if(!playTypeAsMatch.contains(betBigBigModel.getTitle())){
+                    continue;
+                }
+                PlayTypeA playTypeA = new PlayTypeA();
+                playTypeA.setLotteryId(lotteryId);
+                playTypeA.setPlayTypeA(betBigBigModel.getTitle());
+                List<PlayTypeB> playTypeBs = new ArrayList<>();
 
+                for(BetBigModel betBigModel : betBigBigModel.getLabel()){
+                    for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
+                        if(betBigItemModel != null && betBigItemModel.getSelectarea() != null && betBigItemModel.getSelectarea().getLayout() != null
+                                && playTypeBsMatch.contains(betBigItemModel.getDesc())){
+                            PlayTypeB playTypeB = new PlayTypeB();
+                            playTypeB.setPlayTypeB(betBigItemModel.getDesc());
+                            playTypeB.setPlayId(betBigItemModel.getMethodid()+"");
+                            playTypeB.setPeilv(9.8+"");
+                            if(checkPlayWay(lotteryId, playTypeA.getPlayTypeA(), playTypeB.getPlayTypeB())){
+                                playTypeBs.add(playTypeB);
+                            }
 
-            }else{
-                for(BetBigBigModel betBigBigModel : result){
-                    if(!playTypeAsMatch.contains(betBigBigModel.getTitle())){
-                        continue;
-                    }
-                    PlayTypeA playTypeA = new PlayTypeA();
-                    playTypeA.setLotteryId(lotteryId);
-                    playTypeA.setPlayTypeA(betBigBigModel.getTitle());
-                    List<PlayTypeB> playTypeBs = new ArrayList<>();
-
-                    for(BetBigModel betBigModel : betBigBigModel.getLabel()){
-                        for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
-                            if(betBigItemModel != null && betBigItemModel.getSelectarea() != null && betBigItemModel.getSelectarea().getLayout() != null
-                                    && playTypeBsMatch.contains(betBigItemModel.getDesc())){
-                                PlayTypeB playTypeB = new PlayTypeB();
-                                playTypeB.setPlayTypeB(betBigItemModel.getDesc());
-                                playTypeB.setPlayId(betBigItemModel.getMethodid()+"");
-                                playTypeB.setPeilv(9.8+"");
-                                if(checkPlayWay(lotteryId, playTypeA.getPlayTypeA(), playTypeB.getPlayTypeB())){
-                                    playTypeBs.add(playTypeB);
+                            for(BetListItemModel betListItemModel : betBigItemModel.getSelectarea().getLayout()){
+                                String no = betListItemModel.getNo();
+                                String[] nos =  no.split("\\|");
+                                List<BetItemModel> betItemModels = new ArrayList<>();
+                                for(String n : nos){
+                                    BetItemModel item = new BetItemModel(n, false);
+                                    betItemModels.add(item);
                                 }
-
-                                for(BetListItemModel betListItemModel : betBigItemModel.getSelectarea().getLayout()){
-                                    String no = betListItemModel.getNo();
-                                    String[] nos =  no.split("\\|");
-                                    List<BetItemModel> betItemModels = new ArrayList<>();
-                                    for(String n : nos){
-                                        BetItemModel item = new BetItemModel(n, false);
-                                        betItemModels.add(item);
-                                    }
-                                    betListItemModel.setBetItems(betItemModels);
-                                }
+                                betListItemModel.setBetItems(betItemModels);
                             }
                         }
                     }
-                    if(playTypeBs.size() > 0){
-                        playTypeA.setPlayTypeBs(playTypeBs);
-                        playWays.add(playTypeA);
-                    }
+                }
+                if(playTypeBs.size() > 0){
+                    playTypeA.setPlayTypeBs(playTypeBs);
+                    playWays.add(playTypeA);
                 }
             }
         }
 
         resultAll.setResult(result);
         resultAll.setResult2(result2);
+        resultAll.setResult3(result3);
 
         return resultAll;
     }
@@ -722,13 +803,14 @@ public class LotteryUtils {
      * @param dataAll
      * @param palyId
      * @param lotteryId
-     * @return
+     * @param typeA
+     *@param typeB @return
      */
-    public static BetListModel getBetListItem(BetBigAllModel dataAll, String palyId, String lotteryId){
+    public static BetListModel getBetListItem(BetBigAllModel dataAll, String palyId, String lotteryId, PlayTypeA typeA, PlayTypeB typeB){
         BetListModel result = new BetListModel();
         List<BetListItemModel> dataResult = new ArrayList<>();
 
-        if(dataAll.getResult() == null || dataAll.getResult().size() == 0){
+        if(dataAll.getResult2() != null && dataAll.getResult2().size() > 0){
             List<BetBigBigModel2> data = dataAll.getResult2();
             for(BetBigBigModel2 betBigBigModel2 : data){
                 for(BetBigItemModel betBigItemModel : betBigBigModel2.getLabel()){
@@ -740,24 +822,52 @@ public class LotteryUtils {
                 }
             }
 
-        }else{
-            List<BetBigBigModel> data = dataAll.getResult();
-            if(lotteryId.equals("41") || lotteryId.equals("42")){
+        }else if(dataAll.getResult3() != null && dataAll.getResult3().size() > 0){
+            List<BetBigBigModel41> data = dataAll.getResult3();
+            for(BetBigBigModel41 betBigBigModel41 : data){
 
+                if(betBigBigModel41.getTitle().equals(typeA.getPlayTypeA())){
+                    for(BetBigBigItemModel41 betBigBigItemModel41 : betBigBigModel41.getMethods()){
 
-            }else{
-                for(BetBigBigModel betBigBigModel : data){
-                    for(BetBigModel betBigModel : betBigBigModel.getLabel()){
-                        for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
-                            if(Integer.parseInt(palyId) == betBigItemModel.getMethodid() && betBigItemModel.getSelectarea() != null
-                                    && betBigItemModel.getSelectarea().getLayout() != null){
-                                dataResult = betBigItemModel.getSelectarea().getLayout();
-                                result.setSelPosition(betBigItemModel.getSelectarea().isSelPosition());
+                        if(betBigBigItemModel41.getGametitle().equals(typeB.getPlayTypeB())){
+                            for(BetBigItemModel41 betBigItemModel41 : betBigBigItemModel41.getLabel()){
+
+                                BetListItemModel betListItemModel = new BetListItemModel();
+                                betListItemModel.setBetItems(betBigItemModel41.getBetItems());
+                                betListItemModel.setTitle("");
+                                dataResult.add(betListItemModel);
+
+//                                if(betBigItemModel41.getBetItems() != null && betBigItemModel41.getBetItems().size() > 0){
+//                                    BetListItemModel betListItemModel = new BetListItemModel();
+//                                    betListItemModel.setBetItems(betBigItemModel41.getBetItems());
+//                                    betListItemModel.setTitle("");
+//                                    dataResult.add(betListItemModel);
+//                                }else{
+//                                    BetListItemModel betListItemModel = new BetListItemModel();
+//                                    betListItemModel.setBetItems(betBigItemModel41.getBetItems());
+//                                    betListItemModel.setTitle("");
+//                                    dataResult.add(betListItemModel);
+//                                }
                             }
                         }
                     }
                 }
             }
+        }
+        else{
+            List<BetBigBigModel> data = dataAll.getResult();
+            for(BetBigBigModel betBigBigModel : data){
+                for(BetBigModel betBigModel : betBigBigModel.getLabel()){
+                    for(BetBigItemModel betBigItemModel : betBigModel.getLabel()){
+                        if(Integer.parseInt(palyId) == betBigItemModel.getMethodid() && betBigItemModel.getSelectarea() != null
+                                && betBigItemModel.getSelectarea().getLayout() != null){
+                            dataResult = betBigItemModel.getSelectarea().getLayout();
+                            result.setSelPosition(betBigItemModel.getSelectarea().isSelPosition());
+                        }
+                    }
+                }
+            }
+
         }
 
         result.setData(dataResult);

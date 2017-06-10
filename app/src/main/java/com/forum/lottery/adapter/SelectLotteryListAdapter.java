@@ -74,13 +74,15 @@ public class SelectLotteryListAdapter extends BaseAdapter {
 
     private void setView(int position, ViewHolder viewHolder) {
         if(TextUtils.isEmpty(data.get(position).getTitle())){
-            viewHolder.tv_label.setVisibility(View.INVISIBLE);
+            viewHolder.tv_label.setVisibility(View.GONE);
         }else {
             viewHolder.tv_label.setVisibility(View.VISIBLE);
             viewHolder.tv_label.setText(data.get(position).getTitle());
         }
 
-        if(position > 0 && lotteryId.equals("11") && data.size() > 0 && data.get(0).getTitle().equals("和值")){
+        if(position > 0 && data.size() > 0 && ((data.get(0).getTitle().equals("和值") && lotteryId.equals("11")
+            || (lotteryId.equals("41") || lotteryId.equals("42")) && data.size()>0 && !data.get(0).getTitle().equals("特码包三")))
+                ){
             viewHolder.ll_betGrid.setVisibility(View.GONE);
             return;
         }else{
@@ -88,7 +90,8 @@ public class SelectLotteryListAdapter extends BaseAdapter {
         }
         BetSelectAdapter adapter = adapters.get(position);
         List<BetItemModel> itemData = adapter.getData();
-        if(itemData != null && itemData.size() > 0 && StringUtils.isChinese(itemData.get(0).getName())){
+        if(itemData != null && itemData.size() > 0&& StringUtils.isChinese(itemData.get(0).getName())
+                && itemData.get(0).getName().length() > 2){
             viewHolder.gv_wei.setNumColumns(2);
         }else{
             viewHolder.gv_wei.setNumColumns(5);
@@ -110,11 +113,12 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     private void setGridAdapter(){
         adapters = new ArrayList<>();
 
-        if(lotteryId.equals("11") && data.size() > 0 && data.get(0).getTitle().equals("和值")){
+        if((lotteryId.equals("11") && data.size() > 0 && data.get(0).getTitle().equals("和值"))
+                || ((lotteryId.equals("41") || lotteryId.equals("42")) && data.size()>0 && !data.get(0).getTitle().equals("特码包三"))){
             List<BetItemModel> itemData = new ArrayList<>();
             for (BetListItemModel betListItemModel : data){
-                BetItemModel itemModel = new BetItemModel(betListItemModel.getNo(), betListItemModel.getBetItems().get(0).isChecked());
-                itemData.add(itemModel);
+//                BetItemModel itemModel = new BetItemModel(betListItemModel.getNo(), betListItemModel.getBetItems().get(0).isChecked());
+                itemData.addAll(betListItemModel.getBetItems());
             }
             BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
                 @Override
@@ -124,7 +128,8 @@ public class SelectLotteryListAdapter extends BaseAdapter {
             });
             adapters.add(adapter);
 
-        }else{
+        }
+        else{
             for(int i=0; i<data.size(); i++){
                 List<BetItemModel> itemData = data.get(i).getBetItems();
                 BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {

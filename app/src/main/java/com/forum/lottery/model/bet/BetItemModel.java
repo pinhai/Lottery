@@ -23,6 +23,14 @@ public class BetItemModel {
         this.prize = prize;
     }
 
+    public float getPrize() {
+        return prize;
+    }
+
+    public void setPrize(float prize) {
+        this.prize = prize;
+    }
+
     public String getName() {
         return name;
     }

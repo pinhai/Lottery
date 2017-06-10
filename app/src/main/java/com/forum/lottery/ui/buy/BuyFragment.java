@@ -117,7 +117,7 @@ public class BuyFragment extends TabBaseFragment implements View.OnClickListener
     }
 
     private Fragment buildFragment(int radioId){
-        return new BuyListFragment();
+        return BuyListFragment.newInstant(radioId);
     }
 
     @Override

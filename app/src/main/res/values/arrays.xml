@@ -213,4 +213,10 @@
         <item>组选6</item>
         <item>组选4</item>
     </string-array>
+
+
+    <string-array name="dipincai">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>
