@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BetListModel {
 
-    private List<BetListItemModel> data = new ArrayList<>();
+    private ArrayList<BetListItemModel> data = new ArrayList<>();
     boolean selPosition;
 
     public boolean isSelPosition() {
@@ -25,6 +25,6 @@ public class BetListModel {
     }
 
     public void setData(List<BetListItemModel> data) {
-        this.data = data;
+        this.data = (ArrayList<BetListItemModel>) data;
     }
 }

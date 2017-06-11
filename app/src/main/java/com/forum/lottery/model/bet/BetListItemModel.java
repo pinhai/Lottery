@@ -1,5 +1,6 @@
 package com.forum.lottery.model.bet;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Administrator on 2017/5/24 0024.
  */
 
-public class BetListItemModel {
+public class BetListItemModel implements Serializable{
 
     /**
      * title: '万位',

@@ -80,14 +80,13 @@ public class SelectLotteryListAdapter extends BaseAdapter {
             viewHolder.tv_label.setText(data.get(position).getTitle());
         }
 
-        if(position > 0 && data.size() > 0 && ((data.get(0).getTitle().equals("和值") && lotteryId.equals("11")
-            || (lotteryId.equals("41") || lotteryId.equals("42")) && data.size()>0 && !data.get(0).getTitle().equals("特码包三")))
-                ){
-            viewHolder.ll_betGrid.setVisibility(View.GONE);
-            return;
-        }else{
-            viewHolder.ll_betGrid.setVisibility(View.VISIBLE);
-        }
+//        if(position > 0 && data.size() > 0 && (lotteryId.equals("41") || lotteryId.equals("42"))
+//                && data.size()>0 && !data.get(0).getTitle().equals("特码包三")){
+//            viewHolder.ll_betGrid.setVisibility(View.GONE);
+//            return;
+//        }else{
+//            viewHolder.ll_betGrid.setVisibility(View.VISIBLE);
+//        }
         BetSelectAdapter adapter = adapters.get(position);
         List<BetItemModel> itemData = adapter.getData();
         if(itemData != null && itemData.size() > 0&& StringUtils.isChinese(itemData.get(0).getName())
@@ -113,23 +112,22 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     private void setGridAdapter(){
         adapters = new ArrayList<>();
 
-        if((lotteryId.equals("11") && data.size() > 0 && data.get(0).getTitle().equals("和值"))
-                || ((lotteryId.equals("41") || lotteryId.equals("42")) && data.size()>0 && !data.get(0).getTitle().equals("特码包三"))){
-            List<BetItemModel> itemData = new ArrayList<>();
-            for (BetListItemModel betListItemModel : data){
-//                BetItemModel itemModel = new BetItemModel(betListItemModel.getNo(), betListItemModel.getBetItems().get(0).isChecked());
-                itemData.addAll(betListItemModel.getBetItems());
-            }
-            BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
-                @Override
-                public void onCheckedChanged(boolean isChecked) {
-
-                }
-            });
-            adapters.add(adapter);
-
-        }
-        else{
+//        if(((lotteryId.equals("41") || lotteryId.equals("42")) && data.size()>0 && !data.get(0).getTitle().equals("特码包三"))){
+//            List<BetItemModel> itemData = new ArrayList<>();
+//            for (BetListItemModel betListItemModel : data){
+////                BetItemModel itemModel = new BetItemModel(betListItemModel.getNo(), betListItemModel.getBetItems().get(0).isChecked());
+//                itemData.addAll(betListItemModel.getBetItems());
+//            }
+//            BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
+//                @Override
+//                public void onCheckedChanged(boolean isChecked) {
+//
+//                }
+//            });
+//            adapters.add(adapter);
+//
+//        }
+//        else{
             for(int i=0; i<data.size(); i++){
                 List<BetItemModel> itemData = data.get(i).getBetItems();
                 BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
@@ -141,7 +139,7 @@ public class SelectLotteryListAdapter extends BaseAdapter {
                 adapters.add(adapter);
 
             }
-        }
+//        }
 
     }
 

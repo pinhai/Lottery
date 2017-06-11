@@ -1,10 +1,12 @@
 package com.forum.lottery.model;
 
+import java.io.Serializable;
+
 /**
  * Created by admin_h on 2017/5/25.
  */
 
-public class PlayTypeB {
+public class PlayTypeB implements Serializable {
 
     private String playTypeB;
     private String playId;

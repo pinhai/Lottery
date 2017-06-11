@@ -1,10 +1,12 @@
 package com.forum.lottery.model;
 
+import java.io.Serializable;
+
 /**
  * Created by admin_h on 2017/5/27.
  */
 
-public class Peilv {
+public class Peilv implements Serializable{
 
 //    [{"methodid":37,"name":"定位胆_定位胆","bonusProp":9.8,"caipiaoid":51}]
 

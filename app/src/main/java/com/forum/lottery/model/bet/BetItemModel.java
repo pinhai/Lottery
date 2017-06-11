@@ -1,11 +1,13 @@
 package com.forum.lottery.model.bet;
 
+import java.io.Serializable;
+
 /**
  * 下注选项
  * Created by admin_h on 2017/5/24.
  */
 
-public class BetItemModel {
+public class BetItemModel implements Serializable{
 
     private String name;
     private boolean checked = false;

@@ -7,12 +7,40 @@ import java.util.List;
  */
 
 public class BetBigItemModel41 {
-
+    @Deprecated
     BetItemModel41 layout;
-    int method;
-    float prize;
+
+    String no;
+    String method;
+    String prize;
 
     private List<BetItemModel> betItems;
+    private List<String> methods;
+    private List<String> prizes;
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public List<String> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(List<String> methods) {
+        this.methods = methods;
+    }
+
+    public List<String> getPrizes() {
+        return prizes;
+    }
+
+    public void setPrizes(List<String> prizes) {
+        this.prizes = prizes;
+    }
 
     public List<BetItemModel> getBetItems() {
         return betItems;
@@ -30,19 +58,19 @@ public class BetBigItemModel41 {
         this.layout = layout;
     }
 
-    public int getMethod() {
+    public String getMethod() {
         return method;
     }
 
-    public void setMethod(int method) {
+    public void setMethod(String method) {
         this.method = method;
     }
 
-    public float getPrize() {
+    public String getPrize() {
         return prize;
     }
 
-    public void setPrize(float prize) {
+    public void setPrize(String prize) {
         this.prize = prize;
     }
 }

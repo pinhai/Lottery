@@ -5,6 +5,7 @@ import android.content.Context;
 import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.BetDetailModel;
+import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.bet.BetBigAllModel;
 import com.forum.lottery.model.bet.BetBigBigItemModel41;
 import com.forum.lottery.model.bet.BetBigBigModel;
@@ -20,13 +21,11 @@ import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.model.bet.BetListModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -443,6 +442,48 @@ public class LotteryUtils {
     }
 
     /**
+     * 得到已下注的详情-大注-某种玩法下的所有注数-每一个球构成一注的生成方式
+     * @param data
+     * @param lotteryVO
+     * @param oneBetMoney
+     * @return
+     */
+    public static List<BetDetailModel> getBettedLottery(List<BetListItemModel> data, LotteryVO lotteryVO,
+                                                        float oneBetMoney, List<Peilv> peilvs, float fanli,
+                                                        String playName){
+        List<BetDetailModel> result = new ArrayList<>();
+
+        List<BetItemModel> betItems = data.get(0).getBetItems();
+        List<String> methodidItems = data.get(0).getMethodidItems();
+        for(int i=0; i<betItems.size(); i++){
+            BetItemModel betItemModel = betItems.get(i);
+            if(betItemModel.isChecked()){
+                BetDetailModel item = new BetDetailModel();
+                item.setBuyNoShow(betItemModel.getName());
+                item.setBuyCount(1);
+                item.setBuyNO(item.getBuyNoShow());
+                item.setCpCategoryName(lotteryVO.getLotteryName());
+                item.setCpCategoryId(lotteryVO.getLotteryid());
+                item.setUnitPrice(oneBetMoney);
+                item.setPeriodNO(lotteryVO.getNextIssue());
+                for(Peilv peilv : peilvs){
+                    if(peilv.getMethodid() == Integer.parseInt(methodidItems.get(i))){
+                        item.setPeilv(peilv.getBonusProp());
+                        item.setPlayTypeId(peilv.getMethodid());
+                    }
+                }
+//            item.setPeilv(peilv);
+                item.setFanli(fanli);
+                item.setPlayTypeName(playName);
+                result.add(item);
+            }
+        }
+
+
+        return result;
+    }
+
+    /**
      * 获取某彩票所有玩法
      * @param lotteryId
      */
@@ -668,19 +709,32 @@ public class LotteryUtils {
                     playTypeB.setPlayTypeB(betBigBigItemModel41.getGametitle());
 
                     for(BetBigItemModel41 betBigItemModel41 : betBigBigItemModel41.getLabel()){
-                        String no = betBigItemModel41.getLayout().getNo();
+                        String no = betBigItemModel41.getNo();
                         String[] nos =  no.split("\\|");
+                        String method = betBigItemModel41.getMethod();
+                        String prize = betBigItemModel41.getPrize();
+                        List<String> methods = Arrays.asList(method.split("\\|"));
+                        List<String> prizes = Arrays.asList(prize.split("\\|"));
+
                         List<BetItemModel> betItemModels = new ArrayList<>();
-                        for(String n : nos){
-                            BetItemModel item = new BetItemModel(n, false, betBigItemModel41.getPrize());
+                        for(int i=0; i<nos.length; i++){
+                            float p;
+                            if(prizes.size() == nos.length){
+                                p = Float.parseFloat(prizes.get(i));
+                            }else{
+                                p = Float.parseFloat(prize);
+                            }
+                            BetItemModel item = new BetItemModel(nos[i], false, p);
                             betItemModels.add(item);
                         }
                         betBigItemModel41.setBetItems(betItemModels);
+                        betBigItemModel41.setMethods(methods);
+                        betBigItemModel41.setPrizes(prizes);
 
-                        if(nos.length == 1){
-                            playTypeB.setPlayId("0");
+                        if(methods.size() == 1){
+                            playTypeB.setPlayId(method);
                         }else{
-                            playTypeB.setPlayId(betBigItemModel41.getMethod() + "");
+                            playTypeB.setPlayId("0");
                         }
 
                     }
@@ -767,7 +821,7 @@ public class LotteryUtils {
                                 betListItemModel.setBetItems(betItemModels);
 
                                 String method = betListItemModel.getMethodid();
-                                if(method.contains("\\|")){
+                                if(method != null  && method.contains("|")){
                                     betListItemModel.setMethodidItems(Arrays.asList(method.split("\\|")));
                                 }
                             }
@@ -839,6 +893,7 @@ public class LotteryUtils {
 
                                 BetListItemModel betListItemModel = new BetListItemModel();
                                 betListItemModel.setBetItems(betBigItemModel41.getBetItems());
+                                betListItemModel.setMethodidItems(betBigItemModel41.getMethods());
                                 betListItemModel.setTitle("");
                                 dataResult.add(betListItemModel);
 

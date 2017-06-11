@@ -21,8 +21,14 @@ import com.forum.lottery.adapter.BettedDetailAdapter;
 import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.BetResult;
 import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetSubmitModel;
+import com.forum.lottery.model.Peilv;
+import com.forum.lottery.model.PlayTypeA;
+import com.forum.lottery.model.PlayTypeB;
+import com.forum.lottery.model.bet.BetListItemModel;
+import com.forum.lottery.model.bet.BetListModel;
 import com.forum.lottery.ui.BaseActionBarActivity;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.utils.LotteryUtils;
@@ -42,6 +48,10 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class BuyLotteryFinalActivity extends BaseActionBarActivity implements View.OnClickListener {
 
+    private List<Peilv> peilvs;
+    private List<BetListItemModel> data;
+    private PlayTypeA playTypeA;
+    private PlayTypeB playTypeB;
     private LotteryVO lotteryVO;
     private List<BetDetailModel> betDetailModels;  //下的注
     private ListView lv_bettedLottery;
@@ -90,10 +100,17 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
         btn_clear.setOnClickListener(this);
         btn_bet.setOnClickListener(this);
 
+        if(playTypeB.getPlayId().equals("0")){
+            btn_addMachineSelect.setVisibility(View.GONE);
+        }
     }
 
     @Override
     protected void initData(){
+        peilvs = (List<Peilv>) getIntent().getSerializableExtra("peilvs");
+        data = (List<BetListItemModel>) getIntent().getSerializableExtra("data");
+        playTypeA = (PlayTypeA) getIntent().getSerializableExtra("playTypeA");
+        playTypeB = (PlayTypeB) getIntent().getSerializableExtra("playTypeB");
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
         betDetailModels = (List<BetDetailModel>) getIntent().getSerializableExtra("betDetails");
         tempBetDetail = betDetailModels.get(0);
@@ -159,17 +176,76 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
      * 机选一注
      */
     private void selectOneBetByMachine(){
-        BetDetailModel item;
-        BetDetailModel temp;
-        if(betDetailModels.size() > 0){
-            temp = betDetailModels.get(0);
-        }else{
-            temp = tempBetDetail;
-        }
-        item = LotteryUtils.selectByMachineFromAddition2(temp);
-        betDetailModels.add(item);
-        adapter.notifyDataSetChanged();
-        getTotalBet();
+//        BetDetailModel item;
+//        BetDetailModel temp;
+//        if(betDetailModels.size() > 0){
+//            temp = betDetailModels.get(0);
+//        }else{
+//            temp = tempBetDetail;
+//        }
+//        item = LotteryUtils.selectByMachineFromAddition2(temp);
+//        betDetailModels.add(item);
+//        adapter.notifyDataSetChanged();
+//        getTotalBet();
+
+
+//        if(playTypeB.getPlayId().equals("0")){
+//            //自己生成
+//            LotteryUtils.selectByMachineFromAddition(data);
+//
+//            return;
+//        }
+
+        final String playId = playTypeB.getPlayId();
+        //从后台获取
+        createHttp(LotteryService.class)
+                .getBetByMachine(lotteryVO.getLotteryid(), playId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData value) {
+                        if(value != null && value.getCode() == 1){
+                            String result = value.getResult().trim();
+
+                            String playName = "[" + playTypeA.getPlayTypeA() + "_" + playTypeB.getPlayTypeB() + "]";
+                            BetDetailModel item = new BetDetailModel();
+                            item.setBuyNoShow(result);
+                            item.setBuyCount(1);
+                            item.setBuyNO(item.getBuyNoShow());
+                            item.setCpCategoryName(lotteryVO.getLotteryName());
+                            item.setCpCategoryId(lotteryVO.getLotteryid());
+                            item.setUnitPrice(2);
+                            item.setPeriodNO(lotteryVO.getNextIssue());
+                            if(peilvs.size() == 1){
+                                item.setPeilv(peilvs.get(0).getBonusProp());
+                            }else{
+//                                List<String> methodidItems = data.get(0).getMethodidItems();
+                                for(Peilv peilv : peilvs){
+                                    if(peilv.getMethodid() == Integer.parseInt(playId)){
+                                        item.setPeilv(peilv.getBonusProp());
+                                        item.setPlayTypeId(peilv.getMethodid());
+                                    }
+                                }
+                            }
+                            item.setFanli(0);
+                            item.setPlayTypeId(Integer.parseInt(playId));
+//        item.setPlayTypeName("[定位胆_定位胆]");
+                            item.setPlayTypeName(playName);
+                            betDetailModels.add(item);
+                            adapter.notifyDataSetChanged();
+                            getTotalBet();
+
+                        }else{
+                            String show = "生成失败";
+                            toast(show);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
     }
 
     private void showFinishDialog(){
