@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -18,6 +19,8 @@ import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.entity.UserVO;
 import com.forum.lottery.event.LoginEvent;
 import com.forum.lottery.ui.TabBaseFragment;
+import com.forum.lottery.ui.home.HomeFragment;
+import com.forum.lottery.ui.login.LoginActivity;
 import com.forum.lottery.utils.AccountManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,6 +38,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     private TextView tv_recharge, tv_drawMoney;
     private TextView tv_rechargeRecord, tv_betRecord, tv_winingRecord, tv_accountDetail, tv_drawMoneyRecord, tv_personInfo;
     private TextView tv_username, tv_refreshMoney, tv_balance;
+    private Button btn_logout;
 
     private String balance;  //余额
 
@@ -86,6 +90,8 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
         tv_drawMoney.setOnClickListener(this);
         tv_personInfo = findView(R.id.tv_personInfo);
         tv_personInfo.setOnClickListener(this);
+        btn_logout = findView(R.id.btn_logout);
+        btn_logout.setOnClickListener(this);
 
         setUserInfo();
         refreshMoney();
@@ -116,14 +122,23 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
 
     private void setUserInfo(){
         if(AccountManager.getInstance().isLogin()){
+            refreshMoney();
             UserVO userVO = AccountManager.getInstance().getUser();
             tv_username.setText(userVO.getAccount());
+            btn_logout.setVisibility(View.VISIBLE);
+        }else{
+            btn_logout.setVisibility(View.GONE);
+            tv_username.setText("null");
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btn_logout:
+                AccountManager.getInstance().logout();
+                LoginActivity.startActivity(OwnFragment.this, HomeFragment.LOGIN_CODE);
+                break;
             case R.id.tv_recharge:
                 if(checkLogin()){
                     Intent intent6 = new Intent(getActivity(), RechargeActivity.class);

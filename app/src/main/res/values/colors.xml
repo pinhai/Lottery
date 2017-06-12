@@ -7,6 +7,7 @@
     <color name="action_bar_bg">#ffbe00</color>
     <color name="white">#fff</color>
     <color name="red">#f00</color>
+    <color name="red_tint">#903030</color>
     <color name="transparent">#00000000</color>
     <color name="main_bg">#f5f5f5</color>
     <color name="main_tab_select_color">#ffbe00</color>

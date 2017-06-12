@@ -8,7 +8,10 @@ import android.os.Looper;
 
 import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.entity.UserVO;
+import com.forum.lottery.event.LoginEvent;
 import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -78,6 +81,7 @@ public class AccountManager {
         mPreferences.edit().remove(USER_INFO_KEY).apply();
         mUserVO = null;
         notifyListener(StateType.LOGOUT);
+        EventBus.getDefault().post(new LoginEvent());
     }
 
     public void addListener(OnUserStateChangeListener onUserChangeListener){

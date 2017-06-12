@@ -13,6 +13,7 @@
         android:text="个人中心" />
 
     <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/main_bg"
@@ -239,6 +240,17 @@
                     android:drawableStart="@mipmap/geren_tubiao_30"
                     android:text="更多" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:text="退出"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimaryDark"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

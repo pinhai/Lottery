@@ -74,42 +74,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 108,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个五位数号码组成一注。',
-            methodhelp: '手动输入一个5位数号码组成一注，所选号码的万、千、百、十、个位与开奖号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：23456 开奖号码：23456，即中五星直选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '万位',
@@ -735,42 +699,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 106,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个四位数号码组成一注。',
-            methodhelp: '手动输入一个4位数号码组成一注，所选号码的千、百、十、个位与开奖号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：3456 开奖号码后四位：3456，即中四星直选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '千位',
@@ -1094,42 +1022,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 89,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
-            methodhelp: '手动输入一个3位数号码组成一注，所选号码与开奖号码的百、十、个位相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：345 开奖号码后三位：345，即中后三直选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '百位',
@@ -1320,42 +1212,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 1148,
-            name: '组三单式',
-            methoddesc: '手动输入号码，至少输入1个三位数号码（三个数字中必须有二个数字相同）。',
-            methodhelp: '手动输入一个3位数号码组成一注，三个数字中必须有二个数字相同，输入号码与开奖号码的百、十、个位相同，顺序不限，即为中奖。',
-            methodexample: '投注方案：001 开奖号码：后三位 010（顺序不限），即中后三组选三。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '组三单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '组六',
@@ -1397,78 +1253,6 @@
             numcount: 0,
             defaultposition: '00000',
             desc: '组六复式'
-        },
-        {
-            selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 1149,
-            name: '组六单式',
-            methoddesc: '手动输入号码，至少输入1个三位数号码（三个数字完全不相同）。',
-            methodhelp: '手动输入一个个3位数号码组成一注，所选号码与开奖号码的百，十、个位相同，且顺序不限，即为中奖。',
-            methodexample: '投注方案：123 开奖号码：后三位 321（顺序不限），即中后三组选六。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '组六单式'
-        },
-        {
-            selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 95,
-            name: '混合组选',
-            methoddesc: '手动至少输入三个号码构成一注(不包含豹子号)。',
-            methodhelp: '手动输入一个3位数号码为一注(不含豹子号)，开奖号码后3位为组三或组六形态，投注号码与开奖号码后3位相同，顺序不限，即为中奖。',
-            methodexample: '投注方案：001 和 123 开奖号码：后三位 010（顺序不限）即中后三组选三，或者后三位 312（顺序不限）即中后三组选六。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '混合组选'
         },
         {
             selectarea: {
@@ -1715,42 +1499,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 55,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个三位数号码组成一注。',
-            methodhelp: '手动输入一个3位数号码组成一注，所选号码与开奖号码的万、千、百位相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：345 开奖号码：前三位 345，即中前三直选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '万位',
@@ -1941,42 +1689,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 1146,
-            name: '组三单式',
-            methoddesc: '手动输入号码，至少输入1个三位数号码（三个数字当中必须有二个数字相同）。',
-            methodhelp: '手动输入一个3位数号码组成一注，三个数字当中必须有二个数字相同，所选号码与开奖号码的万、千、百位相同，且顺序不限，即为中奖。',
-            methodexample: '投注方案：588 开奖号码：前三位588（顺序不限），即可中前三组选三。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '组三单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '组六',
@@ -2018,78 +1730,6 @@
             numcount: 0,
             defaultposition: '00000',
             desc: '组六复式'
-        },
-        {
-            selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 1147,
-            name: '组六单式',
-            methoddesc: '手动输入号码，至少输入1个三位数号（三个数字全不相同）。',
-            methodhelp: '手动输入一个3位数号码组成一注，所选号码与开奖号码的万、千、百位相同，顺序不限，即为中奖。',
-            methodexample: '投注方案：123 开奖号码：前三位 312（顺序不限），即中前三组选六。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '组六单式'
-        },
-        {
-            selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 61,
-            name: '混合组选',
-            methoddesc: '手动输入号码，至少输入1个三位数号码。',
-            methodhelp: '手动输入一个3位数号码为一注(不含豹子号)，开奖号码前3位为组三或组六形态，投注号码与开奖号码前3位相同，顺序不限，即为中奖。',
-            methodexample: '投注方案：001 和 123 开奖号码：前三位 010（顺序不限）即中前三组选三，或者前三位 312（顺序不限）即中前三组选六。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '混合组选'
         },
         {
             selectarea: {
@@ -2330,42 +1970,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 43,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个二位数号码组成一注。',
-            methodhelp: '手动输入一个2位数号码组成一注，输入号码的十位、个位与开奖号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：58 开奖号码：后二位 58，即中后二直选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '和值',
@@ -2497,42 +2101,6 @@
             numcount: 0,
             defaultposition: '00000',
             desc: '组选复式'
-        },
-        {
-            selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 51,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个二位数号码组成一注。',
-            methodhelp: '手动输入一个2位数号码组成一注，输入号码的十位、个位与开奖号码相同（不含对子号），顺序不限，即为中奖。',
-            methodexample: '投注方案：58 开奖号码：前二位 85 或者 58（顺序不限，不含对子号），即中前二组选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '组选单式'
         },
         {
             selectarea: {
@@ -2682,42 +2250,6 @@
         },
         {
             selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 39,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个二位数号码组成一注。',
-            methodhelp: '手动输入一个2位数号码组成一注，输入号码的万、千位与开奖号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：58 开奖号码：前二位 58，即中前二直选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '和值',
@@ -2849,42 +2381,6 @@
             numcount: 0,
             defaultposition: '00000',
             desc: '组选复式'
-        },
-        {
-            selectarea: {
-                type: 'input'
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 47,
-            name: '单式',
-            methoddesc: '手动输入号码，至少输入1个二位数号码组成一注。',
-            methodhelp: '手动输入一个2位数号码组成一注，输入号码的万、千位与开奖号码相同，顺序不限，即为中奖。',
-            methodexample: '投注方案：58 开奖号码：前二位 85 或者 58（顺序不限，不含对子号），即中前二组选。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 0,
-            numcount: 0,
-            defaultposition: '00000',
-            desc: '组选单式'
         },
         {
             selectarea: {
@@ -3842,43 +3338,6 @@
         },
         {
             selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 123,
-            name: '直选单式',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择两个位置,至少手动输入一个两位数的号码构成一注。',
-            methodhelp: '从万、千、百、十、个位中至少选择两个位置,至少手动输入一个两位数的号码构成一注，所选号码与开奖号码的指定位置上的号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：位置选择万、百位，输入号码58 开奖号码：51812，即中任二直选(单式)。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 2,
-            defaultposition: '00011',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '和值',
@@ -3968,43 +3427,6 @@
             numcount: 2,
             defaultposition: '00011',
             desc: '组选复式'
-        },
-        {
-            selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 126,
-            name: '组选单式',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择两个位置,至少手动输入一个两位数的号码构成一注。',
-            methodhelp: '从万、千、百、十、个位中至少选择两个位置,至少手动输入一个两位数的号码构成一注，所选号码与开奖号码的指定位置上的号码相同，且顺序不限，即为中奖。',
-            methodexample: '投注方案：位置选择万、百位，输入号码85 开奖号码：51812或者81512，即中任二组选(单式)。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 2,
-            defaultposition: '00011',
-            desc: '组选单式'
         },
         {
             selectarea: {
@@ -4129,43 +3551,6 @@
         },
         {
             selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 129,
-            name: '直选单式',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择三个位置,至少手动输入一个三位数的号码构成一注。',
-            methodhelp: '从万、千、百、十、个位中至少选择三个位置,至少手动输入一个三位数的号码构成一注，所选号码与开奖号码的指定位置上的号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：位置选择万、百,个位，输入号码582 开奖号码：51812，即中任三直选(单式)。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 3,
-            defaultposition: '00111',
-            desc: '直选单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '和值',
@@ -4258,43 +3643,6 @@
         },
         {
             selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 132,
-            name: '组三单式',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择三个位置,手动至少输入三个号码构成一注。',
-            methodhelp: '从万、千、百、十、个位中至少选择三个位置,至少手动输入三个号码构成一注，三个数字中必须有二个数字相同，所选号码与开奖号码的指定位置上的号码相同，且顺序不限，即为中奖。',
-            methodexample: '投注方案：位置选择万、十、个位,输入号码112 开奖号码：11812，即中任三组三(单式)。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 3,
-            defaultposition: '00111',
-            desc: '组三单式'
-        },
-        {
-            selectarea: {
                 type: 'digital',
                 layout: [{
                     title: '组六',
@@ -4337,80 +3685,6 @@
             numcount: 3,
             defaultposition: '00111',
             desc: '组六复式'
-        },
-        {
-            selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 134,
-            name: '组六单式',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择三个位置,手动至少输入三个号码构成一注。',
-            methodhelp: '从万、千、百、十、个位中至少选择三个位置,至少手动输入三个号码构成一注，所选号码与开奖号码的指定位置上的号码相同，且顺序不限，即为中奖。',
-            methodexample: '投注方案：位置选择万、十、个位,输入号码512 开奖号码：51812，即中任三组六(单式)。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 3,
-            defaultposition: '00111',
-            desc: '组六单式'
-        },
-        {
-            selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 135,
-            name: '混合组选',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择三个位置,手动至少输入三个号码构成一注(不包含豹子号)。',
-            methodhelp: '从万、千、百、十、个位中至少选择三个位置,至少手动输入三个号码构成一注(不含豹子号)，开奖号码指定位置的号码为组三或组六形态，所选号码与开奖号码指定位置上的号码相同，且顺序不限，即为中奖。',
-            methodexample: '投注方案：选择位置万、十、个位，输入号码001以及512 开奖号码：03410(指定位置号码顺序不限)即中任三组三；或者51812(指定位置号码顺序不限)即中任三组六。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 3,
-            defaultposition: '00111',
-            desc: '混合组选'
         },
         {
             selectarea: {
@@ -4532,43 +3806,6 @@
             numcount: 4,
             defaultposition: '01111',
             desc: '直选复式'
-        },
-        {
-            selectarea: {
-                type: 'input',
-                selPosition: true
-            },
-            show_str: 'X',
-            code_sp: ' ',
-            methodid: 140,
-            name: '直选单式',
-            methoddesc: '从万位、千位、百位、十位、个位中至少选择四个位置,至少手动输入一个四位数的号码构成一注。',
-            methodhelp: '从万、千、百、十、个位中至少选择四个位置,至少手动输入一个四位数的号码构成一注，所选号码与开奖号码的指定位置上的号码相同，且顺序一致，即为中奖。',
-            methodexample: '投注方案：位置选择万位、千位、百位、十位，输入号码5181 开奖号码：51812，即中任四直选(单式)。',
-            prize: {
-                1 : '1700.00'
-            },
-            dyprize: [],
-            modes: [{
-                modeid: 1,
-                name: '元',
-                rate: 1
-            },
-            {
-                modeid: 2,
-                name: '角',
-                rate: 0.1
-            },
-            {
-                modeid: 3,
-                name: '分',
-                rate: 0.01
-            }],
-            maxcodecount: 0,
-            isrx: 1,
-            numcount: 4,
-            defaultposition: '01111',
-            desc: '直选单式'
         }]
     },
     {

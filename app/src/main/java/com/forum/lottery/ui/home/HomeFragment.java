@@ -28,6 +28,8 @@ import com.forum.lottery.adapter.WinningListAdapter;
 import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.entity.UserVO;
+import com.forum.lottery.event.LoginEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.model.WinnerModel;
 import com.forum.lottery.ui.TabBaseFragment;
@@ -35,6 +37,7 @@ import com.forum.lottery.ui.buy.BuyLotteryActivity;
 import com.forum.lottery.ui.login.LoginActivity;
 import com.forum.lottery.ui.login.RegisterActivity;
 import com.forum.lottery.ui.own.BetRecordActivity;
+import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.view.MyGridView;
 import com.xzl.marquee.library.MarqueeView;
 
@@ -74,12 +77,40 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     private List<LotteryVO> lotteryVOs;
 
     private TextView tv_cqmoney, tv_betRecord, tv_youhui;
+    private TextView txt_login, txt_register;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUserInfo();
+    }
+
+    @Subscribe
+    public void loginEvent(LoginEvent event){
+        setUserInfo();
+    }
+
+    private void setUserInfo() {
+        if(AccountManager.getInstance().isLogin()){
+            txt_login.setVisibility(View.GONE);
+            txt_register.setVisibility(View.GONE);
+        }else{
+            txt_login.setVisibility(View.VISIBLE);
+            txt_register.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public boolean initNet() {
         return true;
@@ -151,6 +182,8 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
             }
         });
 
+        txt_login = findView(R.id.txt_login);
+        txt_register = findView(R.id.txt_register);
         findView(R.id.txt_login).setOnClickListener(onClickListener);
         findView(R.id.txt_register).setOnClickListener(onClickListener);
 
