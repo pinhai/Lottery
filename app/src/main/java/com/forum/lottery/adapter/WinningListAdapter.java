@@ -34,12 +34,20 @@ public class WinningListAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return data.get(position%data.size());
+        if(data.size() != 0){
+            return data.get(position%data.size());
+        }else {
+            return new Object();
+        }
     }
 
     @Override
     public long getItemId(int position) {
-        return position%data.size();
+        if(data.size() != 0){
+            return position%data.size();
+        }else {
+            return 0;
+        }
     }
 
     @Override
@@ -56,7 +64,9 @@ public class WinningListAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        setView(position%data.size(), viewHolder);
+        if(data.size() != 0){
+            setView(position%data.size(), viewHolder);
+        }
 
         return convertView;
     }
