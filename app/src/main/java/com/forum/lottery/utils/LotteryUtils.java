@@ -653,7 +653,7 @@ public class LotteryUtils {
         if(lotteryId.equals("12") ||lotteryId.equals("13") ||lotteryId.equals("14") ||lotteryId.equals("15")){
             //生成玩法对象
             for(BetBigBigModel2 betBigBigModel2 : result2) {
-                if (!playTypeAsMatch.contains(betBigBigModel2.getTitle())) {
+                if (!playTypeAsMatch.contains(betBigBigModel2.getTitle()) || betBigBigModel2.getTitle().contains("任选")) {
                     continue;
                 }
                 PlayTypeA playTypeA = new PlayTypeA();
@@ -696,8 +696,9 @@ public class LotteryUtils {
             //生成玩法对象
             for(BetBigBigModel41 betBigBigModel41 : result3) {
 //                if (!playTypeAsMatch.contains(betBigBigModel41.getTitle())) {
-//                    continue;
-//                }
+                if(betBigBigModel41.getTitle().contains("任选")){
+                    continue;
+                }
                 PlayTypeA playTypeA = new PlayTypeA();
                 playTypeA.setLotteryId(lotteryId);
                 playTypeA.setPlayTypeA(betBigBigModel41.getTitle());
@@ -790,7 +791,7 @@ public class LotteryUtils {
 
             //生成玩法对象
             for(BetBigBigModel betBigBigModel : result){
-                if(!playTypeAsMatch.contains(betBigBigModel.getTitle())){
+                if(!playTypeAsMatch.contains(betBigBigModel.getTitle()) || betBigBigModel.getTitle().contains("任选")){
                     continue;
                 }
                 PlayTypeA playTypeA = new PlayTypeA();

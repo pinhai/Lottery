@@ -197,6 +197,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
 //        }
 
         final String playId = playTypeB.getPlayId();
+        showIndeterminateDialog();
         //从后台获取
         createHttp(LotteryService.class)
                 .getBetByMachine(lotteryVO.getLotteryid(), playId)
@@ -204,6 +205,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
                 .subscribe(new SingleSubscriber<ResultData>() {
                     @Override
                     public void onSuccess(ResultData value) {
+                        dismissIndeterminateDialog();
                         if(value != null && value.getCode() == 1){
                             String result = value.getResult().trim();
 
@@ -243,6 +245,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
 
                     @Override
                     public void onError(Throwable error) {
+                        dismissIndeterminateDialog();
                         toast(getString(R.string.connection_failed));
                     }
                 });

@@ -236,8 +236,8 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     }
 
     private void refreshMoney() {
-        showIndeterminateDialog();
         if(AccountManager.getInstance().isLogin()){
+            showIndeterminateDialog();
             UserVO userVO = AccountManager.getInstance().getUser();
             createHttp(UserService.class)
                     .refreshMoney(userVO.getAccount())
