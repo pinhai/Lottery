@@ -44,6 +44,17 @@ public class ResultData<T> {
     //获取下注的注数
     private int count;
 
+    //首页跑马灯数据
+    String html;
+
+    public String getHtml() {
+        return html;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
+    }
+
     public int getCount() {
         return count;
     }

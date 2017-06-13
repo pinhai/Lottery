@@ -28,6 +28,7 @@ import com.forum.lottery.adapter.WinningListAdapter;
 import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.entity.LotteryVO;
+import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.entity.UserVO;
 import com.forum.lottery.event.LoginEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
@@ -78,6 +79,8 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
 
     private TextView tv_cqmoney, tv_betRecord, tv_youhui;
     private TextView txt_login, txt_register;
+
+    MarqueeView marqueeView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -159,9 +162,8 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
     protected void initView() {
         EventBus.getDefault().register(this);
 
-        MarqueeView marqueeView = (MarqueeView)findView(R.id.marquee);
-        marqueeView.setText(getString(R.string.home_page_prompt));
-        marqueeView.start();
+        marqueeView = findView(R.id.marquee);
+        getMarqueeData();
 
         tv_youhui = findView(R.id.tv_youhui);
         tv_youhui.setOnClickListener(this);
@@ -233,6 +235,26 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
         });
         //设置ViewPager的默认项, 设置为长度的100倍，这样子开始就能往左滑动
         viewPager.setCurrentItem((mImageViews.length) * 100);
+    }
+
+    private void getMarqueeData() {
+        createHttp(LotteryService.class)
+                .getMqData()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData value) {
+                        if(value != null && value.getHtml() != null){
+                            marqueeView.setText(value.getHtml());
+                            marqueeView.start();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+
+                    }
+                });
     }
 
     private void loadWinnerData(){

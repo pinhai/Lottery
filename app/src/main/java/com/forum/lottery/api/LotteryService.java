@@ -98,4 +98,11 @@ public interface LotteryService {
     Single<ResultData> getBetCount(@Query("methodid") String methodid, @Query("lotteryId") String lotteryId,
                                    @Query(value = "balls", encoded = true) String balls);
 
+    /**
+     * 获取首页跑马灯数据
+     * @return
+     */
+    @GET("/nonAuthority/home/getMqData")
+    Single<ResultData> getMqData();
+
 }
