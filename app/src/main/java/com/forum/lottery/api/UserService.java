@@ -139,4 +139,20 @@ public interface UserService {
     @POST("userCenter/recharge/online")
     @FormUrlEncoded
     Single<PayResultModel> recharge(@Field("tradeType") int tradeType, @Field("payWay") String payWay, @Field("tradeMoney") float tradeMoney);
+
+    /**
+     * 修改登录密码
+     * @return
+     */
+    @POST("/userCenter/updateLoginPwd")
+    @FormUrlEncoded
+    Single<ResultData> modifyLoginPsw(@Field("userId") String userId, @Field("oldPwd") String oldPwd, @Field("newPwd") String newPwd);
+
+    /**
+     * 修改交易密码
+     * @return
+     */
+    @POST("/userCenter/updateTransPwd")
+    @FormUrlEncoded
+    Single<ResultData> modifyTradePsw(@Field("userId") String userId, @Field("oldPwd") String oldPwd, @Field("transPwd") String transPwd);
 }

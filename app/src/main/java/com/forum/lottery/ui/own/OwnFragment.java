@@ -39,6 +39,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     private TextView tv_rechargeRecord, tv_betRecord, tv_winingRecord, tv_accountDetail, tv_drawMoneyRecord, tv_personInfo;
     private TextView tv_username, tv_refreshMoney, tv_balance;
     private Button btn_logout;
+    private TextView tv_modifyTradePsw, tv_modifyLoginPsw;
 
     private String balance;  //余额
 
@@ -92,6 +93,10 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
         tv_personInfo.setOnClickListener(this);
         btn_logout = findView(R.id.btn_logout);
         btn_logout.setOnClickListener(this);
+        tv_modifyTradePsw = findView(R.id.tv_modifyTradePsw);
+        tv_modifyTradePsw.setOnClickListener(this);
+        tv_modifyLoginPsw = findView(R.id.tv_modifyLoginPsw);
+        tv_modifyLoginPsw.setOnClickListener(this);
 
         setUserInfo();
         refreshMoney();
@@ -185,6 +190,18 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
                 break;
             case R.id.tv_personInfo:
                 showPromptDialog();
+                break;
+            case R.id.tv_modifyLoginPsw:
+                if(checkLogin()){
+                    Intent intent6 = new Intent(getActivity(), ModifyLoginPswActivity.class);
+                    startActivity(intent6);
+                }
+                break;
+            case R.id.tv_modifyTradePsw:
+                if(checkLogin()){
+                    Intent intent6 = new Intent(getActivity(), ModifyTradePswActivity.class);
+                    startActivity(intent6);
+                }
                 break;
 
         }

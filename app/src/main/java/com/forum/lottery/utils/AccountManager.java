@@ -53,7 +53,6 @@ public class AccountManager {
         }
     }
 
-
     public UserVO getUser() {
         if(mUserVO == null){
             if(isLogin()){

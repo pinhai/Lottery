@@ -33,4 +33,5 @@
     <string name="input_recharge_count">请输入充值金额</string>
     <string name="pay_prompt_wx">微信支付（扫一扫直接到账）</string>
     <string name="pay_prompt_zfb">支付宝支付（扫一扫直接到账）</string>
+    <string name="modify_success">修改成功</string>
 </resources>

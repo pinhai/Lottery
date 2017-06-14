@@ -222,6 +222,24 @@
                     android:text="提款记录" />
 
                 <TextView
+                    android:id="@+id/tv_modifyTradePsw"
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_13"
+                    android:drawableStart="@mipmap/geren_tubiao_13"
+                    android:text="修改交易密码" />
+
+                <TextView
+                    android:id="@+id/tv_modifyLoginPsw"
+                    style="@style/Own_Item_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/geren_tubiao_13"
+                    android:drawableStart="@mipmap/geren_tubiao_13"
+                    android:text="修改登录密码" />
+
+                <TextView
                     android:visibility="gone"
                     android:id="@+id/tv_personInfo"
                     style="@style/Own_Item_Text"
