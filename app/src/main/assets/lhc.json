@@ -1,0 +1,1377 @@
+[
+    {
+        "value": [
+            {
+                "methodid": 342,
+                "name": "鼠",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 343,
+                "name": "牛",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 344,
+                "name": "虎",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 345,
+                "name": "兔",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 346,
+                "name": "龙",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 347,
+                "name": "蛇",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 348,
+                "name": "马",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 349,
+                "name": "羊",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 350,
+                "name": "猴",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 351,
+                "name": "鸡",
+                "prizeMax": 9.5
+            },
+            {
+                "methodid": 353,
+                "name": "狗",
+                "prizeMax": 11.6
+            },
+            {
+                "methodid": 352,
+                "name": "猪",
+                "prizeMax": 11.6
+            }
+        ],
+        "key": "特肖"
+    },
+    {
+        "value": [
+            {
+                "methodid": 887,
+                "name": "红波",
+                "prizeMax": 2.8
+            },
+            {
+                "methodid": 888,
+                "name": "蓝波",
+                "prizeMax": 2.8
+            },
+            {
+                "methodid": 889,
+                "name": "绿波",
+                "prizeMax": 2.8
+            },
+            {
+                "methodid": 890,
+                "name": "和局",
+                "prizeMax": 23
+            }
+        ],
+        "key": "7色波"
+    },
+    {
+        "value": [
+            {
+                "methodid": 977,
+                "name": "0尾",
+                "prizeMax": 45
+            },
+            {
+                "methodid": 978,
+                "name": "1尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 979,
+                "name": "2尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 980,
+                "name": "3尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 981,
+                "name": "4尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 982,
+                "name": "5尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 983,
+                "name": "6尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 984,
+                "name": "7尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 985,
+                "name": "8尾",
+                "prizeMax": 40
+            },
+            {
+                "methodid": 986,
+                "name": "9尾",
+                "prizeMax": 40
+            }
+        ],
+        "key": "五连尾"
+    },
+    {
+        "value": [
+            {
+                "methodid": 995,
+                "name": "二合肖",
+                "prizeMax": 5.8
+            },
+            {
+                "methodid": 996,
+                "name": "三合肖",
+                "prizeMax": 3.8
+            },
+            {
+                "methodid": 997,
+                "name": "四合肖",
+                "prizeMax": 2.8
+            },
+            {
+                "methodid": 998,
+                "name": "五合肖",
+                "prizeMax": 2.3
+            },
+            {
+                "methodid": 999,
+                "name": "六合肖",
+                "prizeMax": 1.95
+            },
+            {
+                "methodid": 1000,
+                "name": "七合肖",
+                "prizeMax": 1.65
+            },
+            {
+                "methodid": 1001,
+                "name": "八合肖",
+                "prizeMax": 1.45
+            },
+            {
+                "methodid": 1002,
+                "name": "九合肖",
+                "prizeMax": 1.25
+            },
+            {
+                "methodid": 1003,
+                "name": "十合肖",
+                "prizeMax": 1.15
+            },
+            {
+                "methodid": 1004,
+                "name": "十一合肖",
+                "prizeMax": 1.05
+            }
+        ],
+        "key": "合肖"
+    },
+    {
+        "value": [
+            {
+                "methodid": 295,
+                "name": "特大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 296,
+                "name": "特小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 297,
+                "name": "特尾大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 298,
+                "name": "特尾小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 299,
+                "name": "特单",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 300,
+                "name": "特双",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 303,
+                "name": "特合大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 304,
+                "name": "特合小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 307,
+                "name": "特合单",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 308,
+                "name": "特合双",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 309,
+                "name": "特天肖",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 310,
+                "name": "特地肖",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 311,
+                "name": "特前肖",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 312,
+                "name": "特后肖",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 313,
+                "name": "特家肖",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 314,
+                "name": "特野肖",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 418,
+                "name": "总大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 419,
+                "name": "总小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 420,
+                "name": "总单",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 421,
+                "name": "总双",
+                "prizeMax": 1.98
+            }
+        ],
+        "key": "两面"
+    },
+    {
+        "value": [
+            {
+                "methodid": 994,
+                "name": "四全中",
+                "prizeMax": 10000
+            }
+        ],
+        "key": "四全中"
+    },
+    {
+        "value": [
+            {
+                "methodid": 330,
+                "name": "红大单",
+                "prizeMax": 14.8
+            },
+            {
+                "methodid": 331,
+                "name": "红大双",
+                "prizeMax": 11.12
+            },
+            {
+                "methodid": 332,
+                "name": "红小单",
+                "prizeMax": 8.92
+            },
+            {
+                "methodid": 333,
+                "name": "红小双",
+                "prizeMax": 8.92
+            },
+            {
+                "methodid": 334,
+                "name": "蓝大单",
+                "prizeMax": 8.92
+            },
+            {
+                "methodid": 335,
+                "name": "蓝大双",
+                "prizeMax": 11.12
+            },
+            {
+                "methodid": 336,
+                "name": "蓝小单",
+                "prizeMax": 14.82
+            },
+            {
+                "methodid": 337,
+                "name": "蓝小双",
+                "prizeMax": 11.12
+            },
+            {
+                "methodid": 338,
+                "name": "绿大单",
+                "prizeMax": 11.12
+            },
+            {
+                "methodid": 339,
+                "name": "绿大双",
+                "prizeMax": 11.12
+            },
+            {
+                "methodid": 340,
+                "name": "绿小单",
+                "prizeMax": 11.12
+            },
+            {
+                "methodid": 341,
+                "name": "绿小双",
+                "prizeMax": 14.82
+            }
+        ],
+        "key": "半半波"
+    },
+    {
+        "value": [
+            {
+                "methodid": 418,
+                "name": "总大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 419,
+                "name": "总小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 420,
+                "name": "总单",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 421,
+                "name": "总双",
+                "prizeMax": 1.98
+            }
+        ],
+        "key": "正码"
+    },
+    {
+        "value": [
+            {
+                "methodid": 418,
+                "name": "总大",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 419,
+                "name": "总小",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 420,
+                "name": "总单",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 421,
+                "name": "总双",
+                "prizeMax": 1.988
+            }
+        ],
+        "key": "正码"
+    },
+    {
+        "value": [
+            {
+                "methodid": 354,
+                "name": "0头",
+                "prizeMax": 5
+            },
+            {
+                "methodid": 355,
+                "name": "1头",
+                "prizeMax": 4.36
+            },
+            {
+                "methodid": 356,
+                "name": "2头",
+                "prizeMax": 4.36
+            },
+            {
+                "methodid": 357,
+                "name": "3头",
+                "prizeMax": 4.36
+            },
+            {
+                "methodid": 358,
+                "name": "4头",
+                "prizeMax": 4.36
+            },
+            {
+                "methodid": 359,
+                "name": "1尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 360,
+                "name": "2尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 361,
+                "name": "3尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 362,
+                "name": "4尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 363,
+                "name": "5尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 364,
+                "name": "6尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 365,
+                "name": "7尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 366,
+                "name": "8尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 367,
+                "name": "9尾",
+                "prizeMax": 9.25
+            },
+            {
+                "methodid": 368,
+                "name": "0尾",
+                "prizeMax": 11.16
+            }
+        ],
+        "key": "头尾数"
+    },
+    {
+        "value": [
+            {
+                "methodid": 848,
+                "name": "金",
+                "prizeMax": 4.7
+            },
+            {
+                "methodid": 849,
+                "name": "木",
+                "prizeMax": 4.7
+            },
+            {
+                "methodid": 850,
+                "name": "水",
+                "prizeMax": 4.7
+            },
+            {
+                "methodid": 851,
+                "name": "火",
+                "prizeMax": 4.7
+            },
+            {
+                "methodid": 852,
+                "name": "土",
+                "prizeMax": 4.8
+            }
+        ],
+        "key": "五行"
+    },
+    {
+        "value": [
+            {
+                "methodid": 865,
+                "name": "0尾",
+                "prizeMax": 2.1
+            },
+            {
+                "methodid": 866,
+                "name": "1尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 867,
+                "name": "2尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 868,
+                "name": "3尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 869,
+                "name": "4尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 870,
+                "name": "5尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 871,
+                "name": "6尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 872,
+                "name": "7尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 873,
+                "name": "8尾",
+                "prizeMax": 1.8
+            },
+            {
+                "methodid": 874,
+                "name": "9尾",
+                "prizeMax": 1.8
+            }
+        ],
+        "key": "平特尾数"
+    },
+    {
+        "value": [
+            {
+                "methodid": 369,
+                "name": "1",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 370,
+                "name": "2",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 371,
+                "name": "3",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 372,
+                "name": "4",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 373,
+                "name": "5",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 374,
+                "name": "6",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 375,
+                "name": "7",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 376,
+                "name": "8",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 377,
+                "name": "9",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 378,
+                "name": "10",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 379,
+                "name": "11",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 380,
+                "name": "12",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 381,
+                "name": "13",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 382,
+                "name": "14",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 383,
+                "name": "15",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 384,
+                "name": "16",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 385,
+                "name": "17",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 386,
+                "name": "18",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 387,
+                "name": "19",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 388,
+                "name": "20",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 389,
+                "name": "21",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 390,
+                "name": "22",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 391,
+                "name": "23",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 392,
+                "name": "24",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 393,
+                "name": "25",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 394,
+                "name": "26",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 395,
+                "name": "27",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 396,
+                "name": "28",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 397,
+                "name": "29",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 398,
+                "name": "30",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 399,
+                "name": "31",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 400,
+                "name": "32",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 401,
+                "name": "33",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 402,
+                "name": "34",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 403,
+                "name": "35",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 404,
+                "name": "36",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 405,
+                "name": "37",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 406,
+                "name": "38",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 407,
+                "name": "39",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 408,
+                "name": "40",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 409,
+                "name": "41",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 410,
+                "name": "42",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 411,
+                "name": "43",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 412,
+                "name": "44",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 413,
+                "name": "45",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 414,
+                "name": "46",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 415,
+                "name": "47",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 416,
+                "name": "48",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 417,
+                "name": "49",
+                "prizeMax": 8.02
+            },
+            {
+                "methodid": 418,
+                "name": "总大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 419,
+                "name": "总小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 420,
+                "name": "总单",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 421,
+                "name": "总双",
+                "prizeMax": 1.98
+            }
+        ],
+        "key": "正码"
+    },
+    {
+        "value": [
+            {
+                "methodid": 835,
+                "name": "单码",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 836,
+                "name": "双码",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 837,
+                "name": "大码",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 838,
+                "name": "小码",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 839,
+                "name": "合单",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 840,
+                "name": "合双",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 841,
+                "name": "合大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 842,
+                "name": "合小",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 843,
+                "name": "红波",
+                "prizeMax": 2.78
+            },
+            {
+                "methodid": 844,
+                "name": "蓝波",
+                "prizeMax": 2.86
+            },
+            {
+                "methodid": 845,
+                "name": "绿波",
+                "prizeMax": 2.86
+            },
+            {
+                "methodid": 846,
+                "name": "尾大",
+                "prizeMax": 1.98
+            },
+            {
+                "methodid": 847,
+                "name": "尾小",
+                "prizeMax": 1.98
+            }
+        ],
+        "key": "正码六"
+    },
+    {
+        "value": [
+            {
+                "methodid": 712,
+                "name": "1",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 713,
+                "name": "2",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 714,
+                "name": "3",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 715,
+                "name": "4",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 716,
+                "name": "5",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 717,
+                "name": "6",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 718,
+                "name": "7",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 719,
+                "name": "8",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 720,
+                "name": "9",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 721,
+                "name": "10",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 722,
+                "name": "11",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 723,
+                "name": "12",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 724,
+                "name": "13",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 725,
+                "name": "14",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 726,
+                "name": "15",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 727,
+                "name": "16",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 728,
+                "name": "17",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 729,
+                "name": "18",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 730,
+                "name": "19",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 731,
+                "name": "20",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 732,
+                "name": "21",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 733,
+                "name": "22",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 734,
+                "name": "23",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 735,
+                "name": "24",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 736,
+                "name": "25",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 737,
+                "name": "26",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 738,
+                "name": "27",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 739,
+                "name": "28",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 740,
+                "name": "29",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 741,
+                "name": "30",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 742,
+                "name": "31",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 743,
+                "name": "32",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 744,
+                "name": "33",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 745,
+                "name": "34",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 746,
+                "name": "35",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 747,
+                "name": "36",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 748,
+                "name": "37",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 749,
+                "name": "38",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 750,
+                "name": "39",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 751,
+                "name": "40",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 752,
+                "name": "41",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 753,
+                "name": "42",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 754,
+                "name": "43",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 755,
+                "name": "44",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 756,
+                "name": "45",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 757,
+                "name": "46",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 758,
+                "name": "47",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 759,
+                "name": "48",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 760,
+                "name": "49",
+                "prizeMax": 47
+            },
+            {
+                "methodid": 761,
+                "name": "正六大",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 762,
+                "name": "正六小",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 763,
+                "name": "正六单",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 764,
+                "name": "正六双",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 765,
+                "name": "正六合单",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 766,
+                "name": "正六合双",
+                "prizeMax": 1.988
+            },
+            {
+                "methodid": 767,
+                "name": "正六红",
+                "prizeMax": 2.78
+            },
+            {
+                "methodid": 768,
+                "name": "正六蓝",
+                "prizeMax": 2.86
+            },
+            {
+                "methodid": 769,
+                "name": "正六绿",
+                "prizeMax": 2.86
+            }
+        ],
+        "key": "正六特"
+    },
+    {
+        "value": [
+            {
+                "methodid": 875,
+                "name": "鼠",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 876,
+                "name": "牛",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 877,
+                "name": "虎",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 878,
+                "name": "兔",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 879,
+                "name": "龙",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 880,
+                "name": "蛇",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 881,
+                "name": "马",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 882,
+                "name": "羊",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 883,
+                "name": "猴",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 884,
+                "name": "鸡",
+                "prizeMax": 1.75
+            },
+            {
+                "methodid": 885,
+                "name": "狗",
+                "prizeMax": 1.92
+            },
+            {
+                "methodid": 886,
+                "name": "猪",
+                "prizeMax": 1.92
+            }
+        ],
+        "key": "正肖"
+    },
+    {
+        "value": [
+            {
+                "methodid": 1006,
+                "name": "六不中",
+                "prizeMax": 2.5
+            },
+            {
+                "methodid": 1007,
+                "name": "七不中",
+                "prizeMax": 3
+            },
+            {
+                "methodid": 1008,
+                "name": "八不中",
+                "prizeMax": 3.6
+            },
+            {
+                "methodid": 1009,
+                "name": "九不中",
+                "prizeMax": 4.3
+            },
+            {
+                "methodid": 1010,
+                "name": "十不中",
+                "prizeMax": 5.2
+            },
+            {
+                "methodid": 1011,
+                "name": "十一不中",
+                "prizeMax": 6.35
+            }
+        ],
+        "key": "自选不中"
+    },
+    {
+        "value": [
+            {
+                "methodid": 891,
+                "name": "2肖",
+                "prizeMax": 14
+            },
+            {
+                "methodid": 892,
+                "name": "3肖",
+                "prizeMax": 14
+            },
+            {
+                "methodid": 893,
+                "name": "4肖",
+                "prizeMax": 14
+            },
+            {
+                "methodid": 894,
+                "name": "5肖",
+                "prizeMax": 3.06
+            },
+            {
+                "methodid": 895,
+                "name": "6肖",
+                "prizeMax": 1.95
+            },
+            {
+                "methodid": 896,
+                "name": "7肖",
+                "prizeMax": 5.3
+            },
+            {
+                "methodid": 897,
+                "name": "总肖单",
+                "prizeMax": 1.95
+            },
+            {
+                "methodid": 898,
+                "name": "总肖双",
+                "prizeMax": 1.85
+            }
+        ],
+        "key": "总肖"
+    }
+]
