@@ -18,7 +18,7 @@ public enum LotteryType {
     SH11X5(13),   //上海11选5
     JX11X5(14),    //江西11选5
     GD11X5(15),    //广东11选5
-//    LHC(),    //六合彩
+    LHC(18),    //六合彩
     BJ28(41),    //北京28
     AHKS(11),   //安徽快三
     FC3D(1),   //福彩3D
@@ -64,6 +64,8 @@ public enum LotteryType {
                 return FC3D;
             case 2:
                 return PLS;
+            case 18:
+                return LHC;
             default:
                 return SFSSC;
         }

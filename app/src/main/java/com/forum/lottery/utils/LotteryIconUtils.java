@@ -14,6 +14,7 @@ import static com.forum.lottery.model.LotteryType.CQSSC;
 import static com.forum.lottery.model.LotteryType.FC3D;
 import static com.forum.lottery.model.LotteryType.GD11X5;
 import static com.forum.lottery.model.LotteryType.JX11X5;
+import static com.forum.lottery.model.LotteryType.LHC;
 import static com.forum.lottery.model.LotteryType.PLS;
 import static com.forum.lottery.model.LotteryType.SD11X5;
 import static com.forum.lottery.model.LotteryType.SFPKS;
@@ -64,7 +65,10 @@ public class LotteryIconUtils {
             icon = R.mipmap.fc3d;
         }else if(cpId == PLS.value()){
             icon = R.mipmap.pls;
-        }else {
+        }else if(cpId == LHC.value()){
+            icon = R.mipmap.lhc;
+        }
+        else {
             icon = R.mipmap.sfssc;
         }
 

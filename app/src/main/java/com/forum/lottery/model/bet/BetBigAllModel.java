@@ -1,5 +1,7 @@
 package com.forum.lottery.model.bet;
 
+import com.forum.lottery.model.bet.lhc.BetLHCAllModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,15 @@ public class BetBigAllModel {
     List<BetBigBigModel> result;
     List<BetBigBigModel2> result2;
     List<BetBigBigModel41> result3;
+    List<BetLHCAllModel> resultLHC;
+
+    public List<BetLHCAllModel> getResultLHC(){
+        return resultLHC;
+    }
+
+    public void setResultLHC(List<BetLHCAllModel> resultLHC){
+        this.resultLHC = resultLHC;
+    }
 
     public List<BetBigBigModel41> getResult3() {
         return result3;

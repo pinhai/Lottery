@@ -19,6 +19,8 @@ import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.model.PlayTypeA;
 import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.model.bet.BetListModel;
+import com.forum.lottery.model.bet.lhc.BetLHCAllModel;
+import com.forum.lottery.model.bet.lhc.BetLHCDataModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -593,6 +595,7 @@ public class LotteryUtils {
         List<BetBigBigModel> result = new ArrayList<>();
         List<BetBigBigModel2> result2 = new ArrayList<>();
         List<BetBigBigModel41> result3 = new ArrayList<>();
+        List<BetLHCAllModel> resultLHC = new ArrayList<>();
         String fileName = "";
 
         List<String> playTypeAsMatch = new ArrayList<>(), playTypeBsMatch = new ArrayList<>();
@@ -627,6 +630,8 @@ public class LotteryUtils {
             playTypeBsMatch = Arrays.asList(context.getResources().getStringArray(R.array.playTypeB_json3));
         }else if(lotteryId.equals("41") || lotteryId.equals("42")){
             fileName = "face.41.json";
+        }else if(lotteryId.equals("18")){
+            fileName = "lhc.json";
         }
 
         try {
@@ -641,7 +646,10 @@ public class LotteryUtils {
                 result2 = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel2.class);
             }else if(lotteryId.equals("41") || lotteryId.equals("42")){
                 result3 = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel41.class);
-            }else{
+            }else if(lotteryId.equals("18")){
+                resultLHC = jsonToArrayList(replaceBlank(sb.toString()), BetLHCAllModel.class);
+            }
+            else{
                 result = jsonToArrayList(replaceBlank(sb.toString()), BetBigBigModel.class);
             }
 
@@ -752,6 +760,21 @@ public class LotteryUtils {
 
             }
 
+        }else if(lotteryId.equals("18")){
+            for(BetLHCAllModel betLHCAllModel : resultLHC){
+                PlayTypeA playTypeA = new PlayTypeA();
+                playTypeA.setLotteryId(lotteryId);
+                playTypeA.setPlayTypeA(betLHCAllModel.getTitle());
+                List<PlayTypeB> playTypeBs = new ArrayList<>();
+                for(BetLHCDataModel betLHCDataModel : betLHCAllModel.getDatas()){
+                    PlayTypeB playTypeB = new PlayTypeB();
+                    playTypeB.setPlayTypeB(betLHCDataModel.getSubtitle());
+                    playTypeB.setPlayId("0");
+
+                    playTypeBs.add(playTypeB);
+                }
+                playTypeA.setPlayTypeBs(playTypeBs);
+            }
         }
         else{
             //删除冗余数据
@@ -839,6 +862,8 @@ public class LotteryUtils {
         resultAll.setResult(result);
         resultAll.setResult2(result2);
         resultAll.setResult3(result3);
+        resultAll.setResultLHC(resultLHC);
+
 
         return resultAll;
     }

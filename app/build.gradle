@@ -50,4 +50,6 @@ dependencies {
     compile files('libs/zxingjar-1.1.jar')
     compile files('libs/core.jar')
     compile project(':marqueeview')
+    compile files('libs/commons-lang3-3.5.jar')
+    compile files('libs/spring-core-4.3.6.RELEASE.jar')
 }
