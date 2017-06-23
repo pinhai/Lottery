@@ -42,7 +42,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
@@ -52,4 +51,7 @@ dependencies {
     compile project(':marqueeview')
     compile files('libs/commons-lang3-3.5.jar')
     compile files('libs/spring-core-4.3.6.RELEASE.jar')
+    compile files('libs/textVerify.jar')
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

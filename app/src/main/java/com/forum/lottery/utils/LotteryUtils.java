@@ -922,18 +922,6 @@ public class LotteryUtils {
                                 betListItemModel.setMethodidItems(betBigItemModel41.getMethods());
                                 betListItemModel.setTitle("");
                                 dataResult.add(betListItemModel);
-
-//                                if(betBigItemModel41.getBetItems() != null && betBigItemModel41.getBetItems().size() > 0){
-//                                    BetListItemModel betListItemModel = new BetListItemModel();
-//                                    betListItemModel.setBetItems(betBigItemModel41.getBetItems());
-//                                    betListItemModel.setTitle("");
-//                                    dataResult.add(betListItemModel);
-//                                }else{
-//                                    BetListItemModel betListItemModel = new BetListItemModel();
-//                                    betListItemModel.setBetItems(betBigItemModel41.getBetItems());
-//                                    betListItemModel.setTitle("");
-//                                    dataResult.add(betListItemModel);
-//                                }
                             }
                         }
                     }
