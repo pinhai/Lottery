@@ -221,7 +221,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
                             if(peilvs.size() == 1){
                                 item.setPeilv(peilvs.get(0).getBonusProp());
                             }else{
-//                                List<String> methodidItems = data.get(0).getMethodidItems();
+//                                List<String> methodidItems = data.get(0).getMethodids();
                                 for(Peilv peilv : peilvs){
                                     if(peilv.getMethodid() == Integer.parseInt(playId)){
                                         item.setPeilv(peilv.getBonusProp());

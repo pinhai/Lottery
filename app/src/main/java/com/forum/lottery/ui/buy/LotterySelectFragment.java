@@ -76,7 +76,7 @@ public class LotterySelectFragment extends BaseBetFragment {
         lv_lottery.setAdapter(adapter);
         headView = LayoutInflater.from(getActivity()).inflate(R.layout.head_bet_layout, null);
         tv_head = (TextView) headView.findViewById(R.id.tv_head);
-        if(lotteryId.equals("41") || lotteryId.equals("42")){
+        if(lotteryId.equals("41") || lotteryId.equals("42") || lotteryId.equals("18")){
             lv_lottery.addHeaderView(headView);
         }
 

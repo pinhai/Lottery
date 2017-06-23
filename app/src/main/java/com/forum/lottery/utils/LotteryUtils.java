@@ -21,6 +21,7 @@ import com.forum.lottery.model.PlayTypeB;
 import com.forum.lottery.model.bet.BetListModel;
 import com.forum.lottery.model.bet.lhc.BetLHCAllModel;
 import com.forum.lottery.model.bet.lhc.BetLHCDataModel;
+import com.forum.lottery.model.bet.lhc.BetLHCSubdataModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -770,8 +771,19 @@ public class LotteryUtils {
                     PlayTypeB playTypeB = new PlayTypeB();
                     playTypeB.setPlayTypeB(betLHCDataModel.getSubtitle());
                     playTypeB.setPlayId("0");
-
                     playTypeBs.add(playTypeB);
+
+                    List<BetItemModel> betItems = new ArrayList<>();
+                    List<String> methodids = new ArrayList<>();
+                    for(BetLHCSubdataModel betLHCSubdataModel : betLHCDataModel.getSubdatas()){
+                        BetItemModel betItemModel = new BetItemModel(betLHCSubdataModel.getName(), false,
+                                betLHCSubdataModel.getPrizeMax(), String.valueOf(betLHCSubdataModel.getMethodid()));
+                        betItems.add(betItemModel);
+                        String methodid = String.valueOf(betLHCSubdataModel.getMethodid());
+                        methodids.add(methodid);
+                    }
+                    betLHCDataModel.setBetItems(betItems);
+                    betLHCDataModel.setMethodids(methodids);
                 }
                 playTypeA.setPlayTypeBs(playTypeBs);
             }
@@ -923,6 +935,23 @@ public class LotteryUtils {
                                 betListItemModel.setTitle("");
                                 dataResult.add(betListItemModel);
                             }
+                        }
+                    }
+                }
+            }
+        }else if(dataAll.getResultLHC() != null && dataAll.getResultLHC().size() > 0){
+            List<BetLHCAllModel> betLHCAllModels = dataAll.getResultLHC();
+            for(BetLHCAllModel betLHCAllModel : betLHCAllModels){
+
+                if(typeA.getPlayTypeA().equals(betLHCAllModel.getTitle())){
+                    for(BetLHCDataModel betLHCDataModel : betLHCAllModel.getDatas()){
+
+                        if(typeB.getPlayTypeB().equals(betLHCDataModel.getSubtitle())){
+                            BetListItemModel betListItemModel = new BetListItemModel();
+                            betListItemModel.setBetItems(betLHCDataModel.getBetItems());
+                            betListItemModel.setMethodidItems(betLHCDataModel.getMethodids());
+                            betListItemModel.setTitle("");
+                            dataResult.add(betListItemModel);
                         }
                     }
                 }

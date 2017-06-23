@@ -1,5 +1,7 @@
 package com.forum.lottery.model.bet.lhc;
 
+import com.forum.lottery.model.bet.BetItemModel;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,34 @@ public class BetLHCDataModel {
 
     String subtitle;
     List<BetLHCSubdataModel> subdata;
+
+    private List<BetItemModel> betItems;
+    private List<String> methodids;
+
+
+    public List<BetLHCSubdataModel> getSubdata() {
+        return subdata;
+    }
+
+    public void setSubdata(List<BetLHCSubdataModel> subdata) {
+        this.subdata = subdata;
+    }
+
+    public List<BetItemModel> getBetItems() {
+        return betItems;
+    }
+
+    public void setBetItems(List<BetItemModel> betItems) {
+        this.betItems = betItems;
+    }
+
+    public List<String> getMethodids() {
+        return methodids;
+    }
+
+    public void setMethodids(List<String> methodids) {
+        this.methodids = methodids;
+    }
 
     public String getSubtitle(){
         return subtitle;

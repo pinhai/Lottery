@@ -13,6 +13,7 @@ public class BetItemModel implements Serializable{
     private boolean checked = false;
 
     private float prize = -1;
+    String methodId;
 
     public BetItemModel(String name, boolean checked){
         this.name = name;
@@ -23,6 +24,22 @@ public class BetItemModel implements Serializable{
         this.name = name;
         this.checked = checked;
         this.prize = prize;
+    }
+
+    public BetItemModel(String name, boolean checked, float prize, String methodId){
+        this.name = name;
+        this.checked = checked;
+        this.prize = prize;
+        this.methodId = methodId;
+    }
+
+
+    public String getMethodId() {
+        return methodId;
+    }
+
+    public void setMethodId(String methodId) {
+        this.methodId = methodId;
     }
 
     public float getPrize() {
