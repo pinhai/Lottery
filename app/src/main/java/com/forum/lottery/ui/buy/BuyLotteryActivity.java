@@ -1,6 +1,7 @@
 package com.forum.lottery.ui.buy;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -45,6 +47,7 @@ import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.utils.LotteryUtils;
 import com.forum.lottery.utils.ScreenUtils;
 import com.forum.lottery.view.PlayWaySelectorPopup;
+import com.longlong.business.homePage.controller.AppController;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -67,6 +70,10 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private TextView tv_betCount, tv_betMoney, tv_playWaySelect;
     private TextView tv_issue, tv_nextIssue, tv_openNum, tv_tickTime;
     private Button btn_clear, btn_bet;
+    LinearLayout ll_betCount, ll_ballCount;
+    TextView tv_ballCount;
+
+
     private AlertDialog betDialog;
     private int betCount = 0;      //下注的注数
     private LotteryVO lotteryVO;
@@ -147,6 +154,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         iv_assistant.setOnClickListener(this);
         tv_betCount = findView(R.id.tv_betCount);
         tv_betMoney = findView(R.id.tv_betMoney);
+        ll_betCount = findView(R.id.ll_betCount);
+        ll_ballCount = findView(R.id.ll_ballCount);
+        tv_ballCount = findView(R.id.tv_ballCount);
         btn_bet = findView(R.id.btn_bet);
         btn_bet.setOnClickListener(this);
         btn_clear = findView(R.id.btn_clear);
@@ -161,6 +171,14 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         refreshIssue();
 
         initAssistantPopup();
+
+//        if(lotteryVO.getLotteryid().equals("18")){
+//            ll_ballCount.setVisibility(View.VISIBLE);
+//            ll_betCount.setVisibility(View.GONE);
+//        }else{
+//            ll_ballCount.setVisibility(View.GONE);
+//            ll_betCount.setVisibility(View.VISIBLE);
+//        }
     }
 
     private void initAssistantPopup() {
@@ -299,7 +317,6 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
         final String playId = playTypeB.getPlayId();
 
-
         createHttp(LotteryService.class)
                 .getPeilv(lotteryVO.getLotteryid(), playTypeB.getPlayId())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -330,9 +347,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    //每一个球构成一注的下注
-    private void betEveryBall(List<Peilv> peilvs){
-        float oneBetMoney = 2;
+    private void betEveryBallFinal(List<Peilv> peilvs, float oneBetMoney){
         float fanli = 0;
         //去下注
         String playName = "[" + playTypeA.getPlayTypeA() + "_" + playTypeB.getPlayTypeB() + "]";
@@ -353,6 +368,44 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             i.putExtra("peilvs", (Serializable) peilvs);
             startActivityForResult(i, 101);
         }
+    }
+
+    //每一个球构成一注的下注
+    private void betEveryBall(final List<Peilv> peilvs){
+        float oneBetMoney = 2;
+
+        if(lotteryVO.getLotteryid().equals("18")){
+            View view = LayoutInflater.from(this).inflate(R.layout.view_bet_every_ball_money,null);
+            final Dialog betDialog = new AlertDialog.Builder(this)
+                    .setView(view)
+                    .setCancelable(false)
+                    .create();
+            betDialog.show();
+            final EditText et_allBetMoney = (EditText) view.findViewById(R.id.et_allBetMoney);
+            Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+            Button btn_ok = (Button) view.findViewById(R.id.btn_ok);
+            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    betDialog.dismiss();
+                }
+            });
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String betMoney = et_allBetMoney.getText().toString().trim();
+                    if(TextUtils.isEmpty(betMoney)){
+                        toast("请输入金额");
+                        return;
+                    }
+                    betEveryBallFinal(peilvs, Float.parseFloat(betMoney));
+                    betDialog.dismiss();
+                }
+            });
+        }else {
+            betEveryBallFinal(peilvs, oneBetMoney);
+        }
+
     }
 
     private void showBetDialog(Peilv peilv) {
@@ -488,32 +541,39 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //        tv_betCount.setText(betCount + "");
 //        tv_betMoney.setText((betCount *2) + "");
         String lotteryId = lotteryVO.getLotteryid();
-        if(lotteryId.equals("41") || lotteryId.equals("42") || (lotteryId.equals("11") && playTypeA.getPlayTypeA().equals("和值"))){
+        if(lotteryId.equals("41") || lotteryId.equals("42") || (lotteryId.equals("11") && playTypeA.getPlayTypeA().equals("和值"))
+                || lotteryId.equals("18")){
             betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
             tv_betCount.setText(betCount + "");
             tv_betMoney.setText((betCount *2) + "");
             return;
         }
-        /// 通过网络接口获取下注数量
-        showIndeterminateDialog();
-        createHttp(LotteryService.class)
-                .getBetCount(playTypeB.getPlayId(), lotteryVO.getLotteryid(), LotteryUtils.getBetCountRequestStr(betFragment.getData()))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ResultData>() {
-                    @Override
-                    public void onSuccess(ResultData value) {
-                        dismissIndeterminateDialog();
-                        betCount = value.getCount();
-                        tv_betCount.setText(betCount + "");
-                        tv_betMoney.setText((betCount *2) + "");
-                    }
 
-                    @Override
-                    public void onError(Throwable error) {
-                        dismissIndeterminateDialog();
-                        toast(R.string.connection_failed);
-                    }
-                });
+        betCount = AppController.getLotteryNum(LotteryUtils.getBetCountRequestStr(betFragment.getData()),
+                Integer.parseInt(lotteryVO.getLotteryid()), Integer.parseInt(playTypeB.getPlayId()));
+        tv_betCount.setText(betCount + "");
+        tv_betMoney.setText((betCount *2) + "");
+
+//        /// 通过网络接口获取下注数量
+//        showIndeterminateDialog();
+//        createHttp(LotteryService.class)
+//                .getBetCount(playTypeB.getPlayId(), lotteryVO.getLotteryid(), LotteryUtils.getBetCountRequestStr(betFragment.getData()))
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleSubscriber<ResultData>() {
+//                    @Override
+//                    public void onSuccess(ResultData value) {
+//                        dismissIndeterminateDialog();
+//                        betCount = value.getCount();
+//                        tv_betCount.setText(betCount + "");
+//                        tv_betMoney.setText((betCount *2) + "");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable error) {
+//                        dismissIndeterminateDialog();
+//                        toast(R.string.connection_failed);
+//                    }
+//                });
 
     }
 

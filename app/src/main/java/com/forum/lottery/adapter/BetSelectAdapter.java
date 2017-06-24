@@ -30,6 +30,7 @@ public class BetSelectAdapter extends BaseAdapter {
     private Context context;
     private OnCheckedListener checkedListener;
     private List<BetItemModel> itemData;
+    String lotteryId;
 
 //    public BetSelectAdapter(Context context, List<Boolean> selecteds, OnCheckedListener checkedListener){
 //        this.context = context;
@@ -37,11 +38,12 @@ public class BetSelectAdapter extends BaseAdapter {
 //        this.checkedListener = checkedListener;
 //    }
 
-    public BetSelectAdapter(Context context, List<BetItemModel> itemData, OnCheckedListener checkedListener){
+    public BetSelectAdapter(Context context, String lotteryId, List<BetItemModel> itemData, OnCheckedListener checkedListener){
         this.context = context;
 //        this.selecteds = selecteds;
         this.checkedListener = checkedListener;
         this.itemData = itemData;
+        this.lotteryId = lotteryId;
     }
 
 //    public void setItemData(List<String> itemData){
@@ -78,7 +80,7 @@ public class BetSelectAdapter extends BaseAdapter {
         }
 
         String betName = itemData.get(position).getName();
-        if(betName.length() > 2 && StringUtils.isChinese(betName)){
+        if((betName.length() > 2 && StringUtils.isChinese(betName)) || (lotteryId.equals("18") && StringUtils.isChinese(betName))){
             viewHolder.ctv_bet.setButtonDrawable(R.drawable.bg_bet_chinese_selector);
 
         }else{

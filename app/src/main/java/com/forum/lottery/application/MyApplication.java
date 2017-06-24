@@ -7,6 +7,7 @@ import com.forum.lottery.utils.CrashHandler;
 import com.forum.lottery.utils.DbManager;
 import com.forum.lottery.utils.LogUtils;
 import com.forum.lottery.utils.ScreenUtils;
+import com.longlong.business.homePage.controller.MJsonUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -44,6 +45,7 @@ public class MyApplication extends Application {
         initImageLoader(this);
         ScreenUtils.init(this);
         CrashHandler.getInstance().init(this);
+        MJsonUtils.init(this);
     }
 
 

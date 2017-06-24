@@ -16,13 +16,13 @@
             android:id="@+id/tv_label"
             android:background="@mipmap/touzhu_qian"
             android:padding="5dp"
+            android:layout_marginRight="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="14sp"/>
         <com.forum.lottery.view.MyGridView
             android:id="@+id/gv_wei"
-            android:layout_marginLeft="30dp"
             android:numColumns="5"
             android:layout_width="0dp"
             android:layout_weight="1"

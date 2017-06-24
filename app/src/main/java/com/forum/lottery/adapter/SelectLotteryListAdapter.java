@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
+import com.forum.lottery.model.LotteryType;
 import com.forum.lottery.model.bet.BetItemModel;
 import com.forum.lottery.model.bet.BetListItemModel;
 import com.forum.lottery.utils.StringUtils;
@@ -80,19 +81,16 @@ public class SelectLotteryListAdapter extends BaseAdapter {
             viewHolder.tv_label.setText(data.get(position).getTitle());
         }
 
-//        if(position > 0 && data.size() > 0 && (lotteryId.equals("41") || lotteryId.equals("42"))
-//                && data.size()>0 && !data.get(0).getTitle().equals("特码包三")){
-//            viewHolder.ll_betGrid.setVisibility(View.GONE);
-//            return;
-//        }else{
-//            viewHolder.ll_betGrid.setVisibility(View.VISIBLE);
-//        }
         BetSelectAdapter adapter = adapters.get(position);
         List<BetItemModel> itemData = adapter.getData();
         if(itemData != null && itemData.size() > 0&& StringUtils.isChinese(itemData.get(0).getName())
-                && itemData.get(0).getName().length() > 2){
+                && itemData.get(0).getName().length() > 2 && !lotteryId.equals("18")){
             viewHolder.gv_wei.setNumColumns(2);
-        }else{
+        }else if(lotteryId.equals("18") && StringUtils.isChinese(itemData.get(0).getName())){
+            //六合彩
+            viewHolder.gv_wei.setNumColumns(2);
+        }
+        else{
             viewHolder.gv_wei.setNumColumns(5);
         }
         viewHolder.gv_wei.setAdapter(adapter);
@@ -112,34 +110,17 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     private void setGridAdapter(){
         adapters = new ArrayList<>();
 
-//        if(((lotteryId.equals("41") || lotteryId.equals("42")) && data.size()>0 && !data.get(0).getTitle().equals("特码包三"))){
-//            List<BetItemModel> itemData = new ArrayList<>();
-//            for (BetListItemModel betListItemModel : data){
-////                BetItemModel itemModel = new BetItemModel(betListItemModel.getNo(), betListItemModel.getBetItems().get(0).isChecked());
-//                itemData.addAll(betListItemModel.getBetItems());
-//            }
-//            BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
-//                @Override
-//                public void onCheckedChanged(boolean isChecked) {
-//
-//                }
-//            });
-//            adapters.add(adapter);
-//
-//        }
-//        else{
-            for(int i=0; i<data.size(); i++){
-                List<BetItemModel> itemData = data.get(i).getBetItems();
-                BetSelectAdapter adapter = new BetSelectAdapter(context, itemData, new BetSelectAdapter.OnCheckedListener() {
-                    @Override
-                    public void onCheckedChanged(boolean isChecked) {
+        for(int i=0; i<data.size(); i++){
+            List<BetItemModel> itemData = data.get(i).getBetItems();
+            BetSelectAdapter adapter = new BetSelectAdapter(context, lotteryId, itemData, new BetSelectAdapter.OnCheckedListener() {
+                @Override
+                public void onCheckedChanged(boolean isChecked) {
 
-                    }
-                });
-                adapters.add(adapter);
+                }
+            });
+            adapters.add(adapter);
 
-            }
-//        }
+        }
 
     }
 
@@ -147,9 +128,6 @@ public class SelectLotteryListAdapter extends BaseAdapter {
     public void notifyDataSetChanged() {
         setGridAdapter();
         super.notifyDataSetChanged();
-//        for(int i=0; i<data.size(); i++){
-//            adapters.get(i).notifyDataSetChanged();
-//        }
     }
 
     public void clearCheckedBetting() {

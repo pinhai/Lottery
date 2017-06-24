@@ -786,6 +786,7 @@ public class LotteryUtils {
                     betLHCDataModel.setMethodids(methodids);
                 }
                 playTypeA.setPlayTypeBs(playTypeBs);
+                playWays.add(playTypeA);
             }
         }
         else{

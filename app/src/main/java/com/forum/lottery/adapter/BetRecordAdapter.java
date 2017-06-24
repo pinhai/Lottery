@@ -52,6 +52,7 @@ public class BetRecordAdapter extends BaseAdapter{
             viewHolder.tv_period = (TextView) convertView.findViewById(R.id.tv_period);
             viewHolder.tv_price = (TextView) convertView.findViewById(R.id.tv_price);
             viewHolder.tv_date = (TextView) convertView.findViewById(R.id.tv_date);
+            viewHolder.tv_buyNo = (TextView) convertView.findViewById(R.id.tv_buyNo);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -68,9 +69,10 @@ public class BetRecordAdapter extends BaseAdapter{
         viewHolder.tv_period.setText(item.getPeriodNO()+ "期");
         viewHolder.tv_price.setText(item.getCountPrice() + "元");
         viewHolder.tv_date.setText(item.getBuyTime());
+        viewHolder.tv_buyNo.setText(item.getBuyNO());
     }
 
     class ViewHolder{
-        TextView tv_cpname, tv_period, tv_price, tv_date;
+        TextView tv_cpname, tv_period, tv_price, tv_date, tv_buyNo;
     }
 }
