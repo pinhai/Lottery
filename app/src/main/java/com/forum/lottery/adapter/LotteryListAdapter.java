@@ -1,7 +1,6 @@
 package com.forum.lottery.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.forum.lottery.adapter.lottery.Lottery0Converter;
@@ -11,7 +10,6 @@ import com.forum.lottery.adapter.lottery.Lottery4Converter;
 import com.forum.lottery.adapter.lottery.Lottery5Converter;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.model.LotteryType;
-import com.forum.lottery.model.TrendModel;
 
 import java.util.List;
 
@@ -29,7 +27,7 @@ import static com.forum.lottery.model.LotteryType.SFSSC;
 import static com.forum.lottery.model.LotteryType.SH11X5;
 import static com.forum.lottery.model.LotteryType.SHSSL;
 import static com.forum.lottery.model.LotteryType.TJSSC;
-import static com.forum.lottery.model.LotteryType.XJP28;
+import static com.forum.lottery.model.LotteryType.XY28;
 import static com.forum.lottery.model.LotteryType.XJSSC;
 
 /**
@@ -69,7 +67,7 @@ public class LotteryListAdapter extends QuickAdapter<LotteryVO> {
                 viewConverter = new Lottery1Converter();
             }else if(viewType == BJPKS.value()){
                 viewConverter = new Lottery3Converter();
-            }else if(viewType == XJP28.value()){
+            }else if(viewType == XY28.value()){
                 viewConverter = new Lottery5Converter();
             }else if(viewType == SFPKS.value()){
                 viewConverter = new Lottery3Converter();

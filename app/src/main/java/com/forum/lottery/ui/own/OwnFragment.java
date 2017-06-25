@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -40,6 +41,7 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
     private TextView tv_username, tv_refreshMoney, tv_balance;
     private Button btn_logout;
     private TextView tv_modifyTradePsw, tv_modifyLoginPsw;
+    private LinearLayout ll_user;
 
     private String balance;  //余额
 
@@ -97,6 +99,8 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
         tv_modifyTradePsw.setOnClickListener(this);
         tv_modifyLoginPsw = findView(R.id.tv_modifyLoginPsw);
         tv_modifyLoginPsw.setOnClickListener(this);
+        ll_user = findView(R.id.ll_user);
+        ll_user.setOnClickListener(this);
 
         setUserInfo();
         refreshMoney();
@@ -133,13 +137,18 @@ public class OwnFragment extends TabBaseFragment implements View.OnClickListener
             btn_logout.setVisibility(View.VISIBLE);
         }else{
             btn_logout.setVisibility(View.GONE);
-            tv_username.setText("null");
+            tv_username.setText("请登录");
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.ll_user:
+                if(!AccountManager.getInstance().isLogin()){
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+                break;
             case R.id.btn_logout:
                 AccountManager.getInstance().logout();
                 LoginActivity.startActivity(OwnFragment.this, HomeFragment.LOGIN_CODE);

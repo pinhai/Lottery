@@ -90,7 +90,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
         }
     }
 
-    private void netLogin(final String userName, String password){
+    private void netLogin(final String userName, final String password){
         dialog.show();
         createHttp(UserService.class)
                 .login(userName, password)
@@ -102,6 +102,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
                         if(value.isResult()){
                             UserVO userVO = new UserVO();
                             userVO.setAccount(userName);
+                            userVO.setPassword(password);
                             userVO.setId(String.valueOf(value.getUserId()));
                             AccountManager.getInstance().saveUser(userVO);
                             EventBus.getDefault().post(new LoginEvent());

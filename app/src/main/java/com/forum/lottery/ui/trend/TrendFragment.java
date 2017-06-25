@@ -98,7 +98,9 @@ public class TrendFragment extends TabBaseFragment {
         ib_lotteryType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pw_lottery.show(ib_lotteryType);
+                if(pw_lottery != null){
+                    pw_lottery.show(ib_lotteryType);
+                }
             }
         });
 

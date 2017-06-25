@@ -34,8 +34,8 @@ public class RxHttp {
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
     private Map<Class<?>,  Object> cacheServices;
-    public static final String BASE_URL = "http://23.27.226.194/";
-//    public static final String BASE_URL = "http://1685v1z125.iask.in:19658/";
+//    public static final String BASE_URL = "http://23.27.226.194/";
+    public static final String BASE_URL = "http://1685v1z125.iask.in:19658/";
 //    public static final String BASE_URL = "http://zhy.xinwangpuhui.com/";
 //    public static final String BASE_URL = "http://1541z56x30.51mypc.cn/";
 //    public static final String BASE_URL = "http://192.168.10.167:8080/financialmall-web/";

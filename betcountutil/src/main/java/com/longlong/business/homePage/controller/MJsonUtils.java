@@ -85,7 +85,7 @@ public class MJsonUtils {
 		}else if(lotteryId.equals("12") ||lotteryId.equals("13") ||lotteryId.equals("14") ||lotteryId.equals("15")){
 			fileName = "face.8.json";
 		}else if(lotteryId.equals("11")){
-			fileName = "face.7_1.json";
+			fileName = "face.7.json";
 		}else if(lotteryId.equals("9") || lotteryId.equals("52")){
 			fileName = "face.3.json";
 		}else if(lotteryId.equals("41") || lotteryId.equals("42")){
@@ -133,7 +133,7 @@ public class MJsonUtils {
 				for(MethodLabel label : labels){
 					List<InnerLabel> inlabels = label.getLabel();
 					for(InnerLabel ilabel : inlabels){
-						if(ilabel.getMethodid() == methodid){
+						if(ilabel != null && ilabel.getMethodid() == methodid){
 							resultLabel = ilabel;
 							break;
 						}

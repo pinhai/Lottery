@@ -17,6 +17,7 @@ public class UserVO implements Parcelable {
      */
     private int type;
     private String account;
+    private String password;
     /**
      * 是否认证 0 未认证， 1已认证
      */
@@ -26,6 +27,14 @@ public class UserVO implements Parcelable {
     private String companyName;
     private String token;
     private String sign;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getId() {
         return id;
@@ -145,6 +154,7 @@ public class UserVO implements Parcelable {
             userVO = new UserVO();
         }
         userVO.setAccount(getAccount());
+        userVO.setPassword(getPassword());
         userVO.setId(getId());
         userVO.setType(getType());
         userVO.setIsCredit(getIsCredit());

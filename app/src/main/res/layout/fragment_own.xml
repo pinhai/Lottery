@@ -33,6 +33,7 @@
                 app:ratio="0.39">
 
                 <LinearLayout
+                    android:id="@+id/ll_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"

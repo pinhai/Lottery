@@ -14,7 +14,7 @@
         android:layout_height="60dp"
         app:oval="true"
         android:layout_gravity="center_vertical"
-        android:src="@mipmap/a1"/>
+        android:src="@mipmap/sfssc"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_2"
             android:textSize="16sp"
-            android:text="00:00:02"
+            android:text="00:00:00"
             android:singleLine="true"/>
     </LinearLayout>
 

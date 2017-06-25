@@ -1,11 +1,6 @@
 package com.forum.lottery.utils;
 
 import com.forum.lottery.R;
-import com.forum.lottery.adapter.lottery.Lottery0Converter;
-import com.forum.lottery.adapter.lottery.Lottery1Converter;
-import com.forum.lottery.adapter.lottery.Lottery3Converter;
-import com.forum.lottery.adapter.lottery.Lottery4Converter;
-import com.forum.lottery.adapter.lottery.Lottery5Converter;
 
 import static com.forum.lottery.model.LotteryType.AHKS;
 import static com.forum.lottery.model.LotteryType.BJ28;
@@ -22,7 +17,7 @@ import static com.forum.lottery.model.LotteryType.SFSSC;
 import static com.forum.lottery.model.LotteryType.SH11X5;
 import static com.forum.lottery.model.LotteryType.SHSSL;
 import static com.forum.lottery.model.LotteryType.TJSSC;
-import static com.forum.lottery.model.LotteryType.XJP28;
+import static com.forum.lottery.model.LotteryType.XY28;
 import static com.forum.lottery.model.LotteryType.XJSSC;
 
 /**
@@ -39,8 +34,8 @@ public class LotteryIconUtils {
             icon = R.mipmap.cqssc;
         }else if(cpId == BJPKS.value()){
             icon = R.mipmap.bjpks;
-        }else if(cpId == XJP28.value()){
-            icon = R.mipmap.sfssc;
+        }else if(cpId == XY28.value()){
+            icon = R.mipmap.xy28;
         }else if(cpId == SFPKS.value()){
             icon = R.mipmap.sfpks;
         }else if(cpId == SHSSL.value()){
@@ -58,7 +53,7 @@ public class LotteryIconUtils {
         }else if(cpId == GD11X5.value()){
             icon = R.mipmap.syxw;
         }else if(cpId == BJ28.value()){
-            icon = R.mipmap.sfssc;
+            icon = R.mipmap.bj28;
         }else if(cpId == AHKS.value()){
             icon = R.mipmap.ahks;
         }else if(cpId == FC3D.value()){

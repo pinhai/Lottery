@@ -827,7 +827,8 @@ public class LotteryUtils {
 
             //生成玩法对象
             for(BetBigBigModel betBigBigModel : result){
-                if(!playTypeAsMatch.contains(betBigBigModel.getTitle()) || betBigBigModel.getTitle().contains("任选")){
+                if(!playTypeAsMatch.contains(betBigBigModel.getTitle()) || betBigBigModel.getTitle().contains("任选")
+                        || ((lotteryId.equals("1") || lotteryId.equals("2")) && betBigBigModel.getTitle().equals("二星"))){
                     continue;
                 }
                 PlayTypeA playTypeA = new PlayTypeA();

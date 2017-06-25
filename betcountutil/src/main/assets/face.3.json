@@ -1,0 +1,392 @@
+[
+    {
+        "isrx": "0",
+        "isdefault": "0",
+        "title": "前一",
+        "label": [
+            {
+                "gtitle": "前一直选",
+                "label": [
+                    {
+                        "selectarea": {
+                            "type": "digital",
+                            "layout": [
+                                {
+                                    "title": "冠军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 0,
+                                    "cols": 1
+                                }
+                            ],
+                            "noBigIndex": 5,
+                            "isButton": true
+                        },
+                        "show_str": "X",
+                        "code_sp": ",",
+                        "methodid": 222,
+                        "name": "直选复式",
+                        "methoddesc": "从第一名中至少选择1个号码组成一注。",
+                        "methodhelp": "从01-10中至少选择1个号码组成一注，所选号码与开奖号码中第一位相同即中奖。",
+                        "methodexample": "投注方案：01<br>开奖号码：01 02 03 04 05 06 07 08 09 10<br>即可中前一直选。",
+                        "prize": {
+                            "1": "1700.00"
+                        },
+                        "dyprize": [],
+                        "modes": [
+                            {
+                                "modeid": 1,
+                                "name": "元",
+                                "rate": 1
+                            },
+                            {
+                                "modeid": 2,
+                                "name": "角",
+                                "rate": 0.1
+                            },
+                            {
+                                "modeid": 3,
+                                "name": "分",
+                                "rate": 0.01
+                            }
+                        ],
+                        "maxcodecount": 0,
+                        "isrx": 0,
+                        "numcount": 0,
+                        "defaultposition": "00000",
+                        "desc": "直选复式"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "isrx": "0",
+        "isdefault": "0",
+        "title": "前二",
+        "label": [
+            {
+                "gtitle": "前二直选",
+                "label": [
+                    {
+                        "selectarea": {
+                            "type": "digital",
+                            "layout": [
+                                {
+                                    "title": "冠军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 0,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "亚军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 1,
+                                    "cols": 1
+                                }
+                            ],
+                            "noBigIndex": 5,
+                            "isButton": true
+                        },
+                        "show_str": "X,X",
+                        "code_sp": "",
+                        "methodid": 223,
+                        "name": "直选复式",
+                        "methoddesc": "从第一名、第二名中至少选择1个号码组成一注。",
+                        "methodhelp": "从冠军、亚军位中至少各选择一个号码组成一注，开奖号码中第一、第二位与选号按位相同，即为中奖。",
+                        "methodexample": "投注方案：冠军01，亚军02 开奖号码：01 02 03 04 05 06 07 08 09 10即可中前二直选。",
+                        "prize": {
+                            "1": "1700.00"
+                        },
+                        "dyprize": [],
+                        "modes": [
+                            {
+                                "modeid": 1,
+                                "name": "元",
+                                "rate": 1
+                            },
+                            {
+                                "modeid": 2,
+                                "name": "角",
+                                "rate": 0.1
+                            },
+                            {
+                                "modeid": 3,
+                                "name": "分",
+                                "rate": 0.01
+                            }
+                        ],
+                        "maxcodecount": 0,
+                        "isrx": 0,
+                        "numcount": 0,
+                        "defaultposition": "00000",
+                        "desc": "直选复式"
+                    },
+                    {
+                        "selectarea": {
+                            "type": "input",
+                            "singletypetips": "01 02"
+                        },
+                        "show_str": "X",
+                        "code_sp": " ",
+                        "methodid": 224,
+                        "name": "直选单式",
+                        "methoddesc": "手动输入号码，至少选择1个二位数号码组成一注。",
+                        "methodhelp": "手动输入两个号码组成一注，所选号码与开奖号码中第一、第二位相同，且顺序一致，即为中奖。",
+                        "methodexample": "投注方案：0102<br>开奖号码：01 02 03 04 05 06 07 08 09 10<br>即可中前二直选。",
+                        "prize": {
+                            "1": "1700.00"
+                        },
+                        "dyprize": [],
+                        "modes": [
+                            {
+                                "modeid": 1,
+                                "name": "元",
+                                "rate": 1
+                            },
+                            {
+                                "modeid": 2,
+                                "name": "角",
+                                "rate": 0.1
+                            },
+                            {
+                                "modeid": 3,
+                                "name": "分",
+                                "rate": 0.01
+                            }
+                        ],
+                        "maxcodecount": 0,
+                        "isrx": 0,
+                        "numcount": 0,
+                        "defaultposition": "00000",
+                        "desc": "直选单式"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "isrx": "0",
+        "isdefault": "0",
+        "title": "前三",
+        "label": [
+            {
+                "gtitle": "前三直选",
+                "label": [
+                    {
+                        "selectarea": {
+                            "type": "digital",
+                            "layout": [
+                                {
+                                    "title": "冠军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 0,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "亚军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 1,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "季军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 2,
+                                    "cols": 1
+                                }
+                            ],
+                            "noBigIndex": 5,
+                            "isButton": true
+                        },
+                        "show_str": "X,X,X",
+                        "code_sp": "",
+                        "methodid": 225,
+                        "name": "直选复式",
+                        "methoddesc": "从第一名、第二名、第三名中至少选择1个号码组成一注。",
+                        "methodhelp": "从冠军、亚军、季军位中至少各选择一个号码组成一注，开奖号码中第一、第二、第三位与选号按位相同，即为中奖。",
+                        "methodexample": "投注方案：冠军01，亚军02，季军03 开奖号码：01 02 03 04 05 06 07 08 09 10即可中前三直选。",
+                        "prize": {
+                            "1": "1700.00"
+                        },
+                        "dyprize": [],
+                        "modes": [
+                            {
+                                "modeid": 1,
+                                "name": "元",
+                                "rate": 1
+                            },
+                            {
+                                "modeid": 2,
+                                "name": "角",
+                                "rate": 0.1
+                            },
+                            {
+                                "modeid": 3,
+                                "name": "分",
+                                "rate": 0.01
+                            }
+                        ],
+                        "maxcodecount": 0,
+                        "isrx": 0,
+                        "numcount": 0,
+                        "defaultposition": "00000",
+                        "desc": "直选复式"
+                    },
+                    {
+                        "selectarea": {
+                            "type": "input",
+                            "singletypetips": "01 02 03"
+                        },
+                        "show_str": "X",
+                        "code_sp": " ",
+                        "methodid": 226,
+                        "name": "直选单式",
+                        "methoddesc": "手动输入号码，至少选择1个三位数号码组成一注。",
+                        "methodhelp": "手动输入两个号码组成一注，所选号码与开奖号码中第一、第二、第三位相同，且顺序一致，即为中奖。",
+                        "methodexample": "投注方案：010203<br>开奖号码：01 02 03 04 05 06 07 08 09 10<br>即可中前三直选。",
+                        "prize": {
+                            "1": "1700.00"
+                        },
+                        "dyprize": [],
+                        "modes": [
+                            {
+                                "modeid": 1,
+                                "name": "元",
+                                "rate": 1
+                            },
+                            {
+                                "modeid": 2,
+                                "name": "角",
+                                "rate": 0.1
+                            },
+                            {
+                                "modeid": 3,
+                                "name": "分",
+                                "rate": 0.01
+                            }
+                        ],
+                        "maxcodecount": 0,
+                        "isrx": 0,
+                        "numcount": 0,
+                        "defaultposition": "00000",
+                        "desc": "直选单式"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "isrx": "0",
+        "isdefault": "0",
+        "title": "定位胆",
+        "label": [
+            {
+                "gtitle": "定位胆",
+                "label": [
+                    {
+                        "selectarea": {
+                            "type": "digital",
+                            "layout": [
+                                {
+                                    "title": "冠军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 0,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "亚军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 1,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "季军",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 2,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第四名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 3,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第五名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 4,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第六名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 5,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第七名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 6,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第八名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 7,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第九名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 8,
+                                    "cols": 1
+                                },
+                                {
+                                    "title": "第十名",
+                                    "no": "01|02|03|04|05|06|07|08|09|10",
+                                    "place": 9,
+                                    "cols": 1
+                                }
+                            ],
+                            "noBigIndex": 5,
+                            "isButton": true
+                        },
+                        "show_str": "X,X,X,X,X,X,X,X,X,X",
+                        "code_sp": "",
+                        "methodid": 227,
+                        "name": "定位胆",
+                        "methoddesc": "从第一名到第十名任意位置上选择1个或1个以上号码。",
+                        "methodhelp": "从冠军到第十名任意位置上至少选择1个或1个以上号码，每注由1个号码组成，所选号码与相同位置上的开奖号码一致，即为中奖。",
+                        "methodexample": "投注方案：冠军01 开奖号码：01 02 03 04 05 06 07 08 09 10即中定位胆。",
+                        "prize": {
+                            "1": "1700.00"
+                        },
+                        "dyprize": [],
+                        "modes": [
+                            {
+                                "modeid": 1,
+                                "name": "元",
+                                "rate": 1
+                            },
+                            {
+                                "modeid": 2,
+                                "name": "角",
+                                "rate": 0.1
+                            },
+                            {
+                                "modeid": 3,
+                                "name": "分",
+                                "rate": 0.01
+                            }
+                        ],
+                        "maxcodecount": 0,
+                        "isrx": 0,
+                        "numcount": 0,
+                        "defaultposition": "00000",
+                        "desc": "定位胆"
+                    }
+                ]
+            }
+        ]
+    }
+]

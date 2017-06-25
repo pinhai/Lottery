@@ -58,7 +58,8 @@ public class AccountManager {
             if(isLogin()){
                 mUserVO = new Gson().fromJson(mPreferences.getString(USER_INFO_KEY, ""), UserVO.class);
             }else{
-                throw new IllegalStateException("当前用户未登录");
+//                throw new IllegalStateException("当前用户未登录");
+                return null;
             }
         }
         return mUserVO;

@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.forum.lottery.adapter.MainTabAdapter;
+import com.forum.lottery.api.UserService;
+import com.forum.lottery.entity.RegisterResult;
+import com.forum.lottery.entity.UserVO;
+import com.forum.lottery.event.LoginEvent;
 import com.forum.lottery.service.LotteryTickService;
 import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.ui.TabBaseFragment;
@@ -16,14 +20,18 @@ import com.forum.lottery.ui.home.HomeFragment;
 import com.forum.lottery.ui.openlottery.LotteryFragment;
 import com.forum.lottery.ui.own.OwnFragment;
 import com.forum.lottery.ui.trend.TrendFragment;
+import com.forum.lottery.utils.AccountManager;
 import com.forum.lottery.utils.ToolUtils;
 import com.forum.lottery.utils.Utils;
 import com.forum.lottery.view.TabBar;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.SingleSubscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
@@ -54,6 +62,42 @@ public class MainActivity extends BaseActivity {
         initView();
 
         startLotteryTickService();
+        checkLogin();
+    }
+
+    private void checkLogin() {
+
+        UserVO userVO = AccountManager.getInstance().getUser();
+        if(userVO != null){
+            //一进入APP就登陆一次
+            showProgressDialog(false);
+            createHttp(UserService.class)
+                    .login(userVO.getAccount(), userVO.getPassword())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new SingleSubscriber<RegisterResult>() {
+                        @Override
+                        public void onSuccess(RegisterResult value) {
+                            dismissProgressDialog();
+                            if(value.isResult()){
+//                                UserVO userVO = new UserVO();
+//                                userVO.setAccount(userVO.getAccount());
+//                                userVO.setId(String.valueOf(value.getUserId()));
+//                                AccountManager.getInstance().saveUser(userVO);
+                                EventBus.getDefault().post(new LoginEvent());
+                            }else{
+                                toast("账号或者密码错误，请重新登录");
+                                AccountManager.getInstance().logout();
+                            }
+                        }
+                        @Override
+                        public void onError(Throwable error) {
+                            toast(getString(R.string.connection_failed));
+                            dismissProgressDialog();
+                            AccountManager.getInstance().logout();
+                        }
+                    });
+        }
+
     }
 
     private void startLotteryTickService() {

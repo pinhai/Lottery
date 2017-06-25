@@ -318,7 +318,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         final String playId = playTypeB.getPlayId();
 
         createHttp(LotteryService.class)
-                .getPeilv(lotteryVO.getLotteryid(), playTypeB.getPlayId())
+                .getPeilv(lotteryVO.getLotteryid(), playId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<List<Peilv>>() {
                     @Override
