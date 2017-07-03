@@ -29,18 +29,18 @@ public class ModifyTradePswActivity extends BaseActionBarActivity {
 
     @Order(0)
     @NotEmpty(message = "请输入旧密码")
-    @Length(min = 6, max = 6, message = "交易密码长度为6位纯数字", sequence = 1)
-    @Regex(regex = "^[0-9]{6}", message = "交易密码长度为6位纯数字", sequence = 2)
+    @Length(min = 4, max = 4, message = "交易密码长度为4位纯数字", sequence = 1)
+    @Regex(regex = "^[0-9]{4}", message = "交易密码长度为4位纯数字", sequence = 2)
     private EditText et_oldPsw;
     @Order(1)
     @NotEmpty(message = "请输入新密码")
-    @Length(min = 6, max = 6, message = "交易密码长度为6位纯数字", sequence = 1)
-    @Regex(regex = "^[0-9]{6}", message = "交易密码长度为6位纯数字", sequence = 2)
+    @Length(min = 4, max = 4, message = "交易密码长度为4位纯数字", sequence = 1)
+    @Regex(regex = "^[0-9]{4}", message = "交易密码长度为4位纯数字", sequence = 2)
     private EditText et_newPsw;
     @Order(2)
     @NotEmpty(message = "请再次输入新密码")
-    @Length(min = 6, max = 6, message = "交易密码长度为6位纯数字", sequence = 1)
-    @Regex(regex = "^[0-9]{6}", message = "交易密码长度为6位纯数字", sequence = 2)
+    @Length(min = 4, max = 4, message = "交易密码长度为4位纯数字", sequence = 1)
+    @Regex(regex = "^[0-9]{4}", message = "交易密码长度为4位纯数字", sequence = 2)
     @Same(message = "两次新密码不匹配", sourceId = R.id.et_newPsw, sequence = 3)
     private EditText et_newPsw2;
     private Button btn_modify;
