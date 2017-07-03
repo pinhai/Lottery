@@ -154,5 +154,5 @@ public interface UserService {
      */
     @POST("/userCenter/updateTransPwd")
     @FormUrlEncoded
-    Single<ResultData> modifyTradePsw(@Field("userId") String userId, @Field("oldPwd") String oldPwd, @Field("transPwd") String transPwd);
+    Single<ResultData> modifyTradePsw(@Field("userId") String userId, @Field("oldPwd") String oldPwd, @Field("newPwd") String transPwd);
 }
