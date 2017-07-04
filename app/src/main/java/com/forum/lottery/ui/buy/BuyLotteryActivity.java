@@ -73,7 +73,6 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     LinearLayout ll_betCount, ll_ballCount;
     TextView tv_ballCount;
 
-
     private AlertDialog betDialog;
     private int betCount = 0;      //下注的注数
     private LotteryVO lotteryVO;
@@ -239,6 +238,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 runTick = true;
                 initTick();
                 startTick();
+                refreshIssue();
             }
         }
 
