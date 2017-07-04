@@ -157,8 +157,8 @@ public class BindBankCardActivity extends BaseActivity implements View.OnClickLi
             toast(R.string.input_trade_psw);
             return;
         }
-        if(psw.length() != 6){
-            toast("请输入六位交易密码");
+        if(psw.length() != 4){
+            toast("请输入四位交易密码");
             return;
         }
 
