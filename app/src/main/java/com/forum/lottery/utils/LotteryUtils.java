@@ -1017,4 +1017,13 @@ public class LotteryUtils {
         return dest;
     }
 
+    public static String getOpenNumStr(String[] openNum){
+        String result = "";
+        for(String s : openNum){
+            result += " " + s;
+        }
+
+        return  result;
+    }
+
 }

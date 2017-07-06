@@ -79,7 +79,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
         <CheckBox
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/cb_rememberPsw"
             android:checked="true"
             android:layout_alignParentRight="true"

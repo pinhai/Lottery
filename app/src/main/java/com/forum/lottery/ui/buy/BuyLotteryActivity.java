@@ -12,7 +12,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,14 +20,17 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
+import com.forum.lottery.adapter.PreviousOpenAdapter;
 import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
@@ -37,6 +39,7 @@ import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.event.RefreshLotteryListResultEvent;
 import com.forum.lottery.model.BetDetailModel;
+import com.forum.lottery.model.TrendModel;
 import com.forum.lottery.model.bet.BetBigAllModel;
 import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.PlayTypeA;
@@ -166,6 +169,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         tv_issue = findView(R.id.tv_issue);
         tv_nextIssue = findView(R.id.tv_nextIssue);
         tv_openNum = findView(R.id.tv_openNum);
+        tv_openNum.setOnClickListener(this);
         tv_playWaySelect = findView(R.id.tv_playWaySelect);
         tv_playWaySelect.setOnClickListener(this);
 
@@ -182,8 +186,54 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //        }
     }
 
-    private void initAssistantPopup() {
+    private void getCurrentFiveOpenLottery(){
+        showIndeterminateDialog();
+        createHttp(LotteryService.class)
+                .getTrendData(lotteryVO.getLotteryid(), 5, 1+"")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData value) {
+                        dismissIndeterminateDialog();
+                        List<TrendModel> trendModels = value.getRecords();
+                        if(value != null && trendModels != null){
+                            if(trendModels.size() == 0){
+                            }else{
+                                showCurrentFiveOpenPopup(trendModels);
+                            }
 
+                        }else{
+                            toast(getString(R.string.connection_failed));
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable error) {
+                        dismissIndeterminateDialog();
+                        toast(getString(R.string.connection_failed));
+                    }
+                });
+    }
+
+    private ListView lv_previous;
+    private PreviousOpenAdapter previousOpenAdapter;
+    private void showCurrentFiveOpenPopup(List<TrendModel> data){
+        View view = LayoutInflater.from(this).inflate(R.layout.common_list, null);
+        lv_previous = (ListView) view.findViewById(R.id.listview_diabetes);
+        previousOpenAdapter = new PreviousOpenAdapter(this, data);
+        lv_previous.setAdapter(previousOpenAdapter);
+        // 创建PopupWindow对象
+        PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
+        // 需要设置一下此参数，点击外边可消失
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        // 设置点击窗口外边窗口消失
+        popupWindow.setOutsideTouchable(true);
+        // 设置此参数获得焦点，否则无法点击
+        popupWindow.setFocusable(true);
+        popupWindow.showAsDropDown(tv_openNum);
+    }
+
+    private void initAssistantPopup() {
         View view = LayoutInflater.from(this).inflate(R.layout.view_assistant, null);
         view.findViewById(R.id.tv_betRecord).setOnClickListener(this);
         view.findViewById(R.id.tv_trend).setOnClickListener(this);
@@ -218,12 +268,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     }
 
     private void refreshIssue(){
-        String openNum = "";
-        for(String s : lotteryVO.getOpenNum()){
-            openNum += " " + s;
-        }
         tv_issue.setText(lotteryVO.getIssue() + "期");
-        tv_openNum.setText(openNum);
+        tv_openNum.setText(LotteryUtils.getOpenNumStr(lotteryVO.getOpenNum()));
         tv_nextIssue.setText("距" + lotteryVO.getNextIssue() + "期截止");
     }
 
@@ -659,6 +705,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tv_openNum:
+                getCurrentFiveOpenLottery();
+                break;
             case R.id.iv_assistant:
                 pw_assistant.showAsDropDown(iv_assistant, -180, 0);
                 break;
