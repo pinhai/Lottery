@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.chenhanfeng.textverify.VerifyHandler;
@@ -38,6 +39,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
     @Order(1)
     @NotEmpty(message = "请输入密码")
     private EditText editPassword;
+    private CheckBox cb_rememberPsw;
 
     private VerifyHandler verifyHandler;
 
@@ -64,10 +66,12 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
     protected void initView() {
         editUsername = findView(R.id.edit_username);
         editPassword = findView(R.id.edit_password);
+        cb_rememberPsw = findView(R.id.cb_rememberPsw);
 
         verifyHandler = VerifyUtils.from(this);
         findView(R.id.btn_register).setOnClickListener(this);
         findView(R.id.btn_login).setOnClickListener(this);
+
     }
 
     @Override
@@ -104,6 +108,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
                             userVO.setAccount(userName);
                             userVO.setPassword(password);
                             userVO.setId(String.valueOf(value.getUserId()));
+                            userVO.setRememberPsw(cb_rememberPsw.isChecked());
                             AccountManager.getInstance().saveUser(userVO);
                             EventBus.getDefault().post(new LoginEvent());
                             setResult(RESULT_OK);

@@ -88,11 +88,19 @@ public class LotteryTickService extends Service {
                             refreshInterval = 0;
                             startTick();
                         }
+                        if(manualRefresh){
+                            manualRefresh = false;
+                            EventBus.getDefault().post(new RefreshLotteryListResultEvent(lotteryVOs));
+                        }
                     }
 
                     @Override
                     public void onError(Throwable error) {
                         toast(getString(R.string.connection_failed));
+                        if(manualRefresh){
+                            manualRefresh = false;
+                            EventBus.getDefault().post(new RefreshLotteryListResultEvent(lotteryVOs));
+                        }
                     }
                 });
 
@@ -106,10 +114,6 @@ public class LotteryTickService extends Service {
                 lotteryVO.setTime(time);
             }
             EventBus.getDefault().post(new LotteryListTickEvent(lotteryVOs));
-            if(manualRefresh){
-                manualRefresh = false;
-                EventBus.getDefault().post(new RefreshLotteryListResultEvent());
-            }
             return false;
         }
     });

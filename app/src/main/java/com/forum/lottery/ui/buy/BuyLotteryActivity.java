@@ -2,6 +2,7 @@ package com.forum.lottery.ui.buy;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
@@ -34,6 +35,7 @@ import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
+import com.forum.lottery.event.RefreshLotteryListResultEvent;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.bet.BetBigAllModel;
 import com.forum.lottery.model.Peilv;
@@ -244,6 +246,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
 //        tv_tickTime.setText(LotteryUtils.secToTime(lotteryVO.getTime()));
 
+    }
+
+    @Subscribe
+    public void refreshLotteryListResult(RefreshLotteryListResultEvent event){
+        if(!runTick){
+            EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
+        }
     }
 
     public void initPopup() {
@@ -584,16 +593,36 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             lotteryVO.setTime(time);
             if(time <= 0){
                 runTick = false;
-                EventBus.getDefault().post(new RefreshLotteryListEvent(10*1000));
+                EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
                 tv_tickTime.setText("正在开奖");
                 tv_tickTime.setBackgroundResource(R.color.transparent);
-            }else{
+                showPeriodOverDialog();
+            }else if(time > 0){
                 tv_tickTime.setText(LotteryUtils.secToTime(time));
                 tv_tickTime.setBackgroundResource(R.mipmap.shijian_bg);
             }
             return false;
         }
     });
+
+    Dialog periodOverDialog;
+    private void showPeriodOverDialog(){
+        if(periodOverDialog == null){
+            periodOverDialog = new AlertDialog.Builder(this)
+                    .setTitle("提示")
+                    .setMessage("您好，本期" + lotteryVO.getNextIssue() + "期的投注已截止，请重新确认投注下一期")
+                    .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which){
+                            dialog.dismiss();
+                        }
+                    }).create();
+        }
+        if(!periodOverDialog.isShowing()){
+            periodOverDialog.show();
+        }
+
+    }
 
     private boolean runTick = true;
     private Thread tickThread;
