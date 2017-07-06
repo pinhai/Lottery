@@ -1,6 +1,7 @@
 package com.forum.lottery.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.forum.lottery.R;
 import com.forum.lottery.entity.LotteryVO;
@@ -987,6 +988,9 @@ public class LotteryUtils {
      */
     public static <T> ArrayList<T> jsonToArrayList(String json, Class<T> clazz)
     {
+        if(TextUtils.isEmpty(json)){
+            return null;
+        }
         Type type = new TypeToken<ArrayList<JsonObject>>(){}.getType();
         ArrayList<JsonObject> jsonObjects = new Gson().fromJson(json, type);
 

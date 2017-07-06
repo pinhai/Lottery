@@ -18,7 +18,6 @@ public class UserVO implements Parcelable {
     private int type;
     private String account;
     private String password;
-    private boolean rememberPsw;
     /**
      * 是否认证 0 未认证， 1已认证
      */
@@ -29,14 +28,6 @@ public class UserVO implements Parcelable {
     private String token;
     private String sign;
 
-
-    public boolean isRememberPsw(){
-        return rememberPsw;
-    }
-
-    public void setRememberPsw(boolean rememberPsw){
-        this.rememberPsw = rememberPsw;
-    }
 
     public String getPassword() {
         return password;
@@ -131,7 +122,6 @@ public class UserVO implements Parcelable {
         dest.writeString(this.companyName);
         dest.writeString(this.token);
         dest.writeString(this.sign);
-        dest.writeBooleanArray(new boolean[]{rememberPsw});
     }
 
     public UserVO() {
@@ -146,7 +136,6 @@ public class UserVO implements Parcelable {
         this.companyName = in.readString();
         this.token = in.readString();
         this.sign = in.readString();
-        in.readBooleanArray(new boolean[]{rememberPsw});
     }
 
     public static final Creator<UserVO> CREATOR = new Creator<UserVO>() {
@@ -167,7 +156,6 @@ public class UserVO implements Parcelable {
         }
         userVO.setAccount(getAccount());
         userVO.setPassword(getPassword());
-        userVO.setRememberPsw(isRememberPsw());
         userVO.setId(getId());
         userVO.setType(getType());
         userVO.setIsCredit(getIsCredit());

@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,11 +24,18 @@ public class AccountManager {
     private Handler mHandler;
     private UserVO mUserVO;
     private static final String USER_INFO_KEY = "user_info_key";
+    private static final String USER_INFO_SAVE_PSW_KEY = "user_info_save_psw_key";
+    private List<UserVO> savePswUserVOs;
     private List<OnUserStateChangeListener> onUserChangeListeners;
     private AccountManager(){
         mPreferences = MyApplication.getInstance().getSharedPreferences(AppConfig.FILE_NAME, Context.MODE_PRIVATE);
         mHandler = new Handler(Looper.getMainLooper());
         onUserChangeListeners = new LinkedList<>();
+        savePswUserVOs = new Gson().fromJson(mPreferences.getString(USER_INFO_SAVE_PSW_KEY, ""), List.class);
+//        savePswUserVOs = LotteryUtils.jsonToArrayList(mPreferences.getString(USER_INFO_SAVE_PSW_KEY, ""), UserVO.class);
+        if(savePswUserVOs == null){
+            savePswUserVOs = new ArrayList<>();
+        }
     }
 
     public static AccountManager getInstance(){
@@ -84,6 +92,41 @@ public class AccountManager {
         EventBus.getDefault().post(new LoginEvent());
     }
 
+    /**
+     * 记住密码
+     * @param user
+     */
+    public void saveUserPsw(UserVO user){
+        boolean flag = false;
+        for(UserVO item : savePswUserVOs){
+            if(item.getId().equals(user.getId())){
+                item = user;
+                flag = true;
+            }
+        }
+        if(!flag){
+            savePswUserVOs.add(user);
+        }
+        mPreferences.edit().putString(USER_INFO_SAVE_PSW_KEY, new Gson().toJson(savePswUserVOs));
+    }
+
+    /**
+     * 删除已经记住密码的用户
+     * @param id
+     */
+    public void deleteUserPsw(String id){
+        for(UserVO item : savePswUserVOs){
+            if(id.equals(item.getId())){
+                savePswUserVOs.remove(item);
+            }
+        }
+        mPreferences.edit().putString(USER_INFO_SAVE_PSW_KEY, new Gson().toJson(savePswUserVOs));
+    }
+
+    public List<UserVO> getUserPsw(){
+        return savePswUserVOs;
+    }
+
     public void addListener(OnUserStateChangeListener onUserChangeListener){
         onUserChangeListeners.add(onUserChangeListener);
     }
@@ -119,6 +162,7 @@ public class AccountManager {
         @Override
         public void run() {
             mPreferences.edit().putString(USER_INFO_KEY, mUserVO.toString()).apply();
+
         }
     };
 

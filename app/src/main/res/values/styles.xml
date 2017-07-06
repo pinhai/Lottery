@@ -112,4 +112,26 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
 
+    <style name="listView_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:cacheColorHint">@null</item>
+        <item name="android:divider">@color/gray</item>
+        <item name="android:dividerHeight">0.5dp</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:listSelector">@color/transparent</item>
+    </style>
+
+    <style name="AnimBottom">
+        <item name="android:windowEnterAnimation">@anim/popup_push_down</item>
+        <item name="android:windowExitAnimation">@anim/popup_push_up</item>
+    </style>
+
+    <style name="width_match_height_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+
 </resources>
