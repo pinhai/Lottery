@@ -169,7 +169,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         tv_issue = findView(R.id.tv_issue);
         tv_nextIssue = findView(R.id.tv_nextIssue);
         tv_openNum = findView(R.id.tv_openNum);
-        tv_openNum.setOnClickListener(this);
+//        tv_openNum.setOnClickListener(this);
         tv_playWaySelect = findView(R.id.tv_playWaySelect);
         tv_playWaySelect.setOnClickListener(this);
 
@@ -337,7 +337,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         }
 
         showProgressDialog(false);
-        betGetPeilv();
+        if(checkIssue()){
+            betGetPeilv();
+        }
 
         //验证合理性
 //        String buyNo = URLEncoder.encode(LotteryUtils.getBetLottery(dataAll));
@@ -366,6 +368,14 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //                });
 
 //        LotteryUtils.getBetLotteryFromAddition(dataAll);
+    }
+
+    private boolean checkIssue(){
+        if(lotteryVO.getTime() <= 0){
+            toast(R.string.openning_lottery_prompt);
+            return false;
+        }
+        return true;
     }
 
     private void betGetPeilv() {
@@ -491,6 +501,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!checkIssue()){
+                    return;
+                }
                 String one = et_oneBetMoney.getText().toString().trim();
                 if(TextUtils.isEmpty(one)){
                     toast("请输入单注金额");
