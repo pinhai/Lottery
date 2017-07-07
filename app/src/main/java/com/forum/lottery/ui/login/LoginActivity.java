@@ -148,6 +148,7 @@ public class LoginActivity extends BaseActionBarActivity implements View.OnClick
             public void onItemSelected(UserVO userVO){
                 editUsername.setText(userVO.getAccount());
                 editPassword.setText(userVO.getPassword());
+                mPopupWindow.dismiss();
             }
         });
         v.setAdapter(adapter);

@@ -31,8 +31,8 @@ public class AccountManager {
         mPreferences = MyApplication.getInstance().getSharedPreferences(AppConfig.FILE_NAME, Context.MODE_PRIVATE);
         mHandler = new Handler(Looper.getMainLooper());
         onUserChangeListeners = new LinkedList<>();
-        savePswUserVOs = new Gson().fromJson(mPreferences.getString(USER_INFO_SAVE_PSW_KEY, ""), List.class);
-//        savePswUserVOs = LotteryUtils.jsonToArrayList(mPreferences.getString(USER_INFO_SAVE_PSW_KEY, ""), UserVO.class);
+//        savePswUserVOs = new Gson().fromJson(mPreferences.getString(USER_INFO_SAVE_PSW_KEY, ""), List.class);
+        savePswUserVOs = LotteryUtils.jsonToArrayList(mPreferences.getString(USER_INFO_SAVE_PSW_KEY, ""), UserVO.class);
         if(savePswUserVOs == null){
             savePswUserVOs = new ArrayList<>();
         }
@@ -107,7 +107,7 @@ public class AccountManager {
         if(!flag){
             savePswUserVOs.add(user);
         }
-        mPreferences.edit().putString(USER_INFO_SAVE_PSW_KEY, new Gson().toJson(savePswUserVOs));
+        mPreferences.edit().putString(USER_INFO_SAVE_PSW_KEY, new Gson().toJson(savePswUserVOs)).apply();
     }
 
     /**
@@ -120,7 +120,7 @@ public class AccountManager {
                 savePswUserVOs.remove(item);
             }
         }
-        mPreferences.edit().putString(USER_INFO_SAVE_PSW_KEY, new Gson().toJson(savePswUserVOs));
+        mPreferences.edit().putString(USER_INFO_SAVE_PSW_KEY, new Gson().toJson(savePswUserVOs)).apply();
     }
 
     public List<UserVO> getUserPsw(){
