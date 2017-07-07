@@ -96,6 +96,7 @@ public class LoginCacheAdapter extends BaseAdapter {
 		@Override
 		public void onClick(View v) {
 			AccountManager.getInstance().deleteUserPsw(id);
+			notifyDataSetChanged();
 		}
 	}
 
