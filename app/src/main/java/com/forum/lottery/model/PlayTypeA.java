@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/5/25.
+ * Created by admin on 2017/5/25.
  */
 
 public class PlayTypeA implements Serializable{

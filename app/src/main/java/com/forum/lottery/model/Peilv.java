@@ -3,7 +3,7 @@ package com.forum.lottery.model;
 import java.io.Serializable;
 
 /**
- * Created by admin_h on 2017/5/27.
+ * Created by admin on 2017/5/27.
  */
 
 public class Peilv implements Serializable{

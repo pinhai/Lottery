@@ -1,7 +1,7 @@
 package com.forum.lottery.model;
 
 /**
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class WinnerModel {

@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/5/21.
+ * Created by admin on 2017/5/21.
  */
 
 public class BetSelectAdapter extends BaseAdapter {

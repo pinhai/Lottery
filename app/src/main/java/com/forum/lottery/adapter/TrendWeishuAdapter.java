@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class TrendWeishuAdapter extends BaseAdapter {

@@ -39,7 +39,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 充值记录
- * Created by admin_h on 2017/5/21.
+ * Created by admin on 2017/5/21.
  */
 
 public class RechargeRecordActivity extends BaseActivity implements View.OnClickListener{

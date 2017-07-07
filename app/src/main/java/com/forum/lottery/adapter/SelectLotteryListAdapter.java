@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * 彩票下注界面-选择数字
- * Created by admin_h on 2017/5/23.
+ * Created by admin on 2017/5/23.
  */
 
 public class SelectLotteryListAdapter extends BaseAdapter {

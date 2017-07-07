@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 下注选项
- * Created by admin_h on 2017/5/24.
+ * Created by admin on 2017/5/24.
  */
 
 public class BetItemModel implements Serializable{

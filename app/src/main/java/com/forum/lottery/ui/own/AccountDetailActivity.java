@@ -28,7 +28,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 账户明细
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class AccountDetailActivity extends BaseActivity implements View.OnClickListener{

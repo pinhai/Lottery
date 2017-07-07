@@ -28,7 +28,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 投注记录
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class BetRecordActivity extends BaseActivity implements View.OnClickListener{

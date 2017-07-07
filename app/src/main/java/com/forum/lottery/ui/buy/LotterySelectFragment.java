@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/5/23.
+ * Created by admin on 2017/5/23.
  */
 
 public class LotterySelectFragment extends BaseBetFragment {

@@ -16,7 +16,7 @@ import com.forum.lottery.view.roundimage.RoundedImageView;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/5/28.
+ * Created by admin on 2017/5/28.
  */
 
 public class LotteryGridAdapter extends BaseAdapter {

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by admin_h on 2017/5/28.
+ * Created by admin on 2017/5/28.
  */
 
 public class TrendAdapter extends BaseAdapter {

@@ -12,7 +12,7 @@ import com.forum.lottery.utils.QRCode;
 import com.forum.lottery.utils.ScreenUtils;
 
 /**
- * Created by admin_h on 2017/5/31.
+ * Created by admin on 2017/5/31.
  */
 
 public class RechargeFinalActivity extends BaseActivity implements View.OnClickListener {

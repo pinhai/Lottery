@@ -17,7 +17,7 @@ import com.forum.lottery.model.BetDetailModel;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/5/25.
+ * Created by admin on 2017/5/25.
  */
 
 public class BettedDetailAdapter extends BaseAdapter{

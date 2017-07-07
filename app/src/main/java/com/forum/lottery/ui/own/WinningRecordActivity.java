@@ -29,7 +29,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 中奖纪录
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class WinningRecordActivity extends BaseActivity implements View.OnClickListener{

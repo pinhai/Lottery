@@ -21,7 +21,7 @@ import static com.forum.lottery.model.LotteryType.XY28;
 import static com.forum.lottery.model.LotteryType.XJSSC;
 
 /**
- * Created by admin_h on 2017/5/28.
+ * Created by admin on 2017/5/28.
  */
 
 public class LotteryIconUtils {

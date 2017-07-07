@@ -31,7 +31,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 充值
- * Created by admin_h on 2017/5/30.
+ * Created by admin on 2017/5/30.
  */
 
 public class RechargeActivity extends BaseActivity implements View.OnClickListener {

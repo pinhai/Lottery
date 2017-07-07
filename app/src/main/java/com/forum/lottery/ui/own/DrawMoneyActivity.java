@@ -22,7 +22,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 提款
- * Created by admin_h on 2017/5/30.
+ * Created by admin on 2017/5/30.
  */
 
 public class DrawMoneyActivity extends BaseActivity implements View.OnClickListener{

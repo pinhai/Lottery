@@ -1,7 +1,7 @@
 package com.forum.lottery.model.bet;
 
 /**
- * Created by admin_h on 2017/6/10.
+ * Created by admin on 2017/6/10.
  */
 
 public class BetItemModel41 {

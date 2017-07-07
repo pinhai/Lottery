@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/6/9.
+ * Created by admin on 2017/6/9.
  */
 
 public class BetBigAllModel {

@@ -28,7 +28,7 @@ import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by admin_h on 2017/5/28.
+ * Created by admin on 2017/5/28.
  */
 
 public class LotteryTickService extends Service {

@@ -3,7 +3,7 @@ package com.forum.lottery.model.bet;
 import java.util.List;
 
 /**
- * Created by admin_h on 2017/6/5.
+ * Created by admin on 2017/6/5.
  */
 
 public class BetBigItemModel {

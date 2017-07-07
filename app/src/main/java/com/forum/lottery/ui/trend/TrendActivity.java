@@ -36,7 +36,7 @@ import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class TrendActivity extends BaseActivity {

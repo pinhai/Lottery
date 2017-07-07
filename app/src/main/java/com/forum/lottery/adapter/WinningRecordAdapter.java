@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * 中奖纪录
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class WinningRecordAdapter extends BaseAdapter{

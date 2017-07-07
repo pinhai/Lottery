@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 提款
- * Created by admin_h on 2017/5/29.
+ * Created by admin on 2017/5/29.
  */
 
 public class DrawMoneyRecordAdapter extends BaseAdapter{

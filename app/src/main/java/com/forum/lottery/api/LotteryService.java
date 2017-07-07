@@ -23,7 +23,7 @@ import retrofit2.http.Url;
 import rx.Single;
 
 /**
- * Created by admin_h on 2017/5/22.
+ * Created by admin on 2017/5/22.
  */
 
 public interface LotteryService {

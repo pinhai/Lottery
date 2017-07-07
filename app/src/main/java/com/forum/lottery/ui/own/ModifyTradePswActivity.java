@@ -22,7 +22,7 @@ import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by admin_h on 2017/6/14.
+ * Created by admin on 2017/6/14.
  */
 
 public class ModifyTradePswActivity extends BaseActionBarActivity {
