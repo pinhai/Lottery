@@ -622,7 +622,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //        tv_betCount.setText(betCount + "");
 //        tv_betMoney.setText((betCount *2) + "");
         String lotteryId = lotteryVO.getLotteryid();
-        if(lotteryId.equals("41") || lotteryId.equals("42") || (lotteryId.equals("11") && playTypeA.getPlayTypeA().equals("和值"))
+        if(lotteryId.equals("41") || lotteryId.equals("42")
+                || (lotteryId.equals("11") && playTypeA.getPlayTypeA().equals("和值"))
                 || lotteryId.equals("18")){
             betCount = LotteryUtils.getBetCountFromAddition(betFragment.getData());
             tv_betCount.setText(betCount + "");

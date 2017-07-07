@@ -275,7 +275,11 @@ public class PlayedUtil {
                 case "LTDWD": //乐透十一运定位胆
                 case "LTDDS": //乐透十一运定单双
                     for (int i = 0; i <= max_place; i++) {
-                        nums = Integer.parseInt(MethodCommon._common.util.Math_add(nums, data_sel[i].length).toString());
+                        if(lotteryId == 12 ||lotteryId == 13 ||lotteryId == 14 ||lotteryId == 15){
+                            nums += data_sel[i].length;
+                        }else{
+                            nums = Integer.parseInt(MethodCommon._common.util.Math_add(nums, data_sel[i].length).toString());
+                        }
                     }
                     break;
                 case "LTZU3": //乐透十一运前三组选
