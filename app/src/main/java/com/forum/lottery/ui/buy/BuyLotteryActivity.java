@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.forum.lottery.R;
@@ -77,11 +78,14 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private Button btn_clear, btn_bet;
     LinearLayout ll_betCount, ll_ballCount;
     TextView tv_ballCount;
+    RelativeLayout rl_backBill;
+    TextView tv_billCount;
 
     private AlertDialog betDialog;
     private int betCount = 0;      //下注的注数
     private LotteryVO lotteryVO;
     private boolean backAddBet;  //是否从“返回添加一注”进来
+    private int backAddBetCount;
 
     private LotterySelectFragment betFragment;
 
@@ -184,6 +188,14 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 //            ll_ballCount.setVisibility(View.GONE);
 //            ll_betCount.setVisibility(View.VISIBLE);
 //        }
+
+        rl_backBill = findView(R.id.rl_backBill);
+        rl_backBill.setOnClickListener(this);
+        tv_billCount = findView(R.id.tv_billCount);
+        if(backAddBet){
+            rl_backBill.setVisibility(View.VISIBLE);
+            tv_billCount.setText(backAddBetCount + "");
+        }
     }
 
     private void getCurrentFiveOpenLottery(){
@@ -261,6 +273,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         betDetailModels = new ArrayList<>();
         lotteryVO = (LotteryVO) getIntent().getSerializableExtra("lottery");
         backAddBet = getIntent().getBooleanExtra("backAddBet", false);
+        backAddBetCount = getIntent().getIntExtra("backAddBetCount", 0);
         playWays = new ArrayList<>();
 //        playWays = LotteryUtils.getPlayType(this, lotteryVO.getLotteryid());
         loadBetData();
@@ -336,8 +349,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             return;
         }
 
-        showProgressDialog(false);
         if(checkIssue()){
+            showProgressDialog(false);
             betGetPeilv();
         }
 
@@ -718,6 +731,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.rl_backBill:
+                finish();
+                break;
             case R.id.tv_openNum:
                 getCurrentFiveOpenLottery();
                 break;

@@ -289,6 +289,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
                 Intent intent = new Intent(BuyLotteryFinalActivity.this, BuyLotteryActivity.class);
                 intent.putExtra("lottery", lotteryVO);
                 intent.putExtra("backAddBet", true);
+                intent.putExtra("backAddBetCount", betTotalCount);
                 startActivityForResult(intent, 101);
                 break;
             case R.id.btn_addMachineSelect:
