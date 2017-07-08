@@ -214,7 +214,7 @@ public class HomeFragment extends TabBaseFragment implements ViewPager.OnPageCha
 
         viewPager = findView(R.id.viewPager);
         //载入图片资源ID
-        imgIdArray = new int[]{R.mipmap.fous_01, R.mipmap.fous_02, R.mipmap.fous_03 };
+        imgIdArray = new int[]{R.mipmap.fous_01, R.mipmap.fous_02, R.mipmap.fous_03, R.mipmap.fous_04, R.mipmap.fous_05 };
         //将图片装载到数组中
         mImageViews = new ImageView[imgIdArray.length];
         for(int i=0; i<mImageViews.length; i++){
