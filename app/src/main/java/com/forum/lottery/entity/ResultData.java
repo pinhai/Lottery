@@ -47,6 +47,7 @@ public class ResultData<T> {
     //首页跑马灯数据
     String html;
 
+
     public String getHtml() {
         return html;
     }

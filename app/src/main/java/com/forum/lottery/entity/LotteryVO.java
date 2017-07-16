@@ -16,6 +16,20 @@ public class LotteryVO implements Serializable{
     private String nextOpenTime;
     private String lotteryName;
 
+    public LotteryVO clone(){
+        LotteryVO result = new LotteryVO();
+        result.setIssue(issue);
+        result.setTime(time);
+        result.setOpenNum(openNum);
+        result.setOpenTime(openTime);
+        result.setLotteryid(lotteryid);
+        result.setNextIssue(nextIssue);
+        result.setNextOpenTime(nextOpenTime);
+        result.setLotteryName(lotteryName);
+
+        return  result;
+    }
+
     public String getIssue() {
         return issue;
     }

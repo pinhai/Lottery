@@ -5,6 +5,7 @@ import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.RegisterResult;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.model.BetDetailModel;
+import com.forum.lottery.model.NextIssueModel;
 import com.forum.lottery.model.Peilv;
 import com.forum.lottery.model.WinnerModel;
 
@@ -34,6 +35,13 @@ public interface LotteryService {
      */
     @GET("nonAuthority/gameCenter/appLotteryBuy")
     Single<ResultData<List<LotteryVO>>> getAllLotteryList();
+
+    /**
+     * 获取下一期开奖结果
+     * @return
+     */
+    @GET("nonAuthority/gameCenter/gameAction")
+    Single<NextIssueModel> getNextIssue(@Query("lotteryid") String lotteryid, @Query("type") String type);
 
     /**
      * 获取彩票

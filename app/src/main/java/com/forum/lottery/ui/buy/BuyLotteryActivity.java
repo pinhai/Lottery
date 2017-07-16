@@ -37,6 +37,7 @@ import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
 import com.forum.lottery.event.BuyLotteryCheckChangeEvent;
 import com.forum.lottery.event.LotteryListTickEvent;
+import com.forum.lottery.event.OpeningLotteryEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.event.RefreshLotteryListResultEvent;
 import com.forum.lottery.model.BetDetailModel;
@@ -61,6 +62,8 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -292,7 +295,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             List<LotteryVO> lotteryVOs = event.data;
             for(LotteryVO item : lotteryVOs){
                 if(item.getLotteryid().equals(lotteryVO.getLotteryid())){
-                    lotteryVO = item;
+                    lotteryVO = item.clone();
                 }
             }
             if(lotteryVO.getTime() > 0){
@@ -309,9 +312,9 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     @Subscribe
     public void refreshLotteryListResult(RefreshLotteryListResultEvent event){
-        if(!runTick){
-            EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
-        }
+//        if(!runTick){
+//            EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
+//        }
     }
 
     public void initPopup() {
@@ -666,10 +669,11 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             lotteryVO.setTime(time);
             if(time <= 0){
                 runTick = false;
-                EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
+//                EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
                 tv_tickTime.setText("正在开奖");
                 tv_tickTime.setBackgroundResource(R.color.transparent);
                 showPeriodOverDialog();
+                EventBus.getDefault().post(new OpeningLotteryEvent(lotteryVO.getLotteryid(), playTypeB.getPlayId()));
             }else if(time > 0){
                 tv_tickTime.setText(LotteryUtils.secToTime(time));
                 tv_tickTime.setBackgroundResource(R.mipmap.shijian_bg);
@@ -678,10 +682,10 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         }
     });
 
-    Dialog periodOverDialog;
+    AlertDialog periodOverDialog;
     private void showPeriodOverDialog(){
         if(periodOverDialog == null){
-            periodOverDialog = new AlertDialog.Builder(this)
+            periodOverDialog = new AlertDialog.Builder(BuyLotteryActivity.this)
                     .setTitle("提示")
                     .setMessage("您好，本期" + lotteryVO.getNextIssue() + "期的投注已截止，请重新确认投注下一期")
                     .setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -690,8 +694,13 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                             dialog.dismiss();
                         }
                     }).create();
+        }else{
+//            if(periodOverDialog.isShowing()){
+//                periodOverDialog.dismiss();
+//            }
+            periodOverDialog.setMessage("您好，本期" + lotteryVO.getNextIssue() + "期的投注已截止，请重新确认投注下一期");
         }
-        if(!periodOverDialog.isShowing()){
+        if(!periodOverDialog.isShowing() && !isFinishing()){
             periodOverDialog.show();
         }
 
@@ -699,25 +708,42 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
 
     private boolean runTick = true;
     private Thread tickThread;
+    private Timer timer;
     private void startTick(){
-        if(!tickThread.isAlive())
-            tickThread.start();
+//        if(!tickThread.isAlive())
+//            tickThread.start();
+
+        if(timer == null){
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                public void run() {
+                    if (runTick){
+                        try {
+//                        Thread.sleep(1000);
+                            handler.sendEmptyMessage(0);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }, 1000, 1000);
+        }
     }
 
     private void initTick(){
-        tickThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (runTick){
-                    try {
-                        Thread.sleep(1000);
-                        handler.sendEmptyMessage(0);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
+//        tickThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (runTick){
+//                    try {
+//                        Thread.sleep(1000);
+//                        handler.sendEmptyMessage(0);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
     }
 
     @Override
