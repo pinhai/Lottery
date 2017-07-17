@@ -285,51 +285,26 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     }
 
     private void refreshIssue(){
-        tv_issue.setText(lotteryVO.getIssue() + "期");
-        if(lotteryVO.getOpenNum() == null || lotteryVO.getOpenNum().length < 2){
+//        if(lotteryVO.getOpenNum() == null || lotteryVO.getOpenNum().length < 2){
+        if(lotteryVO.getTime() <= 0){
             tv_openNum.setText("正在开奖");
+            tv_issue.setText(lotteryVO.getNextIssue() + "期");
         }else{
             tv_openNum.setText(LotteryUtils.getOpenNumStr(lotteryVO.getOpenNum()));
+            tv_issue.setText(lotteryVO.getIssue() + "期");
         }
         tv_nextIssue.setText("距" + lotteryVO.getNextIssue() + "期截止");
     }
 
     @Subscribe
     public void deliveryLotteryList(LotteryListTickEvent event){
-//        if(!runTick){
-//            List<LotteryVO> lotteryVOs = event.data;
-//            for(LotteryVO item : lotteryVOs){
-//                if(item.getLotteryid().equals(lotteryVO.getLotteryid())){
-//                    lotteryVO = item.clone();
-//                }
-//            }
-//            if(lotteryVO.getTime() > 0){
-//                runTick = true;
-//                initTick();
-//                startTick();
-//                refreshIssue();
-//            }
-//        }
-
-//        tv_tickTime.setText(LotteryUtils.secToTime(lotteryVO.getTime()));
-
-    }
-
-    @Subscribe
-    public void refreshLotteryListResult(RefreshLotteryListResultEvent event){
-//        if(!runTick){
-//            EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
-//        }
-    }
-
-    @Subscribe
-    public void checkOpenLotteryResult(CheckOpenLotteryResult event){
         if(!runTick){
-            lotteryVO.setIssue(lotteryVO.getNextIssue());
-            lotteryVO.setNextIssue(event.value.getIssue());
-            lotteryVO.setOpenNum(event.value.getCode());
-            lotteryVO.setOpenTime(event.value.getOpentime());
-            lotteryVO.setTime(LotteryUtils.getCountDown(event.value.getOpentime()));
+            List<LotteryVO> lotteryVOs = event.data;
+            for(LotteryVO item : lotteryVOs){
+                if(item.getLotteryid().equals(lotteryVO.getLotteryid())){
+                    lotteryVO = item.clone();
+                }
+            }
             if(lotteryVO.getTime() > 0){
                 runTick = true;
                 initTick();
@@ -337,6 +312,33 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             }
             refreshIssue();
         }
+
+//        tv_tickTime.setText(LotteryUtils.secToTime(lotteryVO.getTime()));
+
+    }
+
+    @Subscribe
+    public void refreshLotteryListResult(RefreshLotteryListResultEvent event){
+        if(!runTick){
+            EventBus.getDefault().post(new RefreshLotteryListEvent(2*1000));
+        }
+    }
+
+    @Subscribe
+    public void checkOpenLotteryResult(CheckOpenLotteryResult event){
+//        if(!runTick){
+//            lotteryVO.setIssue(lotteryVO.getNextIssue());
+//            lotteryVO.setNextIssue(event.value.getIssue());
+//            lotteryVO.setOpenNum(event.value.getCode());
+//            lotteryVO.setOpenTime(event.value.getOpentime());
+//            lotteryVO.setTime(LotteryUtils.getCountDown(event.value.getOpentime()));
+//            if(lotteryVO.getTime() > 0){
+//                runTick = true;
+//                initTick();
+//                startTick();
+//            }
+//            refreshIssue();
+//        }
     }
 
     public void initPopup() {
@@ -691,11 +693,11 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             lotteryVO.setTime(time);
             if(time <= 0){
                 runTick = false;
-//                EventBus.getDefault().post(new RefreshLotteryListEvent(20*1000));
+                EventBus.getDefault().post(new RefreshLotteryListEvent(2*1000));
                 tv_tickTime.setText("00:00:00");
 //                tv_tickTime.setBackgroundResource(R.color.transparent);
                 showPeriodOverDialog();
-                EventBus.getDefault().post(new OpeningLotteryEvent(lotteryVO.getLotteryid()));
+//                EventBus.getDefault().post(new OpeningLotteryEvent(lotteryVO.getLotteryid()));
             }else if(time > 0){
                 tv_tickTime.setText(LotteryUtils.secToTime(time));
 //                tv_tickTime.setBackgroundResource(R.mipmap.shijian_bg);
