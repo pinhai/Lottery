@@ -31,8 +31,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -1026,4 +1029,22 @@ public class LotteryUtils {
         return  result;
     }
 
+    /**
+     * 计算倒计时
+     * @param openTime
+     * @return
+     */
+    public static int getCountDown(String openTime){
+        int result = 0;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try{
+            date = format.parse(openTime);
+            result = (int) ((date.getTime() - System.currentTimeMillis()) / 1000);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

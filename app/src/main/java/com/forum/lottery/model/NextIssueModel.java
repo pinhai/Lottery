@@ -17,7 +17,7 @@ public class NextIssueModel {
 
     //下一期开奖结果
     String issue;
-    List<String> code;
+    String[] code;
     String opentime;
     List<TrendModel> recentlycode;
 
@@ -37,19 +37,19 @@ public class NextIssueModel {
         this.issue = issue;
     }
 
-    public List<String> getCode() {
-        return code;
-    }
-
-    public void setCode(List<String> code) {
-        this.code = code;
-    }
-
     public String getOpentime() {
         return opentime;
     }
 
     public void setOpentime(String opentime) {
         this.opentime = opentime;
+    }
+
+    public String[] getCode(){
+        return code;
+    }
+
+    public void setCode(String[] code){
+        this.code = code;
     }
 }

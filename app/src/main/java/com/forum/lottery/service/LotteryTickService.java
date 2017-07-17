@@ -15,6 +15,7 @@ import com.forum.lottery.R;
 import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
+import com.forum.lottery.event.CheckOpenLotteryResult;
 import com.forum.lottery.event.LotteryListTickEvent;
 import com.forum.lottery.event.OpeningLotteryEvent;
 import com.forum.lottery.event.RefreshLotteryListEvent;
@@ -84,9 +85,15 @@ public class LotteryTickService extends Service {
                 .subscribe(new SingleSubscriber<NextIssueModel>() {
                     @Override
                     public void onSuccess(NextIssueModel value) {
-                        List<String> code = value.getCode();
-                        if(code != null && code.size() > 1){
-                            loadLotteryList();
+                        EventBus.getDefault().post(new CheckOpenLotteryResult(value));
+                        String[] code = value.getCode();
+                        if(code != null && code.length > 1){
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run(){
+                                    loadLotteryList();
+                                }
+                            }, 3000);
                             Log.v(TAG, "查询到下一期开奖结果  " + code.toString() );
                         }else {
                             checkOpenStatus = true;
