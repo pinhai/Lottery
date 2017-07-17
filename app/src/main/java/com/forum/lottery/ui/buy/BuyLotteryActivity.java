@@ -673,7 +673,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 tv_tickTime.setText("正在开奖");
                 tv_tickTime.setBackgroundResource(R.color.transparent);
                 showPeriodOverDialog();
-                EventBus.getDefault().post(new OpeningLotteryEvent(lotteryVO.getLotteryid(), playTypeB.getPlayId()));
+                EventBus.getDefault().post(new OpeningLotteryEvent(lotteryVO.getLotteryid() ));
             }else if(time > 0){
                 tv_tickTime.setText(LotteryUtils.secToTime(time));
                 tv_tickTime.setBackgroundResource(R.mipmap.shijian_bg);

@@ -7,11 +7,9 @@ package com.forum.lottery.event;
 public class OpeningLotteryEvent {
 
     public String lotteryId;
-    public String play;
 
-    public OpeningLotteryEvent(String lotteryId, String play){
+    public OpeningLotteryEvent(String lotteryId){
         this.lotteryId = lotteryId;
-        this.play = play;
     }
 
 }

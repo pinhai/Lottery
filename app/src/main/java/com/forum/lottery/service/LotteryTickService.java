@@ -69,11 +69,10 @@ public class LotteryTickService extends Service {
     @Subscribe
     public void openingLottery(OpeningLotteryEvent event){
         checkOpenStatusLotteryId = event.lotteryId;
-        checkOpenStatusPlay = event.play;
         checkOpenStatus = true;
     }
 
-    String checkOpenStatusLotteryId = "0", checkOpenStatusPlay = "0";
+    String checkOpenStatusLotteryId = "0";
     boolean checkOpenStatus = false;
     int checkOpenStatusTick = 0;
     //查询下一期开奖结果
