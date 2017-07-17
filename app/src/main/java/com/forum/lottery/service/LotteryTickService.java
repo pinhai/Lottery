@@ -27,6 +27,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -78,7 +79,7 @@ public class LotteryTickService extends Service {
     int checkOpenStatusTick = 0;
     //查询下一期开奖结果
     private void checkOpenStatus() {
-        Log.v(TAG, "开始查询下一期开奖结果" );
+        Log.v(TAG, "开始查询当前期开奖结果" );
         createHttp(LotteryService.class)
                 .getNextIssue(checkOpenStatusLotteryId, "3")
                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,7 +95,8 @@ public class LotteryTickService extends Service {
                                     loadLotteryList();
                                 }
                             }, 3000);
-                            Log.v(TAG, "查询到下一期开奖结果  " + code.toString() );
+                            Log.v(TAG, "查询到当前期开奖结果  " + Arrays.asList(code).toString()
+                                    + "  " + value.getIssue() + "  " + value.getOpentime());
                         }else {
                             checkOpenStatus = true;
                             checkOpenStatusTick = 0;
