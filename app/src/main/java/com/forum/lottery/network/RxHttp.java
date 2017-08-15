@@ -10,11 +10,18 @@ import com.forum.lottery.application.MyApplication;
 import com.forum.lottery.utils.AppConfig;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.prefs.Preferences;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
@@ -52,6 +59,13 @@ public class RxHttp {
                 .addInterceptor(mTokenInterceptor)
 //                .addInterceptor(new AddCookiesInterceptor())
 //                .addInterceptor(new ReceivedCookiesInterceptor())
+                .sslSocketFactory(createSSLSocketFactory())
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
                 .build();
         retrofit = new Retrofit.Builder()
                 .callFactory(okHttpClient)
@@ -107,6 +121,20 @@ public class RxHttp {
                 return chain.proceed(request);
             }
         }
+    }
+
+    private static SSLSocketFactory createSSLSocketFactory() {
+        SSLSocketFactory ssfFactory = null;
+
+        try {
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, new TrustManager[]{new TrustAllCerts()}, new SecureRandom());
+
+            ssfFactory = sc.getSocketFactory();
+        } catch (Exception e) {
+        }
+
+        return ssfFactory;
     }
 
 }

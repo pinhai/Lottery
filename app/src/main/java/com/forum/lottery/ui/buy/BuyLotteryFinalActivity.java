@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Message;
 import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -22,6 +23,8 @@ import com.forum.lottery.api.LotteryService;
 import com.forum.lottery.entity.BetResult;
 import com.forum.lottery.entity.LotteryVO;
 import com.forum.lottery.entity.ResultData;
+import com.forum.lottery.event.LotteryListTickEvent;
+import com.forum.lottery.event.RefreshLotteryListEvent;
 import com.forum.lottery.model.BetDetailModel;
 import com.forum.lottery.model.BetSubmitModel;
 import com.forum.lottery.model.Peilv;
@@ -34,7 +37,12 @@ import com.forum.lottery.ui.BaseActivity;
 import com.forum.lottery.utils.LotteryUtils;
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -71,6 +79,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_buy_lottery_final);
 
+        EventBus.getDefault().register(this);
         initData();
         initView();
         getTotalBet();
@@ -121,6 +130,7 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
             }
         });
 
+        startTick();
     }
 
     private void getTotalBet(){
@@ -139,6 +149,9 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
             toast("请先下注");
             return;
         }
+//        for(BetDetailModel item : betDetailModels){
+//            item.setPeriodNO(lotteryVO.getNextIssue());
+//        }
 //        String requestJson = new Gson().toJson(new BetSubmitModel(betDetailModels));
         String requestJson = new Gson().toJson(betDetailModels);
         RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"),requestJson);
@@ -315,5 +328,61 @@ public class BuyLotteryFinalActivity extends BaseActionBarActivity implements Vi
                 break;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void deliveryLotteryList(LotteryListTickEvent event){
+        if(!runTick){
+            List<LotteryVO> lotteryVOs = event.data;
+            for(LotteryVO item : lotteryVOs){
+                if(item.getLotteryid().equals(lotteryVO.getLotteryid())){
+                    lotteryVO = item.clone();
+                }
+            }
+            if(lotteryVO.getTime() > 0){
+                runTick = true;
+                startTick();
+            }
+        }
+
+    }
+
+    private android.os.Handler handler = new android.os.Handler(new android.os.Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            int time = lotteryVO.getTime() - 1;
+            lotteryVO.setTime(time);
+            if(time <= 0){
+                runTick = false;
+                EventBus.getDefault().post(new RefreshLotteryListEvent(2*1000));
+            }
+            return false;
+        }
+    });
+
+    private boolean runTick = true;
+    private Timer timer;
+    private void startTick(){
+        if(timer == null){
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                public void run() {
+                    if (runTick){
+                        try {
+//                        Thread.sleep(1000);
+                            handler.sendEmptyMessage(0);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }, 1000, 1000);
+        }
     }
 }

@@ -307,7 +307,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
             }
             if(lotteryVO.getTime() > 0){
                 runTick = true;
-                initTick();
+//                initTick();
                 startTick();
             }
             refreshIssue();
@@ -348,7 +348,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 playWaySelectorPopup = new PlayWaySelectorPopup(BuyLotteryActivity.this, playWays, playTypeCheckListener);
             }
         }, 0);
-        initTick();
+//        initTick();
         startTick();
     }
 
@@ -479,7 +479,8 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
     private void betEveryBall(final List<Peilv> peilvs){
         float oneBetMoney = 2;
 
-        if(lotteryVO.getLotteryid().equals("18")){
+        String lotteryId = lotteryVO.getLotteryid();
+        if(lotteryId.equals("18") || lotteryId.equals("41") || lotteryId.equals("42")){
             View view = LayoutInflater.from(this).inflate(R.layout.view_bet_every_ball_money,null);
             final Dialog betDialog = new AlertDialog.Builder(this)
                     .setView(view)
@@ -499,7 +500,7 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
                 @Override
                 public void onClick(View v) {
                     String betMoney = et_allBetMoney.getText().toString().trim();
-                    if(TextUtils.isEmpty(betMoney)){
+                    if(TextUtils.isEmpty(betMoney) || betMoney == "0"){
                         toast("请输入金额");
                         return;
                     }
@@ -754,21 +755,21 @@ public class BuyLotteryActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void initTick(){
-//        tickThread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (runTick){
-//                    try {
-//                        Thread.sleep(1000);
-//                        handler.sendEmptyMessage(0);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-    }
+//    private void initTick(){
+////        tickThread = new Thread(new Runnable() {
+////            @Override
+////            public void run() {
+////                while (runTick){
+////                    try {
+////                        Thread.sleep(1000);
+////                        handler.sendEmptyMessage(0);
+////                    } catch (InterruptedException e) {
+////                        e.printStackTrace();
+////                    }
+////                }
+////            }
+////        });
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
