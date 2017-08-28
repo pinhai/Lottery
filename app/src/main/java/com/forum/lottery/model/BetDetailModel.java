@@ -25,6 +25,16 @@ public class BetDetailModel implements Serializable {
     private float peilv;    //赔率
     private float fanli;    //返利
 
+    private String tab;  //lhc专用
+
+
+    public String getTab(){
+        return tab;
+    }
+
+    public void setTab(String tab){
+        this.tab = tab;
+    }
 
     public float getPeilv() {
         return peilv;

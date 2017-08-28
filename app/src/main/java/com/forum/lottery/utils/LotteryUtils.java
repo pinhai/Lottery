@@ -466,6 +466,13 @@ public class LotteryUtils {
             BetItemModel betItemModel = betItems.get(i);
             if(betItemModel.isChecked()){
                 BetDetailModel item = new BetDetailModel();
+                if(lotteryVO.getLotteryid().equals("18")){
+                    if(playName.contains("特码A")){
+                        item.setTab("a");
+                    }else if(playName.contains("特码B")){
+                        item.setTab("b");
+                    }
+                }
                 item.setBuyNoShow(betItemModel.getName());
                 item.setBuyCount(1);
                 item.setBuyNO(item.getBuyNoShow());
