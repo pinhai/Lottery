@@ -38,12 +38,15 @@
 
 # 保留support下的所有类及其内部类
 -dontwarn android.support.v4.**
--keep class android.support.** {*;}
+#-keep class android.support.** {*;}
+
+-keep class android.**
+-keep class google.**
 
 # 保留继承的
--keep public class * extends android.support.v4.**
--keep public class * extends android.support.v7.**
--keep public class * extends android.support.annotation.**
+#-keep public class * extends android.support.v4.**
+#-keep public class * extends android.support.v7.**
+#-keep public class * extends android.support.annotation.**
 
 # 保留R下面的资源
 -keep class **.R$* {*;}
@@ -152,10 +155,6 @@
 -keep class com.idea.fifaalarmclock.entity.***
 -keep class com.google.gson.** { *; }
 
--keep class javax.**
--keep class java.**
--keep class android.**
--keep class google.**
 
 ##############################以上为基本设置，基本混淆都需要简单设置#############
 
@@ -183,3 +182,5 @@
 
 
 -keep class com.forum.lottery.entity.**
+-keep class com.forum.lottery.model.**
+-keep class com.forum.lottery.network.**
