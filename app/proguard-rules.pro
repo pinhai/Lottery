@@ -38,12 +38,15 @@
 
 # 保留support下的所有类及其内部类
 -dontwarn android.support.v4.**
--keep class android.support.** {*;}
+#-keep class android.support.** {*;}
+
+-keep class android.**
+-keep class google.**
 
 # 保留继承的
--keep public class * extends android.support.v4.**
--keep public class * extends android.support.v7.**
--keep public class * extends android.support.annotation.**
+#-keep public class * extends android.support.v4.**
+#-keep public class * extends android.support.v7.**
+#-keep public class * extends android.support.annotation.**
 
 # 保留R下面的资源
 -keep class **.R$* {*;}
@@ -119,7 +122,6 @@
     public *;
 }
 
--keepattributes *Subscribe*
 -keepattributes *Annotation*
 -keepattributes *JavascriptInterface*
 
@@ -129,6 +131,10 @@
 }
 -keepclassmembers class * extends android.webkit.webViewClient {
     public void *(android.webkit.webView, jav.lang.String);
+}
+
+-keepclassmembers public class *{
+    @org.greenrobot.eventbus.Subscribe <methods>;
 }
 
 # 移除Log类打印各个等级日志的代码，打正式包的时候可以做为禁log使用，这里可以作为禁止log打印的功能使用
@@ -147,17 +153,34 @@
 -keepattributes *Annotation*
 -keep class sun.misc.Unsafe { *; }
 -keep class com.idea.fifaalarmclock.entity.***
--keep class com.google.gson.stream.** { *; }
+-keep class com.google.gson.** { *; }
+
 
 ##############################以上为基本设置，基本混淆都需要简单设置#############
 
 
 -dontwarn org.springframework.**
 -keep class org.springframework.** { *; }
+-keep class org.apache.commons.lang3.**
 -dontwarn okio.**
 -keep class okio.** { *; }
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
--dontwarn rx.internal.util.**
--keep class rx.internal.util.** { *; }
+-dontwarn rx.**
+-keep class rx.** { *; }
+-keep class com.google.common.**
+-keep class com.google.zxing.**
+-keep class com.chenhanfeng.textverify.**
+-keep class jim.h.common.android.zxinglib.**
 -keep class org.greenrobot.eventbus.** { *; }
+-keep class com.nostra13.universalimageloader.**
+-keep class okhttp3.**
+-keep class org.junit.**
+-keep class junit.**
+-keep class com.squareup.javawriter.**
+-keep class org.hamcrest.**
+
+
+-keep class com.forum.lottery.entity.**
+-keep class com.forum.lottery.model.**
+-keep class com.forum.lottery.network.**
